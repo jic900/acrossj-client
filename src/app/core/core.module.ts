@@ -12,6 +12,7 @@ import { SignupComponent } from './auth/signup.component';
     NavbarComponent,
     SigninComponent,
     SignupComponent
-  ]
+  ],
+  exports: [ NavbarComponent, SigninComponent, SignupComponent ]
 })
 export class CoreModule { }
