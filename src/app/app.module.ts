@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FeaturesModule } from "./features/features.module";
 import { AppComponent } from './app.component';
-
+import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService }   from './i18n';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TranslatePipe
   ],
   imports: [
     BrowserModule,
@@ -16,7 +17,7 @@ import { AppComponent } from './app.component';
     HttpModule,
     FeaturesModule
   ],
-  providers: [],
+  providers: [ TRANSLATION_PROVIDERS, TranslateService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
