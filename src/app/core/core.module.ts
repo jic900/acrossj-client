@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './nav/navbar.component';
 import { SigninComponent } from './auth/signin.component';
 import { SignupComponent } from './auth/signup.component';
+import { DropdownDirective } from './nav/dropdown.directive';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { SignupComponent } from './auth/signup.component';
   declarations: [
     NavbarComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    DropdownDirective
   ],
   exports: [ NavbarComponent, SigninComponent, SignupComponent ]
 })
