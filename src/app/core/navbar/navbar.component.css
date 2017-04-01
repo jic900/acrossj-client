@@ -1,5 +1,6 @@
 .navbar-custom {
   background: rgba(0, 0, 0, 0.50);
+  height: 53.5px;
 }
 
 .navbar-brand {
@@ -30,4 +31,63 @@
   position: absolute;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.50);
+}
+
+.navbar-collapse.collapsed,
+.navbar-collapse.out {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.50);
+}
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    margin: 0 auto;
+    display: table;
+    table-layout: auto;
+    float: none;
+    width: 100%;
+    height: 250px;
+  }
+  .navbar-nav>li {
+    float: none;
+    text-align: left;
+  }
+}
+
+.nav li a {
+  color: #FFFFFF;
+  display: inline-block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+
+.nav li a:hover {
+  background-color: inherit;
+  color: #FFFFFF;
+  text-shadow: 1px 0px 0px white;
+  /*font-weight: bold;*/
+}
+
+@media (max-width: 768px) {
+  .navbar-collapse .nav > li.divider {
+    *width: 100%;
+    height: 1px;
+    margin: 9px 1px;
+    *margin: -5px 0 5px;
+    overflow: hidden;
+    background-color: inherit;
+    border-bottom: 1px solid #ffffff;
+  }
+}
+
+.dropdown-toggle .icon-bar {
+  margin-bottom:2px;
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #cccccc;
+  border-radius: 1px;
 }
