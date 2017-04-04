@@ -1,6 +1,6 @@
 .navbar-custom {
   background: rgba(0, 0, 0, 0.50);
-  height: 53.5px;
+  height: 53.2px;
 }
 
 .navbar-brand {
@@ -29,13 +29,14 @@
 .navbar-collapse.collapsing,
 .navbar-collapse.in {
   position: absolute;
-  width: 100%;
+  width: 50%;
   background-color: rgba(0, 0, 0, 0.50);
 }
 
 .navbar-collapse.collapsed,
 .navbar-collapse.out {
   display: block;
+  width: 50%;
   background-color: rgba(0, 0, 0, 0.50);
 }
 

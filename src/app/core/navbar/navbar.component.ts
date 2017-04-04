@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { AppConfig } from 'app/config/app.config';
 
 @Component({
   selector: 'aj-navbar',
@@ -14,8 +15,10 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     ]),
   ],
 })
+
 export class NavbarComponent {
 
+  homeLogo = AppConfig.HOME_LOGO;
   state;
   width;
   constructor() {
