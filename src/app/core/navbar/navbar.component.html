@@ -1,7 +1,7 @@
 <nav class="navbar navbar-custom navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed pull-left" (click)="toggleState()">
+      <button type="button" class="navbar-toggle collapsed pull-left" (click)="toggleMenuState()">
         <!--<span class="sr-only">Toggle navigation</span>-->
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -11,20 +11,26 @@
         <img [src]="homeLogo" alt="Across Japan">
       </a>
     </div>
-    <div class="navbar-collapse" [@slideInOut]="state" [ngClass]="{'in': isExpanded(), 'out': isCollapsed()}">
+    <div class="navbar-collapse" [@menuInOut]="menuState" [ngClass]="{'in': isMenuExpanded()}">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#">Introduction</a></li>
+        <li><a href="#">Need Help?</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Log In / Sign Up</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            Dropdown&nbsp;<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
+          <a href="#" class="dropdown-toggle" (click)="toggleSubMenuState()">
+            Language&nbsp;<span class="caret"></span></a>
+          <ul class="dropdown-menu" [ngClass]="{'in': isSubMenuExpanded()}">
             <li><a href="#">Action</a></li>
             <li><a href="#">Another action</a></li>
             <li><a href="#">Something else here</a></li>
           </ul>
         </li>
+
+
+
+
+
       </ul>
     </div>
   </div>
