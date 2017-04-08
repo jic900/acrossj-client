@@ -11,26 +11,22 @@
         <img [src]="homeLogo" alt="Across Japan">
       </a>
     </div>
-    <div class="navbar-collapse" [@menuInOut]="menuState" [ngClass]="{'in': isMenuExpanded()}">
+    <!--<div class="navbar-collapse" [@menuInOut]="menuState" [ngClass]="{'in': isMenuExpanded(), 'out': isMenuCollapsed()}">-->
+    <div class="navbar-collapse" [ngClass]="{'menuExpanded': isMenuExpanded()}">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Introduction</a></li>
-        <li><a href="#">Need Help?</a></li>
-        <li class="divider"></li>
         <li><a href="#">Log In / Sign Up</a></li>
-        <li class="dropdown">
+        <li class="dropdown" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
           <a href="#" class="dropdown-toggle" (click)="toggleSubMenuState()">
-            Language&nbsp;<span class="caret"></span></a>
-          <ul class="dropdown-menu" [ngClass]="{'in': isSubMenuExpanded()}">
+            Language&nbsp;&nbsp;<span class="caret"></span></a>
+          <ul class="dropdown-menu" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
             <li><a href="#">Action</a></li>
             <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Something else</a></li>
           </ul>
         </li>
-
-
-
-
-
+        <!--<li class="divider"></li>-->
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Help</a></li>
       </ul>
     </div>
   </div>
