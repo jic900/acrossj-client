@@ -7,7 +7,7 @@ import { AppConfig } from 'app/config/app.config';
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent{
+export class HomeComponent {
 
   backgroundImage = AppConfig.HOME_BACKGROUND;
 }

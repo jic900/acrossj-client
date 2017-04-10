@@ -1,19 +1,21 @@
+import { MenuState } from "./MenuState";
+
 export class Submenu {
 
   items: string[];
-  subMenuState = 1;
+  subMenuState : number;
 
   constructor(itemList : string[]) {
     this.items = itemList;
-    this.subMenuState = 1;
+    this.subMenuState = MenuState.collapsed;
   }
 
   toggleSubMenuState() {
-    this.subMenuState = this.subMenuState === 1 ? 2 : 1;
+    this.subMenuState = this.subMenuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
     console.log('this.subMenuState === ' + this.subMenuState);
   }
 
   isSubMenuExpanded() {
-    return this.subMenuState === 2;
+    return this.subMenuState === MenuState.expanded;
   }
 }

@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { AppConfig } from 'app/config/app.config';
-import {Submenu} from "./submenu";
+import { Submenu } from "./submenu";
+import { MenuState } from "./MenuState";
 
 @Component({
   selector: 'aj-navbar',
@@ -10,37 +11,38 @@ import {Submenu} from "./submenu";
 
 export class NavbarComponent {
 
-  homeLogo = AppConfig.HOME_LOGO;
+  homeLogo : string;
   menuState : number;
   langSubMenu : Submenu;
   userSubMenu : Submenu;
   authenticated : boolean;
 
   constructor() {
-    this.menuState = 1;
+    this.homeLogo = AppConfig.HOME_LOGO;
+    this.menuState = MenuState.collapsed;
     this.langSubMenu = new Submenu(['Action', 'Another Action', 'Something Else']);
     this.userSubMenu = new Submenu(['Profile', 'Event History', 'Upload', 'Log Out']);
-    this.authenticated = true;
+    this.authenticated = false;
   }
 
   @HostListener('window:resize', ['$event'])
   onWindowResize(event) {
-    this.menuState = 1;
-    this.langSubMenu.subMenuState = 1;
-    this.userSubMenu.subMenuState = 1;
+    this.menuState = MenuState.collapsed;
+    this.langSubMenu.subMenuState = MenuState.collapsed;
+    this.userSubMenu.subMenuState = MenuState.collapsed;
   }
 
   toggleMenuState() {
-    if (this.menuState === 2) {
-      this.langSubMenu.subMenuState = 1;
-      this.userSubMenu.subMenuState = 1;
+    if (this.menuState === MenuState.expanded) {
+      this.langSubMenu.subMenuState = MenuState.collapsed;
+      this.userSubMenu.subMenuState = MenuState.collapsed;
     }
-    this.menuState = this.menuState === 1 ? 2 : 1;
+    this.menuState = this.menuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
     console.log('this.menuState === ' + this.menuState);
   }
 
   isMenuExpanded() {
     console.log('isMenuExpanded => this.menuState === ' + this.menuState);
-    return this.menuState === 2;
+    return this.menuState === MenuState.expanded;
   }
 }
