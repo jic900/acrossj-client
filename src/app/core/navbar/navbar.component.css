@@ -42,6 +42,7 @@
   .navbar-collapse {
     position: absolute;
     width: 50%;
+    max-height: none;
     /*height: 220px;*/
     border-top: none;
     box-shadow: none;
@@ -76,6 +77,7 @@
 
 .dropdown-menu > li > a {
   color: #FFFFFF;
+  background-color: inherit;
 }
 .dropdown-menu > li > a:hover {
   background-color: inherit;
@@ -108,8 +110,11 @@
   .dropdown {
     transition: all 0.5s linear 0s;
   }
-  .dropdown.subMenuExpanded {
-    margin-bottom: 85px;
+  .dropdown.userSubMenuExpanded {
+    margin-bottom: 8em;
+  }
+  .dropdown.langSubMenuExpanded {
+    margin-bottom: 6em;
   }
   .dropdown-menu {
     background-color: inherit;
