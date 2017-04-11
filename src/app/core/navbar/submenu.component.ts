@@ -17,10 +17,7 @@ export class SubmenuComponent implements OnInit {
   subMenuState : number;
 
   constructor(private el: ElementRef) {
-    // this.linkName = linkName;
-    // this.items = itemList;
     this.subMenuState = MenuState.collapsed;
-    console.log('linkName = ' + this.linkName);
   }
 
   ngOnInit() {
@@ -38,7 +35,6 @@ export class SubmenuComponent implements OnInit {
 
   toggleSubMenuState() {
     this.subMenuState = this.subMenuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
-    console.log('this.subMenuState === ' + this.subMenuState);
   }
 
   isSubMenuExpanded() {
