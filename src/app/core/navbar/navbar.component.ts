@@ -34,6 +34,7 @@ export class NavbarComponent implements AfterViewInit {
     this.langSubMenu = this.submenus.find(function(submenu) {
       return submenu.linkName === 'Language';
     });
+    this.toggleTransition();
   }
 
   @HostListener('window:resize', ['$event'])
