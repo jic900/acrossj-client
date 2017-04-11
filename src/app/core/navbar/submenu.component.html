@@ -1,0 +1,9 @@
+<li class="dropdown" [ngClass]="isSubMenuExpanded() ? expandedStyle : ''">
+  <a href="#" class="dropdown-toggle" (click)="toggleSubMenuState()">
+    {{ linkName }}&nbsp;&nbsp;
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
+    <li *ngFor="let item of items"><a href="#">{{ item }}</a></li>
+  </ul>
+</li>

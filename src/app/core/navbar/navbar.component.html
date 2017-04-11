@@ -1,4 +1,4 @@
-<nav class="navbar navbar-custom navbar-fixed-top">
+<nav class="navbar navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed pull-left" (click)="toggleMenuState()">
@@ -14,32 +14,18 @@
 
     <div class="navbar-collapse" [ngClass]="{'menuExpanded': isMenuExpanded()}">
       <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="!authenticated; else loginSuccess"><a href="#">Log In / Sign Up</a></li>
-        <ng-template #loginSuccess>
-          <li class="dropdown" [ngClass]="{'userSubMenuExpanded': userSubMenu.isSubMenuExpanded()}">
-            <a href="#" class="dropdown-toggle" (click)="userSubMenu.toggleSubMenuState()">
-              UserName&nbsp;&nbsp;
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" [ngClass]="{'subMenuExpanded': userSubMenu.isSubMenuExpanded()}">
-              <li *ngFor="let item of userSubMenu.items"><a href="#">{{ item }}</a></li>
-            </ul>
-          </li>
-        </ng-template>
-
-        <li class="dropdown" [ngClass]="{'langSubMenuExpanded': langSubMenu.isSubMenuExpanded()}">
-          <a href="#" class="dropdown-toggle" (click)="langSubMenu.toggleSubMenuState()">
-            Language&nbsp;&nbsp;
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" [ngClass]="{'subMenuExpanded': langSubMenu.isSubMenuExpanded()}">
-            <li *ngFor="let item of langSubMenu.items"><a href="#">{{ item }}</a></li>
-          </ul>
-        </li>
-
-        <!--<li class="divider"></li>-->
         <li><a href="#">About Us</a></li>
         <li><a href="#">Help</a></li>
+        <aj-submenu [type]="'language'"></aj-submenu>
+
+        <li *ngIf="!authenticated; else loginSuccess"><a href="#">Log In / Sign Up</a></li>
+        <ng-template #loginSuccess>
+          <aj-submenu [type]="'user'"></aj-submenu>
+        </ng-template>
+
+        <!--<li class="divider"></li>-->
+
+        <li *ngIf="authenticated"><a href="#">Log Out</a></li>
       </ul>
     </div>
   </div>

@@ -1,6 +1,11 @@
-.navbar-custom {
+.navbar {
+  height: 50px;
+  /*border: none;*/
   background: rgba(0, 0, 0, 0.50);
-  /*height: 53.5px;*/
+}
+
+.navbar-header {
+  height: 50px;
 }
 
 .navbar-fixed-top {
@@ -19,6 +24,7 @@
 
 .navbar-toggle {
   margin-right: 5px;
+  border: none;
 }
 .navbar-toggle .icon-bar {
   display: block;
@@ -43,7 +49,6 @@
     position: absolute;
     width: 50%;
     max-height: none;
-    /*height: 220px;*/
     border-top: none;
     box-shadow: none;
     background-color: rgba(0, 0, 0, 0.50);
@@ -59,31 +64,15 @@
   }
 }
 
-.nav > li > a {
+li > a {
   color: #FFFFFF;
   background-color: inherit;
 }
-.nav > li > a:hover {
+li > a:hover {
   background-color: inherit;
 }
 @media (min-width: 768px) {
-  .nav > li > a {
-    height: 53px;
-  }
-  .nav > li > a:hover {
-    text-shadow: 1px 0px 0px white;
-  }
-}
-
-.dropdown-menu > li > a {
-  color: #FFFFFF;
-  background-color: inherit;
-}
-.dropdown-menu > li > a:hover {
-  background-color: inherit;
-}
-@media (min-width: 768px) {
-  .dropdown-menu > li > a:hover {
+  li > a:hover {
     text-shadow: 1px 0px 0px white;
   }
 }
@@ -111,7 +100,7 @@
     transition: all 0.5s linear 0s;
   }
   .dropdown.userSubMenuExpanded {
-    margin-bottom: 8em;
+    margin-bottom: 6em;
   }
   .dropdown.langSubMenuExpanded {
     margin-bottom: 6em;
