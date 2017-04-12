@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import {Component, ElementRef, Input, Output, OnInit, EventEmitter} from '@angular/core';
 import { AppConstant } from 'app/config/app.config';
 import { SubMenuDef } from 'app/config/menu.config';
 import { SubMenuType } from "app/config/menu.config"
@@ -37,7 +37,7 @@ export class SubmenuComponent implements OnInit {
 
   onMouseClick() {
     let width = window.innerWidth;
-    if (width <= AppConstant.DEFAULT_DEVICE_WIDTH) {
+    if (width < AppConstant.DEFAULT_DEVICE_WIDTH) {
       this.subMenuState = this.subMenuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
       if (this.subMenuState === MenuState.expanded) {
         this.onToggled.emit(this.type);
@@ -45,14 +45,14 @@ export class SubmenuComponent implements OnInit {
     }
   }
 
-  onMouseEnter() {
+  onMouseEnter(event) {
     let width = window.innerWidth;
     if (width >= AppConstant.DEFAULT_DEVICE_WIDTH) {
       this.subMenuState = MenuState.expanded;
     }
   }
 
-  onMouseLeave() {
+  onMouseLeave(event) {
     let width = window.innerWidth;
     if (width >= AppConstant.DEFAULT_DEVICE_WIDTH) {
       this.subMenuState = MenuState.collapsed;

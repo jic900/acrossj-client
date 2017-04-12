@@ -49,7 +49,7 @@ export class NavbarComponent implements AfterViewInit {
   }
 
   getLanguageSubMenuType() {
-    SubMenuType.language;
+    return SubMenuType.language;
   }
 
   toggleMenuState() {
@@ -71,7 +71,7 @@ export class NavbarComponent implements AfterViewInit {
   }
 
   toggleTransition(width : number) {
-    if (width > AppConstant.DEFAULT_DEVICE_WIDTH) {
+    if (width >= AppConstant.DEFAULT_DEVICE_WIDTH) {
       this.renderer.addClass(this.el.nativeElement.firstChild, 'no-transition');
     } else {
       this.renderer.removeClass(this.el.nativeElement.firstChild, 'no-transition');

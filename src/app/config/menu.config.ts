@@ -17,9 +17,7 @@ export const SubMenuDef = {
     items: [
       'English',
       'Chinese',
-      'Japanese',
-      'German',
-      'French'
+      'Japanese'
     ]
   }
 };

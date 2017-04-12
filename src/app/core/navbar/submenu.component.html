@@ -1,6 +1,5 @@
-<!--<li class="dropdown" [ngClass]="isSubMenuExpanded() ? expandedStyle : ''">-->
 <li class="dropdown" [ngStyle]="{'margin-bottom': getMarginBottomOffset()}"
-    (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+    (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
   <a href="#" class="dropdown-toggle" (click)="onMouseClick()">
     {{ linkName }}&nbsp;&nbsp;
     <span class="caret" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}"></span>
