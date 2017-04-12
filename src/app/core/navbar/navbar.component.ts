@@ -1,8 +1,9 @@
 import { Component, HostListener, QueryList, ViewChildren, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
 import { AppConfig } from 'app/config/app.config';
+import { AppConstant } from 'app/config/app.config';
 import { SubmenuComponent } from "app/core/navbar/submenu.component";
-import { MenuState } from "./MenuState";
-
+import { MenuState } from "app/config/menu.config"
+import { SubMenuType } from "app/config/menu.config"
 
 @Component({
   selector: 'aj-navbar',
@@ -18,23 +19,17 @@ export class NavbarComponent implements AfterViewInit {
   homeLogo : string;
   menuState : number;
   authenticated : boolean;
-  width : number;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
     this.homeLogo = AppConfig.HOME_LOGO;
     this.menuState = MenuState.collapsed;
     this.authenticated = true;
-    this.width = window.innerWidth;
   }
 
   ngAfterViewInit(): void {
-    this.userSubMenu = this.submenus.find(function(submenu) {
-      return submenu.linkName === 'Username';
-    });
-    this.langSubMenu = this.submenus.find(function(submenu) {
-      return submenu.linkName === 'Language';
-    });
-    this.toggleTransition();
+    this.userSubMenu = this.submenus.find(submenu => submenu.linkName === 'Username');
+    this.langSubMenu = this.submenus.find(submenu => submenu.linkName === 'Language');
+    this.toggleTransition(window.innerWidth);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -42,8 +37,19 @@ export class NavbarComponent implements AfterViewInit {
     this.menuState = MenuState.collapsed;
     this.userSubMenu.subMenuState = MenuState.collapsed;
     this.langSubMenu.subMenuState = MenuState.collapsed;
-    this.width = event.target.innerWidth;
-    this.toggleTransition();
+    this.toggleTransition(event.target.innerWidth);
+  }
+
+  isMenuExpanded() {
+    return this.menuState === MenuState.expanded;
+  }
+
+  getUserSubMenuType() {
+    return SubMenuType.user;
+  }
+
+  getLanguageSubMenuType() {
+    SubMenuType.language;
   }
 
   toggleMenuState() {
@@ -56,15 +62,19 @@ export class NavbarComponent implements AfterViewInit {
     this.menuState = this.menuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
   }
 
-  toggleTransition() {
-    if (this.width > 768) {
+  onToggled(type : string) {
+    if (type === SubMenuType.user) {
+      this.langSubMenu.subMenuState = 1;
+    } else if (type === SubMenuType.language) {
+      this.userSubMenu.subMenuState = 1;
+    }
+  }
+
+  toggleTransition(width : number) {
+    if (width > AppConstant.DEFAULT_DEVICE_WIDTH) {
       this.renderer.addClass(this.el.nativeElement.firstChild, 'no-transition');
     } else {
       this.renderer.removeClass(this.el.nativeElement.firstChild, 'no-transition');
     }
-  }
-
-  isMenuExpanded() {
-    return this.menuState === MenuState.expanded;
   }
 }

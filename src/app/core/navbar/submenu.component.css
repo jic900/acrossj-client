@@ -1,0 +1,65 @@
+li > a {
+  color: white;
+  background-color: inherit;
+}
+
+li > a:hover {
+  background-color: inherit;
+}
+@media (min-width: 768px) {
+  li > a:hover {
+    text-shadow: 1px 0px 0px white;
+  }
+}
+
+a > .caret {
+  transition: all 0.5s ease-in-out;
+}
+a > .caret.subMenuExpanded {
+  transform: rotate(-180deg);
+}
+
+.dropdown-menu {
+  display: block;
+  left: 0;
+  border: none;
+  padding: 2px 0;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  /*height: 100px;*/
+  z-index: -1;
+  transform: translateY(-2em);
+  transition: all 0.5s ease-in-out 0.01s;
+}
+.dropdown-menu.subMenuExpanded {
+  opacity: 1;
+  z-index: 1;
+  transform: translateY(0%);
+}
+@media (max-width: 768px) {
+  .dropdown {
+    transition: all 0.5s linear 0s;
+  }
+  .dropdown-menu {
+    background-color: inherit;
+  }
+}
+@media (min-width: 768px) {
+  .dropdown-menu {
+    padding-bottom: 15px;
+    background-color: rgba(0, 0, 0, 0.50);
+  }
+}
+
+/*@media (max-width: 768px) {*/
+/*.navbar-collapse .nav > li.divider {*/
+/**width: 100%;*/
+/*height: 1px;*/
+/*margin: 5px 1px;*/
+/**margin: -5px 0 5px;*/
+/*overflow: hidden;*/
+/*background-color: inherit;*/
+/*border-bottom: 1px solid #222222;*/
+/*}*/
+/*}*/

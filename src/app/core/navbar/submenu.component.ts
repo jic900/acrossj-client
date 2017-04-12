@@ -1,23 +1,26 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
-import { MenuState } from './MenuState';
-import { SubMenuDef } from 'app/config/app.config';
+import {Component, ElementRef, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { AppConstant } from 'app/config/app.config';
+import { SubMenuDef } from 'app/config/menu.config';
+import { SubMenuType } from "app/config/menu.config"
+import { MenuState } from 'app/config/menu.config';
 
 @Component({
   selector: 'aj-submenu',
   templateUrl: './submenu.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./submenu.component.css'],
 })
 
 export class SubmenuComponent implements OnInit {
 
   @Input() type: string;
+  @Output() onToggled : EventEmitter<string>;
   linkName: string;
   items: string[];
-  expandedStyle: string;
   subMenuState : number;
 
   constructor(private el: ElementRef) {
     this.subMenuState = MenuState.collapsed;
+    this.onToggled = new EventEmitter<string>();
   }
 
   ngOnInit() {
@@ -28,17 +31,39 @@ export class SubmenuComponent implements OnInit {
     }
     parentElement.removeChild(nativeElement);
 
-    this.linkName = this.type === 'user' ? SubMenuDef.userMenu.linkName : SubMenuDef.languageMenu.linkName;
-    this.items = this.type === 'user' ? SubMenuDef.userMenu.items : SubMenuDef.languageMenu.items;
-    this.expandedStyle = this.type === 'user' ? 'userSubMenuExpanded' : 'langSubMenuExpanded';
+    this.linkName = this.type === SubMenuType.user ? SubMenuDef.userMenu.linkName : SubMenuDef.languageMenu.linkName;
+    this.items = this.type === SubMenuType.user ? SubMenuDef.userMenu.items : SubMenuDef.languageMenu.items;
   }
 
-  toggleSubMenuState() {
-    this.subMenuState = this.subMenuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
+  onMouseClick() {
+    let width = window.innerWidth;
+    if (width <= AppConstant.DEFAULT_DEVICE_WIDTH) {
+      this.subMenuState = this.subMenuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
+      if (this.subMenuState === MenuState.expanded) {
+        this.onToggled.emit(this.type);
+      }
+    }
+  }
+
+  onMouseEnter() {
+    let width = window.innerWidth;
+    if (width >= AppConstant.DEFAULT_DEVICE_WIDTH) {
+      this.subMenuState = MenuState.expanded;
+    }
+  }
+
+  onMouseLeave() {
+    let width = window.innerWidth;
+    if (width >= AppConstant.DEFAULT_DEVICE_WIDTH) {
+      this.subMenuState = MenuState.collapsed;
+    }
   }
 
   isSubMenuExpanded() {
     return this.subMenuState === MenuState.expanded;
   }
 
+  getMarginBottomOffset() {
+    return this.subMenuState === MenuState.expanded ? this.items.length * 2 + 'em' : '';
+  }
 }
