@@ -1,9 +1,8 @@
 import { Component, HostListener, QueryList, ViewChildren, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
-import { AppConfig } from 'app/config/app.config';
-import { AppConstant } from 'app/config/app.config';
+import { AppConfig, AppConstant } from 'app/config/app.config';
+import { MenuState, SubMenuType } from "app/config/menu.config"
 import { SubmenuComponent } from "app/core/navbar/submenu.component";
-import { MenuState } from "app/config/menu.config"
-import { SubMenuType } from "app/config/menu.config"
+
 
 @Component({
   selector: 'aj-navbar',
@@ -70,12 +69,6 @@ export class NavbarComponent implements AfterViewInit {
     }
   }
 
-  doSomethingEnter(event) {
-    console.log('doSomethingEnter ...');
-  }
-  doSomethingLeave(event) {
-    console.log('doSomethingLeave ...');
-  }
   toggleTransition(width : number) {
     if (width >= AppConstant.DEFAULT_DEVICE_WIDTH) {
       this.renderer.addClass(this.el.nativeElement.firstChild, 'no-transition');
