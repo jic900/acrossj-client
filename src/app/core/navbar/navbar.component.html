@@ -16,11 +16,13 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">About Us</a></li>
         <li><a href="#">Help</a></li>
-        <aj-submenu [type]="getLanguageSubMenuType()" (onToggled)="onToggled($event)"></aj-submenu>
+        <aj-submenu #langMenu [type]="getLanguageSubMenuType()" (onToggled)="onToggled($event)"></aj-submenu>
+        <ng-template [ngTemplateOutlet]="langMenu.submenu"></ng-template>
 
         <li *ngIf="!authenticated; else loginSuccess"><a href="#">Log In / Sign Up</a></li>
         <ng-template #loginSuccess>
-          <aj-submenu [type]="getUserSubMenuType()" (onToggled)="onToggled($event)"></aj-submenu>
+          <aj-submenu #userMenu [type]="getUserSubMenuType()" (onToggled)="onToggled($event)"></aj-submenu>
+          <ng-template [ngTemplateOutlet]="userMenu.submenu"></ng-template>
         </ng-template>
 
         <li *ngIf="authenticated"><a href="#">Log Out</a></li>

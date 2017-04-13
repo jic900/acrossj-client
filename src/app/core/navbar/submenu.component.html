@@ -1,10 +1,11 @@
-<li class="dropdown" [ngStyle]="{'margin-bottom': getMarginBottomOffset()}"
-    (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
-  <a href="#" class="dropdown-toggle" (click)="onMouseClick()">
-    {{ linkName }}&nbsp;&nbsp;
-    <span class="caret" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}"></span>
-  </a>
-  <ul class="dropdown-menu" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
-    <li *ngFor="let item of items"><a href="#">{{ item }}</a></li>
-  </ul>
-</li>
+<ng-template #submenu>
+  <li id="dropdown" class="dropdown" [ngStyle]="{'margin-bottom': getMarginBottomOffset()}">
+    <a href="#" class="dropdown-toggle" (click)="onMouseClick()">
+      {{ linkName }}&nbsp;&nbsp;
+      <span class="caret" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}"></span>
+    </a>
+    <ul class="dropdown-menu" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
+      <li *ngFor="let item of items"><a href="#">{{ item }}</a></li>
+    </ul>
+  </li>
+</ng-template>

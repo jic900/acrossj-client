@@ -74,19 +74,6 @@ li > a {
   color: #FFFFFF;
   background-color: inherit;
 }
-
-/*li > a:hover {*/
-  /*background-color: inherit;*/
-/*}*/
-
-/*li > a:focus {*/
-  /*background-color: inherit;*/
-/*}*/
-
-/*li > a:hover {*/
-  /*background-color: inherit;*/
-/*}*/
-
 @media (min-width: 768px) {
   li > a:hover {
     text-shadow: 1px 0px 0px white;

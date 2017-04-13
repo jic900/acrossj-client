@@ -70,6 +70,12 @@ export class NavbarComponent implements AfterViewInit {
     }
   }
 
+  doSomethingEnter(event) {
+    console.log('doSomethingEnter ...');
+  }
+  doSomethingLeave(event) {
+    console.log('doSomethingLeave ...');
+  }
   toggleTransition(width : number) {
     if (width >= AppConstant.DEFAULT_DEVICE_WIDTH) {
       this.renderer.addClass(this.el.nativeElement.firstChild, 'no-transition');
