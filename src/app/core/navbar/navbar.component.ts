@@ -1,4 +1,12 @@
-import { Component, HostListener, QueryList, ViewChildren, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  ViewChildren,
+  ElementRef,
+  Renderer2,
+  HostListener,
+  QueryList
+} from '@angular/core';
 import { AppConfig, AppConstant } from 'app/config/app.config';
 import { MenuState, SubMenuType } from "app/config/menu.config"
 import { SubmenuComponent } from "app/core/navbar/submenu.component";
@@ -32,26 +40,26 @@ export class NavbarComponent implements AfterViewInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onWindowResize(event) {
+  onWindowResize(event): void {
     this.menuState = MenuState.collapsed;
     this.userSubMenu.subMenuState = MenuState.collapsed;
     this.langSubMenu.subMenuState = MenuState.collapsed;
     this.toggleTransition(event.target.innerWidth);
   }
 
-  isMenuExpanded() {
+  isMenuExpanded(): boolean {
     return this.menuState === MenuState.expanded;
   }
 
-  getUserSubMenuType() {
+  getUserSubMenuType(): string {
     return SubMenuType.user;
   }
 
-  getLanguageSubMenuType() {
+  getLanguageSubMenuType(): string {
     return SubMenuType.language;
   }
 
-  toggleMenuState() {
+  toggleMenuState(): void {
     if (this.menuState === MenuState.expanded) {
       if (this.userSubMenu !== undefined) {
         this.userSubMenu.subMenuState = MenuState.collapsed;
@@ -61,7 +69,7 @@ export class NavbarComponent implements AfterViewInit {
     this.menuState = this.menuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
   }
 
-  onToggled(type : string) {
+  onToggled(type : string): void {
     if (type === SubMenuType.user) {
       this.langSubMenu.subMenuState = 1;
     } else if (type === SubMenuType.language) {
@@ -69,7 +77,7 @@ export class NavbarComponent implements AfterViewInit {
     }
   }
 
-  toggleTransition(width : number) {
+  private toggleTransition(width : number): void {
     if (width >= AppConstant.DEFAULT_DEVICE_WIDTH) {
       this.renderer.addClass(this.el.nativeElement.firstChild, 'no-transition');
     } else {
