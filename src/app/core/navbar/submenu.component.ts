@@ -1,5 +1,6 @@
 import {
   Component,
+  DoCheck,
   AfterViewInit,
   OnChanges,
   Renderer2,
@@ -22,7 +23,7 @@ import { SubMenuDef, SubMenuType, MenuState } from 'app/config/menu.config';
   }
 })
 
-export class SubmenuComponent implements AfterViewInit, OnChanges {
+export class SubmenuComponent implements DoCheck, OnChanges, AfterViewInit {
 
   @ViewChild('submenu') submenu: any;
   @ViewChild('dropdown') dropdown: ElementRef;
@@ -48,7 +49,12 @@ export class SubmenuComponent implements AfterViewInit, OnChanges {
   //   parentElement.removeChild(nativeElement);
   // }
 
+  ngDoCheck(): void {
+    this.setMarginBottomStyle();
+  }
+
   ngAfterViewInit(): void {
+    this.setMarginBottomStyle();
     if (AppConfig.MENU_HOVER_MODE === true) {
       this.renderer.listen(this.dropdown.nativeElement, 'mousemove', (event) => {
         this.onMouseMove(event);
@@ -75,6 +81,7 @@ export class SubmenuComponent implements AfterViewInit, OnChanges {
       let curTime = new Date().getTime();
       if (this.subMenuState !== MenuState.collapsed || curTime - this.lastCollapsedTime > 100) {
         this.subMenuState = this.subMenuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
+        // this.setMarginBottomStyle();
         if (this.subMenuState === MenuState.expanded) {
           this.onToggled.emit(this.type);
         }
@@ -121,8 +128,11 @@ export class SubmenuComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  getMarginBottomOffset(): string {
-    return this.subMenuState === MenuState.expanded ? this.items.length * 2 + 'em' : '';
+  private setMarginBottomStyle(): void {
+    if (this.dropdown !== undefined && this.dropdown.nativeElement !== undefined) {
+      let marginBottom = this.subMenuState === MenuState.expanded ? this.items.length * 2 + 'em' : '';
+      this.renderer.setStyle(this.dropdown.nativeElement, 'margin-bottom', marginBottom);
+    }
   }
 
   private insideDropDown(mouseX, mouseY): boolean {
