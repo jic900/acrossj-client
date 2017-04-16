@@ -14,3 +14,17 @@ html {
 /*::-webkit-scrollbar-thumb {*/
   /*background: #FF0000;*/
 /*}*/
+
+@media (max-width: 767px) {
+  li {
+    font-size: 130%;
+  }
+  li > ul > li {
+    font-size: 115%;
+  }
+}
+
+a > .fa {
+  display: inline;
+  padding-right: 3px;
+}

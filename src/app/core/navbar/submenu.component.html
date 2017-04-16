@@ -1,7 +1,8 @@
 <ng-template #submenu>
   <li #dropdown class="dropdown">
     <a href="#" class="dropdown-toggle" (click)="onMouseClick($event)">
-      {{ linkName }}&nbsp;&nbsp;
+      <i #icon *ngIf="displayIcon()" class="fa fa-fw" aria-hidden="true"></i>
+      {{ linkName }}&nbsp;
       <span class="caret" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
       </span>
     </a>
@@ -9,6 +10,8 @@
         [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
       <li *ngFor="let item of items">
         <a href="#">{{ item }}</a>
+      </li>
+      <li *ngIf="displayLogout()"><a href="#">Log Out</a>
       </li>
     </ul>
   </li>

@@ -9,8 +9,10 @@ import {
   ViewChild,
   ElementRef,
   EventEmitter,
-  SimpleChanges
+  SimpleChanges,
+  HostListener
 } from '@angular/core';
+
 import { AppConfig, AppConstant } from 'app/config/app.config';
 import { SubMenuDef, SubMenuType, MenuState } from 'app/config/menu.config';
 
@@ -27,6 +29,7 @@ export class SubmenuComponent implements DoCheck, OnChanges, AfterViewInit {
 
   @ViewChild('submenu') submenu: any;
   @ViewChild('dropdown') dropdown: ElementRef;
+  @ViewChild('icon') icon: ElementRef;
   @Input() type: string;
   @Output() onToggled : EventEmitter<string>;
   linkName: string;
@@ -50,11 +53,12 @@ export class SubmenuComponent implements DoCheck, OnChanges, AfterViewInit {
   // }
 
   ngDoCheck(): void {
-    this.setMarginBottomStyle();
+    this.setMarginBottom();
   }
 
   ngAfterViewInit(): void {
-    this.setMarginBottomStyle();
+    this.setMarginBottom();
+    this.setIcon();
     if (AppConfig.MENU_HOVER_MODE === true) {
       this.renderer.listen(this.dropdown.nativeElement, 'mousemove', (event) => {
         this.onMouseMove(event);
@@ -68,6 +72,12 @@ export class SubmenuComponent implements DoCheck, OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges): void {
     this.linkName = this.type === SubMenuType.user ? SubMenuDef.userMenu.linkName : SubMenuDef.languageMenu.linkName;
     this.items = this.type === SubMenuType.user ? SubMenuDef.userMenu.items : SubMenuDef.languageMenu.items;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(event): void {
+    this.subMenuState = MenuState.collapsed;
+    this.setIcon();
   }
 
   isSubMenuExpanded(): boolean {
@@ -128,10 +138,30 @@ export class SubmenuComponent implements DoCheck, OnChanges, AfterViewInit {
     }
   }
 
-  private setMarginBottomStyle(): void {
+  displayIcon() : boolean {
+    return window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH;
+  }
+
+  displayLogout(): boolean {
+    return this.type === SubMenuType.user && window.innerWidth >= AppConstant.DEFAULT_DEVICE_WIDTH;
+  }
+
+  private setMarginBottom(): void {
     if (this.dropdown !== undefined && this.dropdown.nativeElement !== undefined) {
-      let marginBottom = this.subMenuState === MenuState.expanded ? this.items.length * 2 + 'em' : '';
+      let marginBottom = this.subMenuState === MenuState.expanded ? this.items.length * 30 + 'px' : '';
       this.renderer.setStyle(this.dropdown.nativeElement, 'margin-bottom', marginBottom);
+    }
+  }
+
+  private setIcon(): void {
+    if (this.icon !== undefined && this.icon.nativeElement !== undefined) {
+      if (this.displayIcon()) {
+        if (this.type === SubMenuType.user) {
+          this.renderer.addClass(this.icon.nativeElement, 'fa-user');
+        } else {
+          this.renderer.addClass(this.icon.nativeElement, 'fa-language');
+        }
+      }
     }
   }
 

@@ -8,8 +8,9 @@ export const SubMenuDef = {
     linkName: 'Username',
     items: [
       'Profile',
-      'Event History',
-      'Upload'
+      'Your Trips',
+      'Messages',
+      'Uploads'
     ]
   },
   languageMenu: {

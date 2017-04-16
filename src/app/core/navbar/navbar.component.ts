@@ -69,6 +69,14 @@ export class NavbarComponent implements AfterViewInit {
     this.menuState = this.menuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
   }
 
+  displayIcon() : boolean {
+    return window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH;
+  }
+
+  displayLogout(): boolean {
+    return this.authenticated && window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH;
+  }
+
   onToggled(type : string): void {
     if (type === SubMenuType.user) {
       this.langSubMenu.subMenuState = 1;

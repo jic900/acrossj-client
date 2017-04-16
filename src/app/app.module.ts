@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppComponent } from './app.component';
 import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService }   from './i18n';
+import { RouterModule } from "@angular/router";
+import { AppRoutes } from "./config/routes.config";
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService }   from './i18n
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    FeaturesModule
+    FeaturesModule,
+    RouterModule.forRoot(AppRoutes)
   ],
   providers: [ TRANSLATION_PROVIDERS, TranslateService ],
   bootstrap: [ AppComponent ]

@@ -1,14 +1,22 @@
 li > a {
   color: white;
   background-color: inherit;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 li > a:hover {
   background-color: inherit;
 }
-@media (min-width: 768px) {
-  li > a:hover {
-    text-shadow: 1px 0px 0px white;
+/*@media (min-width: 768px) {*/
+  /*li > a:hover {*/
+    /*text-shadow: 1px 0px 0px white;*/
+  /*}*/
+/*}*/
+
+@media (max-width: 767px) {
+  li > ul > li > a {
+    padding-left: 35px;
   }
 }
 
@@ -26,6 +34,7 @@ a > .caret.subMenuExpanded {
   padding: 2px 0;
   opacity: 0;
   position: absolute;
+  min-width: 80px;
   width: 100%;
   z-index: -1;
   transform: translateY(-2em);

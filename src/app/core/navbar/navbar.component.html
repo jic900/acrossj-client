@@ -1,7 +1,8 @@
 <nav class="navbar navbar-fixed-top no-transition">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button"
+      <button
+        type="button"
         class="navbar-toggle collapsed pull-left"
         (click)="toggleMenuState()">
         <!--<span class="sr-only">Toggle navigation</span>-->
@@ -9,7 +10,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://www.google.com">
+      <a class="navbar-brand" href="#">
         <img [src]="homeLogo" alt="Across Japan">
       </a>
     </div>
@@ -17,20 +18,28 @@
     <div class="navbar-collapse" [ngClass]="{'menuExpanded': isMenuExpanded()}">
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="#">About Us</a>
+          <a href="#"><i *ngIf="displayIcon()" class="fa fa-calendar-plus-o" aria-hidden="true"></i>&nbsp; Create a Trip</a>
         </li>
         <li>
-          <a href="#">Help</a>
+          <a href="#"><i *ngIf="displayIcon()" class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp; Join a Trip</a>
         </li>
+        <li>
+          <a href="#"><i *ngIf="displayIcon()" class="fa fa-question-circle-o" aria-hidden="true"></i>&nbsp; Help</a>
+        </li>
+
+        <li class="divider"></li>
+
         <aj-submenu #langMenu
                     [type]="getLanguageSubMenuType()"
                     (onToggled)="onToggled($event)">
         </aj-submenu>
         <ng-template [ngTemplateOutlet]="langMenu.submenu"></ng-template>
 
+        <li *ngIf="!authenticated" class="divider"></li>
         <li *ngIf="!authenticated; else loginSuccess">
           <a href="#">Log In / Sign Up</a>
         </li>
+
         <ng-template #loginSuccess>
           <aj-submenu #userMenu
                       [type]="getUserSubMenuType()"
@@ -39,7 +48,8 @@
           <ng-template [ngTemplateOutlet]="userMenu.submenu"></ng-template>
         </ng-template>
 
-        <li *ngIf="authenticated">
+        <li *ngIf="displayLogout()" class="divider"></li>
+        <li *ngIf="displayLogout()">
           <a href="#">Log Out</a>
         </li>
       </ul>
