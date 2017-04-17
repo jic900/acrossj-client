@@ -14,12 +14,13 @@
         <img [src]="homeLogo" alt="Across Japan">
       </a>
       <button
-        type="button"
-        class="navbar-toggle navbar-search-button"
+        class="navbar-toggle navbar-button-search"
         (click)="toggleSearchState()">
-        <span><i class="fa fa-search" aria-hidden="true"></i></span>
+        <span *ngIf="!isSearchExpanded()"><i class="fa fa-search" aria-hidden="true"></i></span>
+        <span *ngIf="isSearchExpanded()">&#10060;</span>
       </button>
     </div>
+
     <!-- side menu -->
     <div class="navbar-collapse" [ngClass]="{'menuExpanded': isMenuExpanded()}">
       <ul class="nav navbar-nav navbar-right">
@@ -60,22 +61,24 @@
         </li>
       </ul>
     </div>
+
     <!-- search menu -->
-    <!--<div class="navbar-search">-->
-      <!--<div class="container">-->
-        <!--<div></div>-->
-        <!--<div class="panel-group">-->
-          <!--<div class="panel panel-default">-->
-            <!--<div class="panel-body">Any Places</div>-->
-          <!--</div>-->
-          <!--<div class="panel panel-default">-->
-            <!--<div class="panel-body">Any Time</div>-->
-          <!--</div>-->
-          <!--<div class="panel panel-default">-->
-            <!--<div class="panel-body"># of Guests</div>-->
-          <!--</div>-->
-        <!--</div>-->
+    <div class="navbar-collapse navbar-search" [ngClass]="{'searchExpanded': isSearchExpanded()}">
+      <!--<div class="container-fluid">-->
+        <label class="search-label">Search Skii Events</label>
+        <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-body">Any Places</div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body">Any Time</div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body"># of Guests</div>
+          </div>
+        </div>
+        <button class="btn btn-clearall">Clear All</button>
       <!--</div>-->
-    <!--</div>-->
+    </div>
   </div>
 </nav>

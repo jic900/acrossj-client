@@ -50,12 +50,17 @@ export class NavbarComponent implements AfterViewInit {
     if (newWindowWidth !== this.windowWidth) {
       this.windowWidth = newWindowWidth;
       this.menuState = MenuState.collapsed;
+      this.searchState = SearchState.collapsed;
       this.toggleTransition(newWindowWidth);
     }
   }
 
   isMenuExpanded(): boolean {
     return this.menuState === MenuState.expanded;
+  }
+
+  isSearchExpanded(): boolean {
+    return this.searchState === SearchState.expanded;
   }
 
   getUserSubMenuType(): string {
@@ -73,7 +78,7 @@ export class NavbarComponent implements AfterViewInit {
       }
       this.langSubMenu.subMenuState = MenuState.collapsed;
     } else {
-      this.searchState === SearchState.collapsed;
+      this.searchState = SearchState.collapsed;
     }
     this.menuState = this.menuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
   }
