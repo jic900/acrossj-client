@@ -29,7 +29,7 @@
 }
 
 .navbar-toggle {
-  margin-right: 5px;
+  /*margin-right: 5px;*/
   border: none;
 }
 .navbar-toggle .icon-bar {
@@ -53,7 +53,8 @@
   /*}*/
   .navbar-collapse {
     position: absolute;
-    width: 250px;
+    /*width: 250px;*/
+    width: 100%;
     max-height: none;
     border-top: none;
     box-shadow: none;
@@ -93,4 +94,19 @@ li > a {
     background-color: inherit;
     /*border-bottom: 1px solid #222222;*/
   }
+}
+
+.navbar-search-button {
+  padding: 5px;
+  margin-top: 9px;
+  margin-bottom: 6px;
+}
+
+.navbar-search {
+
+}
+
+.fa-search {
+  color: white;
+  font-size: 175%;
 }

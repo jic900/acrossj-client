@@ -13,15 +13,21 @@
       <a class="navbar-brand" href="#">
         <img [src]="homeLogo" alt="Across Japan">
       </a>
+      <button
+        type="button"
+        class="navbar-toggle navbar-search-button"
+        (click)="toggleSearchState()">
+        <span><i class="fa fa-search" aria-hidden="true"></i></span>
+      </button>
     </div>
-
+    <!-- side menu -->
     <div class="navbar-collapse" [ngClass]="{'menuExpanded': isMenuExpanded()}">
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="#"><i *ngIf="displayIcon()" class="fa fa-calendar-plus-o" aria-hidden="true"></i>&nbsp; Create a Trip</a>
+          <a href="#"><i *ngIf="displayIcon()" class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp; About Us</a>
         </li>
         <li>
-          <a href="#"><i *ngIf="displayIcon()" class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp; Join a Trip</a>
+          <a href="#"><i *ngIf="displayIcon()" class="fa fa-calendar-plus-o" aria-hidden="true"></i>&nbsp; Create a Trip</a>
         </li>
         <li>
           <a href="#"><i *ngIf="displayIcon()" class="fa fa-question-circle-o" aria-hidden="true"></i>&nbsp; Help</a>
@@ -54,5 +60,22 @@
         </li>
       </ul>
     </div>
+    <!-- search menu -->
+    <!--<div class="navbar-search">-->
+      <!--<div class="container">-->
+        <!--<div></div>-->
+        <!--<div class="panel-group">-->
+          <!--<div class="panel panel-default">-->
+            <!--<div class="panel-body">Any Places</div>-->
+          <!--</div>-->
+          <!--<div class="panel panel-default">-->
+            <!--<div class="panel-body">Any Time</div>-->
+          <!--</div>-->
+          <!--<div class="panel panel-default">-->
+            <!--<div class="panel-body"># of Guests</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
   </div>
 </nav>

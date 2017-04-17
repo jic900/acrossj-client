@@ -8,7 +8,7 @@ import {
   QueryList
 } from '@angular/core';
 import { AppConfig, AppConstant } from 'app/config/app.config';
-import { MenuState, SubMenuType } from "app/config/menu.config"
+import { MenuState, SearchState, SubMenuType } from "app/config/menu.config"
 import { SubmenuComponent } from "app/core/navbar/submenu.component";
 
 
@@ -20,20 +20,25 @@ import { SubmenuComponent } from "app/core/navbar/submenu.component";
 
 export class NavbarComponent implements AfterViewInit {
 
-  @ViewChildren(SubmenuComponent) submenus :QueryList<SubmenuComponent>;
-  userSubMenu : SubmenuComponent;
-  langSubMenu : SubmenuComponent;
-  homeLogo : string;
-  menuState : number;
-  authenticated : boolean;
+  @ViewChildren(SubmenuComponent) submenus: QueryList<SubmenuComponent>;
+  userSubMenu: SubmenuComponent;
+  langSubMenu: SubmenuComponent;
+  homeLogo: string;
+  menuState: number;
+  searchState: number;
+  windowWidth: number;
+  authenticated: boolean;
+
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
     this.homeLogo = AppConfig.HOME_LOGO;
     this.menuState = MenuState.collapsed;
+    this.searchState = SearchState.collapsed;
     this.authenticated = true;
   }
 
   ngAfterViewInit(): void {
+    this.windowWidth = window.innerWidth;
     this.userSubMenu = this.submenus.find(submenu => submenu.linkName === 'Username');
     this.langSubMenu = this.submenus.find(submenu => submenu.linkName === 'Language');
     this.toggleTransition(window.innerWidth);
@@ -41,10 +46,12 @@ export class NavbarComponent implements AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   onWindowResize(event): void {
-    this.menuState = MenuState.collapsed;
-    this.userSubMenu.subMenuState = MenuState.collapsed;
-    this.langSubMenu.subMenuState = MenuState.collapsed;
-    this.toggleTransition(event.target.innerWidth);
+    let newWindowWidth = event.target.innerWidth;
+    if (newWindowWidth !== this.windowWidth) {
+      this.windowWidth = newWindowWidth;
+      this.menuState = MenuState.collapsed;
+      this.toggleTransition(newWindowWidth);
+    }
   }
 
   isMenuExpanded(): boolean {
@@ -65,8 +72,15 @@ export class NavbarComponent implements AfterViewInit {
         this.userSubMenu.subMenuState = MenuState.collapsed;
       }
       this.langSubMenu.subMenuState = MenuState.collapsed;
+    } else {
+      this.searchState === SearchState.collapsed;
     }
     this.menuState = this.menuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
+  }
+
+  toggleSearchState(): void {
+    this.menuState = MenuState.collapsed;
+    this.searchState = this.searchState === SearchState.collapsed ? SearchState.expanded : SearchState.collapsed;
   }
 
   displayIcon() : boolean {
