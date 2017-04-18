@@ -55,6 +55,7 @@
     position: absolute;
     /*width: 250px;*/
     width: 100%;
+    min-height: 617px;
     max-height: none;
     border-top: none;
     box-shadow: none;
@@ -138,6 +139,7 @@ li > a {
   position: absolute;
   /*width: 250px;*/
   width: 100%;
+  min-height: 300px;
   max-height: none;
   border-top: none;
   box-shadow: none;
