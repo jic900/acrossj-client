@@ -1,3 +1,85 @@
+/* changing the breakpoint to anything over 768px */
+/* http://stackoverflow.com/questions/19827605/change-bootstrap-navbar-collapse-breakpoint-without-using-less */
+/*@media (max-width: 769px) {*/
+  /*.navbar-header {*/
+    /*float: none;*/
+  /*}*/
+  /*.navbar-left,.navbar-right {*/
+    /*float: none !important;*/
+  /*}*/
+  /*.navbar-toggle {*/
+    /*display: block;*/
+  /*}*/
+  /*.navbar-collapse {*/
+    /*border-top: 1px solid transparent;*/
+    /*box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);*/
+  /*}*/
+  /*.navbar-fixed-top {*/
+    /*top: 0;*/
+    /*border-width: 0 0 1px;*/
+  /*}*/
+  /*.navbar-collapse.collapse {*/
+    /*display: none!important;*/
+  /*}*/
+  /*.navbar-nav {*/
+    /*float: none!important;*/
+    /*margin-top: 7.5px;*/
+  /*}*/
+  /*.navbar-nav>li {*/
+    /*float: none;*/
+  /*}*/
+  /*.navbar-nav>li>a {*/
+    /*padding-top: 10px;*/
+    /*padding-bottom: 10px;*/
+  /*}*/
+  /*.collapse.in{*/
+    /*display:block !important;*/
+  /*}*/
+/*}*/
+
+
+/* changing the breakpoint to anything less than 768px */
+/* http://stackoverflow.com/questions/42724884/bootstrap-navbar-collapse-point-768px/42725215#42725215 */
+/*@media only screen and (min-width: 420px) {*/
+  /*.collapse {*/
+    /*display: block;*/
+  /*}*/
+
+  /*.navbar-header {*/
+    /*float: left;*/
+  /*}*/
+
+  /*.navbar-toggle {*/
+    /*display: none;*/
+  /*}*/
+
+  /*.navbar-nav.navbar-left {*/
+    /*float: left;*/
+    /*margin: 0;*/
+  /*}*/
+
+  /*.navbar-nav.navbar-right {*/
+    /*float: right;*/
+    /*margin: 0;*/
+  /*}*/
+  /*.navbar-nav>li {*/
+    /*float: left;*/
+  /*}*/
+  /*.navbar-nav>li>a {*/
+    /*padding-top: 15px;*/
+    /*padding-bottom: 15px;*/
+  /*}*/
+/*}*/
+
+/*@media only screen and (max-width: 420px) {*/
+  /*.collapse {*/
+    /*display: none;*/
+  /*}*/
+  /*.navbar-header {*/
+    /*display: block;*/
+  /*}*/
+/*}*/
+
 .no-transition * {
   -webkit-transition: none !important;
   -moz-transition: none !important;
@@ -88,7 +170,7 @@ li > a {
   /*}*/
 /*}*/
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .navbar-collapse .nav > li.divider {
     *width: 100%;
     height: 15px;
@@ -107,6 +189,59 @@ li > a {
   color: white;
   font-size: 175%;
 }
+
+.navbar-button-close {
+  padding: 0px;
+  margin-top: -5px;
+  margin-bottom: 0px;
+  margin-right: 20px;
+  color: white;
+  font-size: 300%;
+}
+
+/*.navbar-button-search>div {*/
+  /*height: 20px;*/
+  /*width: 20px;*/
+  /*background-color: transparent;*/
+/*}*/
+
+/*.navbar-button-search>div:after {*/
+  /*position: absolute;*/
+  /*top: 5px;*/
+  /*bottom: 0;*/
+  /*left: 0;*/
+  /*right: 5px;*/
+  /*font-size: 25px;*/
+  /*content: "\274c";*/
+  /*color: #FFFFFF;*/
+/*}*/
+
+
+/*.search-close {*/
+  /*position: absolute;*/
+  /*right: 32px;*/
+  /*top: 32px;*/
+  /*width: 32px;*/
+  /*height: 32px;*/
+  /*opacity: 0.3;*/
+/*}*/
+/*.search-close:hover {*/
+  /*opacity: 1;*/
+/*}*/
+/*.search-close:before, .search-close:after {*/
+  /*position: absolute;*/
+  /*left: 15px;*/
+  /*content: ' ';*/
+  /*height: 33px;*/
+  /*width: 2px;*/
+  /*background-color: #333;*/
+/*}*/
+/*.search-close:before {*/
+  /*transform: rotate(45deg);*/
+/*}*/
+/*.search-close:after {*/
+  /*transform: rotate(-45deg);*/
+/*}*/
 
 .navbar-search {
   position: absolute;

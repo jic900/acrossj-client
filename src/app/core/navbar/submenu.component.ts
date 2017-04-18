@@ -59,7 +59,7 @@ export class SubmenuComponent implements DoCheck, OnChanges, AfterViewInit {
   ngAfterViewInit(): void {
     this.setMarginBottom();
     this.setIcon();
-    if (AppConfig.MENU_HOVER_MODE === true) {
+    if (AppConfig.MENU_HOVER_MODE === true && !this.isIPAD()) {
       this.renderer.listen(this.dropdown.nativeElement, 'mousemove', (event) => {
         this.onMouseMove(event);
       });
@@ -85,9 +85,9 @@ export class SubmenuComponent implements DoCheck, OnChanges, AfterViewInit {
   }
 
   onMouseClick(event): void {
+    // console.log('onMouseClick: ' + event.x + ' ' + event.y);
     let width = window.innerWidth;
-    if (!AppConfig.MENU_HOVER_MODE || width <= AppConstant.DEFAULT_DEVICE_WIDTH) {
-      // console.log('onMouseClick: ' + event.x + ' ' + event.y);
+    if (!AppConfig.MENU_HOVER_MODE || width < AppConstant.DEFAULT_DEVICE_WIDTH || this.isIPAD()) {
       let curTime = new Date().getTime();
       if (this.subMenuState !== MenuState.collapsed || curTime - this.lastCollapsedTime > 100) {
         this.subMenuState = this.subMenuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
@@ -100,6 +100,7 @@ export class SubmenuComponent implements DoCheck, OnChanges, AfterViewInit {
   }
 
   onMouseMove(event): void {
+    // console.log('onMouseMove: ' + event.x + ' ' + event.y);
     let width = window.innerWidth;
     if (width >= AppConstant.DEFAULT_DEVICE_WIDTH) {
       let mouseX = event.clientX, mouseY = event.clientY;
@@ -144,6 +145,11 @@ export class SubmenuComponent implements DoCheck, OnChanges, AfterViewInit {
 
   displayLogout(): boolean {
     return this.type === SubMenuType.user && window.innerWidth >= AppConstant.DEFAULT_DEVICE_WIDTH;
+  }
+
+  private isIPAD() {
+    let width = window.innerWidth;
+    return width === AppConstant.IPAD_WIDTH || width === AppConstant.IPAD_PRO_WIDTH;
   }
 
   private setMarginBottom(): void {

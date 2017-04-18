@@ -14,9 +14,13 @@ li > a:hover {
   /*}*/
 /*}*/
 
+li > ul > li > a {
+  padding-left: 16px;
+}
+
 @media (max-width: 767px) {
   li > ul > li > a {
-    padding-left: 35px;
+    padding-left: 40px;
   }
 }
 
@@ -40,6 +44,7 @@ a > .caret.subMenuExpanded {
   transform: translateY(-2em);
   transition: all 0.5s ease-in-out 0.01s;
 }
+
 .dropdown-menu.subMenuExpanded {
   opacity: 1;
   z-index: 1;
