@@ -42,11 +42,15 @@
 
         <li class="divider"></li>
 
-        <aj-submenu #langMenu
-                    [type]="getLanguageSubMenuType()"
-                    (onToggled)="onToggled($event)">
+        <!--<aj-submenu #langMenu-->
+                    <!--[type]="getLanguageSubMenuType()"-->
+                    <!--(onToggled)="onToggled($event)">-->
+        <!--</aj-submenu>-->
+        <!--<ng-template [ngTemplateOutlet]="langMenu.submenu"></ng-template>-->
+        <aj-submenu
+          [type]="getLanguageSubMenuType()"
+          (onToggled)="onToggled($event)">
         </aj-submenu>
-        <ng-template [ngTemplateOutlet]="langMenu.submenu"></ng-template>
 
         <li *ngIf="!authenticated" class="divider"></li>
         <li *ngIf="!authenticated; else loginSuccess">
@@ -54,11 +58,15 @@
         </li>
 
         <ng-template #loginSuccess>
-          <aj-submenu #userMenu
-                      [type]="getUserSubMenuType()"
-                      (onToggled)="onToggled($event)">
+          <aj-submenu
+            [type]="getUserSubMenuType()"
+            (onToggled)="onToggled($event)">
           </aj-submenu>
-          <ng-template [ngTemplateOutlet]="userMenu.submenu"></ng-template>
+          <!--<aj-submenu #userMenu-->
+                      <!--[type]="getUserSubMenuType()"-->
+                      <!--(onToggled)="onToggled($event)">-->
+          <!--</aj-submenu>-->
+          <!--<ng-template [ngTemplateOutlet]="userMenu.submenu"></ng-template>-->
         </ng-template>
 
         <li *ngIf="displayLogout()" class="divider"></li>

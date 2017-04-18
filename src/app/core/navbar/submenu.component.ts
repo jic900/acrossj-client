@@ -1,5 +1,6 @@
 import {
   Component,
+  OnInit,
   DoCheck,
   AfterViewInit,
   OnChanges,
@@ -25,9 +26,9 @@ import { SubMenuDef, SubMenuType, MenuState } from 'app/config/menu.config';
   }
 })
 
-export class SubmenuComponent implements DoCheck, OnChanges, AfterViewInit {
+export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewInit {
 
-  @ViewChild('submenu') submenu: any;
+  // @ViewChild('submenu') submenu: any;
   @ViewChild('dropdown') dropdown: ElementRef;
   @ViewChild('icon') icon: ElementRef;
   @Input() type: string;
@@ -37,20 +38,20 @@ export class SubmenuComponent implements DoCheck, OnChanges, AfterViewInit {
   subMenuState : number;
   lastCollapsedTime : number;
 
-  constructor(private renderer: Renderer2) {
+  constructor(private el: ElementRef, private renderer: Renderer2) {
     this.subMenuState = MenuState.collapsed;
     this.onToggled = new EventEmitter<string>();
     this.lastCollapsedTime = 0;
   }
 
-  // ngOnInit() {
-  //   var nativeElement: HTMLElement = this.el.nativeElement,
-  //     parentElement: HTMLElement = nativeElement.parentElement;
-  //   while (nativeElement.firstChild) {
-  //     parentElement.insertBefore(nativeElement.firstChild, nativeElement);
-  //   }
-  //   parentElement.removeChild(nativeElement);
-  // }
+  ngOnInit() {
+    var nativeElement: HTMLElement = this.el.nativeElement,
+      parentElement: HTMLElement = nativeElement.parentElement;
+    while (nativeElement.firstChild) {
+      parentElement.insertBefore(nativeElement.firstChild, nativeElement);
+    }
+    parentElement.removeChild(nativeElement);
+  }
 
   ngDoCheck(): void {
     this.setMarginBottom();
