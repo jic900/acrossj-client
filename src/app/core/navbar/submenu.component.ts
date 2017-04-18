@@ -36,6 +36,7 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
   linkName: string;
   items: string[];
   subMenuState : number;
+  windowWidth: number;
   lastCollapsedTime : number;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
@@ -58,6 +59,7 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
   }
 
   ngAfterViewInit(): void {
+    this.windowWidth = window.innerWidth;
     this.setMarginBottom();
     this.setIcon();
     if (AppConfig.MENU_HOVER_MODE === true && !this.isIPAD()) {
@@ -77,8 +79,12 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
 
   @HostListener('window:resize', ['$event'])
   onWindowResize(event): void {
-    this.subMenuState = MenuState.collapsed;
-    this.setIcon();
+    let newWindowWidth = event.target.innerWidth;
+    if (newWindowWidth !== this.windowWidth) {
+      this.windowWidth = newWindowWidth;
+      this.subMenuState = MenuState.collapsed;
+      this.setIcon();
+    }
   }
 
   isSubMenuExpanded(): boolean {
