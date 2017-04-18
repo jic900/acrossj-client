@@ -86,9 +86,9 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
   }
 
   onMouseClick(event): void {
-    // console.log('onMouseClick: ' + event.x + ' ' + event.y);
     let width = window.innerWidth;
     if (!AppConfig.MENU_HOVER_MODE || width < AppConstant.DEFAULT_DEVICE_WIDTH || this.isIPAD()) {
+      // console.log('onMouseClick: ' + event.x + ' ' + event.y);
       let curTime = new Date().getTime();
       if (this.subMenuState !== MenuState.collapsed || curTime - this.lastCollapsedTime > 100) {
         this.subMenuState = this.subMenuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;

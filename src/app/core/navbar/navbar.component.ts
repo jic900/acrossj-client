@@ -84,7 +84,13 @@ export class NavbarComponent implements AfterViewInit {
   }
 
   toggleSearchState(): void {
-    this.menuState = MenuState.collapsed;
+    if (this.menuState === MenuState.expanded) {
+      if (this.userSubMenu !== undefined) {
+        this.userSubMenu.subMenuState = MenuState.collapsed;
+      }
+      this.langSubMenu.subMenuState = MenuState.collapsed;
+      this.menuState = MenuState.collapsed;
+    }
     this.searchState = this.searchState === SearchState.collapsed ? SearchState.expanded : SearchState.collapsed;
   }
 
