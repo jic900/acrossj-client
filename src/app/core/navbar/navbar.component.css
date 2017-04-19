@@ -46,7 +46,20 @@
 
 @media (max-width: 767px) {
   .navbar-nav {
-    margin: 10% auto 20%;
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    width: 100%;
+    margin: 0;
+    /*height: 100%;*/
+    padding: 40px;
+    /*padding-top: 10%;*/
+    /*padding-left: 15%;*/
+    /*margin: 10% auto 20%;*/
+    overflow-y: scroll !important;
+    -webkit-overflow-scrolling: touch;
+    max-height: 300px;
+    /*navbar 50; navbar-nav.padding 40; each li 40; each devider 15*/
   }
   /*.navbar-nav>li {*/
     /*text-align: left;*/

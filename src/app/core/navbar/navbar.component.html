@@ -4,7 +4,7 @@
       <button
         type="button"
         class="navbar-toggle collapsed pull-left"
-        (click)="toggleMenuState()">
+        (click)="onMenuClick($event)">
         <!--<span class="sr-only">Toggle navigation</span>-->
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -16,13 +16,13 @@
       <button
         *ngIf="!isSearchExpanded()"
         class="navbar-toggle navbar-button-search"
-        (click)="toggleSearchState()">
+        (click)="onSearchClick($event)">
         <span ><i class="fa fa-search" aria-hidden="true"></i></span>
       </button>
       <button
         *ngIf="isSearchExpanded()"
         class="navbar-toggle navbar-button-close"
-        (click)="toggleSearchState()">
+        (click)="onSearchClick($event)">
         &times;
       </button>
     </div>
@@ -56,7 +56,6 @@
         <li *ngIf="!authenticated; else loginSuccess">
           <a href="#">Log In / Sign Up</a>
         </li>
-
         <ng-template #loginSuccess>
           <aj-submenu
             [type]="getUserSubMenuType()"

@@ -8,8 +8,8 @@ import {
   QueryList
 } from '@angular/core';
 import { AppConfig, AppConstant } from 'app/config/app.config';
-import { MenuState, SearchState, SubMenuType } from "app/config/menu.config"
-import { SubmenuComponent } from "app/core/navbar/submenu.component";
+import { MenuState, SearchState, SubMenuType } from 'app/config/menu.config';
+import { SubmenuComponent } from 'app/core/navbar/submenu.component';
 
 
 @Component({
@@ -30,7 +30,8 @@ export class NavbarComponent implements AfterViewInit {
   authenticated: boolean;
 
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
+  constructor(private el: ElementRef,
+              private renderer: Renderer2) {
     this.homeLogo = AppConfig.HOME_LOGO;
     this.menuState = MenuState.collapsed;
     this.searchState = SearchState.collapsed;
@@ -46,7 +47,7 @@ export class NavbarComponent implements AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   onWindowResize(event): void {
-    let newWindowWidth = event.target.innerWidth;
+    const newWindowWidth = event.target.innerWidth;
     if (newWindowWidth !== this.windowWidth) {
       this.windowWidth = newWindowWidth;
       this.menuState = MenuState.collapsed;
@@ -54,6 +55,13 @@ export class NavbarComponent implements AfterViewInit {
       this.toggleTransition(newWindowWidth);
     }
   }
+
+  // @HostListener('document.touchmove', ['$event'])
+  // onTouchMove(event): void {
+  //   if (this.menuState === MenuState.expanded) {
+  //     event.preventDefault();
+  //   }
+  // }
 
   isMenuExpanded(): boolean {
     return this.menuState === MenuState.expanded;
@@ -71,7 +79,7 @@ export class NavbarComponent implements AfterViewInit {
     return SubMenuType.language;
   }
 
-  toggleMenuState(): void {
+  onMenuClick(event): void {
     if (this.menuState === MenuState.expanded) {
       if (this.userSubMenu !== undefined) {
         this.userSubMenu.subMenuState = MenuState.collapsed;
@@ -80,21 +88,21 @@ export class NavbarComponent implements AfterViewInit {
     } else {
       this.searchState = SearchState.collapsed;
     }
-    this.menuState = this.menuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
+    this.toggleMenuState();
   }
 
-  toggleSearchState(): void {
+  onSearchClick(event): void {
     if (this.menuState === MenuState.expanded) {
       if (this.userSubMenu !== undefined) {
         this.userSubMenu.subMenuState = MenuState.collapsed;
       }
       this.langSubMenu.subMenuState = MenuState.collapsed;
-      this.menuState = MenuState.collapsed;
+      this.toggleMenuState();
     }
     this.searchState = this.searchState === SearchState.collapsed ? SearchState.expanded : SearchState.collapsed;
   }
 
-  displayIcon() : boolean {
+  displayIcon(): boolean {
     return window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH;
   }
 
@@ -102,7 +110,7 @@ export class NavbarComponent implements AfterViewInit {
     return this.authenticated && window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH;
   }
 
-  onToggled(type : string): void {
+  onToggled(type: string): void {
     if (type === SubMenuType.user) {
       this.langSubMenu.subMenuState = 1;
     } else if (type === SubMenuType.language) {
@@ -110,11 +118,25 @@ export class NavbarComponent implements AfterViewInit {
     }
   }
 
-  private toggleTransition(width : number): void {
+  private toggleTransition(width: number): void {
     if (width >= AppConstant.DEFAULT_DEVICE_WIDTH) {
       this.renderer.addClass(this.el.nativeElement.firstChild, 'no-transition');
     } else {
       this.renderer.removeClass(this.el.nativeElement.firstChild, 'no-transition');
     }
   }
+
+  private toggleMenuState(): void {
+    this.menuState = this.menuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
+    // this.toggleBodyScroll();
+  }
+
+  // private toggleBodyScroll(): void {
+  //   const bodyElement = document.querySelector('body');
+  //   if (this.menuState === MenuState.expanded) {
+  //     this.renderer.addClass(bodyElement, 'no-scroll');
+  //   } else {
+  //     this.renderer.removeClass(bodyElement, 'no-scroll');
+  //   }
+  // }
 }

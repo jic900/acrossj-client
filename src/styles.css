@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
-html {
+html, body {
   /*-ms-overflow-style: -ms-autohiding-scrollbar;*/
+  height: 100%;
   -ms-overflow-style: none;  /* IE 10+ */
   /* overflow: -moz-scrollbars-none;   Firefox */
 }
@@ -28,3 +29,7 @@ a > .fa {
   display: inline;
   padding-right: 3px;
 }
+
+/*.no-scroll {*/
+  /*overflow: hidden;*/
+/*}*/

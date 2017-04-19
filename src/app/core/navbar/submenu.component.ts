@@ -32,12 +32,12 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
   @ViewChild('dropdown') dropdown: ElementRef;
   @ViewChild('icon') icon: ElementRef;
   @Input() type: string;
-  @Output() onToggled : EventEmitter<string>;
+  @Output() onToggled: EventEmitter<string>;
   linkName: string;
   items: string[];
-  subMenuState : number;
+  subMenuState: number;
   windowWidth: number;
-  lastCollapsedTime : number;
+  lastCollapsedTime: number;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
     this.subMenuState = MenuState.collapsed;
@@ -46,7 +46,7 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
   }
 
   ngOnInit() {
-    var nativeElement: HTMLElement = this.el.nativeElement,
+    const nativeElement: HTMLElement = this.el.nativeElement,
       parentElement: HTMLElement = nativeElement.parentElement;
     while (nativeElement.firstChild) {
       parentElement.insertBefore(nativeElement.firstChild, nativeElement);
@@ -79,7 +79,7 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
 
   @HostListener('window:resize', ['$event'])
   onWindowResize(event): void {
-    let newWindowWidth = event.target.innerWidth;
+    const newWindowWidth = event.target.innerWidth;
     if (newWindowWidth !== this.windowWidth) {
       this.windowWidth = newWindowWidth;
       this.subMenuState = MenuState.collapsed;
@@ -92,10 +92,10 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
   }
 
   onMouseClick(event): void {
-    let width = window.innerWidth;
-    if (!AppConfig.MENU_HOVER_MODE || width < AppConstant.DEFAULT_DEVICE_WIDTH || this.isIPAD()) {
+    // const width = window.innerWidth;
+    if (!AppConfig.MENU_HOVER_MODE || this.windowWidth < AppConstant.DEFAULT_DEVICE_WIDTH || this.isIPAD()) {
       // console.log('onMouseClick: ' + event.x + ' ' + event.y);
-      let curTime = new Date().getTime();
+      const curTime = new Date().getTime();
       if (this.subMenuState !== MenuState.collapsed || curTime - this.lastCollapsedTime > 100) {
         this.subMenuState = this.subMenuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
         // this.setMarginBottomStyle();
@@ -108,9 +108,9 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
 
   onMouseMove(event): void {
     // console.log('onMouseMove: ' + event.x + ' ' + event.y);
-    let width = window.innerWidth;
-    if (width >= AppConstant.DEFAULT_DEVICE_WIDTH) {
-      let mouseX = event.clientX, mouseY = event.clientY;
+    // const width = window.innerWidth;
+    if (this.windowWidth >= AppConstant.DEFAULT_DEVICE_WIDTH) {
+      const mouseX = event.clientX, mouseY = event.clientY;
       if (mouseX === undefined || mouseY === undefined) {
         return;
       }
@@ -130,15 +130,15 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
   onMouseLeave(event): void {
     // let mouseX = event.clientX, mouseY = event.clientY;
     // console.log(`onMouseLeave - (${mouseX}, ${mouseY})`);
-    let width = window.innerWidth;
-    if (width >= AppConstant.DEFAULT_DEVICE_WIDTH) {
+    // const width = window.innerWidth;
+    if (this.windowWidth >= AppConstant.DEFAULT_DEVICE_WIDTH) {
       this.subMenuState = MenuState.collapsed;
     }
   }
 
   onMouseUp(event): void {
-    let width = window.innerWidth;
-    if (width >= AppConstant.DEFAULT_DEVICE_WIDTH) {
+    // const width = window.innerWidth;
+    if (this.windowWidth >= AppConstant.DEFAULT_DEVICE_WIDTH) {
       if (this.subMenuState === MenuState.expanded) {
         this.subMenuState = MenuState.collapsed;
         this.lastCollapsedTime = new Date().getTime();
@@ -146,7 +146,7 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
     }
   }
 
-  displayIcon() : boolean {
+  displayIcon(): boolean {
     return window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH;
   }
 
@@ -155,13 +155,13 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
   }
 
   private isIPAD() {
-    let width = window.innerWidth;
-    return width === AppConstant.IPAD_WIDTH || width === AppConstant.IPAD_PRO_WIDTH;
+    // let width = window.innerWidth;
+    return this.windowWidth === AppConstant.IPAD_WIDTH || this.windowWidth === AppConstant.IPAD_PRO_WIDTH;
   }
 
   private setMarginBottom(): void {
     if (this.dropdown !== undefined && this.dropdown.nativeElement !== undefined) {
-      let marginBottom = this.subMenuState === MenuState.expanded ? this.items.length * 30 + 'px' : '';
+      const marginBottom = this.subMenuState === MenuState.expanded ? this.items.length * 30 + 'px' : '';
       this.renderer.setStyle(this.dropdown.nativeElement, 'margin-bottom', marginBottom);
     }
   }
@@ -179,17 +179,17 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
   }
 
   private insideDropDown(mouseX, mouseY): boolean {
-    let rect = this.dropdown.nativeElement.getBoundingClientRect();
-    let left = rect.left, top = rect.top, width = rect.width, height = rect.height;
+    const rect = this.dropdown.nativeElement.getBoundingClientRect();
+    const left = rect.left, top = rect.top, width = rect.width, height = rect.height;
     // console.log(
     //   `insideDropDown(${this.type}) - (${mouseX}, ${mouseY})  X(${left}, ${left+width}) Y(${top}, ${top+height})`);
     return mouseX > left + 3 && mouseX < left + width - 3 && mouseY >= top && mouseY < top + height;
   }
 
   private insideDropDownMenu(mouseX, mouseY): boolean {
-    let dropDownMenuElement = this.dropdown.nativeElement.querySelector('.dropdown-menu');
-    let rect = dropDownMenuElement.getBoundingClientRect();
-    let left = rect.left, top = rect.top, width = rect.width, height = rect.height;
+    const dropDownMenuElement = this.dropdown.nativeElement.querySelector('.dropdown-menu');
+    const rect = dropDownMenuElement.getBoundingClientRect();
+    const left = rect.left, top = rect.top, width = rect.width, height = rect.height;
     // console.log(
     //   `insideDropDownMenu(${this.type}) - (${mouseX}, ${mouseY})  X(${left}, ${left+width}) Y(${top}, ${top+height})`);
     return mouseX > left + 3 && mouseX < left + width - 3 && mouseY >= top && mouseY < top + height - 1;
