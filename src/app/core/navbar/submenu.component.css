@@ -37,6 +37,7 @@ a > .caret.subMenuExpanded {
   border: none;
   padding: 2px 0;
   opacity: 0;
+  box-shadow: none;
   position: absolute;
   min-width: 80px;
   width: 100%;

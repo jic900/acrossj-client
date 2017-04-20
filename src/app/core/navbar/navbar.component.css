@@ -57,8 +57,8 @@
     /*padding-left: 15%;*/
     /*margin: 10% auto 20%;*/
     overflow-y: scroll !important;
-    -webkit-overflow-scrolling: touch;
-    max-height: 300px;
+    /*-webkit-overflow-scrolling: touch;*/
+    /*max-height: 500px;*/
     /*navbar 50; navbar-nav.padding 40; each li 40; each devider 15*/
   }
   /*.navbar-nav>li {*/
@@ -68,7 +68,7 @@
     position: absolute;
     /*width: 250px;*/
     width: 100%;
-    min-height: 617px;
+    /*min-height: 100px;*/
     max-height: none;
     border-top: none;
     box-shadow: none;
@@ -149,14 +149,14 @@ li > a {
 /*}*/
 
 .navbar-search {
-  position: absolute;
+  /*position: absolute;*/
   /*width: 250px;*/
   width: 100%;
-  min-height: 300px;
+  /*min-height: 300px;*/
   max-height: none;
   border-top: none;
   box-shadow: none;
-  padding: 30px;
+  padding: 20px 30px 40px;
   background-color: rgba(0, 0, 0, 0.50);
   opacity: 0;
   z-index: -1;
@@ -167,6 +167,12 @@ li > a {
   opacity: 1;
   z-index: 1;
   transform: translateX(0%);
+}
+
+.navbar-search-content {
+  margin: auto;
+  overflow-y: scroll !important;
+  /*max-height: 200px;*/
 }
 
 .search-label {

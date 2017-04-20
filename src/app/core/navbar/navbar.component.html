@@ -28,7 +28,7 @@
     </div>
 
     <!-- side menu -->
-    <div class="navbar-collapse" [ngClass]="{'menuExpanded': isMenuExpanded()}">
+    <div #navbarCollapse class="navbar-collapse" [ngClass]="{'menuExpanded': isMenuExpanded()}">
       <ul class="nav navbar-nav navbar-right">
         <li>
           <a href="#"><i *ngIf="displayIcon()" class="fa fa-info-circle" aria-hidden="true"></i>&nbsp; About Us</a>
@@ -78,6 +78,7 @@
     <!-- search menu -->
     <div class="navbar-collapse navbar-search" [ngClass]="{'searchExpanded': isSearchExpanded()}">
       <!--<div class="container-fluid">-->
+      <div #navbarSearch class="navbar-search-content">
         <label class="search-label">Search Skii Events</label>
         <div class="panel-group">
           <div class="panel panel-default">
@@ -91,6 +92,7 @@
           </div>
         </div>
         <button class="btn btn-clearall">Clear All</button>
+      </div>
       <!--</div>-->
     </div>
   </div>

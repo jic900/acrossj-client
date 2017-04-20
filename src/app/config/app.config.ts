@@ -11,6 +11,7 @@ export class AppConfig {
 
 export class AppConstant {
   public static DEFAULT_DEVICE_WIDTH: number = 768;
+  public static IPHONE6__WIDTH: number = 375;
   public static IPAD_WIDTH: number = 768;
   public static IPAD_PRO_WIDTH: number = 1024;
 }

@@ -5,11 +5,12 @@ import {
   ElementRef,
   Renderer2,
   HostListener,
-  QueryList
+  QueryList, ViewChild
 } from '@angular/core';
 import { AppConfig, AppConstant } from 'app/config/app.config';
 import { MenuState, SearchState, SubMenuType } from 'app/config/menu.config';
 import { SubmenuComponent } from 'app/core/navbar/submenu.component';
+import { Util } from 'app/shared/util/util';
 
 
 @Component({
@@ -20,6 +21,8 @@ import { SubmenuComponent } from 'app/core/navbar/submenu.component';
 
 export class NavbarComponent implements AfterViewInit {
 
+  @ViewChild('navbarCollapse') navbarCollapse: ElementRef;
+  @ViewChild('navbarSearch') navbarSearch: ElementRef;
   @ViewChildren(SubmenuComponent) submenus: QueryList<SubmenuComponent>;
   userSubMenu: SubmenuComponent;
   langSubMenu: SubmenuComponent;
@@ -28,7 +31,6 @@ export class NavbarComponent implements AfterViewInit {
   searchState: number;
   windowWidth: number;
   authenticated: boolean;
-
 
   constructor(private el: ElementRef,
               private renderer: Renderer2) {
@@ -43,6 +45,7 @@ export class NavbarComponent implements AfterViewInit {
     this.userSubMenu = this.submenus.find(submenu => submenu.linkName === 'Username');
     this.langSubMenu = this.submenus.find(submenu => submenu.linkName === 'Language');
     this.toggleTransition(window.innerWidth);
+    this.configureMenuSize(this.windowWidth, window.innerHeight);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -53,15 +56,9 @@ export class NavbarComponent implements AfterViewInit {
       this.menuState = MenuState.collapsed;
       this.searchState = SearchState.collapsed;
       this.toggleTransition(newWindowWidth);
+      this.configureMenuSize(this.windowWidth, event.target.innerHeight);
     }
   }
-
-  // @HostListener('document.touchmove', ['$event'])
-  // onTouchMove(event): void {
-  //   if (this.menuState === MenuState.expanded) {
-  //     event.preventDefault();
-  //   }
-  // }
 
   isMenuExpanded(): boolean {
     return this.menuState === MenuState.expanded;
@@ -112,9 +109,26 @@ export class NavbarComponent implements AfterViewInit {
 
   onToggled(type: string): void {
     if (type === SubMenuType.user) {
-      this.langSubMenu.subMenuState = 1;
+      this.langSubMenu.subMenuState = MenuState.collapsed;
     } else if (type === SubMenuType.language) {
-      this.userSubMenu.subMenuState = 1;
+      this.userSubMenu.subMenuState = MenuState.collapsed;
+    }
+  }
+
+  private configureMenuSize(windowWidth, windowHeight) {
+    const navbarHeight = 50;
+    const navbarSearchPaddingVertical = 60;
+    if (Util.isPhoneOrTablet()) {
+      this.renderer.setStyle(this.navbarCollapse.nativeElement, 'min-height', (windowHeight - navbarHeight) + 'px');
+      this.renderer.setStyle(this.navbarCollapse.nativeElement.firstElementChild, 'max-height', (windowHeight - navbarHeight) + 'px');
+    }
+    this.renderer.setStyle(
+      this.navbarSearch.nativeElement, 'max-height', (windowHeight - navbarHeight - navbarSearchPaddingVertical) + 'px');
+    const widthPercent = 100 - (windowWidth - AppConstant.IPHONE6__WIDTH) * 100 / (windowWidth * 1.5);
+    if (widthPercent > 0) {
+      this.renderer.setStyle(this.navbarSearch.nativeElement, 'width', widthPercent + '%');
+    } else {
+      this.renderer.setStyle(this.navbarSearch.nativeElement, 'width', '100%');
     }
   }
 

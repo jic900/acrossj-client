@@ -38,6 +38,8 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
   subMenuState: number;
   windowWidth: number;
   lastCollapsedTime: number;
+  cancelMouseMoveListenFunc: Function;
+  cancelMouseLeaveListenFunc: Function;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
     this.subMenuState = MenuState.collapsed;
@@ -62,14 +64,7 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
     this.windowWidth = window.innerWidth;
     this.setMarginBottom();
     this.setIcon();
-    if (AppConfig.MENU_HOVER_MODE === true && !this.isIPAD()) {
-      this.renderer.listen(this.dropdown.nativeElement, 'mousemove', (event) => {
-        this.onMouseMove(event);
-      });
-      this.renderer.listen(this.dropdown.nativeElement, 'mouseleave', (event) => {
-        this.onMouseLeave(event);
-      });
-    }
+    this.toggleMouseEventListeners();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -84,6 +79,7 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
       this.windowWidth = newWindowWidth;
       this.subMenuState = MenuState.collapsed;
       this.setIcon();
+      this.toggleMouseEventListeners();
     }
   }
 
@@ -93,8 +89,8 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
 
   onMouseClick(event): void {
     // const width = window.innerWidth;
+    // console.log('onMouseClick: ' + event.x + ' ' + event.y);
     if (!AppConfig.MENU_HOVER_MODE || this.windowWidth < AppConstant.DEFAULT_DEVICE_WIDTH || this.isIPAD()) {
-      // console.log('onMouseClick: ' + event.x + ' ' + event.y);
       const curTime = new Date().getTime();
       if (this.subMenuState !== MenuState.collapsed || curTime - this.lastCollapsedTime > 100) {
         this.subMenuState = this.subMenuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
@@ -193,5 +189,31 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
     // console.log(
     //   `insideDropDownMenu(${this.type}) - (${mouseX}, ${mouseY})  X(${left}, ${left+width}) Y(${top}, ${top+height})`);
     return mouseX > left + 3 && mouseX < left + width - 3 && mouseY >= top && mouseY < top + height - 1;
+  }
+
+  private toggleMouseEventListeners(): void {
+    if (AppConfig.MENU_HOVER_MODE === true) {
+      if (this.windowWidth > AppConstant.DEFAULT_DEVICE_WIDTH) {
+        if (this.cancelMouseMoveListenFunc === undefined) {
+          this.cancelMouseMoveListenFunc = this.renderer.listen(this.dropdown.nativeElement, 'mousemove', (event) => {
+            this.onMouseMove(event);
+          });
+        }
+        if (this.cancelMouseLeaveListenFunc === undefined) {
+          this.cancelMouseLeaveListenFunc = this.renderer.listen(this.dropdown.nativeElement, 'mouseleave', (event) => {
+            this.onMouseLeave(event);
+          });
+        }
+      } else {
+        if (this.cancelMouseMoveListenFunc !== undefined) {
+          this.cancelMouseMoveListenFunc();
+          this.cancelMouseMoveListenFunc = undefined;
+        }
+        if (this.cancelMouseLeaveListenFunc !== undefined) {
+          this.cancelMouseLeaveListenFunc();
+          this.cancelMouseLeaveListenFunc = undefined;
+        }
+      }
+    }
   }
 }
