@@ -5,7 +5,9 @@
 export class Util {
 
   private static PLATFORM_IOS_PATTERN = /(iPhone|iPad)/i;
+  private static APPVERSION_IOS_PATTERN = /(iPhone|iPad)/i;
   private static PLATFORM_ANDROID_PATTERN = /(Linux armv)/i;
+  private static APPVERSION_ANDROID_PATTERN = /(Android)/i;
   private static USERAGENT_ANDROID_PATTERN = /(Android)/i;
 
   public static deviceType() {
@@ -21,7 +23,9 @@ export class Util {
   public static isPhoneOrTablet(): boolean {
     if (window.navigator.platform.match(this.PLATFORM_IOS_PATTERN) ||
         window.navigator.platform.match(this.PLATFORM_ANDROID_PATTERN) ||
-        window.navigator.userAgent.match(this.USERAGENT_ANDROID_PATTERN)) {
+        window.navigator.userAgent.match(this.USERAGENT_ANDROID_PATTERN) ||
+        window.navigator.appVersion.match(this.APPVERSION_IOS_PATTERN) ||
+        window.navigator.appVersion.match(this.APPVERSION_ANDROID_PATTERN)) {
       return true;
     }
   }
