@@ -124,11 +124,11 @@ export class NavbarComponent implements AfterViewInit {
     }
     this.renderer.setStyle(
       this.navbarSearch.nativeElement, 'max-height', (windowHeight - navbarHeight - navbarSearchPaddingVertical) + 'px');
-    const widthPercent = 100 - (windowWidth - AppConstant.IPHONE6__WIDTH) * 100 / (windowWidth * 1.5);
-    if (widthPercent > 0) {
-      this.renderer.setStyle(this.navbarSearch.nativeElement, 'width', widthPercent + '%');
+    if (windowWidth > AppConstant.IPHONE6__WIDTH) {
+      const widthPercent = 100 - (windowWidth - AppConstant.IPHONE6__WIDTH) * 100 / (windowWidth * 1.5);
+      this.renderer.setStyle(this.navbarSearch.nativeElement.firstElementChild, 'width', widthPercent + '%');
     } else {
-      this.renderer.setStyle(this.navbarSearch.nativeElement, 'width', '100%');
+      this.renderer.setStyle(this.navbarSearch.nativeElement.firstElementChild, 'width', '88%');
     }
   }
 

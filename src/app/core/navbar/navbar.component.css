@@ -156,7 +156,7 @@ li > a {
   max-height: none;
   border-top: none;
   box-shadow: none;
-  padding: 20px 30px 40px;
+  padding: 15px 0 40px;
   background-color: rgba(0, 0, 0, 0.50);
   opacity: 0;
   z-index: -1;
@@ -169,10 +169,11 @@ li > a {
   transform: translateX(0%);
 }
 
+.navbar-search-panel {
+  overflow-y: scroll !important;
+}
 .navbar-search-content {
   margin: auto;
-  overflow-y: scroll !important;
-  /*max-height: 200px;*/
 }
 
 .search-label {
