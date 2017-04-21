@@ -45,6 +45,7 @@ export class NavbarComponent implements AfterViewInit {
     this.userSubMenu = this.submenus.find(submenu => submenu.linkName === 'Username');
     this.langSubMenu = this.submenus.find(submenu => submenu.linkName === 'Language');
     this.toggleTransition(window.innerWidth);
+    this.toggleHomeContentScroll();
     this.configureMenuSize(this.windowWidth, window.innerHeight);
   }
 
@@ -86,6 +87,7 @@ export class NavbarComponent implements AfterViewInit {
       this.searchState = SearchState.collapsed;
     }
     this.toggleMenuState();
+    this.toggleHomeContentScroll();
   }
 
   onSearchClick(event): void {
@@ -97,6 +99,7 @@ export class NavbarComponent implements AfterViewInit {
       this.toggleMenuState();
     }
     this.searchState = this.searchState === SearchState.collapsed ? SearchState.expanded : SearchState.collapsed;
+    this.toggleHomeContentScroll();
   }
 
   displayIcon(): boolean {
@@ -121,6 +124,7 @@ export class NavbarComponent implements AfterViewInit {
     if (Util.isPhoneOrTablet()) {
       this.renderer.setStyle(this.navbarCollapse.nativeElement, 'min-height', (windowHeight - navbarHeight) + 'px');
       this.renderer.setStyle(this.navbarCollapse.nativeElement.firstElementChild, 'max-height', (windowHeight - navbarHeight) + 'px');
+      this.renderer.setStyle(this.navbarSearch.nativeElement, 'min-height', (windowHeight - navbarHeight) + 'px');
     }
     this.renderer.setStyle(
       this.navbarSearch.nativeElement, 'max-height', (windowHeight - navbarHeight - navbarSearchPaddingVertical) + 'px');
@@ -145,6 +149,16 @@ export class NavbarComponent implements AfterViewInit {
     // this.toggleBodyScroll();
   }
 
+  private toggleHomeContentScroll() {
+    const homeContentElement = document.querySelector('.home-content');
+    if (this.menuState === MenuState.collapsed && this.searchState === MenuState.collapsed) {
+      // this.renderer.setStyle(homeContentElement, '-webkit-overflow-scrolling', 'touch');
+      this.renderer.removeStyle(homeContentElement, 'overflow');
+    } else {
+      this.renderer.setStyle(homeContentElement, 'overflow', 'auto');
+      // this.renderer.removeStyle(homeContentElement, '-webkit-overflow-scrolling');
+    }
+  }
   // private toggleBodyScroll(): void {
   //   const bodyElement = document.querySelector('body');
   //   if (this.menuState === MenuState.expanded) {
