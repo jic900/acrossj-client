@@ -32,7 +32,7 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
   @ViewChild('dropdown') dropdown: ElementRef;
   @ViewChild('icon') icon: ElementRef;
   @Input() type: string;
-  @Output() onToggled: EventEmitter<string>;
+  @Output() onSubMenuToggled: EventEmitter<string>;
   linkName: string;
   items: string[];
   subMenuState: number;
@@ -43,7 +43,7 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
     this.subMenuState = MenuState.collapsed;
-    this.onToggled = new EventEmitter<string>();
+    this.onSubMenuToggled = new EventEmitter<string>();
     this.lastCollapsedTime = 0;
   }
 
@@ -96,7 +96,7 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
         this.subMenuState = this.subMenuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
         // this.setMarginBottomStyle();
         if (this.subMenuState === MenuState.expanded) {
-          this.onToggled.emit(this.type);
+          this.onSubMenuToggled.emit(this.type);
         }
       }
     }
@@ -112,7 +112,7 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
       }
       if (this.subMenuState === MenuState.collapsed) {
         if (this.insideDropDown(mouseX, mouseY)) {
-          this.onToggled.emit(this.type);
+          this.onSubMenuToggled.emit(this.type);
           this.subMenuState = MenuState.expanded;
         }
       } else {

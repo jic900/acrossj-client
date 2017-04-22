@@ -4,6 +4,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './auth/login.component';
 import { SignupComponent } from './auth/signup.component';
 import { SubmenuComponent } from './navbar/submenu.component';
+import { SearchmenuComponent } from './navbar/searchmenu.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { SubmenuComponent } from './navbar/submenu.component';
     NavbarComponent,
     LoginComponent,
     SignupComponent,
-    SubmenuComponent
+    SubmenuComponent,
+    SearchmenuComponent
   ],
   exports: [
     NavbarComponent,

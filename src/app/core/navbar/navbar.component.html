@@ -14,13 +14,13 @@
         <img [src]="homeLogo" alt="Across Japan">
       </a>
       <button
-        *ngIf="!isSearchExpanded()"
+        *ngIf="!navbarSearch.isSearchExpanded()"
         class="navbar-toggle navbar-button-search"
         (click)="onSearchClick($event)">
         <span ><i class="fa fa-search" aria-hidden="true"></i></span>
       </button>
       <button
-        *ngIf="isSearchExpanded()"
+        *ngIf="navbarSearch.isSearchExpanded()"
         class="navbar-toggle navbar-button-close"
         (click)="onSearchClick($event)">
         &times;
@@ -49,7 +49,7 @@
         <!--<ng-template [ngTemplateOutlet]="langMenu.submenu"></ng-template>-->
         <aj-submenu
           [type]="getLanguageSubMenuType()"
-          (onToggled)="onToggled($event)">
+          (onSubMenuToggled)="onSubMenuToggled($event)">
         </aj-submenu>
 
         <li *ngIf="!authenticated" class="divider"></li>
@@ -59,7 +59,7 @@
         <ng-template #loginSuccess>
           <aj-submenu
             [type]="getUserSubMenuType()"
-            (onToggled)="onToggled($event)">
+            (onSubMenuToggled)="onSubMenuToggled($event)">
           </aj-submenu>
           <!--<aj-submenu #userMenu-->
                       <!--[type]="getUserSubMenuType()"-->
@@ -74,28 +74,8 @@
         </li>
       </ul>
     </div>
+    
+    <aj-searchmenu></aj-searchmenu>
 
-    <!-- search menu -->
-    <div class="navbar-collapse navbar-search" [ngClass]="{'searchExpanded': isSearchExpanded()}">
-      <!--<div class="container-fluid">-->
-      <div #navbarSearch class="navbar-search-panel">
-        <div class="navbar-search-content">
-          <label class="search-label">Search Skii Events</label>
-          <div class="panel-group">
-            <div class="panel panel-default">
-              <div class="panel-body">Any Places</div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-body">Any Time</div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-body"># of Guests</div>
-            </div>
-          </div>
-          <button class="btn btn-clearall">Clear All</button>
-        </div>
-      </div>
-      <!--</div>-->
-    </div>
   </div>
 </nav>
