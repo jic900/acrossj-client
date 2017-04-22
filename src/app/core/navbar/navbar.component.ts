@@ -6,7 +6,7 @@ import {
   Renderer2,
   HostListener,
   QueryList,
-  ViewChild
+  ViewChild, RendererStyleFlags2
 } from '@angular/core';
 import { AppConfig, AppConstant } from 'app/config/app.config';
 import { MenuState, SearchState, SubMenuType } from 'app/config/menu.config';
@@ -135,12 +135,12 @@ export class NavbarComponent implements AfterViewInit {
       this.renderer.setStyle(this.navbarCollapse.nativeElement, 'min-height', (windowHeight + offset) + 'px');
       const navbarCollapseList = this.navbarCollapse.nativeElement.firstElementChild;
       this.renderer.setStyle(navbarCollapseList, 'max-height', (windowHeight - navbarHeight + offset) + 'px');
-      this.renderer.setStyle(navbarCollapseList, 'overflow-y', 'scroll !important');
+      this.renderer.setStyle(navbarCollapseList, 'overflow-y', 'scroll', RendererStyleFlags2.Important);
       // right search menu
       this.renderer.setStyle(navbarSearchPanel, 'min-height', (windowHeight + offset) + 'px');
       const navbarSearchPanelMaxHeight = windowHeight - navbarHeight - navbarSearchPaddingVertical;
       this.renderer.setStyle(navbarSearchPanel, 'max-height', navbarSearchPanelMaxHeight + 'px');
-      this.renderer.setStyle(navbarSearchPanel, 'overflow-y', 'scroll !important');
+      this.renderer.setStyle(navbarSearchPanel, 'overflow-y', 'scroll', RendererStyleFlags2.Important);
     }
 
     // set search menu fields responsive based on window width
