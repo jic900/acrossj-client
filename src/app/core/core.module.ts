@@ -19,6 +19,7 @@ import { SearchmenuComponent } from './navbar/searchmenu.component';
   ],
   exports: [
     NavbarComponent,
+    SearchmenuComponent,
     LoginComponent,
     SignupComponent
   ]

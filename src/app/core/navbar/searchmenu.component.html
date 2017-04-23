@@ -5,7 +5,22 @@
       <label class="search-label">Search Skii Events</label>
       <div class="panel-group">
         <div class="panel panel-default">
-          <div class="panel-body">Any Places</div>
+          <div class="panel-body">
+            <ng2-completer #openCloseExample
+                           class="completer-limit"
+                           [(ngModel)]="placeSearchString"
+                           [datasource]="placeSearchData"
+                           [inputClass]="'form-control'"
+                           [openOnFocus]="true"
+                           (opened)="onOpened($event)"
+                           (focus)="openCloseFocused = true"
+                           (blur)="openCloseFocused = false"
+                           [minSearchLength]="0"
+                           [placeholder]="'search places'"
+                           [autoHighlight]="true"
+                           [fillHighlighted]="false">
+            </ng2-completer>
+          </div>
         </div>
         <div class="panel panel-default">
           <div class="panel-body">Any Time</div>
