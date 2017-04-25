@@ -1,6 +1,10 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
+
 import { SearchState } from 'app/config/menu.config';
-import { CompleterCmp } from 'ng2-completer';
 
 @Component({
   selector: 'aj-searchmenu',
@@ -11,11 +15,7 @@ import { CompleterCmp } from 'ng2-completer';
 export class SearchmenuComponent {
 
   @ViewChild('navbarSearchPanel') navbarSearchPanel: ElementRef;
-  @ViewChild('openCloseExample') private openCloseExample: CompleterCmp;
   searchState: number;
-  placeSearchString: string;
-  openCloseFocused: boolean;
-  placeSearchData: string[] = ['Tokyo', 'Osaka', 'Kyoto', 'Yokohama'];
 
   constructor() {
     this.searchState = SearchState.collapsed;
@@ -27,8 +27,5 @@ export class SearchmenuComponent {
 
   onSearchClick(): void {
     this.searchState = this.searchState === SearchState.collapsed ? SearchState.expanded : SearchState.collapsed;
-  }
-
-  onOpened(isOpen: boolean): void {
   }
 }

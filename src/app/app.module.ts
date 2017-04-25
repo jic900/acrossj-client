@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { Ng2CompleterModule } from 'ng2-completer';
 import { CoreModule } from './core/core.module';
 import { FeaturesModule } from './features/features.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,7 +20,6 @@ import { AppRoutes } from './config/routes.config';
     BrowserModule,
     FormsModule,
     HttpModule,
-    Ng2CompleterModule,
     BrowserAnimationsModule,
     FeaturesModule,
     CoreModule,
