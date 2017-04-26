@@ -17,12 +17,12 @@ import { AppConfig } from 'app/config/app.config';
 
 export class SearchmenuComponent implements AfterViewInit {
 
-  dataList: string[] = ["Vatican City", "Albania", "Andorra", "Armenia", "Austria", "Azerbaijan", "Belarus", "Belgium", "Bosnia & Herzegovina",
-    "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Georgia",
-    "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Kosovo", "Latvia", "Liechtenstein",
-    "Lithuania", "Luxembourg", "Macedonia", "Malta", "Moldova", "Monaco", "Montenegro", "Netherlands",
-    "Norway", "Poland", "Portugal", "Romania", "Russia", "San Marino", "Serbia", "Slovakia",
-    "Slovenia", "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United Kingdom"];
+  dataList: string[] = ['Vatican City', 'Albania', 'Andorra', 'Armenia', 'Austria', 'Azerbaijan', 'Belarus', 'Belgium',
+    'Bosnia & Herzegovina', 'Bulgaria', 'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia', 'Finland',
+    'France', 'Georgia', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland', 'Italy', 'Kosovo', 'Latvia',
+    'Liechtenstein', 'Lithuania', 'Luxembourg', 'Macedonia', 'Malta', 'Moldova', 'Monaco', 'Montenegro', 'Netherlands',
+    'Norway', 'Poland', 'Portugal', 'Romania', 'Russia', 'San Marino', 'Serbia', 'Slovakia',
+    'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom'];
 
   @ViewChild('navbarSearchPanel') navbarSearchPanel: ElementRef;
   @ViewChild('datePicker') datePickerPanel: ElementRef;
@@ -56,7 +56,7 @@ export class SearchmenuComponent implements AfterViewInit {
 
     let filteredList = [], startsWithList = [], includesList = [];
     const lowerSearchStr = searchString.toLowerCase();
-    for (let item of dataList) {
+    for (const item of dataList) {
       const lowerItem = item.toLowerCase();
       if (lowerItem === lowerSearchStr) {
         filteredList.push(item);

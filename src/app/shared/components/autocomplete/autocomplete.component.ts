@@ -1,10 +1,14 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, Renderer2} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild} from '@angular/core';
+import {Util} from '../../util/util';
 
 @Component({
   selector: 'aj-autocomplete',
   templateUrl: './autocomplete.component.html',
   styleUrls: ['./autocomplete.component.css'],
-  host: {'(document:click)': 'onClick($event)'}
+  host: {
+    '(document:touchstart)': 'onClickOrTouch($event)',
+    '(document:click)': 'onClickOrTouch($event)'
+  }
 })
 export class AutocompleteComponent implements AfterViewInit {
 
@@ -15,6 +19,7 @@ export class AutocompleteComponent implements AfterViewInit {
   @Input() inputClass: string;
   @Output() opened: EventEmitter<number>;
   @Output() selected: EventEmitter<string>;
+  @ViewChild('completerInput') completerInput: ElementRef;
   inputString: string;
   filteredList: string[];
   selectedIdx: number;
@@ -38,16 +43,21 @@ export class AutocompleteComponent implements AfterViewInit {
   }
 
   onBlur(event): void {
-    let self = this;
-    setTimeout(function() {
-      self.resetFilteredList();
-    }, 100);
+    if (!Util.isPhoneOrTablet()) {
+      let self = this;
+      setTimeout(function() {
+        self.resetFilteredList();
+      }, 100);
+    }
   }
 
   onKeyUp(event): void {
-    if (this.inputString !== "") {
-      if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-        if (this.selectedIdx != -1) {
+    if (this.inputString !== '') {
+      if (event.code === 'Enter' || event.code === 'NumpadEnter' || event.which === 13) {
+        if (Util.isPhoneOrTablet()) {
+          this.completerInput.nativeElement.blur();
+        }
+        if (this.selectedIdx !== -1) {
           this.inputString = this.filteredList[this.selectedIdx];
         }
         this.resetFilteredList();
@@ -87,7 +97,7 @@ export class AutocompleteComponent implements AfterViewInit {
     this.opened.emit(this.filteredList.length);
   }
 
-  onClick(event): void {
+  onClickOrTouch(event): void {
     let clickedComponent = event.target;
     let inside = false;
     do {
