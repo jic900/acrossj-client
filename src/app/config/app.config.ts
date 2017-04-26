@@ -7,6 +7,7 @@ export class AppConfig {
   public static HOME_LOGO: string = '/assets/images/home_logo.png';
   public static HOME_BACKGROUND: string = '/assets/images/home_bg.png';
   public static MENU_HOVER_MODE: boolean = true;
+  public static PLACE_SEARCH_RESULT_LIMIT = 5;
 }
 
 export class AppConstant {

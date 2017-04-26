@@ -1,0 +1,20 @@
+<div class="container" >
+  <!--<div class="input-field col s12">-->
+    <input
+      id="completerInput"
+      type="text"
+      placeholder="{{placeHolder}}"
+      [(ngModel)]="inputString"
+      (focus)="onFocus($event)"
+      (keyup)="onKeyUp($event)"
+      (blur)="onBlur($event)">
+    <!--<label for="completerInput">{{placeHolder}}</label>-->
+  <!--</div>-->
+  <div id="suggestionList" class="suggestions" *ngIf="filteredList.length > 0" [style.width]="width + 'px'">
+    <ul *ngFor="let item of filteredList; let idx = index" >
+      <li [class.autocomplete-selected]="idx == selectedIdx">
+        <a (click)="onSelect(item)">{{item}}</a>
+      </li>
+    </ul>
+  </div>
+</div>

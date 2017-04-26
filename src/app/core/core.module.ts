@@ -5,10 +5,12 @@ import { LoginComponent } from './auth/login.component';
 import { SignupComponent } from './auth/signup.component';
 import { SubmenuComponent } from './navbar/submenu.component';
 import { SearchmenuComponent } from './navbar/searchmenu.component';
+import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   declarations: [
     NavbarComponent,

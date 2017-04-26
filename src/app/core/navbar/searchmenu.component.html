@@ -5,9 +5,19 @@
       <label class="search-label">Search Skii Events</label>
       <div class="panel-group">
         <div class="panel panel-default">
-          <div class="panel-body">Any Place</div>
+          <!--<div class="panel-body">Any Places</div>-->
+          <div class="panel-body">
+            <aj-autocomplete
+              [dataList]="dataList"
+              [width]="getWidth()"
+              [filterFunc]="filterPlaces"
+              [placeHolder]="'Search Places'"
+              (opened)="onPlaceAutoCompleteOpened($event)"
+              (selected)="onPlaceSelected($event)">
+            </aj-autocomplete>
+          </div>
         </div>
-        <div class="panel panel-default">
+        <div #datePicker class="panel panel-default">
           <div class="panel-body">Any Time</div>
         </div>
         <div class="panel panel-default">
