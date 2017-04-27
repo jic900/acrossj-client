@@ -41,14 +41,14 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
   cancelMouseMoveListenFunc: Function;
   cancelMouseLeaveListenFunc: Function;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     this.subMenuState = MenuState.collapsed;
     this.onSubMenuToggled = new EventEmitter<string>();
     this.lastCollapsedTime = 0;
   }
 
   ngOnInit() {
-    const nativeElement: HTMLElement = this.el.nativeElement,
+    const nativeElement: HTMLElement = this.elementRef.nativeElement,
       parentElement: HTMLElement = nativeElement.parentElement;
     while (nativeElement.firstChild) {
       parentElement.insertBefore(nativeElement.firstChild, nativeElement);

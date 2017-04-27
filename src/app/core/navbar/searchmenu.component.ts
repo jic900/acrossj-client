@@ -27,15 +27,16 @@ export class SearchmenuComponent implements AfterViewInit {
   @ViewChild('navbarSearchPanel') navbarSearchPanel: ElementRef;
   @ViewChild('datePicker') datePickerPanel: ElementRef;
   searchState: number;
-  datePickerPanelMarginTop: number;
+  datePickerMarginTop: number;
 
   constructor(private renderer: Renderer2) {
     this.searchState = SearchState.collapsed;
   }
 
   ngAfterViewInit(): void {
-    const style = this.datePickerPanel.nativeElement.currentStyle || window.getComputedStyle(this.datePickerPanel.nativeElement);
-    this.datePickerPanelMarginTop = style.marginTop.substring(0, style.marginTop.length - 2) * 1;
+    const datePickerElement = this.datePickerPanel.nativeElement;
+    const style = datePickerElement.currentStyle || window.getComputedStyle(datePickerElement);
+    this.datePickerMarginTop = style.marginTop.substring(0, style.marginTop.length - 2) * 1;
   }
 
   isSearchExpanded(): boolean {
@@ -70,9 +71,10 @@ export class SearchmenuComponent implements AfterViewInit {
   }
 
   onPlaceAutoCompleteOpened(numSuggestions: number) {
-    let marginTop = this.datePickerPanelMarginTop;
+    const datePickerPaddingOffset = 20;
+    let marginTop = this.datePickerMarginTop;
     if (numSuggestions > 0) {
-      marginTop += numSuggestions * 35;
+      marginTop += datePickerPaddingOffset + numSuggestions * 36;
     }
     this.renderer.setStyle(this.datePickerPanel.nativeElement, 'margin-top', marginTop + 'px');
   }

@@ -13,7 +13,7 @@
   <!--</div>-->
   <div id="suggestionList" class="suggestions" *ngIf="filteredList.length > 0" [style.width]="width + 'px'">
     <ul *ngFor="let item of filteredList; let idx = index" >
-      <li [class.autocomplete-selected]="idx == selectedIdx">
+      <li [class.suggestions-selected]="idx == selectedIdx">
         <a (click)="onSelect(item)">{{item}}</a>
       </li>
     </ul>

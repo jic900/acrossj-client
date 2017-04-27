@@ -38,7 +38,7 @@
   margin-bottom: 10px;
 }
 .panel-group .panel+.panel {
-  margin-top: 12px;
+  margin-top: 20px;
 }
 .panel-default {
   background-color: inherit;
@@ -58,3 +58,7 @@
   text-decoration: underline;
   float: right;
 }
+
+/*:host >>> aj-autocomplete .suggestions-selected {*/
+  /*background-color: black;*/
+/*}*/

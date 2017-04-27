@@ -8,11 +8,13 @@ import {
   QueryList,
   ViewChild, RendererStyleFlags2
 } from '@angular/core';
+
+import { SubmenuComponent } from './submenu.component';
+import { SearchmenuComponent } from './searchmenu.component';
 import { AppConfig, AppConstant } from 'app/config/app.config';
 import { MenuState, SearchState, SubMenuType } from 'app/config/menu.config';
-import { SubmenuComponent } from 'app/core/navbar/submenu.component';
 import { Util } from 'app/shared/util/util';
-import { SearchmenuComponent } from './searchmenu.component';
+
 
 
 @Component({
@@ -24,22 +26,18 @@ import { SearchmenuComponent } from './searchmenu.component';
 export class NavbarComponent implements AfterViewInit {
 
   @ViewChild('navbarCollapse') navbarCollapse: ElementRef;
-  // @ViewChild('navbarSearch') navbarSearch: ElementRef;
   @ViewChild(SearchmenuComponent) navbarSearch: SearchmenuComponent;
   @ViewChildren(SubmenuComponent) submenus: QueryList<SubmenuComponent>;
   userSubMenu: SubmenuComponent;
   langSubMenu: SubmenuComponent;
   homeLogo: string;
   menuState: number;
-  // searchState: number;
   windowWidth: number;
   authenticated: boolean;
 
-  constructor(private el: ElementRef,
-              private renderer: Renderer2) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     this.homeLogo = AppConfig.HOME_LOGO;
     this.menuState = MenuState.collapsed;
-    // this.searchState = SearchState.collapsed;
     this.authenticated = true;
   }
 
@@ -48,7 +46,6 @@ export class NavbarComponent implements AfterViewInit {
     this.userSubMenu = this.submenus.find(submenu => submenu.linkName === 'Username');
     this.langSubMenu = this.submenus.find(submenu => submenu.linkName === 'Language');
     this.toggleTransition(window.innerWidth);
-    // this.toggleHomeContentScroll();
     this.configureMenus(this.windowWidth, window.innerHeight);
   }
 
@@ -57,9 +54,10 @@ export class NavbarComponent implements AfterViewInit {
     const newWindowWidth = event.target.innerWidth;
     if (newWindowWidth !== this.windowWidth) {
       this.windowWidth = newWindowWidth;
-      this.menuState = MenuState.collapsed;
-      // this.searchState = SearchState.collapsed;
-      this.navbarSearch.searchState = SearchState.collapsed;
+      if (this.windowWidth >= AppConstant.DEFAULT_DEVICE_WIDTH) {
+        this.menuState = MenuState.collapsed;
+        this.navbarSearch.searchState = SearchState.collapsed;
+      }
       this.toggleTransition(this.windowWidth);
       this.configureMenus(this.windowWidth, event.target.innerHeight);
     }
@@ -68,10 +66,6 @@ export class NavbarComponent implements AfterViewInit {
   isMenuExpanded(): boolean {
     return this.menuState === MenuState.expanded;
   }
-
-  // isSearchExpanded(): boolean {
-  //   return this.searchState === SearchState.expanded;
-  // }
 
   getUserSubMenuType(): string {
     return SubMenuType.user;
@@ -91,7 +85,6 @@ export class NavbarComponent implements AfterViewInit {
       this.navbarSearch.searchState = SearchState.collapsed;
     }
     this.toggleMenuState();
-    // this.toggleHomeContentScroll();
   }
 
   onSearchClick(event): void {
@@ -102,9 +95,7 @@ export class NavbarComponent implements AfterViewInit {
       this.langSubMenu.subMenuState = MenuState.collapsed;
       this.toggleMenuState();
     }
-    // this.searchState = this.searchState === SearchState.collapsed ? SearchState.expanded : SearchState.collapsed;
     this.navbarSearch.onSearchClick();
-    // this.toggleHomeContentScroll();
   }
 
   displayIcon(): boolean {
@@ -154,41 +145,13 @@ export class NavbarComponent implements AfterViewInit {
 
   private toggleTransition(width: number): void {
     if (width >= AppConstant.DEFAULT_DEVICE_WIDTH) {
-      this.renderer.addClass(this.el.nativeElement.firstChild, 'no-transition');
+      this.renderer.addClass(this.elementRef.nativeElement.firstChild, 'no-transition');
     } else {
-      this.renderer.removeClass(this.el.nativeElement.firstChild, 'no-transition');
+      this.renderer.removeClass(this.elementRef.nativeElement.firstChild, 'no-transition');
     }
   }
 
   private toggleMenuState(): void {
     this.menuState = this.menuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
-    // this.toggleBodyScroll();
   }
-
-  // private toggleHomeContentScroll() {
-  //   if (Util.isPhoneOrTablet()) {
-  //     const homeContentElement = document.querySelector('.home-content');
-  //     if (this.menuState === MenuState.collapsed && this.searchState === MenuState.collapsed) {
-  //       // this.renderer.setStyle(homeContentElement, '-webkit-overflow-scrolling', 'touch');
-  //       // this.renderer.removeStyle(homeContentElement, 'position');
-  //       // this.renderer.removeStyle(homeContentElement, 'top');
-  //       this.renderer.removeStyle(homeContentElement, 'overflow');
-  //     } else {
-  //       // this.renderer.setStyle(homeContentElement, 'position', 'fixed');
-  //       // console.log('pageYOffset: ' + window.pageYOffset);
-  //       // this.renderer.setStyle(homeContentElement, 'top', -window.pageYOffset + 'px');
-  //       this.renderer.setStyle(homeContentElement, 'overflow', 'auto');
-  //       // this.renderer.removeStyle(homeContentElement, '-webkit-overflow-scrolling');
-  //     }
-  //   }
-  // }
-
-  // private toggleBodyScroll(): void {
-  //   const bodyElement = document.querySelector('body');
-  //   if (this.menuState === MenuState.expanded) {
-  //     this.renderer.addClass(bodyElement, 'no-scroll');
-  //   } else {
-  //     this.renderer.removeClass(bodyElement, 'no-scroll');
-  //   }
-  // }
 }

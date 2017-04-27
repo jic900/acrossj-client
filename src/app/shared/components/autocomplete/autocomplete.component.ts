@@ -1,5 +1,13 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild} from '@angular/core';
-import {Util} from '../../util/util';
+import {
+  Component,
+  Input,
+  Output,
+  ViewChild,
+  ElementRef,
+  EventEmitter
+} from '@angular/core';
+
+import { Util } from 'app/shared/util/util';
 
 @Component({
   selector: 'aj-autocomplete',
@@ -10,13 +18,12 @@ import {Util} from '../../util/util';
     '(document:click)': 'onClickOrTouch($event)'
   }
 })
-export class AutocompleteComponent implements AfterViewInit {
+export class AutocompleteComponent {
 
   @Input() dataList: string[];
   @Input() placeHolder: string;
   @Input() width: number;
   @Input() filterFunc: Function;
-  @Input() inputClass: string;
   @Output() opened: EventEmitter<number>;
   @Output() selected: EventEmitter<string>;
   @ViewChild('completerInput') completerInput: ElementRef;
@@ -24,16 +31,13 @@ export class AutocompleteComponent implements AfterViewInit {
   filteredList: string[];
   selectedIdx: number;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(private elementRef: ElementRef) {
     this.selectedIdx = -1;
     this.inputString = '';
     this.filteredList = [];
     this.width = 200;
     this.opened = new EventEmitter<number>();
     this.selected = new EventEmitter<string>();
-  }
-
-  ngAfterViewInit(): void {
   }
 
   onFocus(event): void {
@@ -47,7 +51,7 @@ export class AutocompleteComponent implements AfterViewInit {
       let self = this;
       setTimeout(function() {
         self.resetFilteredList();
-      }, 100);
+      }, 400);
     }
   }
 
