@@ -71,10 +71,10 @@ export class SearchmenuComponent implements AfterViewInit {
   }
 
   onPlaceAutoCompleteOpened(numSuggestions: number) {
-    const datePickerPaddingOffset = 20;
+    const suggestionsPaddingOffset = AppConfig.AUTOCOMPLETE_SUGGESTIONS_PADDING_OFFSET * 2;
     let marginTop = this.datePickerMarginTop;
     if (numSuggestions > 0) {
-      marginTop += datePickerPaddingOffset + numSuggestions * 36;
+      marginTop += suggestionsPaddingOffset + numSuggestions * 36;
     }
     this.renderer.setStyle(this.datePickerPanel.nativeElement, 'margin-top', marginTop + 'px');
   }

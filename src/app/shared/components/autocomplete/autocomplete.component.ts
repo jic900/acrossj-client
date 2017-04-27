@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 import { Util } from 'app/shared/util/util';
+import { AppConfig } from 'app/config/app.config';
 
 @Component({
   selector: 'aj-autocomplete',
@@ -38,6 +39,10 @@ export class AutocompleteComponent {
     this.width = 200;
     this.opened = new EventEmitter<number>();
     this.selected = new EventEmitter<string>();
+  }
+
+  getSuggestionsPaddingOffset() {
+    return AppConfig.AUTOCOMPLETE_SUGGESTIONS_PADDING_OFFSET;
   }
 
   onFocus(event): void {

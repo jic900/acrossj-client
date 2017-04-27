@@ -8,6 +8,7 @@ export class AppConfig {
   public static HOME_BACKGROUND: string = '/assets/images/home_bg.png';
   public static MENU_HOVER_MODE: boolean = true;
   public static PLACE_SEARCH_RESULT_LIMIT = 5;
+  public static AUTOCOMPLETE_SUGGESTIONS_PADDING_OFFSET = 10;
 }
 
 export class AppConstant {

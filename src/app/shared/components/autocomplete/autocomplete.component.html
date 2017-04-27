@@ -11,7 +11,13 @@
       (blur)="onBlur($event)">
     <!--<label for="completerInput">{{placeHolder}}</label>-->
   <!--</div>-->
-  <div id="suggestionList" class="suggestions" *ngIf="filteredList.length > 0" [style.width]="width + 'px'">
+  <div
+    id="suggestionList"
+    class="suggestions"
+    *ngIf="filteredList.length > 0"
+    [style.width]="width + 'px'"
+    [style.paddingTop]="getSuggestionsPaddingOffset() + 'px'"
+    [style.paddingBottom]="getSuggestionsPaddingOffset() + 'px'">
     <ul *ngFor="let item of filteredList; let idx = index" >
       <li [class.suggestions-selected]="idx == selectedIdx">
         <a (click)="onSelect(item)">{{item}}</a>
