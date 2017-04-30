@@ -1,0 +1,46 @@
+import { IDayLabels } from './daylabels.interface';
+import { IMonthLabels } from './monthlabels.interface';
+import { IDate } from './date.interface';
+import { IDateRange } from './daterange.interface';
+
+export interface IOptions {
+  dayLabels?: IDayLabels;
+  monthLabels?: IMonthLabels;
+  dateFormat?: string;
+  showClearBtn?: boolean;
+  showApplyBtn?: boolean;
+  showSelectDateText?: boolean;
+  selectBeginDateTxt?: string;
+  selectEndDateTxt?: string;
+  firstDayOfWeek?: string;
+  sunHighlight?: boolean;
+  markCurrentDay?: boolean;
+  height?: string;
+  width?: string;
+  inline?: boolean;
+  showClearDateRangeBtn?: boolean;
+  selectionTxtFontSize?: string;
+  alignSelectorRight?: boolean;
+  indicateInvalidDateRange?: boolean;
+  editableDateRangeField?: boolean;
+  editableMonthAndYear?: boolean;
+  disableHeaderButtons?: boolean;
+  showWeekNumbers?: boolean;
+  minYear?: number;
+  maxYear?: number;
+  disableUntil?: IDate;
+  disableSince?: IDate;
+  disableDates?: Array<IDate>;
+  enableDates?: Array<IDate>;
+  disableDateRanges?: Array<IDateRange>;
+  componentDisabled?: boolean;
+  showSelectorArrow?: boolean;
+  openSelectorOnInputClick?: boolean;
+  ariaLabelInputField?: string;
+  ariaLabelClearDateRange?: string;
+  ariaLabelOpenCalendar?: string;
+  ariaLabelPrevMonth?: string;
+  ariaLabelNextMonth?: string;
+  ariaLabelPrevYear?: string;
+  ariaLabelNextYear?: string;
+}

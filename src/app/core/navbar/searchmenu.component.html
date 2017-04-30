@@ -1,15 +1,15 @@
 <div class="navbar-search" [ngClass]="{'searchExpanded': isSearchExpanded()}">
   <!--<div class="container-fluid">-->
-  <div #navbarSearchPanel>
+  <div id="navbarSearchPanel">
     <div class="navbar-search-content">
-      <label class="search-label">Search Skii Events</label>
+      <label class="search-label">Search Events</label>
       <div class="panel-group">
         <div class="panel panel-default">
           <!--<div class="panel-body">Any Places</div>-->
           <div class="panel-body">
             <aj-autocomplete
               [dataList]="dataList"
-              [width]="getWidth()"
+              [width]="getFieldWidth()"
               [filterFunc]="filterPlaces"
               [placeHolder]="'Search Places'"
               (opened)="onPlaceAutoCompleteOpened($event)"
@@ -17,11 +17,20 @@
             </aj-autocomplete>
           </div>
         </div>
-        <div #datePicker class="panel panel-default">
-          <div class="panel-body">Any Time</div>
+        <div id="datePickerPanel" class="panel panel-default">
+          <div class="panel-body">
+            <aj-daterangepicker
+              [placeholder]="'Select Date Range'"
+              [options]="dateRangePickerOptions"
+            (calendarOpened)="onCalendarOpened($event)">
+              <!--(calendarViewChanged)="onCalendarViewChanged($event)"-->
+              <!--(dateRangeChanged)="onDateRangeChanged($event)"-->
+              <!--(inputFocusBlur)="onInputFocusBlur($event)"-->
+            </aj-daterangepicker>
+          </div>
         </div>
-        <div class="panel panel-default">
-          <div class="panel-body"># of Guests</div>
+        <div #categoryPanel class="panel panel-default">
+          <div class="panel-body">Category</div>
         </div>
       </div>
       <button class="btn btn-clearall">Clear All</button>

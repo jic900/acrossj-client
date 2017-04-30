@@ -1,3 +1,8 @@
+.container {
+  padding: 0;
+  margin: 0;
+}
+
 input {
   color: white;
   width: 100%;
@@ -5,16 +10,21 @@ input {
   border: none;
   padding: 5px 15px 5px;
   outline: none;
-  font-size: 18px;
+  font-size: 17px;
 }
-input::placeholder {
+input::-webkit-input-placeholder {
   color: white;
+  opacity: 1
 }
-
+input::-moz-placeholder {
+  color: white;
+  opacity: 1
+}
+input:-ms-input-placeholder {
+  color: white;
+  opacity: 1
+}
 input:focus::-webkit-input-placeholder {
-  opacity: 0;
-}
-input:focus:-moz-placeholder {
   opacity: 0;
 }
 input:focus::-moz-placeholder {
@@ -24,10 +34,6 @@ input:focus:-ms-input-placeholder {
   opacity: 0;
 }
 
-.container {
-  padding: 0;
-  margin: 0;
-}
 .suggestions{
   border:solid 1px #DDDDDD;
   position: absolute;

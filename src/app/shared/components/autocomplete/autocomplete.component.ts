@@ -19,7 +19,7 @@ import { AppConfig } from 'app/config/app.config';
     '(document:click)': 'onClickOrTouch($event)'
   }
 })
-export class AutocompleteComponent {
+export class AutoComplete {
 
   @Input() dataList: string[];
   @Input() placeHolder: string;

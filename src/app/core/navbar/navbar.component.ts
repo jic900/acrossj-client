@@ -6,7 +6,8 @@ import {
   Renderer2,
   HostListener,
   QueryList,
-  ViewChild, RendererStyleFlags2
+  ViewChild,
+  RendererStyleFlags2
 } from '@angular/core';
 
 import { SubmenuComponent } from './submenu.component';
@@ -14,8 +15,6 @@ import { SearchmenuComponent } from './searchmenu.component';
 import { AppConfig, AppConstant } from 'app/config/app.config';
 import { MenuState, SearchState, SubMenuType } from 'app/config/menu.config';
 import { Util } from 'app/shared/util/util';
-
-
 
 @Component({
   selector: 'aj-navbar',
@@ -118,7 +117,7 @@ export class NavbarComponent implements AfterViewInit {
     const navbarHeight = 50;
     const offset = 20;
     const navbarSearchPaddingVertical = 60;
-    const navbarSearchPanel = this.navbarSearch.navbarSearchPanel.nativeElement;
+    const navbarSearchPanel = this.navbarSearch.elementRef.nativeElement.querySelector('#navbarSearchPanel');
 
     // set two menus full screen on phone or tablet, and scrollable
     if (Util.isPhoneOrTablet()) {
@@ -141,6 +140,7 @@ export class NavbarComponent implements AfterViewInit {
     } else {
       this.renderer.setStyle(navbarSearchPanel.firstElementChild, 'width', '88%');
     }
+    this.navbarSearch.updateDateRangePickerOnWindowResize();
   }
 
   private toggleTransition(width: number): void {

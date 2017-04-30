@@ -10,7 +10,7 @@ import { SharedModule } from 'app/shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     NavbarComponent,

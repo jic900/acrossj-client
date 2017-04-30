@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DelayDirective } from './directives/delay.directive';
-import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+import { AutoComplete } from './components/autocomplete/autocomplete.component';
+import { DateRangePicker } from './components/daterangepicker/daterangepicker.component';
+import { FocusDirective } from './components/daterangepicker/directives/daterangepicker.focus.directive';
 
 
 @NgModule({
@@ -12,10 +14,14 @@ import { AutocompleteComponent } from './components/autocomplete/autocomplete.co
   ],
   declarations: [
     DelayDirective,
-    AutocompleteComponent
+    AutoComplete,
+    DateRangePicker,
+    FocusDirective
   ],
   exports: [
-    AutocompleteComponent
+    AutoComplete,
+    DateRangePicker
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}
