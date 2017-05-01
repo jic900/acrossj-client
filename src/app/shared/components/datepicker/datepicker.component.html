@@ -1,0 +1,114 @@
+<div class="dp" [ngStyle]="{'width': opts.showInputField ? opts.width : null, 'border': opts.inline ? 'none' : null}">
+  <div class="selectiongroup" *ngIf="!opts.inline">
+    <input *ngIf="opts.showInputField" ngtype="text" class="selection" [attr.aria-label]="opts.ariaLabelInputField"
+           (click)="opts.openSelectorOnInputClick&&!opts.editableDateField&&openBtnClicked()"
+           [ngClass]="{'invaliddate': invalidDate&&opts.indicateInvalidDate, 'inputnoteditable': opts.openSelectorOnInputClick&&!opts.editableDateField, 'selectiondisabled': opts.componentDisabled}"
+           placeholder="{{placeholder}}" [ngStyle]="{'height': opts.height, 'font-size': opts.selectionTxtFontSize}"
+           [ngModel]="selectionDayTxt" (ngModelChange)="onUserDateInput($event)" [value]="selectionDayTxt"
+           (keyup)="onCloseSelector($event)"
+           (focus)="opts.editableDateField&&onFocusInput($event)" (blur)="opts.editableDateField&&onBlurInput($event)"
+           [disabled]="opts.componentDisabled" [readonly]="!opts.editableDateField" autocomplete="off">
+    <div class="selbtngroup" [style.height]="opts.height">
+      <button type="button" [attr.aria-label]="opts.ariaLabelClearDate" class="btnclear"
+              *ngIf="selectionDayTxt.length>0&&opts.showClearDateBtn" (click)="removeBtnClicked()"
+              [ngClass]="{'btnclearenabled': !opts.componentDisabled, 'btncleardisabled': opts.componentDisabled, 'btnleftborder': opts.showInputField, 'btnleftborderradius': !opts.showInputField}"
+              [disabled]="opts.componentDisabled">
+        <span class="dpicon icon-dpremove"></span>
+      </button>
+      <button type="button" [attr.aria-label]="opts.ariaLabelOpenCalendar" class="btnpicker" (click)="openBtnClicked()"
+              [ngClass]="{'btnpickerenabled': !opts.componentDisabled, 'btnpickerdisabled': opts.componentDisabled, 'btnleftborder': opts.showInputField||selectionDayTxt.length>0&&opts.showClearDateBtn, 'btnleftborderradius': !opts.showClearDateBtn&&!opts.showInputField||!opts.showInputField&&selectionDayTxt.length===0}"
+              [disabled]="opts.componentDisabled">
+        <span class="dpicon icon-dpcalendar"></span>
+      </button>
+    </div>
+  </div>
+  <div class="selector" *ngIf="showSelector||opts.inline" [dpfocus]="opts.inline?'0':'1'"
+       [ngStyle]="{'bottom': getSelectorTopPosition()}"
+       [ngClass]="{'inlinedp': opts.inline, 'alignselectorright': opts.alignSelectorRight, 'selectorarrow': opts.showSelectorArrow&&!opts.inline, 'selectorarrowleft': opts.showSelectorArrow&&!opts.alignSelectorRight&&!opts.inline, 'selectorarrowright': opts.showSelectorArrow&&opts.alignSelectorRight&&!opts.inline}"
+       (keyup)="onCloseSelector($event)" tabindex="0">
+    <table class="header">
+      <tr>
+        <td>
+          <div style="float:left">
+            <div class="headerbtncell">
+              <button type="button" [attr.aria-label]="opts.ariaLabelPrevMonth" class="headerbtn dpicon icon-dpleft"
+                      (click)="onPrevMonth()" [disabled]="prevMonthDisabled"
+                      [ngClass]="{'headerbtnenabled': !prevMonthDisabled, 'headerbtndisabled': prevMonthDisabled}"></button>
+            </div>
+            <div class="headermonthtxt">
+              <input type="text" *ngIf="editMonth" class="monthinput" maxlength="10" [dpfocus]="2"
+                     [value]="visibleMonth.monthTxt" [ngModel]="visibleMonth.monthTxt"
+                     (ngModelChange)="onUserMonthInput($event)" (click)="$event.stopPropagation()"
+                     (keyup)="onCloseEditMonth($event)" [ngClass]="{'invalidmonth': invalidMonth}">
+              <button class="headerlabelbtn" type="button" [ngClass]="{'monthlabel': opts.editableMonthAndYear}"
+                      *ngIf="!editMonth" (click)="opts.editableMonthAndYear&&onEditMonthClicked($event)"
+                      tabindex="{{opts.editableMonthAndYear?'0':'-1'}}">{{visibleMonth.monthTxt}}
+              </button>
+            </div>
+            <div class="headerbtncell">
+              <button type="button" [attr.aria-label]="opts.ariaLabelNextMonth"
+                      class="headerbtn dpicon icon-dpright" (click)="onNextMonth()" [disabled]="nextMonthDisabled"
+                      [ngClass]="{'headerbtnenabled': !nextMonthDisabled, 'headerbtndisabled': nextMonthDisabled}"></button>
+            </div>
+          </div>
+        </td>
+        <td>
+          <button *ngIf="opts.showTodayBtn" type="button" class="headertodaybtn" (click)="onTodayClicked()"
+                  [disabled]="disableTodayBtn"
+                  [ngClass]="{'headertodaybtnenabled': !disableTodayBtn, 'headertodaybtndisabled': disableTodayBtn}">
+            <span class="dpicon icon-dptoday"></span>
+            <span>{{opts.todayBtnTxt}}</span>
+          </button>
+        </td>
+        <td>
+          <div style="float:right">
+            <div class="headerbtncell">
+              <button type="button" [attr.aria-label]="opts.ariaLabelPrevYear" class="headerbtn dpicon icon-dpleft"
+                      (click)="onPrevYear()" [disabled]="prevYearDisabled"
+                      [ngClass]="{'headerbtnenabled': !prevYearDisabled, 'headerbtndisabled': prevYearDisabled}"></button>
+            </div>
+            <div class="headeryeartxt">
+              <input type="text" *ngIf="editYear" class="yearinput" maxlength="4" [dpfocus]="2"
+                     [value]="visibleMonth.year" [ngModel]="visibleMonth.year" (ngModelChange)="onUserYearInput($event)"
+                     (click)="$event.stopPropagation()" (keyup)="onCloseEditYear($event)"
+                     [ngClass]="{'invalidyear': invalidYear}">
+              <button class="headerlabelbtn" type="button" [ngClass]="{'yearlabel': opts.editableMonthAndYear}"
+                      *ngIf="!editYear" (click)="opts.editableMonthAndYear&&onEditYearClicked($event)"
+                      tabindex="{{opts.editableMonthAndYear?'0':'-1'}}">{{visibleMonth.year}}
+              </button>
+            </div>
+            <div class="headerbtncell">
+              <button type="button" [attr.aria-label]="opts.ariaLabelNextYear" class="headerbtn dpicon icon-dpright"
+                      (click)="onNextYear()" [disabled]="nextYearDisabled"
+                      [ngClass]="{'headerbtnenabled': !nextYearDisabled, 'headerbtndisabled': nextYearDisabled}"></button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <table class="caltable">
+      <thead>
+      <tr>
+        <th class="weekdaytitle weekdaytitleweeknbr" *ngIf="opts.showWeekNumbers&&opts.firstDayOfWeek==='mo'">#</th>
+        <th class="weekdaytitle" scope="col" *ngFor="let d of weekDays">{{d}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let w of dates">
+        <td class="daycell daycellweeknbr" *ngIf="opts.showWeekNumbers&&opts.firstDayOfWeek==='mo'">{{w.weekNbr}}</td>
+        <td class="daycell" *ngFor="let d of w.week"
+            [ngClass]="{'currmonth':d.cmo===currMonthId&&!d.disabled, 'selectedday':selectedDate.day===d.dateObj.day && selectedDate.month===d.dateObj.month && selectedDate.year===d.dateObj.year && d.cmo===currMonthId, 'disabled': d.disabled, 'tablesingleday': d.cmo===currMonthId&&!d.disabled}"
+            (click)="!d.disabled&&onCellClicked(d);$event.stopPropagation()" (keydown)="onCellKeyDown($event, d)"
+            tabindex="0">
+          <div *ngIf="d.markedDate.marked" class="markdate" [ngStyle]="{'background-color': d.markedDate.color}"></div>
+          <div class="datevalue"
+               [ngClass]="{'prevmonth':d.cmo===prevMonthId,'currmonth':d.cmo===currMonthId,'nextmonth':d.cmo===nextMonthId,'sunday':d.dayNbr === 0 && opts.sunHighlight}">
+            <span
+              [ngClass]="{'currday':d.currDay&&opts.markCurrentDay, 'sundayDim': opts.sunHighlight && d.dayNbr === 0 && (d.cmo===prevMonthId || d.cmo===nextMonthId || d.disabled)}">{{d.dateObj.day}}</span>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
