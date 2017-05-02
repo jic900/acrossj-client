@@ -80,7 +80,7 @@
                   [disabled]="beginDate.year===0&&endDate.year===0"
                   [ngClass]="{'clearbtndisabled':beginDate.year===0&&endDate.year===0, 'headerclearbtnenabled':beginDate.year!==0||endDate.year!==0}"
                   (click)="clearDateRange()">
-            <span class="drpicon icon-drpremove"></span>
+            <span class="drpicon icon-drpcalremove"></span>
           </button>
           <button type="button" class="headerokbtn" *ngIf="opts.showApplyBtn" [disabled]="endDate.year===0"
                   [ngClass]="{'okbtndisabled':endDate.year===0, 'headerokbtnenabled':endDate.year!==0}"
