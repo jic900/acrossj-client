@@ -117,7 +117,8 @@ export class NavbarComponent implements AfterViewInit {
     const navbarHeight = 50;
     const offset = 20;
     const navbarSearchPaddingVertical = 60;
-    const navbarSearchPanel = this.navbarSearch.elementRef.nativeElement.querySelector('#navbarSearchPanel');
+    const navbarSearchDiv = this.navbarSearch.elementRef.nativeElement.firstElementChild;
+    const navbarSearchPanelDiv = navbarSearchDiv.firstElementChild;
 
     // set two menus full screen on phone or tablet, and scrollable
     if (Util.isPhoneOrTablet()) {
@@ -127,18 +128,19 @@ export class NavbarComponent implements AfterViewInit {
       this.renderer.setStyle(navbarCollapseList, 'max-height', (windowHeight - navbarHeight + offset) + 'px');
       this.renderer.setStyle(navbarCollapseList, 'overflow-y', 'scroll', RendererStyleFlags2.Important);
       // right search menu
-      this.renderer.setStyle(navbarSearchPanel, 'min-height', (windowHeight + offset) + 'px');
+      const navbarSearchElement = this.navbarSearch.elementRef.nativeElement.firstElementChild;
+      this.renderer.setStyle(navbarSearchElement, 'min-height', (windowHeight + offset) + 'px');
       const navbarSearchPanelMaxHeight = windowHeight - navbarHeight - navbarSearchPaddingVertical;
-      this.renderer.setStyle(navbarSearchPanel, 'max-height', navbarSearchPanelMaxHeight + 'px');
-      this.renderer.setStyle(navbarSearchPanel, 'overflow-y', 'scroll', RendererStyleFlags2.Important);
+      this.renderer.setStyle(navbarSearchPanelDiv, 'max-height', navbarSearchPanelMaxHeight + 'px');
+      this.renderer.setStyle(navbarSearchPanelDiv, 'overflow-y', 'scroll', RendererStyleFlags2.Important);
     }
 
     // set search menu fields responsive based on window width
     if (windowWidth > AppConstant.IPHONE6__WIDTH) {
       const widthPercent = 100 - (windowWidth - AppConstant.IPHONE6__WIDTH) * 100 / (windowWidth * 1.5);
-      this.renderer.setStyle(navbarSearchPanel.firstElementChild, 'width', widthPercent + '%');
+      this.renderer.setStyle(navbarSearchPanelDiv.firstElementChild, 'width', widthPercent + '%');
     } else {
-      this.renderer.setStyle(navbarSearchPanel.firstElementChild, 'width', '88%');
+      this.renderer.setStyle(navbarSearchPanelDiv.firstElementChild, 'width', '88%');
     }
     this.navbarSearch.updateDateRangePickerOnWindowResize();
   }

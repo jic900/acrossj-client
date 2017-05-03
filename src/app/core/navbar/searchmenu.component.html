@@ -1,11 +1,9 @@
 <div class="navbar-search" [ngClass]="{'searchExpanded': isSearchExpanded()}">
-  <!--<div class="container-fluid">-->
-  <div id="navbarSearchPanel">
+  <div>
     <div class="navbar-search-content">
       <label class="search-label">Search Events</label>
       <div class="panel-group">
         <div class="panel panel-default">
-          <!--<div class="panel-body">Any Places</div>-->
           <div class="panel-body">
             <aj-autocomplete
               [dataList]="dataList"
@@ -35,5 +33,4 @@
       <button class="btn btn-clearall">Clear All</button>
     </div>
   </div>
-  <!--</div>-->
 </div>

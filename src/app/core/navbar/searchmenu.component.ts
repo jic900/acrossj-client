@@ -3,7 +3,7 @@ import {
   ViewChild,
   ElementRef,
   Renderer2,
-  AfterViewInit
+  AfterViewInit, RendererStyleFlags2
 } from '@angular/core';
 
 import { SearchState } from 'app/config/menu.config';
@@ -31,19 +31,16 @@ export class SearchmenuComponent implements AfterViewInit {
     openSelectorOnInputClick: true,
   };
 
+  @ViewChild('navbarSearchPanel') searchPanel: ElementRef;
   @ViewChild(DateRangePicker) dateRangePicker: DateRangePicker;
   @ViewChild('categoryPanel') categoryPanel: ElementRef;
   searchState: number;
-  defaultMarginTop: number;
 
   constructor(public elementRef: ElementRef, private renderer: Renderer2) {
     this.searchState = SearchState.collapsed;
   }
 
   ngAfterViewInit(): void {
-    const datePickerPanelElement = this.elementRef.nativeElement.querySelector('#datePickerPanel');
-    const style = datePickerPanelElement.currentStyle || window.getComputedStyle(datePickerPanelElement);
-    this.defaultMarginTop = style.marginTop.substring(0, style.marginTop.length - 2) * 1;
     this.setDatePickerInputWidth();
   }
 
