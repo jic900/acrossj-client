@@ -116,7 +116,7 @@ export class NavbarComponent implements AfterViewInit {
   private configureMenus(windowWidth, windowHeight) {
     const navbarHeight = 50;
     const offset = 20;
-    const navbarSearchPaddingVertical = 60;
+    const navbarSearchPaddingVertical = 30;
     const navbarSearchDiv = this.navbarSearch.elementRef.nativeElement.firstElementChild;
     const navbarSearchPanelDiv = navbarSearchDiv.firstElementChild;
 
