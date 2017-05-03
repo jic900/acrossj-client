@@ -40,6 +40,9 @@
 .panel-group .panel+.panel {
   margin-top: 20px;
 }
+.panel {
+  border: none;
+}
 .panel-default {
   background-color: inherit;
   color: white;

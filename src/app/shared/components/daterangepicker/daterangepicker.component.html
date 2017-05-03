@@ -26,6 +26,7 @@
             </button>
         </span>
   </div>
+  <div class="selectorarrowup" *ngIf="showSelector||opts.inline"></div>
   <div class="selector" *ngIf="showSelector||opts.inline" [drpfocus]="opts.inline?'0':'1'"
        [ngClass]="{'inline': opts.inline, 'alignselectorright': opts.alignSelectorRight, 'selectorarrow': opts.showSelectorArrow&&!opts.inline, 'selectorarrowleft': opts.showSelectorArrow&&!opts.alignSelectorRight&&!opts.inline, 'selectorarrowright': opts.showSelectorArrow&&opts.alignSelectorRight&&!opts.inline}"
        tabindex="0">

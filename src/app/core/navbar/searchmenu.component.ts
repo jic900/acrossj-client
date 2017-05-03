@@ -58,8 +58,6 @@ export class SearchmenuComponent implements AfterViewInit {
   getFieldWidth(): number {
     const panelBodyElem = this.elementRef.nativeElement.getElementsByClassName('panel-body')[0];
     return panelBodyElem.offsetWidth;
-    // const datePickerPanelBodyElem = this.datePicker.nativeElement.parentElement();
-    // return datePickerPanelBodyElem.offsetWidth;
   }
 
   setDatePickerInputWidth(): void {
@@ -84,13 +82,7 @@ export class SearchmenuComponent implements AfterViewInit {
       const panelBodyElem = this.elementRef.nativeElement.getElementsByClassName('panel-body')[0];
       if (selectorDiv !== null && selectorDiv != undefined) {
         this.renderer.setStyle(selectorDiv, 'width', panelBodyElem.offsetWidth + 'px');
-        // const selectorDivRect = selectorDiv.getBoundingClientRect();
-        // const marginTop = this.searchFieldDefaultMarginTop + selectorDiv.offsetHeight;
-        const marginTop = this.defaultMarginTop + 340;
-        this.renderer.setStyle(this.categoryPanel.nativeElement, 'margin-top', marginTop + 'px');
       }
-    } else {
-      this.renderer.setStyle(this.categoryPanel.nativeElement, 'margin-top', this.defaultMarginTop + 'px');
     }
   }
 
@@ -138,16 +130,6 @@ export class SearchmenuComponent implements AfterViewInit {
       }
     }
     return filteredList.concat(startsWithList).concat(includesList).slice(0, AppConfig.PLACE_SEARCH_RESULT_LIMIT);
-  }
-
-  onPlaceAutoCompleteOpened(numSuggestions: number) {
-    const suggestionsPaddingOffset = AppConfig.AUTOCOMPLETE_SUGGESTIONS_PADDING_OFFSET * 2;
-    let marginTop = this.defaultMarginTop;
-    if (numSuggestions > 0) {
-      marginTop += suggestionsPaddingOffset + numSuggestions * 36;
-    }
-    const datePickerPanelElement = this.elementRef.nativeElement.querySelector('#datePickerPanel');
-    this.renderer.setStyle(datePickerPanelElement, 'margin-top', marginTop + 'px');
   }
 
   onPlaceSelected(inputString): void {
