@@ -582,9 +582,12 @@
   background-color: #E6E6E6;
 }
 
-.drp .daycell:hover {
-  background-color: #DDD;
+@media (min-width: 768px) {
+  .drp .daycell:hover {
+    background-color: #DDD;
+  }
 }
+
 
 .drp .monthlabel,
 .drp .yearlabel,
