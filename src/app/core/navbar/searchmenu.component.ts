@@ -3,7 +3,7 @@ import {
   ViewChild,
   ElementRef,
   Renderer2,
-  AfterViewInit, RendererStyleFlags2
+  AfterViewInit
 } from '@angular/core';
 
 import { SearchState } from 'app/config/menu.config';
@@ -25,6 +25,8 @@ export class SearchmenuComponent implements AfterViewInit {
     'Liechtenstein', 'Lithuania', 'Luxembourg', 'Macedonia', 'Malta', 'Moldova', 'Monaco', 'Montenegro', 'Netherlands',
     'Norway', 'Poland', 'Portugal', 'Romania', 'Russia', 'San Marino', 'Serbia', 'Slovakia',
     'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom'];
+
+  categoryList: string[] = ['Skii', 'Bicycling', 'Hiking', 'Others'];
 
   dateRangePickerOptions: IOptions = {
     editableDateRangeField: false,

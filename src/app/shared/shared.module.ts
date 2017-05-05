@@ -7,6 +7,7 @@ import { DateRangePicker } from './components/daterangepicker/daterangepicker.co
 import { DateRangePickerFocusDirective } from './components/daterangepicker/directives/daterangepicker.focus.directive';
 import { DatePicker } from './components/datepicker/datepicker.component';
 import { DatePickerFocusDirective } from './components/datepicker/directives/datepicker.focus.directive';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { DatePickerFocusDirective } from './components/datepicker/directives/dat
     DateRangePicker,
     DateRangePickerFocusDirective,
     DatePicker,
-    DatePickerFocusDirective
+    DatePickerFocusDirective,
+    DropdownComponent
   ],
   exports: [
     AutoComplete,
