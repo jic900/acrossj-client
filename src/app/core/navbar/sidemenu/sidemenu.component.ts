@@ -3,7 +3,7 @@ import {
   AfterViewInit,
   ViewChildren,
   QueryList,
-  ChangeDetectorRef, ElementRef, Renderer2
+  ChangeDetectorRef
 } from '@angular/core';
 
 import { SubMenuComponent } from './submenu/submenu.component';
@@ -25,7 +25,7 @@ export class SideMenuComponent implements AfterViewInit {
   sideMenuState: number;
   authenticated: boolean;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
     this.sideMenuState = MenuState.collapsed;
     this.authenticated = false;
   }
@@ -62,6 +62,10 @@ export class SideMenuComponent implements AfterViewInit {
 
   getOverflowY(): string {
     return Util.isPhoneOrTablet() ? 'scroll !important' : 'none';
+  }
+
+  getTransition(): string {
+    return window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH ? 'all 0.5s ease-in-out 0s' : '';
   }
 
   setAuthenticated(isAuthenticated: boolean): void {

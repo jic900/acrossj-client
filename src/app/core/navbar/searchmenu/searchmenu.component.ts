@@ -34,9 +34,7 @@ export class SearchMenuComponent implements AfterViewInit {
     openSelectorOnInputClick: true,
   };
 
-  @ViewChild('navbarSearchPanel') searchPanel: ElementRef;
   @ViewChild(DateRangePicker) dateRangePicker: DateRangePicker;
-  @ViewChild('categoryPanel') categoryPanel: ElementRef;
   searchMenuState: number;
   fieldWidth: number;
   fieldHeight: number;
@@ -48,23 +46,11 @@ export class SearchMenuComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.setFieldWidth();
     this.setFieldHeight();
-    // this.setDatePickerInputWidth();
   }
 
   isSearchMenuExpanded(): boolean {
     return this.searchMenuState === MenuState.expanded;
   }
-
-
-  // getWidth(): string {
-  //   const windowWidth = window.innerWidth;
-  //   if (windowWidth > AppConstant.IPHONE6__WIDTH) {
-  //     const widthPercent = 100 - (windowWidth - AppConstant.IPHONE6__WIDTH) * 100 / (windowWidth * 1.5);
-  //     return widthPercent + '%';
-  //   } else {
-  //     return '88%';
-  //   }
-  // }
 
   getMinHeight(): string {
     const offset = 20;
@@ -80,16 +66,6 @@ export class SearchMenuComponent implements AfterViewInit {
   getOverflowY(): string {
     return Util.isPhoneOrTablet() ? 'scroll !important' : 'none';
   }
-
-  // getAutoCompleterWidth(): number {
-  //   const panelBodyElem = this.elementRef.nativeElement.querySelector('.panel-body');
-  //   return panelBodyElem.offsetWidth;
-  // }
-  //
-  // getDateRangePickerWidth(): number {
-  //   const panelBodyElem = this.elementRef.nativeElement.querySelector('.panel-body');
-  //   return panelBodyElem.offsetWidth;
-  // }
 
   setFieldWidth() {
     let widthPercent = 88;
@@ -112,60 +88,6 @@ export class SearchMenuComponent implements AfterViewInit {
     this.searchMenuState = this.searchMenuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
   }
 
-  // setDatePickerInputWidth(): void {
-  //   const mydrpDiv = this.dateRangePicker.elem.nativeElement.firstElementChild;
-  //   const selectionInput = this.dateRangePicker.elem.nativeElement.querySelector('.selection');
-  //   const panelBodyElem = this.elementRef.nativeElement.getElementsByClassName('panel-body')[0];
-  //   this.renderer.setStyle(mydrpDiv, 'width', panelBodyElem.offsetWidth + 'px');
-  //   this.renderer.setStyle(selectionInput, 'height', panelBodyElem.offsetHeight + 'px');
-  // }
-  //
-  // setDatePickerCalendarWidth(): void {
-  //   const selectorDiv = this.dateRangePicker.elem.nativeElement.querySelector('.selector');
-  //   if (selectorDiv !== null && selectorDiv !== undefined) {
-  //     const panelBodyElem = this.elementRef.nativeElement.getElementsByClassName('panel-body')[0];
-  //     this.renderer.setStyle(selectorDiv, 'width', panelBodyElem.offsetWidth + 'px');
-  //   }
-  // }
-
-  onCalendarOpened(isOpened: boolean): void {
-    if (isOpened) {
-      const selectorDiv = this.dateRangePicker.elem.nativeElement.querySelector('.selector');
-      const panelBodyElem = this.elementRef.nativeElement.getElementsByClassName('panel-body')[0];
-      if (selectorDiv !== null && selectorDiv != undefined) {
-        this.renderer.setStyle(selectorDiv, 'width', panelBodyElem.offsetWidth + 'px');
-      }
-    }
-  }
-
-  // updateDateRangePickerOnWindowResize() {
-  //   this.setDatePickerInputWidth();
-  //   this.setDatePickerCalendarWidth();
-  // }
-
-  // onCalendarViewChanged(event): void {
-  //   console.log('onCalendarViewChanged');
-  //   const selectorDiv = this.datePickerPanel.nativeElement.querySelector('.selector');
-  //   const panelBodyElem = this.navbarSearchPanel.nativeElement.getElementsByClassName('panel-body')[0];
-  //   if (selectorDiv !== null && selectorDiv != undefined) {
-  //     this.renderer.setStyle(selectorDiv, 'width', panelBodyElem.offsetWidth + 'px');
-  //     const selectorDivRect = selectorDiv.getBoundingClientRect();
-  //     // const marginTop = this.searchFieldDefaultMarginTop + selectorDiv.offsetHeight;
-  //     const marginTop = this.searchFieldDefaultMarginTop + 330;
-  //     this.renderer.setStyle(this.categoryPanel.nativeElement, 'margin-top', marginTop + 'px');
-  //   }
-  // }
-  //
-  // onDateRangeChanged(event): void {
-  //   console.log('onDateRangeChanged');
-  //   this.renderer.setStyle(this.categoryPanel.nativeElement, 'margin-top', this.searchFieldDefaultMarginTop + 'px');
-  // }
-  //
-  // onInputFocusBlur(event): void {
-  //   console.log('onInputFocusBlur - ' + event);
-  //   this.renderer.setStyle(this.categoryPanel.nativeElement, 'margin-top', this.searchFieldDefaultMarginTop + 'px');
-  // }
-
   filterPlaces(searchString: string, dataList: string[]): string[] {
     dataList.sort((a, b) => a.toLowerCase() !== b.toLowerCase() ? a.toLowerCase() < b.toLowerCase() ? -1 : 1 : 0);
 
@@ -182,9 +104,5 @@ export class SearchMenuComponent implements AfterViewInit {
       }
     }
     return filteredList.concat(startsWithList).concat(includesList).slice(0, AppConfig.PLACE_SEARCH_RESULT_LIMIT);
-  }
-
-  onPlaceSelected(inputString): void {
-
   }
 }

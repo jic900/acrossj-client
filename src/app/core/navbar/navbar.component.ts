@@ -33,7 +33,6 @@ export class NavbarComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.windowWidth = window.innerWidth;
     this.setAuthenticated(true);
-    this.toggleTransition(window.innerWidth);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -42,14 +41,9 @@ export class NavbarComponent implements AfterViewInit {
     if (newWindowWidth !== this.windowWidth) {
       this.windowWidth = newWindowWidth;
       if (this.windowWidth >= AppConstant.DEFAULT_DEVICE_WIDTH) {
-        if (this.sideMenu.isSideMenuExpanded()) {
-          this.sideMenu.setSideMenuState(MenuState.collapsed);
-        }
-        if (this.searchMenu.isSearchMenuExpanded()) {
-          this.searchMenu.setSearchMenuState(MenuState.collapsed);
-        }
+        this.sideMenu.setSideMenuState(MenuState.collapsed);
+        this.searchMenu.setSearchMenuState(MenuState.collapsed);
       }
-      this.toggleTransition(this.windowWidth);
       this.searchMenu.setFieldWidth();
     }
   }
@@ -71,13 +65,5 @@ export class NavbarComponent implements AfterViewInit {
       this.sideMenu.setSideMenuState(MenuState.collapsed);
     }
     this.searchMenu.toggleSearchMenuState();
-  }
-
-  private toggleTransition(width: number): void {
-    if (width >= AppConstant.DEFAULT_DEVICE_WIDTH) {
-      this.renderer.addClass(this.elementRef.nativeElement.firstChild, 'no-transition');
-    } else {
-      this.renderer.removeClass(this.elementRef.nativeElement.firstChild, 'no-transition');
-    }
   }
 }

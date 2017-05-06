@@ -1,6 +1,6 @@
 <!-- side menu -->
 <div class="navbar-collapse"
-     [style.min-height]="getMinHeight()"
+     [ngStyle]="{'min-height': getMinHeight(), 'transition': getTransition()}"
      [ngClass]="{'sideMenuExpanded': isSideMenuExpanded()}">
   <ul class="nav navbar-nav navbar-right"
       [ngStyle]="{'max-height': getMaxHeight(), 'overflow-y': getOverflowY()}">

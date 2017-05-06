@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AppConfig } from 'app/config/app.config';
-import {Util} from "../../shared/util/util";
+import { Util } from 'app/shared/util/util';
 
 @Component({
   selector: 'aj-home',
