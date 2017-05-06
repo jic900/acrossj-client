@@ -64,7 +64,7 @@ export class SearchMenuComponent implements AfterViewInit {
   }
 
   getOverflowY(): string {
-    return Util.isPhoneOrTablet() ? 'scroll !important' : 'none';
+    return Util.isPhoneOrTablet() ? 'scroll' : 'none';
   }
 
   setFieldWidth() {

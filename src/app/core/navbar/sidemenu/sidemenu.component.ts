@@ -61,7 +61,7 @@ export class SideMenuComponent implements AfterViewInit {
   }
 
   getOverflowY(): string {
-    return Util.isPhoneOrTablet() ? 'scroll !important' : 'none';
+    return Util.isPhoneOrTablet() ? 'scroll' : 'none';
   }
 
   getTransition(): string {
