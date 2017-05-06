@@ -70,7 +70,7 @@
   /*margin-top: 2px;*/
   margin-left: 0;
   /*position: absolute;*/
-  width: 252px;
+  /*width: 252px;*/
   padding: 0;
   /*border: 1px solid #CCC;*/
   border: 1px solid white;
@@ -523,8 +523,8 @@
   white-space: nowrap;
 }
 
-.drp .btnclear:focus,
-.drp .btnpicker:focus,
+/*.drp .btnclear:focus,*/
+/*.drp .btnpicker:focus,*/
 .drp .headerclearbtn:focus,
 .drp .headerokbtn:focus {
   background: #ADD8E6;

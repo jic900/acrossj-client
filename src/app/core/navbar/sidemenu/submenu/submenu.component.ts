@@ -26,7 +26,7 @@ import { SubMenuDef, SubMenuType, MenuState } from 'app/config/menu.config';
   }
 })
 
-export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewInit {
+export class SubMenuComponent implements OnInit, DoCheck, OnChanges, AfterViewInit {
 
   // @ViewChild('submenu') submenu: any;
   @ViewChild('dropdown') dropdown: ElementRef;
@@ -85,6 +85,10 @@ export class SubmenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
 
   isSubMenuExpanded(): boolean {
     return this.subMenuState === MenuState.expanded;
+  }
+
+  setSubMenuState(newState: number) {
+    this.subMenuState = newState;
   }
 
   onMouseClick(event): void {

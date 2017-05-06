@@ -35,7 +35,7 @@ export class AutoComplete {
     this.selectedIdx = -1;
     this.inputString = '';
     this.filteredList = [];
-    this.width = 200;
+    // this.width = 200;
     this.opened = new EventEmitter<number>();
     this.selected = new EventEmitter<string>();
   }

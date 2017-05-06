@@ -58,6 +58,8 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
   @Input() defaultMonth: string;
   @Input() selDateRange: string;
   @Input() placeholder: string;
+  @Input() width: number;
+  @Input() height: number;
   @Output() dateRangeChanged: EventEmitter<IDateRangeModel> = new EventEmitter<IDateRangeModel>();
   @Output() inputFieldChanged: EventEmitter<IInputFieldChanged> = new EventEmitter<IInputFieldChanged>();
   @Output() calendarViewChanged: EventEmitter<ICalendarViewChanged> = new EventEmitter<ICalendarViewChanged>();
@@ -129,8 +131,8 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
     firstDayOfWeek: <string> 'mo',
     sunHighlight: <boolean> true,
     markCurrentDay: <boolean> true,
-    height: <string> '34px',
-    width: <string> '262px',
+    // height: <string> '34px',
+    // width: <string> '262px',
     inline: <boolean> false,
     showClearDateRangeBtn: <boolean> true,
     selectionTxtFontSize: <string> '14px',

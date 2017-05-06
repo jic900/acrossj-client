@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './auth/login.component';
 import { SignupComponent } from './auth/signup.component';
-import { SubmenuComponent } from './navbar/submenu.component';
-import { SearchmenuComponent } from './navbar/searchmenu.component';
+import { SubMenuComponent } from './navbar/sidemenu/submenu/submenu.component';
+import { SearchMenuComponent } from './navbar/searchmenu/searchmenu.component';
 import { SharedModule } from 'app/shared/shared.module';
+import { SideMenuComponent } from './navbar/sidemenu/sidemenu.component';
 
 @NgModule({
   imports: [
@@ -16,12 +17,13 @@ import { SharedModule } from 'app/shared/shared.module';
     NavbarComponent,
     LoginComponent,
     SignupComponent,
-    SubmenuComponent,
-    SearchmenuComponent
+    SubMenuComponent,
+    SearchMenuComponent,
+    SideMenuComponent
   ],
   exports: [
     NavbarComponent,
-    SearchmenuComponent,
+    SearchMenuComponent,
     LoginComponent,
     SignupComponent
   ]

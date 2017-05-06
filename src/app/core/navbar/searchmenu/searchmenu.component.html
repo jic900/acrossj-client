@@ -1,13 +1,16 @@
-<div class="navbar-search" [ngClass]="{'searchExpanded': isSearchExpanded()}">
-  <div>
-    <div class="navbar-search-content">
+<div class="navbar-search"
+     [ngClass]="{'searchExpanded': isSearchMenuExpanded()}"
+     [style.min-height]="getMinHeight()">
+  <div [ngStyle]="{'max-height': getMaxHeight(), 'overflow-y': getOverflowY()}">
+    <div class="navbar-search-content"
+         [style.width]="fieldWidth + 'px'">
       <label class="search-label">Search Events</label>
       <div class="panel-group">
         <div class="panel panel-default">
           <div class="panel-body">
             <aj-autocomplete
               [dataList]="dataList"
-              [width]="getFieldWidth()"
+              [width]="fieldWidth"
               [filterFunc]="filterPlaces"
               [placeHolder]="'Search Places'"
               (selected)="onPlaceSelected($event)">
@@ -18,6 +21,8 @@
           <div class="panel-body">
             <aj-daterangepicker
               [placeholder]="'Select Date Range'"
+              [width]="fieldWidth"
+              [height]="fieldHeight"
               [options]="dateRangePickerOptions"
               (calendarOpened)="onCalendarOpened($event)">
               <!--(calendarViewChanged)="onCalendarViewChanged($event)"-->

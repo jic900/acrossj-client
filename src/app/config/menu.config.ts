@@ -34,10 +34,10 @@ export const MenuState = {
   expanded: 2
 }
 
-export const SearchState = {
-  default: 0,
-  collapsed: 1,
-  expanded: 2
-}
+// export const SearchState = {
+//   default: 0,
+//   collapsed: 1,
+//   expanded: 2
+// }
 
 

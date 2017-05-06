@@ -1,0 +1,48 @@
+<!-- side menu -->
+<div class="navbar-collapse"
+     [style.min-height]="getMinHeight()"
+     [ngClass]="{'sideMenuExpanded': isSideMenuExpanded()}">
+  <ul class="nav navbar-nav navbar-right"
+      [ngStyle]="{'max-height': getMaxHeight(), 'overflow-y': getOverflowY()}">
+    <li>
+      <a href="#"><i *ngIf="displayIcon()" class="fa fa-info-circle" aria-hidden="true"></i>&nbsp; About Us</a>
+    </li>
+    <li>
+      <a href="#"><i *ngIf="displayIcon()" class="fa fa-calendar-plus-o" aria-hidden="true"></i>&nbsp; Create a Trip</a>
+    </li>
+    <li>
+      <a href="#"><i *ngIf="displayIcon()" class="fa fa-question-circle-o" aria-hidden="true"></i>&nbsp; Help</a>
+    </li>
+
+    <li class="divider"></li>
+
+    <!--<aj-submenu #langMenu-->
+    <!--[type]="getLanguageSubMenuType()"-->
+    <!--(onToggled)="onToggled($event)">-->
+    <!--</aj-submenu>-->
+    <!--<ng-template [ngTemplateOutlet]="langMenu.submenu"></ng-template>-->
+    <aj-submenu [type]="getLanguageSubMenuType()"
+                (onSubMenuToggled)="onSubMenuToggled($event)">
+    </aj-submenu>
+
+    <li *ngIf="!authenticated" class="divider"></li>
+    <li *ngIf="!authenticated; else loginSuccess">
+      <a href="#">Log In / Sign Up</a>
+    </li>
+    <ng-template #loginSuccess>
+      <aj-submenu [type]="getUserSubMenuType()"
+                  (onSubMenuToggled)="onSubMenuToggled($event)">
+      </aj-submenu>
+      <!--<aj-submenu #userMenu-->
+      <!--[type]="getUserSubMenuType()"-->
+      <!--(onToggled)="onToggled($event)">-->
+      <!--</aj-submenu>-->
+      <!--<ng-template [ngTemplateOutlet]="userMenu.submenu"></ng-template>-->
+    </ng-template>
+
+    <li *ngIf="displayLogout()" class="divider"></li>
+    <li *ngIf="displayLogout()">
+      <a href="#">Log Out</a>
+    </li>
+  </ul>
+</div>

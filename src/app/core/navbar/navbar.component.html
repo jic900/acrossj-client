@@ -1,10 +1,9 @@
 <nav class="navbar navbar-fixed-top no-transition">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button
-        type="button"
-        class="navbar-toggle collapsed pull-left"
-        (click)="onMenuClick($event)">
+      <button type="button"
+              class="navbar-toggle collapsed pull-left"
+              (click)="onSideMenuButtonClick($event)">
         <!--<span class="sr-only">Toggle navigation</span>-->
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -13,69 +12,19 @@
       <a class="navbar-brand" href="#">
         <img [src]="homeLogo" alt="Across Japan">
       </a>
-      <button
-        *ngIf="!navbarSearch.isSearchExpanded()"
-        class="navbar-toggle navbar-button-search"
-        (click)="onSearchClick($event)">
+      <button *ngIf="!searchMenu.isSearchMenuExpanded()"
+              class="navbar-toggle navbar-button-search"
+              (click)="onSearchMenuButtonClick($event)">
         <span ><i class="fa fa-search" aria-hidden="true"></i></span>
       </button>
-      <button
-        *ngIf="navbarSearch.isSearchExpanded()"
-        class="navbar-toggle navbar-button-close"
-        (click)="onSearchClick($event)">
+      <button *ngIf="searchMenu.isSearchMenuExpanded()"
+              class="navbar-toggle navbar-button-close"
+              (click)="onSearchMenuButtonClick($event)">
         &times;
       </button>
     </div>
 
-    <!-- side menu -->
-    <div #navbarCollapse class="navbar-collapse" [ngClass]="{'menuExpanded': isMenuExpanded()}">
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="#"><i *ngIf="displayIcon()" class="fa fa-info-circle" aria-hidden="true"></i>&nbsp; About Us</a>
-        </li>
-        <li>
-          <a href="#"><i *ngIf="displayIcon()" class="fa fa-calendar-plus-o" aria-hidden="true"></i>&nbsp; Create a Trip</a>
-        </li>
-        <li>
-          <a href="#"><i *ngIf="displayIcon()" class="fa fa-question-circle-o" aria-hidden="true"></i>&nbsp; Help</a>
-        </li>
-
-        <li class="divider"></li>
-
-        <!--<aj-submenu #langMenu-->
-                    <!--[type]="getLanguageSubMenuType()"-->
-                    <!--(onToggled)="onToggled($event)">-->
-        <!--</aj-submenu>-->
-        <!--<ng-template [ngTemplateOutlet]="langMenu.submenu"></ng-template>-->
-        <aj-submenu
-          [type]="getLanguageSubMenuType()"
-          (onSubMenuToggled)="onSubMenuToggled($event)">
-        </aj-submenu>
-
-        <li *ngIf="!authenticated" class="divider"></li>
-        <li *ngIf="!authenticated; else loginSuccess">
-          <a href="#">Log In / Sign Up</a>
-        </li>
-        <ng-template #loginSuccess>
-          <aj-submenu
-            [type]="getUserSubMenuType()"
-            (onSubMenuToggled)="onSubMenuToggled($event)">
-          </aj-submenu>
-          <!--<aj-submenu #userMenu-->
-                      <!--[type]="getUserSubMenuType()"-->
-                      <!--(onToggled)="onToggled($event)">-->
-          <!--</aj-submenu>-->
-          <!--<ng-template [ngTemplateOutlet]="userMenu.submenu"></ng-template>-->
-        </ng-template>
-
-        <li *ngIf="displayLogout()" class="divider"></li>
-        <li *ngIf="displayLogout()">
-          <a href="#">Log Out</a>
-        </li>
-      </ul>
-    </div>
-    
+    <aj-sidemenu></aj-sidemenu>
     <aj-searchmenu></aj-searchmenu>
-
   </div>
 </nav>
