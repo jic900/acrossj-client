@@ -91,6 +91,7 @@ export class SearchMenuComponent implements AfterViewInit {
   filterPlaces(searchString: string, dataList: string[]): string[] {
     dataList.sort((a, b) => a.toLowerCase() !== b.toLowerCase() ? a.toLowerCase() < b.toLowerCase() ? -1 : 1 : 0);
 
+    //noinspection TsLint
     let filteredList = [], startsWithList = [], includesList = [];
     const lowerSearchStr = searchString.toLowerCase();
     for (const item of dataList) {
@@ -104,5 +105,9 @@ export class SearchMenuComponent implements AfterViewInit {
       }
     }
     return filteredList.concat(startsWithList).concat(includesList).slice(0, AppConfig.PLACE_SEARCH_RESULT_LIMIT);
+  }
+
+  onPlaceSelected(event): void {
+
   }
 }
