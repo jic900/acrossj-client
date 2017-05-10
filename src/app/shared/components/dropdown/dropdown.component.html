@@ -1,3 +1,35 @@
-<p>
-  dropdown works!
-</p>
+<div class="container">
+  <div class="inputgroup" [ngStyle]="{'width': width + 'px'}">
+    <input id="dropDownInput"
+           type="text"
+           placeholder="{{placeHolder}}"
+           [(ngModel)]="inputString"
+           (focus)="onFocus($event)"
+           (keyup)="onKeyUp($event)"
+           (blur)="onBlur($event)"
+           (click)="onClick($event)"
+           readonly="!autoComplete">
+    <button class="inputgroup-btn" type="button">
+      <span *ngIf="autoComplete"
+            class="btn-pencil-icon">
+      </span>
+      <span *ngIf="!autoComplete"
+            class="caret"
+            (click)="onClick($event)"
+            [ngClass]="{'dropDownExpanded': isDropDownExpanded()}">
+      </span>
+    </button>
+  </div>
+  <div class="dropdownmenu"
+       *ngIf="isDropDownExpanded() && displayList.length > 0"
+       [style.width]="width + 'px'">
+    <ul *ngFor="let item of displayList; let idx = index" >
+      <li [class.dropdownmenu-selected]="idx === selectedIndex">
+        <a (click)="onSelect(item)">
+          <span *ngIf="item.iconClass && item.iconClass!==''" [ngClass]="item.iconClass"></span>
+          {{item[displayProperty]}}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+.container {
+  padding: 0;
+  margin: 0;
+}
+
+.inputgroup {
+  display: table;
+
+  /*width: 100%;*/
+  margin: 0;
+  padding: 0;
+  /*border-spacing: 0;*/
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 4px;
+}
+
+.inputgroup > input {
+  outline: none;
+  background-color: transparent;
+  display: table-cell;
+  /*position: static;*/
+  width: 100%;
+  padding: 5px 15px 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: none;
+  color: white;
+  font-size: 17px;
+}
+
+.inputgroup > input::-webkit-input-placeholder {
+  color: white;
+  opacity: 1
+}
+.inputgroup > input::-moz-placeholder {
+  color: white;
+  opacity: 1
+}
+.inputgroup > input:-ms-input-placeholder {
+  color: white;
+  opacity: 1
+}
+
+.inputgroup-btn {
+  position: relative;
+  display: table-cell;
+  height: 100%;
+  width: 32px;
+  vertical-align: middle;
+  border: none;
+  border-left: 1px solid white;
+  padding: 0;
+  outline: 0;
+  background-color: transparent;
+  /*font: inherit;*/
+  /*-moz-user-select: none;*/
+}
+
+
+
+.btn-pencil-icon {
+  font-family: FontAwesome;
+  /*font-style: normal;*/
+  /*font-weight: normal;*/
+  /*font-variant: normal;*/
+  /*text-transform: none;*/
+  /*-webkit-font-smoothing: antialiased;*/
+  /*-moz-osx-font-smoothing: grayscale;*/
+}
+.btn-pencil-icon:before {
+  content: "\f040";
+  color: white;
+  font-size: 120%;
+}
+
+.caret {
+  transition: all 0.5s ease-in-out;
+}
+.caret.dropDownExpanded {
+  transform: rotate(-180deg);
+}
+
+.dropdownmenu{
+  border:solid 1px white;
+  /*position: absolute;*/
+  margin-top: 2px;
+  padding: 10px 0 10px;
+  background-color: transparent;
+  border-radius: 3px;
+}
+.dropdownmenu ul {
+  padding: 0px;
+  margin: 0px;
+}
+.dropdownmenu ul li {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+.dropdownmenu ul li a {
+  padding: 5px 15px 5px;
+  display: block;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+}
+.dropdownmenu ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.50);
+}
+.dropdownmenu-selected {
+  background-color: rgba(255, 255, 255, 0.50);
+  color: white;
+}

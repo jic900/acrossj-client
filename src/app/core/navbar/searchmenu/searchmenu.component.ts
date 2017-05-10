@@ -11,6 +11,7 @@ import { AppConfig, AppConstant } from 'app/config/app.config';
 import { IOptions } from 'app/shared/components/daterangepicker/interfaces/options.interface';
 import { DateRangePicker } from 'app/shared/components/daterangepicker/daterangepicker.component';
 import { Util } from 'app/shared/util/util';
+import { IListItem } from 'app/shared/interfaces/listitem.interface';
 
 @Component({
   selector: 'aj-searchmenu',
@@ -20,14 +21,19 @@ import { Util } from 'app/shared/util/util';
 
 export class SearchMenuComponent implements AfterViewInit {
 
-  dataList: string[] = ['Vatican City', 'Albania', 'Andorra', 'Armenia', 'Austria', 'Azerbaijan', 'Belarus', 'Belgium',
+  placeList: string[] = ['Vatican City', 'Albania', 'Andorra', 'Armenia', 'Austria', 'Azerbaijan', 'Belarus', 'Belgium',
     'Bosnia & Herzegovina', 'Bulgaria', 'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia', 'Finland',
     'France', 'Georgia', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland', 'Italy', 'Kosovo', 'Latvia',
     'Liechtenstein', 'Lithuania', 'Luxembourg', 'Macedonia', 'Malta', 'Moldova', 'Monaco', 'Montenegro', 'Netherlands',
     'Norway', 'Poland', 'Portugal', 'Romania', 'Russia', 'San Marino', 'Serbia', 'Slovakia',
     'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom'];
 
-  categoryList: string[] = ['Skii', 'Bicycling', 'Hiking', 'Others'];
+  categoryList: IListItem[] = [
+    {iconClass: undefined, label: 'Skii', description: 'Skii'},
+    {iconClass: undefined, label: 'Bicycling', description: 'Bicycling'},
+    {iconClass: undefined, label: 'Hiking', description: 'Hiking'},
+    {iconClass: undefined, label: 'Other', description: 'Other'}
+  ];
 
   dateRangePickerOptions: IOptions = {
     editableDateRangeField: false,

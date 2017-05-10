@@ -235,9 +235,9 @@
 .drp .btnpicker,
 .drp .btnclear {
   height: 100%;
-  width: 28px;
+  width: 32px;
   border: none;
-  border-left: 1px solid #CCC;
+  border-left: 1px solid white;
   padding: 0;
   outline: 0;
   font: inherit;

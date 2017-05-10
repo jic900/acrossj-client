@@ -20,6 +20,7 @@ export class Util {
       return 'desktop';
     }
   }
+
   public static isPhoneOrTablet(): boolean {
     if (window.navigator.platform.match(this.PLATFORM_IOS_PATTERN) ||
         window.navigator.platform.match(this.PLATFORM_ANDROID_PATTERN) ||
@@ -28,5 +29,10 @@ export class Util {
         window.navigator.appVersion.match(this.APPVERSION_ANDROID_PATTERN)) {
       return true;
     }
+  }
+
+  public static sortByProperty(prop: string) {
+    return (a, b) =>
+      a[prop].toLowerCase() !== b[prop].toLowerCase() ? a[prop].toLowerCase() < b[prop].toLowerCase() ? -1 : 1 : 0;
   }
 }

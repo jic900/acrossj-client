@@ -8,27 +8,33 @@
       <div class="panel-group">
         <div class="panel panel-default">
           <div class="panel-body">
-            <aj-autocomplete
-              [dataList]="dataList"
-              [width]="fieldWidth"
-              [filterFunc]="filterPlaces"
-              [placeHolder]="'Search Places'"
-              (selected)="onPlaceSelected($event)">
+            <aj-autocomplete [dataList]="placeList"
+                             [width]="fieldWidth"
+                             [filterFunc]="filterPlaces"
+                             [placeHolder]="'Search Places'"
+                             (selected)="onPlaceSelected($event)">
             </aj-autocomplete>
           </div>
         </div>
         <div id="datePickerPanel" class="panel panel-default">
           <div class="panel-body">
-            <aj-daterangepicker
-              [placeholder]="'Select Date Range'"
-              [width]="fieldWidth"
-              [height]="fieldHeight"
-              [options]="dateRangePickerOptions">
+            <aj-daterangepicker [placeholder]="'Select Date Range'"
+                                [width]="fieldWidth"
+                                [height]="fieldHeight"
+                                [options]="dateRangePickerOptions">
             </aj-daterangepicker>
           </div>
         </div>
         <div #categoryPanel class="panel panel-default">
-          <div class="panel-body">Category</div>
+          <div class="panel-body">
+            <aj-dropdown [dataList]="categoryList"
+                         [placeHolder]="'Select Category'"
+                         [width]="fieldWidth"
+                         [displayProperty]="'label'"
+                         [displayMaxCount]="3"
+                         [sorted]="true">
+            </aj-dropdown>
+          </div>
         </div>
       </div>
       <button class="btn btn-clearall">Clear All</button>
