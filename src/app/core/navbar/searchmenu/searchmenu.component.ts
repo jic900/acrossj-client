@@ -21,16 +21,18 @@ import { IListItem } from 'app/shared/interfaces/listitem.interface';
 
 export class SearchMenuComponent implements AfterViewInit {
 
-  placeList: string[] = ['Vatican City', 'Albania', 'Andorra', 'Armenia', 'Austria', 'Azerbaijan', 'Belarus', 'Belgium',
+  places: string[] = ['Vatican City', 'Albania', 'Andorra', 'Armenia', 'Austria', 'Azerbaijan', 'Belarus', 'Belgium',
     'Bosnia & Herzegovina', 'Bulgaria', 'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia', 'Finland',
     'France', 'Georgia', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland', 'Italy', 'Kosovo', 'Latvia',
     'Liechtenstein', 'Lithuania', 'Luxembourg', 'Macedonia', 'Malta', 'Moldova', 'Monaco', 'Montenegro', 'Netherlands',
     'Norway', 'Poland', 'Portugal', 'Romania', 'Russia', 'San Marino', 'Serbia', 'Slovakia',
     'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom'];
 
+  placeList: IListItem[];
+
   categoryList: IListItem[] = [
-    {iconClass: undefined, label: 'Skii', description: 'Skii'},
-    {iconClass: undefined, label: 'Bicycling', description: 'Bicycling'},
+    {iconClass: '', label: 'Skii', description: 'Skii'},
+    {iconClass: 'fa fa-bicycle', label: 'Bicycling', description: 'Bicycling'},
     {iconClass: undefined, label: 'Hiking', description: 'Hiking'},
     {iconClass: undefined, label: 'Other', description: 'Other'}
   ];
@@ -40,13 +42,13 @@ export class SearchMenuComponent implements AfterViewInit {
     openSelectorOnInputClick: true,
   };
 
-  @ViewChild(DateRangePicker) dateRangePicker: DateRangePicker;
   searchMenuState: number;
   fieldWidth: number;
   fieldHeight: number;
 
   constructor(public elementRef: ElementRef, private renderer: Renderer2) {
     this.searchMenuState = MenuState.collapsed;
+    this.placeList = this.getPlaceList();
   }
 
   ngAfterViewInit(): void {
@@ -56,6 +58,14 @@ export class SearchMenuComponent implements AfterViewInit {
 
   isSearchMenuExpanded(): boolean {
     return this.searchMenuState === MenuState.expanded;
+  }
+
+  private getPlaceList(): IListItem[] {
+    let resultList: IListItem[] = [];
+    for (const place of this.places) {
+      resultList.push({iconClass: undefined, label: place, description: place});
+    }
+    return resultList;
   }
 
   getMinHeight(): string {
@@ -83,7 +93,7 @@ export class SearchMenuComponent implements AfterViewInit {
   }
 
   setFieldHeight(): void {
-    this.fieldHeight =  this.elementRef.nativeElement.querySelector('#completerInput').offsetHeight;
+    this.fieldHeight = this.elementRef.nativeElement.querySelector('#dropDownInput').offsetHeight;
   }
 
   setSearchMenuState(newState: number) {
@@ -94,14 +104,18 @@ export class SearchMenuComponent implements AfterViewInit {
     this.searchMenuState = this.searchMenuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
   }
 
-  filterPlaces(searchString: string, dataList: string[]): string[] {
-    dataList.sort((a, b) => a.toLowerCase() !== b.toLowerCase() ? a.toLowerCase() < b.toLowerCase() ? -1 : 1 : 0);
+  getDisplayedPlacesMaxCount(): number {
+    return AppConfig.PLACE_SEARCH_RESULT_LIMIT;
+  }
 
-    //noinspection TsLint
+  filterPlaces(filterString: string,
+               sourceList: IListItem[],
+               filterProperty: string,
+               maxCount: number): IListItem[] {
     let filteredList = [], startsWithList = [], includesList = [];
-    const lowerSearchStr = searchString.toLowerCase();
-    for (const item of dataList) {
-      const lowerItem = item.toLowerCase();
+    const lowerSearchStr = filterString.toLowerCase();
+    for (const item of sourceList) {
+      const lowerItem = item[filterProperty].toLowerCase();
       if (lowerItem === lowerSearchStr) {
         filteredList.push(item);
       } else if (lowerItem.startsWith(lowerSearchStr)) {
@@ -110,10 +124,12 @@ export class SearchMenuComponent implements AfterViewInit {
         includesList.push(item);
       }
     }
-    return filteredList.concat(startsWithList).concat(includesList).slice(0, AppConfig.PLACE_SEARCH_RESULT_LIMIT);
+    return filteredList.concat(startsWithList).concat(includesList).slice(0, maxCount);
   }
 
   onPlaceSelected(event): void {
+  }
 
+  onCategorySelected(event): void {
   }
 }

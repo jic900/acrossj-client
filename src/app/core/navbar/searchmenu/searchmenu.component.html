@@ -8,17 +8,23 @@
       <div class="panel-group">
         <div class="panel panel-default">
           <div class="panel-body">
-            <aj-autocomplete [dataList]="placeList"
-                             [width]="fieldWidth"
-                             [filterFunc]="filterPlaces"
-                             [placeHolder]="'Search Places'"
-                             (selected)="onPlaceSelected($event)">
-            </aj-autocomplete>
+            <aj-dropdown #placeSearcher
+                         [dataList]="placeList"
+                         [placeHolder]="'Search Places'"
+                         [width]="fieldWidth"
+                         [filterFunc]="filterPlaces"
+                         [displayProperty]="'label'"
+                         [displayMaxCount]="getDisplayedPlacesMaxCount()"
+                         [sorted]="true"
+                         [autoComplete]="true"
+                         (selected)="onPlaceSelected($event)">
+            </aj-dropdown>
           </div>
         </div>
         <div id="datePickerPanel" class="panel panel-default">
           <div class="panel-body">
-            <aj-daterangepicker [placeholder]="'Select Date Range'"
+            <aj-daterangepicker #dateRangePicker
+                                [placeholder]="'Select Date Range'"
                                 [width]="fieldWidth"
                                 [height]="fieldHeight"
                                 [options]="dateRangePickerOptions">
@@ -27,17 +33,21 @@
         </div>
         <div #categoryPanel class="panel panel-default">
           <div class="panel-body">
-            <aj-dropdown [dataList]="categoryList"
+            <aj-dropdown #categoryPicker
+                         [dataList]="categoryList"
                          [placeHolder]="'Select Category'"
                          [width]="fieldWidth"
+                         [height]="fieldHeight"
                          [displayProperty]="'label'"
-                         [displayMaxCount]="3"
-                         [sorted]="true">
+                         (selected)="onCategorySelected($event)">
             </aj-dropdown>
           </div>
         </div>
       </div>
-      <button class="btn btn-clearall">Clear All</button>
+      <button class="btn btn-clearall"
+              (click)="placeSearcher.clearField(); categoryPicker.clearField(); dateRangePicker.clearDateRange()">
+        Clear All
+      </button>
     </div>
   </div>
 </div>

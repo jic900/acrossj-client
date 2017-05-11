@@ -35,7 +35,7 @@
   font-size: 20px;
 }
 .panel-group {
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 .panel-group .panel+.panel {
   margin-top: 20px;
@@ -59,7 +59,9 @@
   background-color: transparent;
   color: white;
   text-decoration: underline;
+  margin: 15px 0 15px;
   float: right;
+  font-size: 16px;
 }
 
 /*:host >>> aj-autocomplete .suggestions-selected {*/

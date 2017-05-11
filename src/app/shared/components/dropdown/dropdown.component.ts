@@ -27,6 +27,7 @@ export class DropDownComponent implements OnChanges {
   @Input() dataList: IListItem[];
   @Input() placeHolder: string;
   @Input() width: number;
+  @Input() height: number;
   @Input() displayProperty: string;
   @Input() displayMaxCount: number;
   @Input() sorted: boolean;
@@ -42,7 +43,8 @@ export class DropDownComponent implements OnChanges {
   constructor(private elementRef: ElementRef) {
     this.dataList = [];
     this.placeHolder = 'Please Select';
-    // this.width = 200;
+    this.width = 200;
+    this.height = 36;
     this.displayProperty = 'label';
     this.displayMaxCount = -1;
     this.sorted = false;
@@ -66,15 +68,12 @@ export class DropDownComponent implements OnChanges {
     // if (changes.hasOwnProperty('autoComplete')) {
     //   this.autoComplete = changes['autoComplete'].currentValue;
     // }
-    console.log(this.dataList);
-    console.log(this.sorted);
-    console.log(this.autoComplete);
-    console.log(this.autoComplete);
     if (this.sorted && this.dataList.length > 0) {
       this.dataList.sort(Util.sortByProperty(this.displayProperty));
     }
     if (!this.autoComplete) {
       this.displayList = this.dataList;
+      this.inputString = this.placeHolder;
     }
   }
 
@@ -90,17 +89,29 @@ export class DropDownComponent implements OnChanges {
       }
     }
     const displayCount = maxCount === -1 ? resultList.length : Math.min(maxCount, resultList.length);
-    return this.displayList.slice(0, displayCount);
+    return resultList.slice(0, displayCount);
+  }
+
+  onInputChange() {
+    if (this.autoComplete) {
+      if (this.inputString !== '') {
+        this.updateDisplayList();
+      } else {
+        this.resetDisplayList();
+      }
+    }
   }
 
   onFocus(event): void {
+    // console.log('onFocus  ' + event.target.tagName);
     if (this.autoComplete && this.inputString !== '') {
       this.updateDisplayList();
     }
   }
 
   onBlur(event): void {
-    if (this.autoComplete && !Util.isPhoneOrTablet()) {
+    // console.log('onBlur  ' + event.target.tagName);
+    if (!Util.isPhoneOrTablet()) {
       let self = this;
       setTimeout(function() {
         self.resetDisplayList();
@@ -108,9 +119,20 @@ export class DropDownComponent implements OnChanges {
     }
   }
 
-  onKeyUp(event): void {
-    if (this.inputString !== '') {
-      if (event.code === 'Enter' || event.code === 'NumpadEnter' || event.which === 13) {
+  onKeyDown(event): void {
+    // console.log('onKeyDown  ' + event.code);
+    if (event.code === 'ArrowDown') {
+      if (this.menuState === MenuState.expanded && this.selectedIndex !== this.displayList.length - 1) {
+        this.selectedIndex++;
+      }
+      event.preventDefault();
+    } else if (event.code === 'ArrowUp') {
+      if (this.menuState === MenuState.expanded && this.selectedIndex > 0) {
+        this.selectedIndex--;
+      }
+      event.preventDefault();
+    } else if (event.code === 'Enter' || event.code === 'NumpadEnter' || event.which === 13) {
+      if (this.menuState === MenuState.expanded) {
         if (this.autoComplete && Util.isPhoneOrTablet()) {
           const inputField = this.elementRef.nativeElement.querySelector('#dropDownInput');
           inputField.blur();
@@ -120,36 +142,26 @@ export class DropDownComponent implements OnChanges {
         }
         this.resetDisplayList();
         this.selected.emit(this.inputString);
-      } else if (event.code === 'ArrowDown') {
-        if (this.selectedIndex !== this.displayList.length - 1) {
-          this.selectedIndex++;
-        }
-        event.preventDefault();
-      } else if (event.code === 'ArrowUp') {
-        if (this.selectedIndex > 0) {
-          this.selectedIndex--;
-        }
-        event.preventDefault();
-      } else if (this.autoComplete) {
-        this.updateDisplayList();
       }
-    } else {
-      this.resetDisplayList();
     }
   }
 
   onClick(event): void {
+    // console.log('onClick  ' + event.target.tagName);
     if (! this.autoComplete) {
       this.menuState = this.menuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
     }
-    // const inputElement: HTMLElement = this.elementRef.nativeElement.querySelector('#dropDownInput');
-    // inputElement.focus();
   }
 
   onSelect(item) {
+    // console.log('onSelect  ' + item);
     this.inputString = item[this.displayProperty];
     this.resetDisplayList();
     this.selected.emit(this.inputString);
+  }
+
+  clearField(): void {
+    this.inputString = this.autoComplete ? '' : this.placeHolder;
   }
 
   resetDisplayList(): void {
@@ -163,6 +175,7 @@ export class DropDownComponent implements OnChanges {
 
   updateDisplayList(): void {
     this.displayList = this.filterFunc(this.inputString, this.dataList, this.displayProperty, this.displayMaxCount);
+    // console.log('updateDisplayList: size=' + this.displayList.length);
     if (this.displayList.length > 0) {
       this.menuState = MenuState.expanded;
     }
@@ -189,8 +202,5 @@ export class DropDownComponent implements OnChanges {
 
   isDropDownExpanded(): boolean {
     return this.menuState === MenuState.expanded;
-  }
-
-  onSelectItem(itemLabel: string): void {
   }
 }

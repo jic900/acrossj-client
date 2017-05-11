@@ -5,29 +5,30 @@
            placeholder="{{placeHolder}}"
            [(ngModel)]="inputString"
            (focus)="onFocus($event)"
-           (keyup)="onKeyUp($event)"
+           (ngModelChange)="onInputChange($event)"
+           (keydown)="onKeyDown($event)"
            (blur)="onBlur($event)"
            (click)="onClick($event)"
-           readonly="!autoComplete">
-    <button class="inputgroup-btn" type="button">
-      <span *ngIf="autoComplete"
-            class="btn-pencil-icon">
-      </span>
-      <span *ngIf="!autoComplete"
-            class="caret"
-            (click)="onClick($event)"
-            [ngClass]="{'dropDownExpanded': isDropDownExpanded()}">
-      </span>
-    </button>
+           [readonly]="!autoComplete">
+    <span class="inputgroup-span" [style.height]="height + 'px'">
+      <button class="inputgroup-btn" type="button">
+        <span *ngIf="autoComplete"><i class="fa fa-pencil"></i></span>
+        <span *ngIf="!autoComplete" (click)="onClick($event)">
+          <i class="fa fa-chevron-down" [ngClass]="{'fa-rotate-180': isDropDownExpanded()}" aria-hidden="true"></i>
+        </span>
+      </button>
+    </span>
   </div>
   <div class="dropdownmenu"
        *ngIf="isDropDownExpanded() && displayList.length > 0"
        [style.width]="width + 'px'">
-    <ul *ngFor="let item of displayList; let idx = index" >
+    <ul *ngFor="let item of displayList; let idx = index">
       <li [class.dropdownmenu-selected]="idx === selectedIndex">
         <a (click)="onSelect(item)">
-          <span *ngIf="item.iconClass && item.iconClass!==''" [ngClass]="item.iconClass"></span>
-          {{item[displayProperty]}}
+          <span>
+            <i [ngClass]="item.iconClass && item.iconClass!=='' ? item.iconClass : ''" aria-hidden="true"></i>
+          </span>
+          &nbsp;{{item[displayProperty]}}
         </a>
       </li>
     </ul>
