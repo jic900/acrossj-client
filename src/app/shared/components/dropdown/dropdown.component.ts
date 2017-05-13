@@ -206,7 +206,7 @@ export class DropDownComponent implements OnChanges {
   }
 
   private inputBlurOnDevice(): void {
-    if (Util.isPhoneOrTablet() && !Util.isDeviceSimulator) {
+    if (Util.isPhoneOrTablet() && !Util.isDeviceSimulator()) {
       const inputField = this.elementRef.nativeElement.querySelector('#dropDownInput');
       inputField.blur();
     }
