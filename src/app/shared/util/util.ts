@@ -21,6 +21,13 @@ export class Util {
     }
   }
 
+  public static isDeviceSimulator() {
+    if ((window.navigator.appVersion.match(this.APPVERSION_IOS_PATTERN) && !window.navigator.platform.match(this.PLATFORM_IOS_PATTERN)) ||
+      (window.navigator.appVersion.match(this.APPVERSION_ANDROID_PATTERN) && !window.navigator.platform.match(this.PLATFORM_ANDROID_PATTERN))) {
+      return true;
+    }
+  }
+
   public static isPhoneOrTablet(): boolean {
     if (window.navigator.platform.match(this.PLATFORM_IOS_PATTERN) ||
         window.navigator.platform.match(this.PLATFORM_ANDROID_PATTERN) ||

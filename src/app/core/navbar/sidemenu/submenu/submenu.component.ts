@@ -149,15 +149,15 @@ export class SubMenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
 
   onSubMenuClick(item: string): void {
     const curLang = this.translate.currentLang;
-    if (item === 'NAVBAR.SIDEMENU.SUBMENU_LANG.ENGLISH') {
+    if (item === 'NAVBAR.SIDE.LANGUAGE.MENU.ENGLISH') {
       if (curLang !== 'en') {
         this.translate.use('en');
       }
-    } else if (item === 'NAVBAR.SIDEMENU.SUBMENU_LANG.JAPANESE') {
+    } else if (item === 'NAVBAR.SIDE.LANGUAGE.MENU.JAPANESE') {
       if (curLang !== 'ja') {
         this.translate.use('ja');
       }
-    } else {
+    } else if (item === 'NAVBAR.SIDE.LANGUAGE.MENU.CHINESE') {
       if (curLang !== 'zh') {
         this.translate.use('zh');
       }

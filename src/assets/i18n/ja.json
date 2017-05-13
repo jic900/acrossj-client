@@ -1,27 +1,31 @@
 {
   "NAVBAR": {
-    "SIDEMENU": {
+    "SIDE": {
       "ABOUT_US": "About Us",
       "CREATE_TRIP": "Create a Trip",
       "HELP": "Help",
-      "USERNAME": "Username",
-      "LANGUAGE": "Language",
-      "SUBMENU_LANG": {
-        "ENGLISH": "English",
-        "JAPANESE": "Japanese",
-        "CHINESE": "Chinese"
+      "LANGUAGE": {
+        "LABEL": "Language",
+        "MENU": {
+          "ENGLISH": "English",
+          "JAPANESE": "Japanese",
+          "CHINESE": "Chinese"
+        }
       },
-      "SUBMENU_USER": {
-        "PROFILE": "Profile",
-        "TRIPS": "Your Trips",
-        "MESSAGES": "Messages",
-        "UPLOADS": "Uploads"
+      "USER": {
+        "LABEL": "Username",
+        "MENU": {
+          "PROFILE": "Profile",
+          "TRIPS": "Your Trips",
+          "MESSAGES": "Messages",
+          "UPLOADS": "Uploads"
+        }
       },
       "SIGNIN_SIGNUP": "サインイン / サインアップ",
       "SIGNOUT": "サインアウト"
     },
-    "SEARCHMENU": {
-      "SEARCH_LABEL": "Search Event"
+    "SEARCH": {
+      "TITLE": "Search Event"
     }
   },
   "HOME": {

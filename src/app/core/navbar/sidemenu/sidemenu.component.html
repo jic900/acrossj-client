@@ -5,13 +5,13 @@
   <ul class="nav navbar-nav navbar-right"
       [ngStyle]="{'max-height': getMaxHeight(), 'overflow-y': getOverflowY()}">
     <li>
-      <a href="#"><i *ngIf="displayIcon()" class="fa fa-info-circle" aria-hidden="true"></i>{{'NAVBAR.SIDEMENU.ABOUT_US'|translate}}</a>
+      <a href="#"><i *ngIf="displayIcon()" class="fa fa-info-circle" aria-hidden="true"></i>{{'NAVBAR.SIDE.ABOUT_US'|translate}}</a>
     </li>
     <li>
-      <a href="#"><i *ngIf="displayIcon()" class="fa fa-calendar-plus-o" aria-hidden="true"></i>{{'NAVBAR.SIDEMENU.CREATE_TRIP'|translate}}</a>
+      <a href="#"><i *ngIf="displayIcon()" class="fa fa-calendar-plus-o" aria-hidden="true"></i>{{'NAVBAR.SIDE.CREATE_TRIP'|translate}}</a>
     </li>
     <li>
-      <a href="#"><i *ngIf="displayIcon()" class="fa fa-question-circle-o" aria-hidden="true"></i>{{'NAVBAR.SIDEMENU.HELP'|translate}}</a>
+      <a href="#"><i *ngIf="displayIcon()" class="fa fa-question-circle-o" aria-hidden="true"></i>{{'NAVBAR.SIDE.HELP'|translate}}</a>
     </li>
 
     <li class="divider"></li>
@@ -27,7 +27,7 @@
 
     <li *ngIf="!authenticated" class="divider"></li>
     <li *ngIf="!authenticated; else loginSuccess">
-      <a href="#">{{'NAVBAR.SIDEMENU.SIGNIN_SIGNUP'|translate}}</a>
+      <a href="#">{{'NAVBAR.SIDE.SIGNIN_SIGNUP'|translate}}</a>
     </li>
     <ng-template #loginSuccess>
       <aj-submenu [type]="getUserSubMenuType()"
@@ -42,7 +42,7 @@
 
     <li *ngIf="displayLogout()" class="divider"></li>
     <li *ngIf="displayLogout()">
-      <a href="#">{{'NAVBAR.SIDEMENU.SIGNOUT'|translate}}</a>
+      <a href="#">{{'NAVBAR.SIDE.SIGNOUT'|translate}}</a>
     </li>
   </ul>
 </div>

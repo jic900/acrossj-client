@@ -104,7 +104,9 @@ export class DropDownComponent implements OnChanges {
 
   onFocus(event): void {
     // console.log('onFocus  ' + event.target.tagName);
-    if (this.autoComplete && this.inputString !== '') {
+    if (! this.autoComplete) {
+      this.inputBlurOnDevice();
+    } else if (this.inputString !== '') {
       this.updateDisplayList();
     }
   }
@@ -133,9 +135,8 @@ export class DropDownComponent implements OnChanges {
       event.preventDefault();
     } else if (event.code === 'Enter' || event.code === 'NumpadEnter' || event.which === 13) {
       if (this.menuState === MenuState.expanded) {
-        if (this.autoComplete && Util.isPhoneOrTablet()) {
-          const inputField = this.elementRef.nativeElement.querySelector('#dropDownInput');
-          inputField.blur();
+        if (this.autoComplete) {
+          this.inputBlurOnDevice();
         }
         if (this.selectedIndex !== -1) {
           this.inputString = this.displayList[this.selectedIndex][this.displayProperty];
@@ -202,5 +203,12 @@ export class DropDownComponent implements OnChanges {
 
   isDropDownExpanded(): boolean {
     return this.menuState === MenuState.expanded;
+  }
+
+  private inputBlurOnDevice(): void {
+    if (Util.isPhoneOrTablet() && !Util.isDeviceSimulator) {
+      const inputField = this.elementRef.nativeElement.querySelector('#dropDownInput');
+      inputField.blur();
+    }
   }
 }

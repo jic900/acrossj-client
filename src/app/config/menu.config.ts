@@ -5,7 +5,7 @@
 
 export const SubMenuDef = {
   userMenu: {
-    linkName: 'NAVBAR.SIDEMENU.USERNAME',
+    linkName: 'NAVBAR.SIDE.USER.LABEL',
     items: [
       'Profile',
       'Your Trips',
@@ -14,11 +14,11 @@ export const SubMenuDef = {
     ]
   },
   languageMenu: {
-    linkName: 'NAVBAR.SIDEMENU.LANGUAGE',
+    linkName: 'NAVBAR.SIDE.LANGUAGE.LABEL',
     items: [
-      'NAVBAR.SIDEMENU.SUBMENU_LANG.ENGLISH',
-      'NAVBAR.SIDEMENU.SUBMENU_LANG.CHINESE',
-      'NAVBAR.SIDEMENU.SUBMENU_LANG.JAPANESE'
+      'NAVBAR.SIDE.LANGUAGE.MENU.ENGLISH',
+      'NAVBAR.SIDE.LANGUAGE.MENU.CHINESE',
+      'NAVBAR.SIDE.LANGUAGE.MENU.JAPANESE'
     ]
   }
 };
