@@ -2,7 +2,7 @@
   <li #dropdown class="dropdown">
     <a href="#a" class="dropdown-toggle" (click)="onMouseClick($event)">
       <i #icon *ngIf="displayIcon()" class="fa fa-fw" aria-hidden="true"></i>
-      &nbsp;{{ linkName }}&nbsp;
+      &nbsp;{{ linkName|translate }}&nbsp;
       <span class="caret" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
       </span>
       <!--<i class="fa fa-caret-down" style="color: white;" aria-hidden="true"></i>-->
@@ -10,9 +10,9 @@
     <ul class="dropdown-menu"
         [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
       <li *ngFor="let item of items">
-        <a href="#">{{ item }}</a>
+        <a href="#" (click)="onSubMenuClick(item)">{{ item|translate }}</a>
       </li>
-      <li *ngIf="displayLogout()"><a href="#">Log Out</a>
+      <li *ngIf="displayLogout()"><a href="#">{{'NAVBAR.SIDEMENU.SIGNOUT'|translate}}</a>
       </li>
     </ul>
   </li>

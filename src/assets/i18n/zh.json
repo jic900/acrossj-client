@@ -1,0 +1,30 @@
+{
+  "NAVBAR": {
+    "SIDEMENU": {
+      "ABOUT_US": "关于我们",
+      "CREATE_TRIP": "创建活动",
+      "HELP": "帮助",
+      "USERNAME": "用户名",
+      "LANGUAGE": "语言",
+      "SUBMENU_LANG": {
+        "ENGLISH": "英语",
+        "JAPANESE": "日文",
+        "CHINESE": "中文"
+      },
+      "SUBMENU_USER": {
+        "PROFILE": "Profile",
+        "TRIPS": "Your Trips",
+        "MESSAGES": "Messages",
+        "UPLOADS": "Uploads"
+      },
+      "SIGNIN_SIGNUP": "登录 / 注册",
+      "SIGNOUT": "注销"
+    },
+    "SEARCHMENU": {
+      "SEARCH_LABEL": "搜索活动"
+    }
+  },
+  "HOME": {
+    "WELCOME": "欢迎"
+  }
+}

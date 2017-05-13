@@ -7,12 +7,14 @@ import { DateRangePickerFocusDirective } from './components/daterangepicker/dire
 import { DatePicker } from './components/datepicker/datepicker.component';
 import { DatePickerFocusDirective } from './components/datepicker/directives/datepicker.focus.directive';
 import { DropDownComponent } from './components/dropdown/dropdown.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    TranslateModule.forChild({}),
   ],
   declarations: [
     DelayDirective,
@@ -23,6 +25,7 @@ import { DropDownComponent } from './components/dropdown/dropdown.component';
     DropDownComponent
   ],
   exports: [
+    TranslateModule,
     DateRangePicker,
     DatePicker,
     DropDownComponent

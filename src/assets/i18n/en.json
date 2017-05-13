@@ -1,0 +1,30 @@
+{
+  "NAVBAR": {
+    "SIDEMENU": {
+      "ABOUT_US": "About Us",
+      "CREATE_TRIP": "Create a Trip",
+      "HELP": "Help",
+      "USERNAME": "Username",
+      "LANGUAGE": "Language",
+      "SUBMENU_LANG": {
+        "ENGLISH": "English",
+        "JAPANESE": "Japanese",
+        "CHINESE": "Chinese"
+      },
+      "SUBMENU_USER": {
+        "PROFILE": "Profile",
+        "TRIPS": "Your Trips",
+        "MESSAGES": "Messages",
+        "UPLOADS": "Uploads"
+      },
+      "SIGNIN_SIGNUP": "Log In / Sign Up",
+      "SIGNOUT": "Sign Out"
+    },
+    "SEARCHMENU": {
+      "SEARCH_LABEL": "Search Event"
+    }
+  },
+  "HOME": {
+    "WELCOME": "Welcome"
+  }
+}

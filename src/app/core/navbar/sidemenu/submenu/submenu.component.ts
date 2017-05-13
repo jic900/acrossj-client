@@ -16,6 +16,7 @@ import {
 
 import { AppConfig, AppConstant } from 'app/config/app.config';
 import { SubMenuDef, SubMenuType, MenuState } from 'app/config/menu.config';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'aj-submenu',
@@ -41,7 +42,7 @@ export class SubMenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
   cancelMouseMoveListenFunc: Function;
   cancelMouseLeaveListenFunc: Function;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private translate: TranslateService) {
     this.subMenuState = MenuState.collapsed;
     this.onSubMenuToggled = new EventEmitter<string>();
     this.lastCollapsedTime = 0;
@@ -142,6 +143,23 @@ export class SubMenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
       if (this.subMenuState === MenuState.expanded) {
         this.subMenuState = MenuState.collapsed;
         this.lastCollapsedTime = new Date().getTime();
+      }
+    }
+  }
+
+  onSubMenuClick(item: string): void {
+    const curLang = this.translate.currentLang;
+    if (item === 'NAVBAR.SIDEMENU.SUBMENU_LANG.ENGLISH') {
+      if (curLang !== 'en') {
+        this.translate.use('en');
+      }
+    } else if (item === 'NAVBAR.SIDEMENU.SUBMENU_LANG.JAPANESE') {
+      if (curLang !== 'ja') {
+        this.translate.use('ja');
+      }
+    } else {
+      if (curLang !== 'zh') {
+        this.translate.use('zh');
       }
     }
   }
