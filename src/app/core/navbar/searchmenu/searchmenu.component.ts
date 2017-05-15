@@ -1,17 +1,23 @@
 import {
   Component,
   AfterViewInit,
-  ViewChild,
   ElementRef,
   Renderer2
 } from '@angular/core';
 
-import { MenuState } from 'app/config/menu.config';
-import { AppConfig, AppConstant } from 'app/config/app.config';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  AppConfig,
+  AppConstant,
+  MenuState,
+  DateRangePickerOptions,
+  CategoryOptions
+} from 'app/config/app.config';
+
 import { IOptions } from 'app/shared/components/daterangepicker/interfaces/options.interface';
-import { DateRangePicker } from 'app/shared/components/daterangepicker/daterangepicker.component';
 import { Util } from 'app/shared/util/util';
-import { IListItem } from 'app/shared/interfaces/listitem.interface';
+import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
+
 
 @Component({
   selector: 'aj-searchmenu',
@@ -26,29 +32,20 @@ export class SearchMenuComponent implements AfterViewInit {
     'France', 'Georgia', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland', 'Italy', 'Kosovo', 'Latvia',
     'Liechtenstein', 'Lithuania', 'Luxembourg', 'Macedonia', 'Malta', 'Moldova', 'Monaco', 'Montenegro', 'Netherlands',
     'Norway', 'Poland', 'Portugal', 'Romania', 'Russia', 'San Marino', 'Serbia', 'Slovakia',
-    'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom'];
+    'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom', '日本', '中国'];
 
-  placeList: IListItem[];
-
-  categoryList: IListItem[] = [
-    {iconClass: '', label: 'Skii', description: 'Skii'},
-    {iconClass: 'fa fa-bicycle', label: 'Bicycling', description: 'Bicycling'},
-    {iconClass: undefined, label: 'Hiking', description: 'Hiking'},
-    {iconClass: undefined, label: 'Other', description: 'Other'}
-  ];
-
-  dateRangePickerOptions: IOptions = {
-    editableDateRangeField: false,
-    openSelectorOnInputClick: true,
-  };
-
+  placeList: IMenuItem[];
+  categoryList: IMenuItem[];
+  dateRangePickerOptions: IOptions;
   searchMenuState: number;
   fieldWidth: number;
   fieldHeight: number;
 
-  constructor(public elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(public elementRef: ElementRef, private renderer: Renderer2, private translate: TranslateService) {
     this.searchMenuState = MenuState.collapsed;
     this.placeList = this.getPlaceList();
+    this.dateRangePickerOptions = DateRangePickerOptions;
+    this.categoryList = CategoryOptions;
   }
 
   ngAfterViewInit(): void {
@@ -60,10 +57,10 @@ export class SearchMenuComponent implements AfterViewInit {
     return this.searchMenuState === MenuState.expanded;
   }
 
-  private getPlaceList(): IListItem[] {
-    let resultList: IListItem[] = [];
+  private getPlaceList(): IMenuItem[] {
+    let resultList: IMenuItem[] = [];
     for (const place of this.places) {
-      resultList.push({iconClass: undefined, label: place, description: place});
+      resultList.push({display: place});
     }
     return resultList;
   }
@@ -109,9 +106,9 @@ export class SearchMenuComponent implements AfterViewInit {
   }
 
   filterPlaces(filterString: string,
-               sourceList: IListItem[],
+               sourceList: IMenuItem[],
                filterProperty: string,
-               maxCount: number): IListItem[] {
+               maxCount: number): IMenuItem[] {
     let filteredList = [], startsWithList = [], includesList = [];
     const lowerSearchStr = filterString.toLowerCase();
     for (const item of sourceList) {

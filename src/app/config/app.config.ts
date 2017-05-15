@@ -16,3 +16,70 @@ export class AppConstant {
   public static IPAD_WIDTH: number = 768;
   public static IPAD_PRO_WIDTH: number = 1024;
 }
+
+export const SubMenuDef = {
+  user: {
+    display: 'NAVBAR.SIDE.USER.LABEL',
+    type: 'user',
+    value: [
+      {display: 'Profile'},
+      {display: 'Your Trips'},
+      {display: 'Messages'},
+      {display: 'Uploads'}
+    ],
+    iconClass: 'fa fa-fw fa-user'
+  },
+  language: {
+    display: 'NAVBAR.SIDE.LANGUAGE.LABEL',
+    type: 'language',
+    value: [
+      {display: 'NAVBAR.SIDE.LANGUAGE.MENU.ENGLISH', type: 'en'},
+      {display: 'NAVBAR.SIDE.LANGUAGE.MENU.JAPANESE', type: 'ja'},
+      {display: 'NAVBAR.SIDE.LANGUAGE.MENU.CHINESE', type: 'zh'}
+    ],
+    iconClass: 'fa fa-fw fa-language'
+  }
+};
+
+export const MenuState = {
+  default: 0,
+  collapsed: 1,
+  expanded: 2
+}
+
+export const DateRangePickerOptions = {
+  editableDateRangeField: false,
+  openSelectorOnInputClick: true,
+  dayLabels: {
+    su: 'NAVBAR.SEARCH.DRP.WEEKDAY.SUN',
+    mo: 'NAVBAR.SEARCH.DRP.WEEKDAY.MON',
+    tu: 'NAVBAR.SEARCH.DRP.WEEKDAY.TUE',
+    we: 'NAVBAR.SEARCH.DRP.WEEKDAY.WED',
+    th: 'NAVBAR.SEARCH.DRP.WEEKDAY.THU',
+    fr: 'NAVBAR.SEARCH.DRP.WEEKDAY.FRI',
+    sa: 'NAVBAR.SEARCH.DRP.WEEKDAY.SAT'
+  },
+  monthLabels: {
+    1: 'NAVBAR.SEARCH.DRP.MONTH.1',
+    2: 'NAVBAR.SEARCH.DRP.MONTH.2',
+    3: 'NAVBAR.SEARCH.DRP.MONTH.3',
+    4: 'NAVBAR.SEARCH.DRP.MONTH.4',
+    5: 'NAVBAR.SEARCH.DRP.MONTH.5',
+    6: 'NAVBAR.SEARCH.DRP.MONTH.6',
+    7: 'NAVBAR.SEARCH.DRP.MONTH.7',
+    8: 'NAVBAR.SEARCH.DRP.MONTH.8',
+    9: 'NAVBAR.SEARCH.DRP.MONTH.9',
+    10: 'NAVBAR.SEARCH.DRP.MONTH.10',
+    11: 'NAVBAR.SEARCH.DRP.MONTH.11',
+    12: 'NAVBAR.SEARCH.DRP.MONTH.12'
+  },
+  selectBeginDateTxt: 'NAVBAR.SEARCH.DRP.BEGIN_DATE',
+  selectEndDateTxt: 'NAVBAR.SEARCH.DRP.END_DATE',
+};
+
+export const CategoryOptions = [
+  {display: 'Skii'},
+  {display: 'Bicycling', iconClass: 'fa fa-bicycle'},
+  {display: 'Hiking'},
+  {display: 'Other'}
+];

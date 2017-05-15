@@ -1,31 +1,46 @@
 {
   "NAVBAR": {
     "SIDE": {
-      "ABOUT_US": "About Us",
-      "CREATE_TRIP": "Create a Trip",
-      "HELP": "Help",
+      "ABOUT_US": "About Us JA",
+      "CREATE_TRIP": "Create a Trip JA",
+      "HELP": "Help JA",
       "LANGUAGE": {
-        "LABEL": "Language",
+        "LABEL": "Language JA",
         "MENU": {
-          "ENGLISH": "English",
-          "JAPANESE": "Japanese",
-          "CHINESE": "Chinese"
+          "ENGLISH": "English JA",
+          "JAPANESE": "Japanese JA",
+          "CHINESE": "Chinese JA"
         }
       },
       "USER": {
-        "LABEL": "Username",
+        "LABEL": "Username JA",
         "MENU": {
-          "PROFILE": "Profile",
-          "TRIPS": "Your Trips",
-          "MESSAGES": "Messages",
-          "UPLOADS": "Uploads"
+          "PROFILE": "Profile JA",
+          "TRIPS": "Your Trips JA",
+          "MESSAGES": "Messages JA",
+          "UPLOADS": "Uploads JA"
         }
       },
       "SIGNIN_SIGNUP": "サインイン / サインアップ",
       "SIGNOUT": "サインアウト"
     },
     "SEARCH": {
-      "TITLE": "Search Event"
+      "TITLE": "Search Event JA",
+      "PLACES_INPUT_TXT": "Search Places JA",
+      "DRP": {
+        "INPUT_TXT": "Select Date Range JA",
+        "BEGIN_DATE": "Select Begin Date JA",
+        "END_DATE": "Select End Date JA",
+        "WEEKDAY": {
+          "MON": "月", "TUE": "火", "WED": "水", "THU": "木", "FRI": "金", "SAT": "土", "SUN": "日"
+        },
+        "MONTH": {
+          "1": "１月", "2": "２月", "3": "３月", "4": "４月", "5": "５月", "6": "６月",
+          "7": "７月", "8": "８月", "9": "９月", "10": "１０月", "11": "１１月", "12": "１２月"
+        }
+      },
+      "CATEGORY_INPUT_TXT": "Select Category JA",
+      "CLEAR_ALL": "Clear All JA"
     }
   },
   "HOME": {

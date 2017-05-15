@@ -2,7 +2,7 @@
   <div class="inputgroup" [ngStyle]="{'width': width + 'px'}">
     <input id="dropDownInput"
            type="text"
-           placeholder="{{placeHolder}}"
+           placeholder="{{placeHolder|translate}}"
            [(ngModel)]="inputString"
            (focus)="onFocus($event)"
            (ngModelChange)="onInputChange($event)"

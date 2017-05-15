@@ -1,14 +1,12 @@
 import {
   Component,
-  AfterViewInit,
   ViewChildren,
   QueryList,
   ChangeDetectorRef
 } from '@angular/core';
 
 import { SubMenuComponent } from './submenu/submenu.component';
-import { MenuState, SubMenuDef, SubMenuType } from 'app/config/menu.config';
-import { AppConstant } from 'app/config/app.config';
+import { AppConstant, MenuState, SubMenuDef } from 'app/config/app.config';
 import { Util } from 'app/shared/util/util';
 
 @Component({
@@ -17,11 +15,9 @@ import { Util } from 'app/shared/util/util';
   styleUrls: ['./sidemenu.component.css']
 })
 
-export class SideMenuComponent implements AfterViewInit {
+export class SideMenuComponent {
 
   @ViewChildren(SubMenuComponent) submenus: QueryList<SubMenuComponent>;
-  userSubMenu: SubMenuComponent;
-  langSubMenu: SubMenuComponent;
   sideMenuState: number;
   authenticated: boolean;
 
@@ -30,23 +26,16 @@ export class SideMenuComponent implements AfterViewInit {
     this.authenticated = false;
   }
 
-  ngAfterViewInit(): void {
-    setTimeout(_ => {
-      this.userSubMenu = this.submenus.find(submenu => submenu.linkName === SubMenuDef.userMenu.linkName);
-      this.langSubMenu = this.submenus.find(submenu => submenu.linkName === SubMenuDef.languageMenu.linkName);
-    });
-  }
-
   isSideMenuExpanded(): boolean {
     return this.sideMenuState === MenuState.expanded;
   }
 
-  getUserSubMenuType(): string {
-    return SubMenuType.user;
-  }
-
-  getLanguageSubMenuType(): string {
-    return SubMenuType.language;
+  getSubMenuData(type: string) {
+    if (type === 'language') {
+      return SubMenuDef.language;
+    } else {
+      return SubMenuDef.user;
+    }
   }
 
   getMinHeight(): string {
@@ -89,12 +78,12 @@ export class SideMenuComponent implements AfterViewInit {
     }
   }
 
-  onSubMenuToggled(type: string): void {
-    if (type === SubMenuType.user) {
-      this.langSubMenu.subMenuState = MenuState.collapsed;
-    } else if (type === SubMenuType.language) {
-      this.userSubMenu.subMenuState = MenuState.collapsed;
-    }
+  onSubMenuExpanded(type: string): void {
+    this.submenus.forEach((submenu) => {
+      if (submenu.menuData.type !== type) {
+        submenu.subMenuState = MenuState.collapsed;
+      }
+    });
   }
 
   displayIcon(): boolean {
@@ -106,9 +95,8 @@ export class SideMenuComponent implements AfterViewInit {
   }
 
   private collapseSubMenus(): void {
-    if (this.userSubMenu !== undefined) {
-      this.userSubMenu.setSubMenuState(MenuState.collapsed);
-    }
-    this.langSubMenu.setSubMenuState(MenuState.collapsed);
+    this.submenus.forEach((submenu) => {
+      submenu.subMenuState = MenuState.collapsed;
+    });
   }
 }

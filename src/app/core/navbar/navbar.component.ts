@@ -8,8 +8,7 @@ import {
 } from '@angular/core';
 
 import { SearchMenuComponent } from './searchmenu/searchmenu.component';
-import { AppConfig, AppConstant } from 'app/config/app.config';
-import { MenuState } from 'app/config/menu.config';
+import { AppConfig, AppConstant, MenuState } from 'app/config/app.config';
 import { SideMenuComponent } from './sidemenu/sidemenu.component';
 
 @Component({

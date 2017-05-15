@@ -3,20 +3,18 @@ import {
   OnInit,
   DoCheck,
   AfterViewInit,
-  OnChanges,
   Renderer2,
   Input,
   Output,
   ViewChild,
   ElementRef,
   EventEmitter,
-  SimpleChanges,
   HostListener
 } from '@angular/core';
 
-import { AppConfig, AppConstant } from 'app/config/app.config';
-import { SubMenuDef, SubMenuType, MenuState } from 'app/config/menu.config';
 import { TranslateService } from '@ngx-translate/core';
+import { AppConfig, AppConstant, MenuState } from 'app/config/app.config';
+import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
 
 @Component({
   selector: 'aj-submenu',
@@ -27,15 +25,11 @@ import { TranslateService } from '@ngx-translate/core';
   }
 })
 
-export class SubMenuComponent implements OnInit, DoCheck, OnChanges, AfterViewInit {
+export class SubMenuComponent implements OnInit, DoCheck, AfterViewInit {
 
-  // @ViewChild('submenu') submenu: any;
   @ViewChild('dropdown') dropdown: ElementRef;
-  @ViewChild('icon') icon: ElementRef;
-  @Input() type: string;
-  @Output() onSubMenuToggled: EventEmitter<string>;
-  linkName: string;
-  items: string[];
+  @Input() menuData: IMenuItem;
+  @Output() onSubMenuExpanded: EventEmitter<string>;
   subMenuState: number;
   windowWidth: number;
   lastCollapsedTime: number;
@@ -44,13 +38,13 @@ export class SubMenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2, private translate: TranslateService) {
     this.subMenuState = MenuState.collapsed;
-    this.onSubMenuToggled = new EventEmitter<string>();
+    this.onSubMenuExpanded = new EventEmitter<string>();
     this.lastCollapsedTime = 0;
   }
 
   ngOnInit() {
-    const nativeElement: HTMLElement = this.elementRef.nativeElement,
-      parentElement: HTMLElement = nativeElement.parentElement;
+    const nativeElement: HTMLElement = this.elementRef.nativeElement;
+    const parentElement: HTMLElement = nativeElement.parentElement;
     while (nativeElement.firstChild) {
       parentElement.insertBefore(nativeElement.firstChild, nativeElement);
     }
@@ -64,13 +58,7 @@ export class SubMenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
   ngAfterViewInit(): void {
     this.windowWidth = window.innerWidth;
     this.setMarginBottom();
-    this.setIcon();
-    this.toggleMouseEventListeners();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.linkName = this.type === SubMenuType.user ? SubMenuDef.userMenu.linkName : SubMenuDef.languageMenu.linkName;
-    this.items = this.type === SubMenuType.user ? SubMenuDef.userMenu.items : SubMenuDef.languageMenu.items;
+    this.configureMouseEventListeners();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -79,8 +67,7 @@ export class SubMenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
     if (newWindowWidth !== this.windowWidth) {
       this.windowWidth = newWindowWidth;
       this.subMenuState = MenuState.collapsed;
-      this.setIcon();
-      this.toggleMouseEventListeners();
+      this.configureMouseEventListeners();
     }
   }
 
@@ -101,7 +88,7 @@ export class SubMenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
         this.subMenuState = this.subMenuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
         // this.setMarginBottomStyle();
         if (this.subMenuState === MenuState.expanded) {
-          this.onSubMenuToggled.emit(this.type);
+          this.onSubMenuExpanded.emit(this.menuData.type);
         }
       }
     }
@@ -117,7 +104,7 @@ export class SubMenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
       }
       if (this.subMenuState === MenuState.collapsed) {
         if (this.insideDropDown(mouseX, mouseY)) {
-          this.onSubMenuToggled.emit(this.type);
+          this.onSubMenuExpanded.emit(this.menuData.type);
           this.subMenuState = MenuState.expanded;
         }
       } else {
@@ -147,29 +134,22 @@ export class SubMenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
     }
   }
 
-  onSubMenuClick(item: string): void {
-    const curLang = this.translate.currentLang;
-    if (item === 'NAVBAR.SIDE.LANGUAGE.MENU.ENGLISH') {
-      if (curLang !== 'en') {
-        this.translate.use('en');
-      }
-    } else if (item === 'NAVBAR.SIDE.LANGUAGE.MENU.JAPANESE') {
-      if (curLang !== 'ja') {
-        this.translate.use('ja');
-      }
-    } else if (item === 'NAVBAR.SIDE.LANGUAGE.MENU.CHINESE') {
-      if (curLang !== 'zh') {
-        this.translate.use('zh');
+  onSubMenuClick(type: string): void {
+    if (this.menuData.type === 'language') {
+      const curLang = this.translate.currentLang;
+      if (type !== curLang) {
+        this.translate.use(type);
+        this.subMenuState = MenuState.collapsed;
       }
     }
   }
 
-  displayIcon(): boolean {
+  showIcon(): boolean {
     return window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH;
   }
 
-  displayLogout(): boolean {
-    return this.type === SubMenuType.user && window.innerWidth >= AppConstant.DEFAULT_DEVICE_WIDTH;
+  showLogout(): boolean {
+    return this.menuData.type === 'user' && window.innerWidth >= AppConstant.DEFAULT_DEVICE_WIDTH;
   }
 
   private isIPAD() {
@@ -179,20 +159,8 @@ export class SubMenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
 
   private setMarginBottom(): void {
     if (this.dropdown !== undefined && this.dropdown.nativeElement !== undefined) {
-      const marginBottom = this.subMenuState === MenuState.expanded ? this.items.length * 30 + 'px' : '';
+      const marginBottom = this.subMenuState === MenuState.expanded ? this.menuData.value.length * 30 + 'px' : '';
       this.renderer.setStyle(this.dropdown.nativeElement, 'margin-bottom', marginBottom);
-    }
-  }
-
-  private setIcon(): void {
-    if (this.icon !== undefined && this.icon.nativeElement !== undefined) {
-      if (this.displayIcon()) {
-        if (this.type === SubMenuType.user) {
-          this.renderer.addClass(this.icon.nativeElement, 'fa-user');
-        } else {
-          this.renderer.addClass(this.icon.nativeElement, 'fa-language');
-        }
-      }
     }
   }
 
@@ -213,7 +181,7 @@ export class SubMenuComponent implements OnInit, DoCheck, OnChanges, AfterViewIn
     return mouseX > left + 3 && mouseX < left + width - 3 && mouseY >= top && mouseY < top + height - 1;
   }
 
-  private toggleMouseEventListeners(): void {
+  private configureMouseEventListeners(): void {
     if (AppConfig.MENU_HOVER_MODE === true) {
       if (this.windowWidth > AppConstant.DEFAULT_DEVICE_WIDTH) {
         if (this.cancelMouseMoveListenFunc === undefined) {

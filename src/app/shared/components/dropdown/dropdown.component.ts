@@ -8,9 +8,11 @@ import {
   SimpleChanges
 } from '@angular/core';
 
-import { IListItem } from 'app/shared/interfaces/listitem.interface';
-import { MenuState } from 'app/config/menu.config';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { MenuState } from 'app/config/app.config';
 import { Util } from 'app/shared/util/util';
+import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
+
 
 @Component({
   selector: 'aj-dropdown',
@@ -24,7 +26,7 @@ import { Util } from 'app/shared/util/util';
 
 export class DropDownComponent implements OnChanges {
 
-  @Input() dataList: IListItem[];
+  @Input() dataList: IMenuItem[];
   @Input() placeHolder: string;
   @Input() width: number;
   @Input() height: number;
@@ -36,16 +38,16 @@ export class DropDownComponent implements OnChanges {
   // @Output() opened: EventEmitter<number>;
   @Output() selected: EventEmitter<string>;
   inputString: string;
-  displayList: IListItem[];
+  displayList: IMenuItem[];
   selectedIndex: number;
   menuState: number;
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef, private translate: TranslateService) {
     this.dataList = [];
     this.placeHolder = 'Please Select';
     this.width = 200;
     this.height = 36;
-    this.displayProperty = 'label';
+    this.displayProperty = 'display';
     this.displayMaxCount = -1;
     this.sorted = false;
     this.autoComplete = false;
@@ -56,31 +58,31 @@ export class DropDownComponent implements OnChanges {
     this.menuState = MenuState.collapsed;
     // this.opened = new EventEmitter<number>();
     this.selected = new EventEmitter<string>();
+    translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      if (!this.autoComplete) {
+        this.inputString = this.getTranslatedPlaceHolder();
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // if (changes.hasOwnProperty('dataList')) {
-    //   this.dataList = changes['dataList'].currentValue;
-    // }
-    // if (changes.hasOwnProperty('sorted')) {
-    //   this.sorted = changes['sorted'].currentValue;
-    // }
-    // if (changes.hasOwnProperty('autoComplete')) {
-    //   this.autoComplete = changes['autoComplete'].currentValue;
-    // }
     if (this.sorted && this.dataList.length > 0) {
       this.dataList.sort(Util.sortByProperty(this.displayProperty));
     }
     if (!this.autoComplete) {
       this.displayList = this.dataList;
-      this.inputString = this.placeHolder;
+      this.inputString = this.getTranslatedPlaceHolder();
     }
   }
 
+  private getTranslatedPlaceHolder(): string {
+    return this.translate.instant(this.placeHolder);
+  }
+
   defaultFilterfunc(filterString: string,
-                    sourceList: IListItem[],
+                    sourceList: IMenuItem[],
                     filterProperty: string,
-                    maxCount: number): IListItem[] {
+                    maxCount: number): IMenuItem[] {
     let resultList = [];
     for (const item of sourceList) {
       const itemValue = item[filterProperty].toLowerCase();

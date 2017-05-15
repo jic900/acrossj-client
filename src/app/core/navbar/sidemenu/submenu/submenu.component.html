@@ -1,18 +1,22 @@
 <!--<ng-template #submenu>-->
   <li #dropdown class="dropdown">
     <a href="#a" class="dropdown-toggle" (click)="onMouseClick($event)">
-      <i #icon *ngIf="displayIcon()" class="fa fa-fw" aria-hidden="true"></i>
-      &nbsp;{{ linkName|translate }}&nbsp;
+      <i *ngIf="showIcon()"
+         [ngClass]="menuData.iconClass ? menuData.iconClass : ''"
+         aria-hidden="true">
+      </i>
+      <!--<i #icon *ngIf="displayIcon()" class="fa fa-fw" aria-hidden="true"></i>-->
+      &nbsp;{{ menuData.display|translate }}&nbsp;
       <span class="caret" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
       </span>
       <!--<i class="fa fa-caret-down" style="color: white;" aria-hidden="true"></i>-->
     </a>
     <ul class="dropdown-menu"
         [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
-      <li *ngFor="let item of items">
-        <a href="#" (click)="onSubMenuClick(item)">{{ item|translate }}</a>
+      <li *ngFor="let listItem of menuData.value">
+        <a href="#" (click)="onSubMenuClick(listItem.type)">{{ listItem.display|translate }}</a>
       </li>
-      <li *ngIf="displayLogout()"><a href="#">{{'NAVBAR.SIDE.SIGNOUT'|translate}}</a>
+      <li *ngIf="showLogout()"><a href="#">{{'NAVBAR.SIDE.SIGNOUT'|translate}}</a>
       </li>
     </ul>
   </li>

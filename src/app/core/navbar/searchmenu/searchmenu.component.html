@@ -10,10 +10,10 @@
           <div class="panel-body">
             <aj-dropdown #placeSearcher
                          [dataList]="placeList"
-                         [placeHolder]="'Search Places'"
+                         [placeHolder]="'NAVBAR.SEARCH.PLACES_INPUT_TXT'"
                          [width]="fieldWidth"
                          [filterFunc]="filterPlaces"
-                         [displayProperty]="'label'"
+                         [displayProperty]="'display'"
                          [displayMaxCount]="getDisplayedPlacesMaxCount()"
                          [sorted]="true"
                          [autoComplete]="true"
@@ -24,7 +24,7 @@
         <div id="datePickerPanel" class="panel panel-default">
           <div class="panel-body">
             <aj-daterangepicker #dateRangePicker
-                                [placeholder]="'Select Date Range'"
+                                [placeholder]="'NAVBAR.SEARCH.DRP.INPUT_TXT'"
                                 [width]="fieldWidth"
                                 [height]="fieldHeight"
                                 [options]="dateRangePickerOptions">
@@ -35,10 +35,10 @@
           <div class="panel-body">
             <aj-dropdown #categoryPicker
                          [dataList]="categoryList"
-                         [placeHolder]="'Select Category'"
+                         [placeHolder]="'NAVBAR.SEARCH.CATEGORY_INPUT_TXT'"
                          [width]="fieldWidth"
                          [height]="fieldHeight"
-                         [displayProperty]="'label'"
+                         [displayProperty]="'display'"
                          (selected)="onCategorySelected($event)">
             </aj-dropdown>
           </div>
@@ -46,7 +46,7 @@
       </div>
       <button class="btn btn-clearall"
               (click)="placeSearcher.clearField(); categoryPicker.clearField(); dateRangePicker.clearDateRange()">
-        Clear All
+        {{'NAVBAR.SEARCH.CLEAR_ALL'|translate}}
       </button>
     </div>
   </div>

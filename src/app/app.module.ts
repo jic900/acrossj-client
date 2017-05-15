@@ -49,7 +49,7 @@ export class AppModule {
     translate.setDefaultLang('en');
 
     let browserLang = translate.getBrowserLang();
-    // translate.use('en');
     translate.use(browserLang.match(/en|ja|zh/) ? browserLang : 'en');
+    // translate.use('zh');
   }
 }

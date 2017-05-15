@@ -33,6 +33,7 @@ import {
 } from './interfaces/index';
 
 import { DateRangePickerService } from './services/daterangepicker.service';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 
 // export const DRP_VALUE_ACCESSOR: any = {
 //   provide: NG_VALUE_ACCESSOR,
@@ -52,6 +53,7 @@ enum MonthId {prev = 1, curr = 2, next = 3}
   providers: [DateRangePickerService],
   encapsulation: ViewEncapsulation.None
 })
+
 export class DateRangePicker implements OnChanges, ControlValueAccessor {
 
   @Input() options: any;
@@ -161,7 +163,8 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
     ariaLabelNextYear: <string> 'Next Year'
   };
 
-  constructor(public elem: ElementRef, private renderer: Renderer2, private cdr: ChangeDetectorRef, private drus: DateRangePickerService) {
+  constructor(public elem: ElementRef, private renderer: Renderer2, private cdr: ChangeDetectorRef,
+              private drus: DateRangePickerService, private translate: TranslateService) {
     renderer.listen('document', 'click', (event: any) => {
       if (this.showSelector && event.target && this.elem.nativeElement !== event.target && !this.elem.nativeElement.contains(event.target)) {
         this.showSelector = false;
@@ -170,6 +173,9 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
       if (this.opts.editableMonthAndYear) {
         this.resetMonthYearEdit();
       }
+    });
+    translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.translateOptions();
     });
   }
 
@@ -200,7 +206,9 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
       this.clearDateRange();
     }
     else {
-      let daterange: IDateRange = this.drus.isDateRangeValid(value, this.opts.dateFormat, this.opts.minYear, this.opts.maxYear, this.opts.disableUntil, this.opts.disableSince, this.opts.disableDates, this.opts.disableDateRanges, this.opts.enableDates, this.opts.monthLabels);
+      let daterange: IDateRange = this.drus.isDateRangeValid(value, this.opts.dateFormat, this.opts.minYear,
+        this.opts.maxYear, this.opts.disableUntil, this.opts.disableSince, this.opts.disableDates,
+        this.opts.disableDateRanges, this.opts.enableDates, this.opts.monthLabels);
       if (this.drus.isInitializedDate(daterange.beginDate) && this.drus.isInitializedDate(daterange.endDate)) {
         this.beginDate = daterange.beginDate;
         this.endDate = daterange.endDate;
@@ -275,6 +283,44 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
 
     this.dateRangeFormat = this.opts.dateFormat + ' - ' + this.opts.dateFormat;
 
+    this.setWeekDays();
+  }
+
+  private translateOptions(): void {
+    if (this.options !== undefined) {
+      Object.keys(this.options).forEach((key) => {
+        (<IOptions>this.opts)[key] = this.translateJsonProperty(this.options[key]);
+      });
+      // this.translateJson(this.options, this.opts, this.translate);
+      this.setWeekDays();
+    }
+  }
+
+  private translateJsonProperty(jsonProp: any): any {
+    if (typeof(jsonProp) === 'string') {
+      return this.translate.instant(jsonProp);
+    } else if (typeof(jsonProp) === 'object') {
+      let childJsonObj = Object.assign({}, jsonProp);
+      Object.keys(childJsonObj).forEach((key) => {
+        childJsonObj[key] = this.translateJsonProperty(childJsonObj[key]);
+      });
+      return childJsonObj;
+    }
+    return jsonProp;
+  }
+
+  // private translateJson(srcJson: any, dstJson: any, translate: TranslateService): void {
+  //   Object.keys(srcJson).forEach((k) => {
+  //     if (typeof(srcJson[k]) === 'string') {
+  //       dstJson[k] = translate.instant(srcJson[k]);
+  //     } else if (typeof(srcJson[k]) === 'object') {
+  //       this.translateJson(srcJson[k], dstJson[k], translate);
+  //     }
+  //   });
+  // }
+
+  private setWeekDays() {
+    this.weekDays = [];
     this.dayIdx = this.weekDayOpts.indexOf(this.opts.firstDayOfWeek);
     if (this.dayIdx !== -1) {
       let idx: number = this.dayIdx;
@@ -393,7 +439,7 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
         y = this.selectedMonth.year;
         m = this.selectedMonth.monthNbr;
       }
-      this.visibleMonth = {monthTxt: this.opts.monthLabels[m], monthNbr: m, year: y};
+      this.visibleMonth = {monthTxt: this.monthText(m), monthNbr: m, year: y};
       this.generateCalendar(m, y, true);
     }
   }
