@@ -4,9 +4,7 @@
       <i *ngIf="showIcon()"
          [ngClass]="menuData.iconClass ? menuData.iconClass : ''"
          aria-hidden="true">
-      </i>
-      <!--<i #icon *ngIf="displayIcon()" class="fa fa-fw" aria-hidden="true"></i>-->
-      &nbsp;{{ menuData.display|translate }}&nbsp;
+      </i>{{menuData.display|translate}}
       <span class="caret" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
       </span>
       <!--<i class="fa fa-caret-down" style="color: white;" aria-hidden="true"></i>-->

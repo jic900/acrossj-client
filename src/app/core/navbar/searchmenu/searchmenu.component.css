@@ -58,8 +58,12 @@
 .btn-clearall {
   background-color: transparent;
   color: white;
-  text-decoration: underline;
-  margin: 15px 0 15px;
+  /*text-decoration: underline;*/
+  text-decoration: none;
+  border-bottom: solid 1px white;
+  border-radius: 0;
+  padding: 0 4px 0;
+  margin: 15px 15px 15px 0;
   float: right;
   font-size: 16px;
 }

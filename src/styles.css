@@ -25,10 +25,19 @@ html, body {
   }
 }
 
-a > .fa {
-  display: inline;
-  padding-right: 3px;
-}
+/*ul li {*/
+  /*display: table;*/
+/*}*/
+
+/*ul li a {*/
+  /*display: table-cell;*/
+  /*vertical-align: middle;*/
+/*}*/
+
+/*a > .fa {*/
+  /*margin-right: 20px;*/
+  /*font-size: 22px;*/
+/*}*/
 
 /*.no-scroll {*/
   /*overflow: hidden;*/

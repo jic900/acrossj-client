@@ -86,11 +86,15 @@ export class SideMenuComponent {
     });
   }
 
-  displayIcon(): boolean {
+  showIcon(): boolean {
     return window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH;
   }
 
-  displayLogout(): boolean {
+  showSearch(): boolean {
+    return window.innerWidth >= AppConstant.DEFAULT_DEVICE_WIDTH;
+  }
+
+  showLogout(): boolean {
     return this.authenticated && window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH;
   }
 

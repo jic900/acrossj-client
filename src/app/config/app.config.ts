@@ -37,7 +37,8 @@ export const SubMenuDef = {
       {display: 'NAVBAR.SIDE.LANGUAGE.MENU.JAPANESE', type: 'ja'},
       {display: 'NAVBAR.SIDE.LANGUAGE.MENU.CHINESE', type: 'zh'}
     ],
-    iconClass: 'fa fa-fw fa-language'
+    iconClass: 'fa fa-fw fontello-globe'
+    // iconClass: 'fa fa-fw fa-globe'
   }
 };
 

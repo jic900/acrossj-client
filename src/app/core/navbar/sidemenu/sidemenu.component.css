@@ -36,10 +36,37 @@
     /*border-bottom: 1px solid #222222;*/
   }
 }
+@media (min-width: 768px) {
+  .navbar-collapse .nav > li.divider {
+    width: 50px;
+    height: 1px;
+    /*margin: 5px 1px;*/
+    /**margin: -5px 0 5px;*/
+    overflow: hidden;
+    background-color: inherit;
+    /*border-bottom: 1px solid #222222;*/
+  }
+}
 
 li > a {
   color: #FFFFFF;
   background-color: inherit;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.navbar-button-search {
+  padding: 5px;
+  margin-top: 4px;
+  margin-bottom: 0;
+  color: white;
+  background-color: transparent;
+  font-size: 140%;
+  outline: none;
+  border: none;
+}
+
+:host >>> a > .fa {
+  margin-right: 15px;
+  font-size: 22px;
 }

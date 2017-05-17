@@ -164,7 +164,7 @@ export class DropDownComponent implements OnChanges {
   }
 
   clearField(): void {
-    this.inputString = this.autoComplete ? '' : this.placeHolder;
+    this.inputString = this.autoComplete ? '' : this.getTranslatedPlaceHolder();
   }
 
   resetDisplayList(): void {
