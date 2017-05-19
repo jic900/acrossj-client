@@ -39,7 +39,7 @@ export class NavbarComponent implements AfterViewInit {
     const newWindowWidth = event.target.innerWidth;
     if (newWindowWidth !== this.windowWidth) {
       this.windowWidth = newWindowWidth;
-      if (this.windowWidth >= AppConstant.DEFAULT_DEVICE_WIDTH) {
+      if (this.windowWidth >= AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT) {
         this.sideMenu.setSideMenuState(MenuState.collapsed);
         this.searchMenu.setSearchMenuState(MenuState.collapsed);
       }

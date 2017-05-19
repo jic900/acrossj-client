@@ -82,7 +82,7 @@ export class SubMenuComponent implements OnInit, DoCheck, AfterViewInit {
   onMouseClick(event): void {
     // const width = window.innerWidth;
     // console.log('onMouseClick: ' + event.x + ' ' + event.y);
-    if (!AppConfig.MENU_HOVER_MODE || this.windowWidth < AppConstant.DEFAULT_DEVICE_WIDTH || this.isIPAD()) {
+    if (!AppConfig.MENU_HOVER_MODE || this.windowWidth < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT || this.isIPAD()) {
       const curTime = new Date().getTime();
       if (this.subMenuState !== MenuState.collapsed || curTime - this.lastCollapsedTime > 100) {
         this.subMenuState = this.subMenuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
@@ -97,7 +97,7 @@ export class SubMenuComponent implements OnInit, DoCheck, AfterViewInit {
   onMouseMove(event): void {
     // console.log('onMouseMove: ' + event.x + ' ' + event.y);
     // const width = window.innerWidth;
-    if (this.windowWidth >= AppConstant.DEFAULT_DEVICE_WIDTH) {
+    if (this.windowWidth >= AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT) {
       const mouseX = event.clientX, mouseY = event.clientY;
       if (mouseX === undefined || mouseY === undefined) {
         return;
@@ -119,14 +119,14 @@ export class SubMenuComponent implements OnInit, DoCheck, AfterViewInit {
     // let mouseX = event.clientX, mouseY = event.clientY;
     // console.log(`onMouseLeave - (${mouseX}, ${mouseY})`);
     // const width = window.innerWidth;
-    if (this.windowWidth >= AppConstant.DEFAULT_DEVICE_WIDTH) {
+    if (this.windowWidth >= AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT) {
       this.subMenuState = MenuState.collapsed;
     }
   }
 
   onMouseUp(event): void {
     // const width = window.innerWidth;
-    if (this.windowWidth >= AppConstant.DEFAULT_DEVICE_WIDTH) {
+    if (this.windowWidth >= AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT) {
       if (this.subMenuState === MenuState.expanded) {
         this.subMenuState = MenuState.collapsed;
         this.lastCollapsedTime = new Date().getTime();
@@ -145,11 +145,11 @@ export class SubMenuComponent implements OnInit, DoCheck, AfterViewInit {
   }
 
   show(): boolean {
-    return window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH;
+    return window.innerWidth < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT;
   }
 
   showLogout(): boolean {
-    return this.menuData.type === 'user' && window.innerWidth >= AppConstant.DEFAULT_DEVICE_WIDTH;
+    return this.menuData.type === 'user' && window.innerWidth >= AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT;
   }
 
   private isIPAD() {
@@ -183,7 +183,7 @@ export class SubMenuComponent implements OnInit, DoCheck, AfterViewInit {
 
   private configureMouseEventListeners(): void {
     if (AppConfig.MENU_HOVER_MODE === true) {
-      if (this.windowWidth > AppConstant.DEFAULT_DEVICE_WIDTH) {
+      if (this.windowWidth >= AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT) {
         if (this.cancelMouseMoveListenFunc === undefined) {
           this.cancelMouseMoveListenFunc = this.renderer.listen(this.dropdown.nativeElement, 'mousemove', (event) => {
             this.onMouseMove(event);

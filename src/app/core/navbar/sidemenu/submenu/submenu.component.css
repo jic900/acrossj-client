@@ -39,7 +39,7 @@ a > .caret.subMenuExpanded {
   z-index: 1;
   transform: translateY(0%);
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .dropdown {
     transition: all 0.5s linear 0s;
   }
@@ -47,7 +47,7 @@ a > .caret.subMenuExpanded {
     background-color: inherit;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 1025px) {
   .dropdown-menu {
     padding-bottom: 15px;
     background-color: rgba(0, 0, 0, 0.50);

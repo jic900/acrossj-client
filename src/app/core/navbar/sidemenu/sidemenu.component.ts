@@ -90,7 +90,7 @@ export class SideMenuComponent {
   }
 
   isDeviceWidth(): boolean {
-    return window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH;
+    return window.innerWidth < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT;
   }
 
   private collapseSubMenus(): void {

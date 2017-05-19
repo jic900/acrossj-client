@@ -16,7 +16,7 @@ html, body {
   /*background: #FF0000;*/
 /*}*/
 
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   li {
     font-size: 130%;
   }
@@ -24,7 +24,7 @@ html, body {
     font-size: 115%;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 1025px) {
   li {
     font-size: 110%;
   }
@@ -33,20 +33,3 @@ html, body {
   }
 }
 
-/*ul li {*/
-  /*display: table;*/
-/*}*/
-
-/*ul li a {*/
-  /*display: table-cell;*/
-  /*vertical-align: middle;*/
-/*}*/
-
-/*a > .fa {*/
-  /*margin-right: 20px;*/
-  /*font-size: 22px;*/
-/*}*/
-
-/*.no-scroll {*/
-  /*overflow: hidden;*/
-/*}*/

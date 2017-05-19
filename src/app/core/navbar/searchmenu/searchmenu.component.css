@@ -1,8 +1,6 @@
 .navbar-search {
   position: absolute;
-  /*width: 250px;*/
   width: 100%;
-  /*min-height: 300px;*/
   max-height: none;
   border-top: none;
   box-shadow: none;
@@ -20,10 +18,6 @@
   z-index: 1;
   transform: translateX(0%);
 }
-
-/*.navbar-search-panel {*/
-  /*overflow-y: scroll !important;*/
-/*}*/
 
 .navbar-search-content {
   margin: auto;
