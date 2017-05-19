@@ -33,7 +33,8 @@ import {
 } from './interfaces/index';
 
 import { DateRangePickerService } from './services/daterangepicker.service';
-import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { Util } from 'app/shared/util/util';
 
 // export const DRP_VALUE_ACCESSOR: any = {
 //   provide: NG_VALUE_ACCESSOR,
@@ -419,8 +420,16 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
     this.showSelector = !this.showSelector;
     this.cdr.detectChanges();
     this.calendarOpened.emit(this.showSelector);
+    this.inputBlurOnDevice();
     if (this.showSelector) {
       this.setVisibleMonth();
+    }
+  }
+
+  private inputBlurOnDevice(): void {
+    if (Util.isPhoneOrTablet() && !Util.isDeviceSimulator()) {
+      const inputField = this.elem.nativeElement.querySelector('.selection');
+      inputField.blur();
     }
   }
 
