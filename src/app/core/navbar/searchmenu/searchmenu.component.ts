@@ -83,8 +83,8 @@ export class SearchMenuComponent implements AfterViewInit {
   setFieldWidth() {
     let widthPercent = 88;
     const windowWidth = window.innerWidth;
-    if (windowWidth > AppConstant.IPHONE6__WIDTH) {
-      widthPercent = 100 - (windowWidth - AppConstant.IPHONE6__WIDTH) * 100 / (windowWidth * 1.5);
+    if (windowWidth > AppConstant.IPHONE6_WIDTH) {
+      widthPercent = 100 - (windowWidth - AppConstant.IPHONE6_WIDTH) * 100 / (windowWidth * 1.5);
     }
     this.fieldWidth = windowWidth * widthPercent / 100;
   }

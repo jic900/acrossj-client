@@ -1,21 +1,23 @@
-<!--<ng-template #submenu>-->
-  <li #dropdown class="dropdown">
-    <a href="#a" class="dropdown-toggle" (click)="onMouseClick($event)">
-      <i *ngIf="showIcon()"
-         [ngClass]="menuData.iconClass ? menuData.iconClass : ''"
-         aria-hidden="true">
-      </i>{{menuData.display|translate}}
-      <span class="caret" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
-      </span>
-      <!--<i class="fa fa-caret-down" style="color: white;" aria-hidden="true"></i>-->
-    </a>
-    <ul class="dropdown-menu"
-        [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
-      <li *ngFor="let listItem of menuData.value">
-        <a href="#" (click)="onSubMenuClick(listItem.type)">{{ listItem.display|translate }}</a>
-      </li>
-      <li *ngIf="showLogout()"><a href="#">{{'NAVBAR.SIDE.SIGNOUT'|translate}}</a>
-      </li>
-    </ul>
-  </li>
-<!--</ng-template>-->
+<li #dropdown class="dropdown">
+  <a href="#a" class="dropdown-toggle" (click)="onMouseClick($event)">
+    <i class="fa fa-fw"
+       [ngClass]="menuData.iconClass ? menuData.iconClass : ''"
+       aria-hidden="true">
+    </i><span *ngIf="show()">{{ menuData.display | translate }}</span>
+    <span *ngIf="show()" class="caret" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}"></span>
+  </a>
+  <ul class="dropdown-menu" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
+    <li *ngFor="let listItem of menuData.value">
+      <a href="#" (click)="onSubMenuClick(listItem.type)">
+        <i *ngIf="show()"
+           class='fa fa-fw'
+           [ngClass]="listItem.iconClass ? listItem.iconClass : ''"
+           aria-hidden="true">
+        </i>{{ listItem.display | translate }}
+      </a>
+    </li>
+    <li *ngIf="showLogout()"><a href="#">{{'NAVBAR.SIDE.SIGNOUT'|translate}}</a>
+    </li>
+  </ul>
+</li>
+

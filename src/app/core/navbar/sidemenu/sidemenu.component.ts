@@ -6,8 +6,9 @@ import {
 } from '@angular/core';
 
 import { SubMenuComponent } from './submenu/submenu.component';
-import { AppConstant, MenuState, SubMenuDef } from 'app/config/app.config';
+import { AppConstant, MenuState, SideMenuDef, SubMenuDef } from 'app/config/app.config';
 import { Util } from 'app/shared/util/util';
+import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
 
 @Component({
   selector: 'aj-sidemenu',
@@ -18,10 +19,12 @@ import { Util } from 'app/shared/util/util';
 export class SideMenuComponent {
 
   @ViewChildren(SubMenuComponent) submenus: QueryList<SubMenuComponent>;
+  sideMenuData: IMenuItem;
   sideMenuState: number;
   authenticated: boolean;
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {
+    this.sideMenuData = SideMenuDef.topList;
     this.sideMenuState = MenuState.collapsed;
     this.authenticated = false;
   }
@@ -54,7 +57,7 @@ export class SideMenuComponent {
   }
 
   getTransition(): string {
-    return window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH ? 'all 0.5s ease-in-out 0s' : '';
+    return this.isDeviceWidth() ? 'all 0.5s ease-in-out 0s' : '';
   }
 
   setAuthenticated(isAuthenticated: boolean): void {
@@ -86,16 +89,8 @@ export class SideMenuComponent {
     });
   }
 
-  showIcon(): boolean {
+  isDeviceWidth(): boolean {
     return window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH;
-  }
-
-  showSearch(): boolean {
-    return window.innerWidth >= AppConstant.DEFAULT_DEVICE_WIDTH;
-  }
-
-  showLogout(): boolean {
-    return this.authenticated && window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH;
   }
 
   private collapseSubMenus(): void {

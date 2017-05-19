@@ -139,12 +139,12 @@ export class SubMenuComponent implements OnInit, DoCheck, AfterViewInit {
       const curLang = this.translate.currentLang;
       if (type !== curLang) {
         this.translate.use(type);
-        this.subMenuState = MenuState.collapsed;
       }
+      this.subMenuState = MenuState.collapsed;
     }
   }
 
-  showIcon(): boolean {
+  show(): boolean {
     return window.innerWidth < AppConstant.DEFAULT_DEVICE_WIDTH;
   }
 

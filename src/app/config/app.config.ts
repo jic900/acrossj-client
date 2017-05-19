@@ -12,10 +12,21 @@ export class AppConfig {
 
 export class AppConstant {
   public static DEFAULT_DEVICE_WIDTH: number = 768;
-  public static IPHONE6__WIDTH: number = 375;
+  public static IPHONE6_WIDTH: number = 375;
   public static IPAD_WIDTH: number = 768;
   public static IPAD_PRO_WIDTH: number = 1024;
 }
+
+export const SideMenuDef = {
+  topList: {
+    display: '',
+    value: [
+      {display: 'NAVBAR.SIDE.ABOUT_US', iconClass: 'fa-info-circle'},
+      {display: 'NAVBAR.SIDE.CREATE_TRIP', iconClass: 'fa-calendar-plus-o'},
+      {display: 'NAVBAR.SIDE.HELP', iconClass: 'fa-question-circle-o'}
+    ]
+  }
+};
 
 export const SubMenuDef = {
   user: {
@@ -27,7 +38,7 @@ export const SubMenuDef = {
       {display: 'Messages'},
       {display: 'Uploads'}
     ],
-    iconClass: 'fa fa-fw fa-user'
+    iconClass: 'fa-user'
   },
   language: {
     display: 'NAVBAR.SIDE.LANGUAGE.LABEL',
@@ -37,8 +48,7 @@ export const SubMenuDef = {
       {display: 'NAVBAR.SIDE.LANGUAGE.MENU.JAPANESE', type: 'ja'},
       {display: 'NAVBAR.SIDE.LANGUAGE.MENU.CHINESE', type: 'zh'}
     ],
-    iconClass: 'fa fa-fw fontello-globe'
-    // iconClass: 'fa fa-fw fa-globe'
+    iconClass: 'fontello-globe'
   }
 };
 

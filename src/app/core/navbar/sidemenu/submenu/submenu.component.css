@@ -1,6 +1,7 @@
 li > a {
   color: white;
   background-color: inherit;
+  margin-right: 5px;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -8,24 +9,10 @@ li > a {
 li > a:hover {
   background-color: inherit;
 }
-/*@media (min-width: 768px) {*/
-  /*li > a:hover {*/
-    /*text-shadow: 1px 0px 0px white;*/
-  /*}*/
-/*}*/
-
-li > ul > li > a {
-  padding-left: 16px;
-}
-
-@media (max-width: 767px) {
-  li > ul > li > a {
-    padding-left: 40px;
-  }
-}
 
 a > .caret {
   margin-left: 4px;
+  border-width: 5px;
   transition: all 0.5s ease-in-out;
 }
 a > .caret.subMenuExpanded {

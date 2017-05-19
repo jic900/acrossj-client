@@ -24,6 +24,14 @@ html, body {
     font-size: 115%;
   }
 }
+@media (min-width: 768px) {
+  li {
+    font-size: 110%;
+  }
+  li > ul > li {
+    font-size: 100%;
+  }
+}
 
 /*ul li {*/
   /*display: table;*/

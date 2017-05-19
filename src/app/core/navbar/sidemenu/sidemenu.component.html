@@ -2,43 +2,42 @@
 <div class="navbar-collapse"
      [ngStyle]="{'min-height': getMinHeight(), 'transition': getTransition()}"
      [ngClass]="{'sideMenuExpanded': isSideMenuExpanded()}">
-  <ul class="nav navbar-nav navbar-right"
-      [ngStyle]="{'max-height': getMaxHeight(), 'overflow-y': getOverflowY()}">
-    <li>
-      <a href="#"><i *ngIf="showIcon()" class="fa fa-fw fa-info-circle" aria-hidden="true"></i>{{'NAVBAR.SIDE.ABOUT_US'|translate}}</a>
-    </li>
-    <li>
-      <a href="#"><i *ngIf="showIcon()" class="fa fa-fw fa-calendar-plus-o" aria-hidden="true"></i>{{'NAVBAR.SIDE.CREATE_TRIP'|translate}}</a>
-    </li>
-    <li>
-      <a href="#"><i *ngIf="showIcon()" class="fa fa-fw fa-question-circle-o" aria-hidden="true"></i>{{'NAVBAR.SIDE.HELP'|translate}}</a>
-    </li>
+  <div class="navbar-nav-container" [ngStyle]="{'max-height': getMaxHeight(), 'overflow-y': getOverflowY()}">
+    <ul class="nav navbar-nav">
+      <li *ngFor="let menuItem of sideMenuData.value">
+        <a href="#">
+          <i *ngIf="isDeviceWidth()"
+             class='fa fa-fw'
+             [ngClass]="menuItem.iconClass ? menuItem.iconClass : ''"
+             aria-hidden="true">
+          </i>{{menuItem.display | translate}}
+        </a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li *ngIf="!isDeviceWidth()">
+        <a class="navbar-search" href="#a">
+          <i class="fa fa-fw fa-search" aria-hidden="true"></i>
+        </a>
+      </li>
 
-    <li class="divider"></li>
-
-    <li *ngIf="showSearch()">
-      <button class="navbar-button-search">
-        <span><i class="fa fa-search" aria-hidden="true"></i></span>
-      </button>
-    </li>
-
-    <aj-submenu [menuData]="getSubMenuData('language')"
-                (onSubMenuExpanded)="onSubMenuExpanded($event)">
-    </aj-submenu>
-
-    <li *ngIf="!authenticated" class="divider"></li>
-    <li *ngIf="!authenticated; else loginSuccess">
-      <a href="#">{{'NAVBAR.SIDE.SIGNIN_SIGNUP'|translate}}</a>
-    </li>
-    <ng-template #loginSuccess>
-      <aj-submenu [menuData]="getSubMenuData('user')"
+      <aj-submenu [menuData]="getSubMenuData('language')"
                   (onSubMenuExpanded)="onSubMenuExpanded($event)">
       </aj-submenu>
-    </ng-template>
 
-    <li *ngIf="showLogout()" class="divider"></li>
-    <li *ngIf="showLogout()">
-      <a href="#">{{'NAVBAR.SIDE.SIGNOUT'|translate}}</a>
-    </li>
-  </ul>
+      <li *ngIf="!authenticated; else loginSuccess">
+        <a href="#">{{'NAVBAR.SIDE.SIGNIN_SIGNUP'|translate}}</a>
+      </li>
+      <ng-template #loginSuccess>
+        <aj-submenu [menuData]="getSubMenuData('user')"
+                    (onSubMenuExpanded)="onSubMenuExpanded($event)">
+        </aj-submenu>
+      </ng-template>
+
+      <!--<li *ngIf="showLogout()" class="divider"></li>-->
+      <li *ngIf="authenticated && isDeviceWidth()">
+        <a href="#">{{'NAVBAR.SIDE.SIGNOUT'|translate}}</a>
+      </li>
+    </ul>
+  </div>
 </div>

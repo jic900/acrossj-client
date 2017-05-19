@@ -1,8 +1,19 @@
+li > a {
+  color: #FFFFFF;
+  background-color: inherit;
+  /*margin-right: 5px;*/
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 @media (max-width: 767px) {
+  .navbar-nav-container {
+    padding: 40px 0 40px;
+  }
   .navbar-nav {
     width: 100%;
-    margin: 0;
-    padding: 40px;
+    margin: 0 0 15px;
+    padding: 0 40px 0;
   }
   .navbar-collapse {
     position: absolute;
@@ -25,48 +36,66 @@
   }
 }
 
+@media (min-width: 768px) {
+  .navbar-nav {
+    margin-left: 35px;
+  }
+  .navbar-nav > li > a {
+    padding: 20px 10px 10px;
+  }
+}
+.navbar-right {
+  margin-right: 0;
+}
+/*@media (max-width: 767px) {*/
+  /*.navbar-collapse .nav > li.divider {*/
+    /**width: 100%;*/
+    /*height: 15px;*/
+    /*overflow: hidden;*/
+    /*background-color: inherit;*/
+  /*}*/
+/*}*/
+/*@media (min-width: 768px) {*/
+  /*.navbar-collapse .nav > li.divider {*/
+    /*width: 50px;*/
+    /*height: 1px;*/
+    /*overflow: hidden;*/
+    /*background-color: inherit;*/
+  /*}*/
+/*}*/
+
+
+
+/*.navbar-button-search {*/
+  /*padding: 5px;*/
+  /*margin-top: 4px;*/
+  /*margin-bottom: 0;*/
+  /*color: white;*/
+  /*background-color: transparent;*/
+  /*font-size: 140%;*/
+  /*outline: none;*/
+  /*border: none;*/
+/*}*/
+
+.navbar-search {
+  margin-right: 5px;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+}
+
 @media (max-width: 767px) {
-  .navbar-collapse .nav > li.divider {
-    *width: 100%;
-    height: 15px;
-    /*margin: 5px 1px;*/
-    /**margin: -5px 0 5px;*/
-    overflow: hidden;
-    background-color: inherit;
-    /*border-bottom: 1px solid #222222;*/
+  :host >>> .fa {
+    margin-right: 15px;
+    font-size: 22px;
   }
 }
 @media (min-width: 768px) {
-  .navbar-collapse .nav > li.divider {
-    width: 50px;
-    height: 1px;
-    /*margin: 5px 1px;*/
-    /**margin: -5px 0 5px;*/
-    overflow: hidden;
-    background-color: inherit;
-    /*border-bottom: 1px solid #222222;*/
+  :host >>> .fa {
+    /*margin-right: 20px;*/
+    font-size: 20px;
   }
 }
-
-li > a {
-  color: #FFFFFF;
-  background-color: inherit;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.navbar-button-search {
-  padding: 5px;
-  margin-top: 4px;
-  margin-bottom: 0;
-  color: white;
-  background-color: transparent;
-  font-size: 140%;
-  outline: none;
-  border: none;
-}
-
-:host >>> a > .fa {
-  margin-right: 15px;
-  font-size: 22px;
-}
+/*:host >>> a > .fa {*/
+  /*margin-right: 15px;*/
+  /*font-size: 22px;*/
+/*}*/
