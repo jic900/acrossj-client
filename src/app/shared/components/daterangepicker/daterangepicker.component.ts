@@ -177,6 +177,8 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
     });
     translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.translateOptions();
+      this.translateSelectedDates();
+      // this.clearDateRange();
     });
   }
 
@@ -310,15 +312,17 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
     return jsonProp;
   }
 
-  // private translateJson(srcJson: any, dstJson: any, translate: TranslateService): void {
-  //   Object.keys(srcJson).forEach((k) => {
-  //     if (typeof(srcJson[k]) === 'string') {
-  //       dstJson[k] = translate.instant(srcJson[k]);
-  //     } else if (typeof(srcJson[k]) === 'object') {
-  //       this.translateJson(srcJson[k], dstJson[k], translate);
-  //     }
-  //   });
-  // }
+  private translateSelectedDates(): void {
+    if (this.titleAreaTextBegin !== '') {
+      this.selectBeginDate(this.beginDate);
+    }
+    if (this.titleAreaTextEnd !== '') {
+      this.selectEndDate(this.endDate);
+    }
+    if (this.selectionDayTxt !== '') {
+      this.rangeSelected();
+    }
+  }
 
   private setWeekDays() {
     this.weekDays = [];

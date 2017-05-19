@@ -548,7 +548,7 @@
 }
 .drp .titlearealeft:focus,
 .drp .titlearearight:focus {
-  text-decoration: underline;
+  /*text-decoration: underline;*/
   outline: none;
 }
 

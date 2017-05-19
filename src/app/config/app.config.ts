@@ -61,6 +61,8 @@ export const MenuState = {
 export const DateRangePickerOptions = {
   editableDateRangeField: false,
   openSelectorOnInputClick: true,
+  // dateFormat: 'yyyy-mm-dd',
+  dateFormat: 'mmm dd',
   dayLabels: {
     su: 'NAVBAR.SEARCH.DRP.WEEKDAY.SUN',
     mo: 'NAVBAR.SEARCH.DRP.WEEKDAY.MON',

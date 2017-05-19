@@ -28,6 +28,13 @@
   padding: 8px 12px;
   width: auto;
 }
+/*@media  (max-width : 1024px) {*/
+  /*.navbar-brand {*/
+    /*transform: translateX(-50%);*/
+    /*left: 50%;*/
+    /*position: absolute;*/
+  /*}*/
+/*}*/
 
 .navbar-toggle {
   margin-left: 5px;
