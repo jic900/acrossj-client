@@ -7,6 +7,7 @@
 
 .submenu > li > a {
   display: block;
+  width: fit-content;
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;

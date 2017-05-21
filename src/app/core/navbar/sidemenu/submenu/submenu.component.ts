@@ -71,7 +71,7 @@ export class SubMenuComponent {
         setTimeout(function() {
           self.subMenuState = MenuState.expanded;
           self.otherMenuExpanded = false;
-        }, 400);
+        }, 600);
       } else {
         this.subMenuState = MenuState.expanded;
       }
