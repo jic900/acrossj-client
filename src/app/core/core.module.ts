@@ -7,11 +7,13 @@ import { SubMenuComponent } from './navbar/sidemenu/submenu/submenu.component';
 import { SearchMenuComponent } from './navbar/searchmenu/searchmenu.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { SideMenuComponent } from './navbar/sidemenu/sidemenu.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
+    RouterModule
   ],
   declarations: [
     NavbarComponent,

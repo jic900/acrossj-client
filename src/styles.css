@@ -16,20 +16,24 @@ html, body {
   /*background: #FF0000;*/
 /*}*/
 
+a {
+  cursor: pointer;
+}
+
 @media (max-width: 1024px) {
   li {
     font-size: 130%;
   }
-  li > ul > li {
-    font-size: 115%;
-  }
+  /*li > ul > li {*/
+    /*font-size: 115%;*/
+  /*}*/
 }
 @media (min-width: 1025px) {
   li {
     font-size: 110%;
   }
-  li > ul > li {
-    font-size: 100%;
-  }
+  /*li > ul > li {*/
+    /*font-size: 100%;*/
+  /*}*/
 }
 

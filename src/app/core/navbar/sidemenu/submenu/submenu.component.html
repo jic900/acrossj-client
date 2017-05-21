@@ -1,23 +1,22 @@
-<li #dropdown class="dropdown">
-  <a href="#a" class="dropdown-toggle" (click)="onMouseClick($event)">
-    <i class="fa fa-fw"
-       [ngClass]="menuData.iconClass ? menuData.iconClass : ''"
-       aria-hidden="true">
-    </i><span *ngIf="show()">{{ menuData.display | translate }}</span>
-    <span *ngIf="show()" class="caret" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}"></span>
+<div class="submenu-container" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
+  <a (click)="onClick($event)">
+    <i class="fa fa-fw" aria-hidden="true"
+       [ngClass]="menuData.iconClass ? menuData.iconClass : ''">
+    </i><span *ngIf="isDeviceWidth()">{{ menuData.display | translate }}</span>
+    <span *ngIf="isDeviceWidth()" class="caret" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}"></span>
   </a>
-  <ul class="dropdown-menu" [ngClass]="{'subMenuExpanded': isSubMenuExpanded()}">
+  <ul #submenu class="submenu"
+      [ngClass]="{'pre-collapsed': isSubMenuPreCollapsed(), 'pre-expanded': isSubMenuPreExpanded(), 'expanded': isSubMenuExpanded()}">
     <li *ngFor="let listItem of menuData.value">
-      <a href="#" (click)="onSubMenuClick(listItem.type)">
-        <i *ngIf="show()"
-           class='fa fa-fw'
-           [ngClass]="listItem.iconClass ? listItem.iconClass : ''"
-           aria-hidden="true">
+      <a (click)="onSubMenuClick(listItem.type)">
+        <i class='fa fa-fw' aria-hidden="true"
+           [ngClass]="listItem.iconClass ? listItem.iconClass : ''">
         </i>{{ listItem.display | translate }}
       </a>
     </li>
-    <li *ngIf="showLogout()"><a href="#">{{'NAVBAR.SIDE.SIGNOUT'|translate}}</a>
+    <li *ngIf="menuData.type === 'user' && ! this.isDeviceWidth();">
+      <a><i class='fa fa-fw' aria-hidden="true"></i>{{'NAVBAR.SIDE.SIGNOUT'|translate}}</a>
     </li>
   </ul>
-</li>
+</div>
 

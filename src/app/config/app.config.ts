@@ -53,9 +53,10 @@ export const SubMenuDef = {
 };
 
 export const MenuState = {
-  default: 0,
+  pre_collapsed: 0,
   collapsed: 1,
-  expanded: 2
+  pre_expanded: 2,
+  expanded: 3,
 }
 
 export const DateRangePickerOptions = {

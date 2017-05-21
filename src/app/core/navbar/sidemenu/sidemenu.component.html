@@ -16,26 +16,24 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li *ngIf="!isDeviceWidth()">
-        <a class="navbar-search" href="#a">
+        <a class="navbar-search">
           <i class="fa fa-fw fa-search" aria-hidden="true"></i>
         </a>
       </li>
-
-      <aj-submenu [menuData]="getSubMenuData('language')"
-                  (onSubMenuExpanded)="onSubMenuExpanded($event)">
-      </aj-submenu>
-
+      <li>
+        <aj-submenu [menuData]="subMenuData('language')" (subMenuExpanded)="onSubMenuExpanded($event)">
+        </aj-submenu>
+      </li>
       <li *ngIf="!authenticated; else loginSuccess">
-        <a href="#">{{'NAVBAR.SIDE.SIGNIN_SIGNUP'|translate}}</a>
+        <a routerLink="/login">{{'NAVBAR.SIDE.SIGNIN_SIGNUP'|translate}}</a>
       </li>
       <ng-template #loginSuccess>
-        <aj-submenu [menuData]="getSubMenuData('user')"
-                    (onSubMenuExpanded)="onSubMenuExpanded($event)">
-        </aj-submenu>
+        <li>
+          <aj-submenu [menuData]="subMenuData('user')" (subMenuExpanded)="onSubMenuExpanded($event)">
+          </aj-submenu>
+        </li>
       </ng-template>
-
-      <!--<li *ngIf="showLogout()" class="divider"></li>-->
-      <li *ngIf="authenticated && isDeviceWidth()">
+      <li *ngIf="authenticated && isDeviceWidth()" style="margin-top: 15px">
         <a href="#">{{'NAVBAR.SIDE.SIGNOUT'|translate}}</a>
       </li>
     </ul>

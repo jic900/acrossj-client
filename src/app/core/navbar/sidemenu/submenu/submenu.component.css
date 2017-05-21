@@ -1,56 +1,105 @@
-li > a {
-  color: white;
-  background-color: inherit;
-  margin-right: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-li > a:hover {
-  background-color: inherit;
-}
-
-a > .caret {
-  margin-left: 4px;
-  border-width: 5px;
-  transition: all 0.5s ease-in-out;
-}
-a > .caret.subMenuExpanded {
-  transform: rotate(-180deg);
-}
-
-.dropdown-menu {
+.submenu-container > a {
   display: block;
-  left: 0;
-  border: none;
-  padding: 2px 0;
-  opacity: 0;
-  box-shadow: none;
-  position: absolute;
-  min-width: 80px;
-  width: 100%;
-  z-index: -1;
-  transform: translateY(-2em);
-  transition: all 0.5s ease-in-out 0.01s;
+  position: relative;
+  line-height: 20px;
 }
 
-.dropdown-menu.subMenuExpanded {
-  opacity: 1;
-  z-index: 1;
-  transform: translateY(0%);
+.submenu > li > a {
+  display: block;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.42857143;
+  white-space: nowrap;
 }
+
 @media (max-width: 1024px) {
-  .dropdown {
-    transition: all 0.5s linear 0s;
+  li {
+    font-size: 120%;
   }
-  .dropdown-menu {
+  .submenu-container > a {
+    padding: 10px 15px;
+  }
+  .submenu > li > a {
+    padding: 3px 15px;
+  }
+  .submenu {
+    /*display: none;*/
+    display: block;
     background-color: inherit;
+    border: none;
+    box-shadow: none;
+    /*position: static;*/
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+    /*min-width: 80px;*/
+    max-height: 0;
+    width: 100%;
+    opacity: 0;
+    z-index: -1;
+    /*transform: translateY(-2em);*/
+    transition: all 0.3s ease-in-out, max-height 0.15s ease-in-out;
+    /*transition: all 0.5s ease-in-out;*/
   }
-}
-@media (min-width: 1025px) {
-  .dropdown-menu {
-    padding-bottom: 15px;
-    background-color: rgba(0, 0, 0, 0.50);
+  /*.submenu.pre-expanded {*/
+    /*display: block;*/
+  /*}*/
+  .submenu.expanded {
+    /*display: block;*/
+    max-height: 400px;
+    opacity: 1;
+    z-index: 1;
+    /*transform: translateY(0%);*/
   }
+  /*.submenu.pre-collapsed {*/
+    /*display: block;*/
+    /*opacity: 0;*/
+    /*z-index: -1;*/
+  /*}*/
 }
 
+@media (min-width: 1025px) {
+  li {
+    font-size: 100%;
+  }
+  .submenu-container > a {
+    padding: 15px 15px;
+    margin-right: 5px;
+  }
+  .submenu > li > a {
+    padding-top: 8px;
+  }
+  .submenu {
+    display: none;
+    top: 50px;
+    right: 0;
+    border: none;
+    box-shadow: none;
+    padding-bottom: 15px;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.50);
+    width: 200px;
+    opacity: 0;
+    z-index: -1;
+    transform: translateY(-2em);
+    transition: all 0.5s ease-in-out;
+  }
+  .submenu.pre-expanded {
+    display: block;
+  }
+  .submenu.expanded {
+    display: block;
+    opacity: 1;
+    z-index: 1;
+    transform: translateY(0%);
+  }
+  .submenu.pre-collapsed {
+    display: block;
+    opacity: 0;
+    z-index: -1;
+    transform: translateY(-2em);
+  }
+  .submenu > .signout-item {
+    padding-left: 40px;
+  }
+}

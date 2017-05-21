@@ -1,9 +1,17 @@
-li > a {
-  color: #FFFFFF;
-  background-color: inherit;
-  /*margin-right: 5px;*/
-  padding-left: 10px;
-  padding-right: 10px;
+/*li > a {*/
+  /*color: #FFFFFF;*/
+  /*background-color: inherit;*/
+  /*padding-left: 10px;*/
+  /*padding-right: 10px;*/
+/*}*/
+
+:host >>> a {
+  color: white !important;
+  background-color: inherit !important;
+  text-decoration: none !important;
+}
+:host >>> a:hover {
+  background-color: inherit !important;
 }
 
 @media (max-width: 1024px) {

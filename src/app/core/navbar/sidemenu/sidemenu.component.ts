@@ -22,6 +22,7 @@ export class SideMenuComponent {
   sideMenuData: IMenuItem;
   sideMenuState: number;
   authenticated: boolean;
+  subMenuState: number = MenuState.collapsed;
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {
     this.sideMenuData = SideMenuDef.topList;
@@ -33,7 +34,7 @@ export class SideMenuComponent {
     return this.sideMenuState === MenuState.expanded;
   }
 
-  getSubMenuData(type: string) {
+  subMenuData(type: string) {
     if (type === 'language') {
       return SubMenuDef.language;
     } else {
@@ -84,7 +85,7 @@ export class SideMenuComponent {
   onSubMenuExpanded(type: string): void {
     this.submenus.forEach((submenu) => {
       if (submenu.menuData.type !== type) {
-        submenu.subMenuState = MenuState.collapsed;
+        submenu.collapseSubMenu();
       }
     });
   }
