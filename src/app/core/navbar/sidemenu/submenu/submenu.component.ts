@@ -22,15 +22,17 @@ import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
 export class SubMenuComponent {
 
   @Input() menuData: IMenuItem;
-  @Output() subMenuExpanded: EventEmitter<string>;
+  @Output() subMenuToggled: EventEmitter<any>;
   @ViewChild('submenu') submenu: ElementRef;
   subMenuState: number;
   windowWidth: number;
+  otherMenuExpanded: boolean;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2, private translate: TranslateService) {
     this.subMenuState = MenuState.collapsed;
-    this.subMenuExpanded = new EventEmitter<string>();
+    this.subMenuToggled = new EventEmitter<{string, boolean}>();
     this.windowWidth = window.innerWidth;
+    this.otherMenuExpanded = false;
   }
 
   @HostListener('window:resize', ['$event'])
@@ -54,42 +56,29 @@ export class SubMenuComponent {
     return this.subMenuState === MenuState.expanded;
   }
 
-  collapseSubMenu() {
-    if (this.isSubMenuExpanded()) {
-      this.subMenuState = MenuState.pre_collapsed;
-      const self = this;
-      setTimeout(function() {
-        self.subMenuState = MenuState.collapsed;
-      }, 500);
-    }
-  }
-
-  expandSubMenu() {
-    if (! this.isSubMenuExpanded()) {
-      this.subMenuState = MenuState.pre_expanded;
-      const self = this;
-      setTimeout(function() {
-        self.subMenuState = MenuState.expanded;
-      }, 100);
+  onOtherSubMenuToggled(expanded: boolean): void {
+    this.otherMenuExpanded = expanded;
+    if (expanded && this.isSubMenuExpanded()) {
+      this.subMenuState = MenuState.collapsed;
     }
   }
 
   onClick(event): void {
     if (this.subMenuState === MenuState.collapsed) {
-      this.subMenuExpanded.emit(this.menuData.type);
-      const self = this;
-      setTimeout(function() {
-        self.subMenuState = MenuState.expanded;
-      }, 200);
+      this.subMenuToggled.emit({type: this.menuData.type, expanded: true});
+      if (this.otherMenuExpanded) {
+        const self = this;
+        setTimeout(function() {
+          self.subMenuState = MenuState.expanded;
+          self.otherMenuExpanded = false;
+        }, 400);
+      } else {
+        this.subMenuState = MenuState.expanded;
+      }
     } else {
       this.subMenuState = MenuState.collapsed;
+      this.subMenuToggled.emit({type: this.menuData.type, expanded: false});
     }
-    // if (this.subMenuState === MenuState.collapsed) {
-    //   this.subMenuExpanded.emit(this.menuData.type);
-    //   this.expandSubMenu();
-    // } else {
-    //   this.collapseSubMenu();
-    // }
   }
 
   onSubMenuClick(type: string): void {
@@ -103,14 +92,22 @@ export class SubMenuComponent {
   }
 
   onMouseEnter(event): void {
-    if (! this.isDeviceWidth()) {
-      this.expandSubMenu();
+    if (! this.isDeviceWidth() && ! this.isSubMenuExpanded()) {
+      this.subMenuState = MenuState.pre_expanded;
+      const self = this;
+      setTimeout(function() {
+        self.subMenuState = MenuState.expanded;
+      }, 100);
     }
   }
 
   onMouseLeave(event): void {
-    if (! this.isDeviceWidth()) {
-      this.collapseSubMenu();
+    if (! this.isDeviceWidth() && this.isSubMenuExpanded()) {
+      this.subMenuState = MenuState.pre_collapsed;
+      const self = this;
+      setTimeout(function() {
+        self.subMenuState = MenuState.collapsed;
+      }, 500);
     }
   }
 

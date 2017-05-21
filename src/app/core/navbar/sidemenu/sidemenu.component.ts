@@ -82,10 +82,10 @@ export class SideMenuComponent {
     }
   }
 
-  onSubMenuExpanded(type: string): void {
+  onSubMenuToggled(event): void {
     this.submenus.forEach((submenu) => {
-      if (submenu.menuData.type !== type) {
-        submenu.collapseSubMenu();
+      if (submenu.menuData.type !== event.type) {
+        submenu.onOtherSubMenuToggled(event.expanded);
       }
     });
   }

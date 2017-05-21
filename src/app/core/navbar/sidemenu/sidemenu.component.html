@@ -21,7 +21,7 @@
         </a>
       </li>
       <li>
-        <aj-submenu [menuData]="subMenuData('language')" (subMenuExpanded)="onSubMenuExpanded($event)">
+        <aj-submenu [menuData]="subMenuData('language')" (subMenuToggled)="onSubMenuToggled($event)">
         </aj-submenu>
       </li>
       <li *ngIf="!authenticated; else loginSuccess">
@@ -29,7 +29,7 @@
       </li>
       <ng-template #loginSuccess>
         <li>
-          <aj-submenu [menuData]="subMenuData('user')" (subMenuExpanded)="onSubMenuExpanded($event)">
+          <aj-submenu [menuData]="subMenuData('user')" (subMenuToggled)="onSubMenuToggled($event)">
           </aj-submenu>
         </li>
       </ng-template>
