@@ -81,9 +81,12 @@
   /*padding-bottom: 15px !important;*/
 }
 
+:host >>> .fa {
+  margin-right: 15px;
+}
+
 @media (max-width: 1024px) {
   :host >>> .fa {
-    margin-right: 15px;
     font-size: 22px;
   }
 }

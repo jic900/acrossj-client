@@ -10,13 +10,17 @@
       [ngClass]="{'pre-collapsed': isSubMenuPreCollapsed(), 'pre-expanded': isSubMenuPreExpanded(), 'expanded': isSubMenuExpanded()}">
     <li *ngFor="let listItem of menuData.value">
       <a (click)="onSubMenuClick(listItem.type)">
-        <i class='fa fa-fw' aria-hidden="true"
-           [ngClass]="listItem.iconClass ? listItem.iconClass : ''">
+        <i *ngIf="listItem.iconClass"
+           class='fa fa-fw'
+           [ngClass]="listItem.iconClass"
+           aria-hidden="true">
         </i>{{ listItem.display | translate }}
+        <!--<span class="flag-icon-background flag-icon-us">{{ listItem.display | translate }}</span>-->
+        <!--<span [ngClass]="listItem.iconClass ? listItem.iconClass : ''">{{ listItem.display | translate }}</span>-->
       </a>
     </li>
     <li *ngIf="menuData.type === 'user' && ! this.isDeviceWidth();">
-      <a><i class='fa fa-fw' aria-hidden="true"></i>{{'NAVBAR.SIDE.SIGNOUT'|translate}}</a>
+      <a>{{'NAVBAR.SIDE.SIGNOUT'|translate}}</a>
     </li>
   </ul>
 </div>

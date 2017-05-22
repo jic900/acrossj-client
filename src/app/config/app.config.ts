@@ -44,9 +44,9 @@ export const SubMenuDef = {
     display: 'NAVBAR.SIDE.LANGUAGE.LABEL',
     type: 'language',
     value: [
-      {display: 'NAVBAR.SIDE.LANGUAGE.MENU.ENGLISH', type: 'en'},
-      {display: 'NAVBAR.SIDE.LANGUAGE.MENU.JAPANESE', type: 'ja'},
-      {display: 'NAVBAR.SIDE.LANGUAGE.MENU.CHINESE', type: 'zh'}
+      {display: 'NAVBAR.SIDE.LANGUAGE.MENU.ENGLISH', type: 'en', iconClass: 'flag-icon flag-icon-us'},
+      {display: 'NAVBAR.SIDE.LANGUAGE.MENU.JAPANESE', type: 'ja', iconClass: 'flag-icon flag-icon-jp'},
+      {display: 'NAVBAR.SIDE.LANGUAGE.MENU.CHINESE', type: 'zh', iconClass: 'flag-icon flag-icon-cn'}
     ],
     iconClass: 'fontello-globe'
   }
