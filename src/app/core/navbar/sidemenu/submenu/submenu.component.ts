@@ -64,20 +64,22 @@ export class SubMenuComponent {
   }
 
   onClick(event): void {
-    if (this.subMenuState === MenuState.collapsed) {
-      this.subMenuToggled.emit({type: this.menuData.type, expanded: true});
-      if (this.otherMenuExpanded) {
-        const self = this;
-        setTimeout(function() {
-          self.subMenuState = MenuState.expanded;
-          self.otherMenuExpanded = false;
-        }, 600);
+    if (this.isDeviceWidth()) {
+      if (this.subMenuState === MenuState.collapsed) {
+        this.subMenuToggled.emit({type: this.menuData.type, expanded: true});
+        if (this.otherMenuExpanded) {
+          const self = this;
+          setTimeout(function() {
+            self.subMenuState = MenuState.expanded;
+            self.otherMenuExpanded = false;
+          }, 600);
+        } else {
+          this.subMenuState = MenuState.expanded;
+        }
       } else {
-        this.subMenuState = MenuState.expanded;
+        this.subMenuState = MenuState.collapsed;
+        this.subMenuToggled.emit({type: this.menuData.type, expanded: false});
       }
-    } else {
-      this.subMenuState = MenuState.collapsed;
-      this.subMenuToggled.emit({type: this.menuData.type, expanded: false});
     }
   }
 

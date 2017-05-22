@@ -7,7 +7,7 @@
 
 .submenu > li > a {
   display: block;
-  width: fit-content;
+  /*width: fit-content;*/
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
@@ -15,10 +15,6 @@
 }
 
 @media (max-width: 1024px) {
-  /*.submenu-container {*/
-    /*position: relative;*/
-    /*height: 100%;*/
-  /*}*/
   li {
     font-size: 120%;
   }
@@ -86,10 +82,15 @@
     /*margin-right: 5px;*/
   }
   .submenu-container:hover .fa {
-    font-size: 22px;
+    font-size: 23px;
   }
   .submenu > li > a {
-    padding-top: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 40px;
+  }
+  .submenu > li:hover {
+    background-color: rgba(255, 255, 255, 0.30);
   }
   .submenu {
     display: none;
@@ -98,6 +99,7 @@
     border: none;
     box-shadow: none;
     padding-bottom: 15px;
+    -webkit-padding-start: 0;
     position: fixed;
     background-color: rgba(0, 0, 0, 0.50);
     width: 200px;
