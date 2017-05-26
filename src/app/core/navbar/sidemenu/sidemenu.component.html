@@ -15,11 +15,12 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li *ngIf="!isDeviceWidth()">
-        <a class="navbar-search">
-          <i class="fa fa-fw fa-search" aria-hidden="true"></i>
-        </a>
-      </li>
+      <!--<li *ngIf="!isDeviceWidth()">-->
+        <!--<aj-searchfield></aj-searchfield>-->
+        <!--&lt;!&ndash;<a class="navbar-search">&ndash;&gt;-->
+          <!--&lt;!&ndash;<i class="fa fa-fw fa-search" aria-hidden="true"></i>&ndash;&gt;-->
+        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+      <!--</li>-->
       <li>
         <aj-submenu [menuData]="subMenuData('language')" (subMenuToggled)="onSubMenuToggled($event)">
         </aj-submenu>

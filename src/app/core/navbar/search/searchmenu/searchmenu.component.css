@@ -62,6 +62,18 @@
   font-size: 16px;
 }
 
+:host >>> aj-dropdown .inputgroup > input {
+  font-size: 17px;
+}
+:host >>> aj-dropdown .fa-chevron-down {
+  font-size: 120%;
+}
+:host >>> aj-dropdown .fa-pencil {
+  font-size: 120%;
+}
+:host >>> aj-daterangepicker .drp .selection {
+  font-size: 17px !important;
+}
 /*:host >>> aj-autocomplete .suggestions-selected {*/
   /*background-color: black;*/
 /*}*/

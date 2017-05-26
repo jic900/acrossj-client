@@ -3,18 +3,18 @@
      [style.min-height]="getMinHeight()">
   <div [ngStyle]="{'max-height': getMaxHeight(), 'overflow-y': getOverflowY()}">
     <div class="navbar-search-content"
-         [style.width]="fieldWidth + 'px'">
+         [style.width]="fieldWidth">
       <label class="search-label">{{'NAVBAR.SEARCH.TITLE'|translate}}</label>
       <div class="panel-group">
         <div class="panel panel-default">
           <div class="panel-body">
             <aj-dropdown #placeSearcher
-                         [dataList]="placeList"
+                         [dataList]="searchService.placeList"
                          [placeHolder]="'NAVBAR.SEARCH.PLACES_INPUT_TXT'"
                          [width]="fieldWidth"
-                         [filterFunc]="filterPlaces"
+                         [filterFunc]="searchService.filterPlaces"
                          [displayProperty]="'display'"
-                         [displayMaxCount]="getDisplayedPlacesMaxCount()"
+                         [displayMaxCount]="searchService.displayedPlacesMaxCount"
                          [sorted]="true"
                          [autoComplete]="true"
                          (selected)="onPlaceSelected($event)">
@@ -27,14 +27,14 @@
                                 [placeholder]="'NAVBAR.SEARCH.DRP.INPUT_TXT'"
                                 [width]="fieldWidth"
                                 [height]="fieldHeight"
-                                [options]="dateRangePickerOptions">
+                                [options]="searchService.dateRangePickerOptions">
             </aj-daterangepicker>
           </div>
         </div>
         <div #categoryPanel class="panel panel-default">
           <div class="panel-body">
             <aj-dropdown #categoryPicker
-                         [dataList]="categoryList"
+                         [dataList]="searchService.categoryList"
                          [placeHolder]="'NAVBAR.SEARCH.CATEGORY_INPUT_TXT'"
                          [width]="fieldWidth"
                          [height]="fieldHeight"

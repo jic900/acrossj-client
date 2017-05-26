@@ -16,6 +16,10 @@ html, body {
   /*background: #FF0000;*/
 /*}*/
 
+*:focus {
+  outline: none;
+}
+
 a {
   cursor: pointer;
 }

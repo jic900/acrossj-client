@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { SearchMenuComponent } from './searchmenu/searchmenu.component';
+import { SearchMenuComponent } from './search/searchmenu/searchmenu.component';
 import { AppConfig, AppConstant, MenuState } from 'app/config/app.config';
 import { SideMenuComponent } from './sidemenu/sidemenu.component';
 

@@ -4,10 +4,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './auth/login.component';
 import { SignupComponent } from './auth/signup.component';
 import { SubMenuComponent } from './navbar/sidemenu/submenu/submenu.component';
-import { SearchMenuComponent } from './navbar/searchmenu/searchmenu.component';
+import { SearchMenuComponent } from './navbar/search/searchmenu/searchmenu.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { SideMenuComponent } from './navbar/sidemenu/sidemenu.component';
 import { RouterModule } from '@angular/router';
+// import { SearchfieldComponent } from './navbar/search/searchfield/searchfield.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { RouterModule } from '@angular/router';
     SignupComponent,
     SubMenuComponent,
     SearchMenuComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    // SearchfieldComponent
   ],
   exports: [
     NavbarComponent,

@@ -23,7 +23,6 @@ export class SubMenuComponent {
 
   @Input() menuData: IMenuItem;
   @Output() subMenuToggled: EventEmitter<any>;
-  @ViewChild('submenu') submenu: ElementRef;
   subMenuState: number;
   windowWidth: number;
   otherMenuExpanded: boolean;
@@ -98,13 +97,15 @@ export class SubMenuComponent {
       this.subMenuState = MenuState.pre_expanded;
       const self = this;
       setTimeout(function() {
-        self.subMenuState = MenuState.expanded;
+        if (self.subMenuState === MenuState.pre_expanded) {
+          self.subMenuState = MenuState.expanded;
+        }
       }, 100);
     }
   }
 
   onMouseLeave(event): void {
-    if (! this.isDeviceWidth() && this.isSubMenuExpanded()) {
+    if (! this.isDeviceWidth() && (this.isSubMenuExpanded() || this.isSubMenuPreExpanded())) {
       this.subMenuState = MenuState.pre_collapsed;
       const self = this;
       setTimeout(function() {
