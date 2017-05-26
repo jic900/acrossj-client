@@ -15,14 +15,14 @@
                    (selected)="onPlaceSelected($event)">
       </aj-dropdown>
     </div>
-    <!--<div class="searchfield-item" [ngStyle]="{'width': placesWidth}">-->
-      <!--<aj-daterangepicker [placeholder]="'Date Range'"-->
-                          <!--[width]="dateRangePickerWidth"-->
-                          <!--[height]="fieldHeight"-->
-                          <!--[options]="searchService.dateRangePickerOptions"-->
-                          <!--(clicked)="onFieldClicked('daterangepicker')">-->
-      <!--</aj-daterangepicker>-->
-    <!--</div>-->
+    <div class="searchfield-item" [ngStyle]="{'width': placesWidth}">
+      <aj-daterangepicker [placeholder]="'Date Range'"
+                          [width]="dateRangePickerWidth"
+                          [height]="fieldHeight"
+                          [options]="searchService.dateRangePickerOptions"
+                          (clicked)="onFieldClicked('daterangepicker')">
+      </aj-daterangepicker>
+    </div>
     <div class="searchfield-item" [ngStyle]="{'width': categoryWidth}" tabindex="1">
       <aj-dropdown [dataList]="searchService.categoryList"
                    [placeHolder]="'Category'"

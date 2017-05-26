@@ -6,8 +6,7 @@ import {
   ElementRef,
   EventEmitter,
   SimpleChanges,
-  ViewEncapsulation,
-  DoCheck
+  ViewEncapsulation
 } from '@angular/core';
 
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
@@ -27,7 +26,7 @@ import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
   encapsulation: ViewEncapsulation.None
 })
 
-export class DropDownComponent implements OnChanges, DoCheck {
+export class DropDownComponent implements OnChanges {
 
   @Input() dataList: IMenuItem[];
   @Input() placeHolder: string;
@@ -69,23 +68,6 @@ export class DropDownComponent implements OnChanges, DoCheck {
         this.inputString = this.getTranslatedPlaceHolder();
       }
     });
-  }
-
-  ngDoCheck(): void {
-    // const self = this;
-    // setTimeout(function() {
-    //   self.setMenuWidth();
-    // }, 1);
-    // this.setMenuWidth();
-  }
-
-  setWidth(newWidth: string): void {
-    this.width = newWidth;
-  }
-
-  setMenuWidth(): void {
-    const style = window.getComputedStyle(this.elementRef.nativeElement.firstElementChild);
-    this.menuWidth = style.getPropertyValue('width');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -167,21 +149,26 @@ export class DropDownComponent implements OnChanges, DoCheck {
           this.inputString = this.displayList[this.selectedIndex][this.displayProperty];
         }
         this.resetDisplayList();
-        this.selected.emit(this.inputString);
+        this.emitSelected();
       }
     }
   }
 
   onClick(event): void {
     // console.log('onClick  ' + event.target.tagName);
-    this.clicked.emit();
     if (! this.autoComplete) {
       if (! this.isDropDownExpanded()) {
-        this.setMenuWidth();
+        this.emitClicked();
+        const self = this;
+        setTimeout(function() {
+          self.toggleMenuState();
+        }, 250);
       } else {
-        this.blurred.emit();
+        this.emitBlurred();
+        this.toggleMenuState();
       }
-      this.menuState = this.menuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
+    } else {
+      this.emitClicked();
     }
   }
 
@@ -189,7 +176,11 @@ export class DropDownComponent implements OnChanges, DoCheck {
     // console.log('onSelect  ' + item);
     this.inputString = item[this.displayProperty];
     this.resetDisplayList();
-    this.selected.emit(this.inputString);
+    this.emitSelected();
+  }
+
+  private toggleMenuState(): void {
+    this.menuState = this.menuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
   }
 
   clearField(): void {
@@ -202,17 +193,17 @@ export class DropDownComponent implements OnChanges, DoCheck {
     }
     this.selectedIndex = -1;
     this.menuState = MenuState.collapsed;
-    // this.opened.emit(0);
   }
 
   updateDisplayList(): void {
     this.displayList = this.filterFunc(this.inputString, this.dataList, this.displayProperty, this.displayMaxCount);
     // console.log('updateDisplayList: size=' + this.displayList.length);
     if (this.displayList.length > 0) {
-      this.setMenuWidth();
-      this.menuState = MenuState.expanded;
+      const self = this;
+      setTimeout(function() {
+        self.menuState = MenuState.expanded;
+      }, 280);
     }
-    // this.opened.emit(this.filteredList.length);
   }
 
   onClickOrTouch(event): void {
@@ -227,7 +218,7 @@ export class DropDownComponent implements OnChanges, DoCheck {
     } while (clickedComponent);
     if (!inside) {
       this.resetDisplayList();
-      this.blurred.emit();
+      this.emitBlurred();
     } else if (this.autoComplete && this.inputString !== '') {
       this.updateDisplayList();
       this.selectedIndex = -1;
@@ -243,5 +234,28 @@ export class DropDownComponent implements OnChanges, DoCheck {
       const inputField = this.elementRef.nativeElement.querySelector('#dropDownInput');
       inputField.blur();
     }
+  }
+
+  private emitClicked(): void {
+    this.clicked.emit();
+    this.setMenuWidth();
+  }
+
+  private emitSelected(): void {
+    this.selected.emit(this.inputString);
+    this.setMenuWidth();
+  }
+
+  private emitBlurred(): void {
+    this.blurred.emit();
+    this.setMenuWidth();
+  }
+
+  private setMenuWidth(): void {
+    const self = this;
+    setTimeout(function() {
+      const style = window.getComputedStyle(self.elementRef.nativeElement.firstElementChild);
+      self.menuWidth = style.getPropertyValue('width');
+    }, 210);
   }
 }
