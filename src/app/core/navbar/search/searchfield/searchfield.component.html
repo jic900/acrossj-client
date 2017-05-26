@@ -1,0 +1,41 @@
+<div class="searchfield-container">
+  <div class="searchfield-group"
+       [ngClass]="{'showSearch': showSearch}" [ngStyle]="{'width': fieldWidth}">
+    <div class="searchfield-item" [ngStyle]="{'width': placesWidth}">
+      <aj-dropdown [dataList]="searchService.placeList"
+                   [placeHolder]="'Places'"
+                   [height]="fieldHeight"
+                   [filterFunc]="searchService.filterPlaces"
+                   [displayProperty]="'display'"
+                   [displayMaxCount]="searchService.displayedPlacesMaxCount"
+                   [sorted]="true"
+                   [autoComplete]="true"
+                   (clicked)="onFieldClicked('placeSearcher')"
+                   (blurred)="onFieldBlurred('placeSearcher')"
+                   (selected)="onPlaceSelected($event)">
+      </aj-dropdown>
+    </div>
+    <!--<div class="searchfield-item" [ngStyle]="{'width': placesWidth}">-->
+      <!--<aj-daterangepicker [placeholder]="'Date Range'"-->
+                          <!--[width]="dateRangePickerWidth"-->
+                          <!--[height]="fieldHeight"-->
+                          <!--[options]="searchService.dateRangePickerOptions"-->
+                          <!--(clicked)="onFieldClicked('daterangepicker')">-->
+      <!--</aj-daterangepicker>-->
+    <!--</div>-->
+    <div class="searchfield-item" [ngStyle]="{'width': categoryWidth}" tabindex="1">
+      <aj-dropdown [dataList]="searchService.categoryList"
+                   [placeHolder]="'Category'"
+                   [height]="fieldHeight"
+                   [displayProperty]="'display'"
+                   (clicked)="onFieldClicked('categoryPicker')"
+                   (blurred)="onFieldBlurred('categoryPicker')"
+                   (selected)="onCategorySelected($event)">
+      </aj-dropdown>
+    </div>
+  </div>
+  <a class="searchfield-link" (click)="onSearchClicked($event)">
+    <i class="fa fa-fw fa-search" aria-hidden="true"></i>
+  </a>
+</div>
+

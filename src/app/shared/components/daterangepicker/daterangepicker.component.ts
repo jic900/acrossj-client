@@ -61,14 +61,15 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
   @Input() defaultMonth: string;
   @Input() selDateRange: string;
   @Input() placeholder: string;
-  @Input() width: number;
-  @Input() height: number;
+  @Input() width: string;
+  @Input() height: string;
   @Output() dateRangeChanged: EventEmitter<IDateRangeModel> = new EventEmitter<IDateRangeModel>();
   @Output() inputFieldChanged: EventEmitter<IInputFieldChanged> = new EventEmitter<IInputFieldChanged>();
   @Output() calendarViewChanged: EventEmitter<ICalendarViewChanged> = new EventEmitter<ICalendarViewChanged>();
   @Output() inputFocusBlur: EventEmitter<IInputFocusBlur> = new EventEmitter<IInputFocusBlur>();
   @Output() dateSelected: EventEmitter<IDateSelected> = new EventEmitter<IDateSelected>();
   @Output() calendarOpened: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() clicked: EventEmitter<void> = new EventEmitter<void>();
 
   onChangeCb: (_: any) => void = () => {
   };
@@ -76,6 +77,7 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
   };
 
   showSelector: boolean = false;
+  calWidth: string;
   visibleMonth: IMonth = {monthTxt: '', monthNbr: 0, year: 0};
   selectedMonth: IMonth = {monthTxt: '', monthNbr: 0, year: 0};
   weekDays: Array<string> = [];
@@ -180,6 +182,12 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
       this.translateSelectedDates();
       // this.clearDateRange();
     });
+  }
+
+  private setCalendarWidth(): void {
+    const style = window.getComputedStyle(this.elem.nativeElement.firstElementChild);
+    this.calWidth = style.getPropertyValue('width');
+    console.log(this.calWidth);
   }
 
   resetMonthYearEdit(): void {
@@ -421,6 +429,10 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
   }
 
   openBtnClicked(): void {
+    this.clicked.emit();
+    if (! this.showSelector) {
+      this.setCalendarWidth();
+    }
     this.showSelector = !this.showSelector;
     this.cdr.detectChanges();
     this.calendarOpened.emit(this.showSelector);

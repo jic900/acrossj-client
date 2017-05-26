@@ -8,7 +8,7 @@ import { SearchMenuComponent } from './navbar/search/searchmenu/searchmenu.compo
 import { SharedModule } from 'app/shared/shared.module';
 import { SideMenuComponent } from './navbar/sidemenu/sidemenu.component';
 import { RouterModule } from '@angular/router';
-// import { SearchfieldComponent } from './navbar/search/searchfield/searchfield.component';
+import { SearchfieldComponent } from './navbar/search/searchfield/searchfield.component';
 
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ import { RouterModule } from '@angular/router';
     SubMenuComponent,
     SearchMenuComponent,
     SideMenuComponent,
-    // SearchfieldComponent
+    SearchfieldComponent
   ],
   exports: [
     NavbarComponent,

@@ -1,0 +1,107 @@
+.searchfield-container {
+  display: table;
+  position: relative;
+}
+
+.searchfield-group {
+  display: table;
+  background-color: transparent;
+  color: white;
+  text-decoration: none;
+  table-layout: fixed;
+  border: solid 1px white;
+  border-radius: 4px;
+  outline: none;
+  opacity: 0;
+  z-index: -1;
+  width: 0;
+  height: 30px;
+  transition: all 0.5s linear;
+  /*transition: all 0.5s ease-in-out;*/
+  /*transition-duration: 0.5s;*/
+  /*transition-property: width;*/
+  /*position: relative;*/
+  /*right: 0;*/
+  /*max-width: 700px;*/
+  /*width: 0;*/
+  /*position: relative;*/
+  /*margin-right: 5px;*/
+}
+.searchfield-group.showSearch {
+  /*width: 600px;*/
+  opacity: 1;
+  /*z-index: 1;*/
+}
+
+.searchfield-item {
+  display: table-cell;
+  position: relative !important;
+  padding: 0;
+  transition: width 0.5s linear;
+}
+
+.searchfield-link {
+  display: table-cell;
+  position: relative;
+  top: 3px;
+  width: 50px;
+  padding: 15px 0 15px 0;
+  text-align: center;
+  line-height: 20px;
+}
+
+.searchfield-input {
+  width: 200px;
+  /*width: auto;*/
+}
+
+:host >>> aj-dropdown .inputgroup {
+  border: none;
+}
+:host >>> aj-dropdown .inputgroup > input {
+  font-size: 14px;
+}
+:host >>> aj-dropdown .inputgroup-btn {
+  border: none;
+}
+:host >>> aj-dropdown .fa-chevron-down {
+  font-size: 100%;
+}
+:host >>> aj-dropdown .fa-pencil {
+  font-size: 100%;
+}
+:host >>> aj-dropdown .dropdownmenu {
+  position: absolute;
+  border: none;
+  border-radius: 0 0 5px 5px;
+  margin-top: 8px;
+  background-color: rgba(0, 0, 0, 0.50);
+}
+
+:host >>> aj-daterangepicker .selectiongroup {
+  border: none;
+  border-radius: 0;
+  border-left: solid 1px white;
+  border-right: solid 1px white;
+}
+:host >>> aj-daterangepicker .btnpicker {
+  border: none;
+}
+:host >>> aj-daterangepicker .btnclear {
+  border: none;
+}
+:host >>> aj-daterangepicker .selectorarrowup {
+  position: absolute;
+  top: auto;
+}
+:host >>> aj-daterangepicker .selector {
+  position: absolute;
+  top: 50px;
+}
+:host >>> aj-daterangepicker .icon-drpcalendar:before {
+  font-size: 100%;
+}
+:host >>> aj-daterangepicker .icon-drpremove:before {
+  font-size: 100%;
+}
+

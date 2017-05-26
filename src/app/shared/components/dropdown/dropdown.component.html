@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="inputgroup" [ngStyle]="{'width': width + 'px'}">
+<div class="dropdown-container">
+  <div class="inputgroup" [ngStyle]="{'width': width}">
     <input id="dropDownInput"
            type="text"
            placeholder="{{placeHolder|translate}}"
@@ -10,7 +10,7 @@
            (blur)="onBlur($event)"
            (click)="onClick($event)"
            [readonly]="!autoComplete">
-    <span class="inputgroup-span" [style.height]="height + 'px'">
+    <span class="inputgroup-span" [style.height]="height">
       <button class="inputgroup-btn" type="button">
         <span *ngIf="autoComplete"><i class="fa fa-pencil"></i></span>
         <span *ngIf="!autoComplete" (click)="onClick($event)">
@@ -21,7 +21,7 @@
   </div>
   <div class="dropdownmenu"
        *ngIf="isDropDownExpanded() && displayList.length > 0"
-       [style.width]="width + 'px'">
+       [style.width]="menuWidth">
     <ul *ngFor="let item of displayList; let idx = index">
       <li [class.dropdownmenu-selected]="idx === selectedIndex">
         <a (click)="onSelect(item)">

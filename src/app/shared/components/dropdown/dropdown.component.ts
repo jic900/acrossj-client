@@ -5,7 +5,9 @@ import {
   Output,
   ElementRef,
   EventEmitter,
-  SimpleChanges
+  SimpleChanges,
+  ViewEncapsulation,
+  DoCheck
 } from '@angular/core';
 
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
@@ -21,32 +23,35 @@ import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
   host: {
     '(document:touchstart)': 'onClickOrTouch($event)',
     '(document:click)': 'onClickOrTouch($event)'
-  }
+  },
+  encapsulation: ViewEncapsulation.None
 })
 
-export class DropDownComponent implements OnChanges {
+export class DropDownComponent implements OnChanges, DoCheck {
 
   @Input() dataList: IMenuItem[];
   @Input() placeHolder: string;
-  @Input() width: number;
-  @Input() height: number;
+  @Input() width: string;
+  @Input() height: string;
   @Input() displayProperty: string;
   @Input() displayMaxCount: number;
   @Input() sorted: boolean;
   @Input() autoComplete: boolean;
   @Input() filterFunc: Function;
-  // @Output() opened: EventEmitter<number>;
   @Output() selected: EventEmitter<string>;
+  @Output() clicked: EventEmitter<void>;
+  @Output() blurred: EventEmitter<void>;
   inputString: string;
   displayList: IMenuItem[];
   selectedIndex: number;
   menuState: number;
+  menuWidth: string;
 
   constructor(private elementRef: ElementRef, private translate: TranslateService) {
     this.dataList = [];
     this.placeHolder = 'Please Select';
-    this.width = 200;
-    this.height = 36;
+    this.width = '100%';
+    this.height = '34px';
     this.displayProperty = 'display';
     this.displayMaxCount = -1;
     this.sorted = false;
@@ -56,13 +61,31 @@ export class DropDownComponent implements OnChanges {
     this.inputString = '';
     this.displayList = [];
     this.menuState = MenuState.collapsed;
-    // this.opened = new EventEmitter<number>();
     this.selected = new EventEmitter<string>();
+    this.clicked = new EventEmitter<void>();
+    this.blurred = new EventEmitter<void>();
     translate.onLangChange.subscribe((event: LangChangeEvent) => {
       if (!this.autoComplete) {
         this.inputString = this.getTranslatedPlaceHolder();
       }
     });
+  }
+
+  ngDoCheck(): void {
+    // const self = this;
+    // setTimeout(function() {
+    //   self.setMenuWidth();
+    // }, 1);
+    // this.setMenuWidth();
+  }
+
+  setWidth(newWidth: string): void {
+    this.width = newWidth;
+  }
+
+  setMenuWidth(): void {
+    const style = window.getComputedStyle(this.elementRef.nativeElement.firstElementChild);
+    this.menuWidth = style.getPropertyValue('width');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -151,7 +174,13 @@ export class DropDownComponent implements OnChanges {
 
   onClick(event): void {
     // console.log('onClick  ' + event.target.tagName);
+    this.clicked.emit();
     if (! this.autoComplete) {
+      if (! this.isDropDownExpanded()) {
+        this.setMenuWidth();
+      } else {
+        this.blurred.emit();
+      }
       this.menuState = this.menuState === MenuState.collapsed ? MenuState.expanded : MenuState.collapsed;
     }
   }
@@ -180,6 +209,7 @@ export class DropDownComponent implements OnChanges {
     this.displayList = this.filterFunc(this.inputString, this.dataList, this.displayProperty, this.displayMaxCount);
     // console.log('updateDisplayList: size=' + this.displayList.length);
     if (this.displayList.length > 0) {
+      this.setMenuWidth();
       this.menuState = MenuState.expanded;
     }
     // this.opened.emit(this.filteredList.length);
@@ -197,6 +227,7 @@ export class DropDownComponent implements OnChanges {
     } while (clickedComponent);
     if (!inside) {
       this.resetDisplayList();
+      this.blurred.emit();
     } else if (this.autoComplete && this.inputString !== '') {
       this.updateDisplayList();
       this.selectedIndex = -1;
