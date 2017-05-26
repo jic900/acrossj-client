@@ -4,7 +4,7 @@
     <div class="searchfield-item" [ngStyle]="{'width': placesWidth}">
       <aj-dropdown #placeSearcher
                    [dataList]="searchService.placeList"
-                   [placeHolder]="'Places'"
+                   [placeHolder]="'NAVBAR.SEARCH.PLACES.FIELD_INPUT_TXT'"
                    [height]="fieldHeight"
                    [filterFunc]="searchService.filterPlaces"
                    [displayProperty]="'display'"
@@ -16,19 +16,18 @@
                    (selected)="onPlaceSelected($event)">
       </aj-dropdown>
     </div>
-    <div class="searchfield-item" [ngStyle]="{'width': placesWidth}">
+    <div class="searchfield-item" [ngStyle]="{'width': dateRangePickerWidth}">
       <aj-daterangepicker #dateRangePicker
-                          [placeholder]="'Date Range'"
-                          [width]="dateRangePickerWidth"
+                          [placeholder]="'NAVBAR.SEARCH.DRP.INPUT.FIELD_TXT'"
                           [height]="fieldHeight"
                           [options]="searchService.dateRangePickerOptions"
-                          (clicked)="onFieldClicked('daterangepicker')">
+                          (calendarOpened)="onCalendarOpened($event)">
       </aj-daterangepicker>
     </div>
     <div class="searchfield-item" [ngStyle]="{'width': categoryWidth}" tabindex="1">
       <aj-dropdown #categoryPicker
                    [dataList]="searchService.categoryList"
-                   [placeHolder]="'Category'"
+                   [placeHolder]="'NAVBAR.SEARCH.CATEGORY.FIELD_INPUT_TXT'"
                    [height]="fieldHeight"
                    [displayProperty]="'display'"
                    (clicked)="onFieldClicked('categoryPicker')"
@@ -38,8 +37,11 @@
     </div>
   </div>
   <a class="searchfield-link"
-     (click)="!showSearch ? onSearchClicked($event) :
-     onSearchClicked($event); placeSearcher.clearField(); categoryPicker.clearField(); dateRangePicker.clearDateRange()">
+     (click)="! showSearch ? onSearchClicked($event) :
+                             onSearchClicked($event);
+                             placeSearcher.clearField();
+                             categoryPicker.clearField();
+                             dateRangePicker.clearDateRange()">
     <i class="fa fa-fw fa-search" aria-hidden="true"></i>
   </a>
 </div>

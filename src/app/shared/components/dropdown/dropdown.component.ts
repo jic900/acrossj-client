@@ -162,7 +162,7 @@ export class DropDownComponent implements OnChanges {
         const self = this;
         setTimeout(function() {
           self.toggleMenuState();
-        }, 250);
+        }, 280);
       } else {
         this.emitBlurred();
         this.toggleMenuState();
@@ -256,6 +256,6 @@ export class DropDownComponent implements OnChanges {
     setTimeout(function() {
       const style = window.getComputedStyle(self.elementRef.nativeElement.firstElementChild);
       self.menuWidth = style.getPropertyValue('width');
-    }, 210);
+    }, 250);
   }
 }

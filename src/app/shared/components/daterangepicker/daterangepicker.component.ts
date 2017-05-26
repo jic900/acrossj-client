@@ -69,7 +69,6 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
   @Output() inputFocusBlur: EventEmitter<IInputFocusBlur> = new EventEmitter<IInputFocusBlur>();
   @Output() dateSelected: EventEmitter<IDateSelected> = new EventEmitter<IDateSelected>();
   @Output() calendarOpened: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() clicked: EventEmitter<void> = new EventEmitter<void>();
 
   onChangeCb: (_: any) => void = () => {
   };
@@ -136,8 +135,8 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
     firstDayOfWeek: <string> 'mo',
     sunHighlight: <boolean> true,
     markCurrentDay: <boolean> true,
-    // height: <string> '34px',
-    // width: <string> '262px',
+    height: <string> '34px',
+    width: <string> '100%',
     inline: <boolean> false,
     showClearDateRangeBtn: <boolean> true,
     selectionTxtFontSize: <string> '14px',
@@ -170,8 +169,9 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
               private drus: DateRangePickerService, private translate: TranslateService) {
     renderer.listen('document', 'click', (event: any) => {
       if (this.showSelector && event.target && this.elem.nativeElement !== event.target && !this.elem.nativeElement.contains(event.target)) {
+        this.emitCalendarOpened(false);
         this.showSelector = false;
-        this.calendarOpened.emit(false);
+        // this.calendarOpened.emit(false);
       }
       if (this.opts.editableMonthAndYear) {
         this.resetMonthYearEdit();
@@ -182,12 +182,6 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
       this.translateSelectedDates();
       // this.clearDateRange();
     });
-  }
-
-  private setCalendarWidth(): void {
-    const style = window.getComputedStyle(this.elem.nativeElement.firstElementChild);
-    this.calWidth = style.getPropertyValue('width');
-    console.log(this.calWidth);
   }
 
   resetMonthYearEdit(): void {
@@ -429,13 +423,14 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
   }
 
   openBtnClicked(): void {
-    this.clicked.emit();
+    // this.emitClicked();
     if (! this.showSelector) {
       this.setCalendarWidth();
     }
+    this.emitCalendarOpened(!this.showSelector);
     this.showSelector = !this.showSelector;
     this.cdr.detectChanges();
-    this.calendarOpened.emit(this.showSelector);
+    // this.calendarOpened.emit(this.showSelector);
     this.inputBlurOnDevice();
     if (this.showSelector) {
       this.setVisibleMonth();
@@ -664,8 +659,9 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
     // Accept button clicked
     let dateRangeModel: IDateRangeModel = this.getDateRangeModel(this.beginDate, this.endDate);
     this.selectionDayTxt = this.formatDate(this.beginDate) + ' - ' + this.formatDate(this.endDate);
+    this.emitCalendarOpened(false);
     this.showSelector = false;
-    this.calendarOpened.emit(false);
+    // this.calendarOpened.emit(false);
     this.dateRangeChanged.emit(dateRangeModel);
     this.inputFieldChanged.emit({value: this.selectionDayTxt, dateRangeFormat: this.dateRangeFormat, valid: true});
     this.onChangeCb(dateRangeModel);
@@ -928,5 +924,18 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
 
   parseSelectedMonth(ms: string): IMonth {
     return this.drus.parseDefaultMonth(ms);
+  }
+
+  private emitCalendarOpened(isOpened: boolean): void {
+    this.calendarOpened.emit(isOpened);
+    this.setCalendarWidth();
+  }
+
+  private setCalendarWidth(): void {
+    const self = this;
+    setTimeout(function() {
+      const style = window.getComputedStyle(this.elem.nativeElement.firstElementChild);
+      self.calWidth = style.getPropertyValue('width');
+    }, 210);
   }
 }

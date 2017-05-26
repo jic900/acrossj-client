@@ -26,9 +26,15 @@
     },
     "SEARCH": {
       "TITLE": "Search Event",
-      "PLACES_INPUT_TXT": "Search Places",
+      "PLACES": {
+        "MENU_INPUT_TXT": "Search Places",
+        "FIELD_INPUT_TXT": "Places"
+      },
       "DRP": {
-        "INPUT_TXT": "Select Date Range",
+        "INPUT": {
+          "MENU_TXT": "Select Date Range",
+          "FIELD_TXT": "Date Range"
+        },
         "BEGIN_DATE": "Select Begin Date",
         "END_DATE": "Select End Date",
         "WEEKDAY": {
@@ -39,7 +45,10 @@
           "7": "Jul", "8": "Aug", "9": "Sep", "10": "Oct", "11": "Nov", "12": "Dec"
         }
       },
-      "CATEGORY_INPUT_TXT": "Select Category",
+      "CATEGORY": {
+        "MENU_INPUT_TXT": "Select Category",
+        "FIELD_INPUT_TXT": "Categories"
+      },
       "CLEAR_ALL": "Clear All"
     }
   },

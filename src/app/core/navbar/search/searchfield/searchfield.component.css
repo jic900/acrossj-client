@@ -77,6 +77,9 @@
   margin-top: 8px;
   background-color: rgba(0, 0, 0, 0.50);
 }
+:host >>> aj-dropdown .dropdownmenu ul li a {
+  font-size: 14px;
+}
 
 :host >>> aj-daterangepicker .selectiongroup {
   border: none;
@@ -96,7 +99,8 @@
 }
 :host >>> aj-daterangepicker .selector {
   position: absolute;
-  top: 50px;
+  margin-top: 8px;
+  /*top: 50px;*/
 }
 :host >>> aj-daterangepicker .icon-drpcalendar:before {
   font-size: 100%;

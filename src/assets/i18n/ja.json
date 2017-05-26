@@ -26,9 +26,15 @@
     },
     "SEARCH": {
       "TITLE": "Search Event JA",
-      "PLACES_INPUT_TXT": "Search Places JA",
+      "PLACES": {
+        "MENU_INPUT_TXT": "Search Places JA",
+        "FIELD_INPUT_TXT": "Places JA"
+      },
       "DRP": {
-        "INPUT_TXT": "Select Date Range JA",
+        "INPUT": {
+          "MENU_TXT": "Select Date Range JA",
+          "FIELD_TXT": "Date Range JA"
+        },
         "BEGIN_DATE": "Select Begin Date JA",
         "END_DATE": "Select End Date JA",
         "WEEKDAY": {
@@ -39,7 +45,10 @@
           "7": "７月", "8": "８月", "9": "９月", "10": "１０月", "11": "１１月", "12": "１２月"
         }
       },
-      "CATEGORY_INPUT_TXT": "Select Category JA",
+      "CATEGORY": {
+        "MENU_INPUT_TXT": "Select Category JA",
+        "FIELD_INPUT_TXT": "Categories JA"
+      },
       "CLEAR_ALL": "Clear All JA"
     }
   },

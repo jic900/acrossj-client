@@ -10,7 +10,7 @@
           <div class="panel-body">
             <aj-dropdown #placeSearcher
                          [dataList]="searchService.placeList"
-                         [placeHolder]="'NAVBAR.SEARCH.PLACES_INPUT_TXT'"
+                         [placeHolder]="'NAVBAR.SEARCH.PLACES.MENU_INPUT_TXT'"
                          [width]="fieldWidth"
                          [filterFunc]="searchService.filterPlaces"
                          [displayProperty]="'display'"
@@ -24,7 +24,7 @@
         <div id="datePickerPanel" class="panel panel-default">
           <div class="panel-body">
             <aj-daterangepicker #dateRangePicker
-                                [placeholder]="'NAVBAR.SEARCH.DRP.INPUT_TXT'"
+                                [placeholder]="'NAVBAR.SEARCH.DRP.INPUT.MENU_TXT'"
                                 [width]="fieldWidth"
                                 [height]="fieldHeight"
                                 [options]="searchService.dateRangePickerOptions">
@@ -35,7 +35,7 @@
           <div class="panel-body">
             <aj-dropdown #categoryPicker
                          [dataList]="searchService.categoryList"
-                         [placeHolder]="'NAVBAR.SEARCH.CATEGORY_INPUT_TXT'"
+                         [placeHolder]="'NAVBAR.SEARCH.CATEGORY.MENU_INPUT_TXT'"
                          [width]="fieldWidth"
                          [height]="fieldHeight"
                          [displayProperty]="'display'"

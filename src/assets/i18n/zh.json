@@ -26,9 +26,15 @@
     },
     "SEARCH": {
       "TITLE": "查询活动",
-      "PLACES_INPUT_TXT": "查询地点",
+      "PLACES": {
+        "MENU_INPUT_TXT": "查询地点",
+        "FIELD_INPUT_TXT": "地点"
+      },
       "DRP": {
-        "INPUT_TXT": "选择查询周期",
+        "INPUT": {
+          "MENU_TXT": "选择查询周期",
+          "FIELD_TXT": "查询周期"
+        },
         "BEGIN_DATE": "选择起始日",
         "END_DATE": "选择终止日",
         "WEEKDAY": {
@@ -39,7 +45,10 @@
           "7": "7月", "8": "8月", "9": "9月", "10": "10月", "11": "11月", "12": "12月"
         }
       },
-      "CATEGORY_INPUT_TXT": "选择类别",
+      "CATEGORY": {
+        "MENU_INPUT_TXT": "选择类别",
+        "FIELD_INPUT_TXT": "类别"
+      },
       "CLEAR_ALL": "清空"
     }
   },

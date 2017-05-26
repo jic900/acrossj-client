@@ -52,8 +52,6 @@ export class SearchfieldComponent{
       this.placesWidth = '300%';
     } else if (id === 'categoryPicker') {
       this.categoryWidth = '150%';
-    } else if (id === 'dateRangePicker') {
-      this.dateRangePickerWidth = '300%';
     }
   }
 
@@ -63,6 +61,15 @@ export class SearchfieldComponent{
     } else if (id === 'categoryPicker') {
       this.categoryWidth = '100%';
     } else if (id === 'dateRangePicker') {
+      this.dateRangePickerWidth = '100%';
+    }
+  }
+
+  onCalendarOpened(isOpened: boolean) {
+    if (isOpened) {
+      this.setSubFieldWidth('100%');
+      this.dateRangePickerWidth = '300%';
+    } else {
       this.dateRangePickerWidth = '100%';
     }
   }
