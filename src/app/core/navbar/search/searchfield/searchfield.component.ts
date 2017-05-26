@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { AppConstant } from 'app/config/app.config';
 
@@ -20,37 +20,34 @@ export class SearchfieldComponent{
 
   constructor(public searchService: SearchService) {
     this.showSearch = false;
-    this.fieldWidth = '0';
-    this.placesWidth = '0';
-    this.dateRangePickerWidth = '0';
-    this.categoryWidth = '0';
+    this.setFieldWidth(0);
+    this.setSubFieldWidth('0');
     this.fieldHeight = '30px';
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(event): void {
+    if (event.target.innerWidth >= AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT) {
+      this.setFieldWidth(event.target.innerWidth);
+    } else {
+      this.setFieldWidth(0);
+      this.setSubFieldWidth('0');
+    }
   }
 
   onSearchClicked(event): void {
     this.showSearch = ! this.showSearch;
     if (this.showSearch) {
-      const maxFieldWidth = 700;
-      const minFieldWidth = 420;
-      const fieldWidthRange = maxFieldWidth - minFieldWidth;
-      const maxWindowWidth = 1536;
-      const minWindowWidth = AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT;
-      const windowWidthRange = maxWindowWidth - minWindowWidth;
-      const windowWidth = window.innerWidth;
-      this.fieldWidth = (minFieldWidth + (window.innerWidth - minWindowWidth) * fieldWidthRange / windowWidthRange) + 'px';
-      this.placesWidth = '100%';
-      this.dateRangePickerWidth = '100%';
-      this.categoryWidth = '100%';
+      this.setFieldWidth(window.innerWidth);
+      this.setSubFieldWidth('100%');
     } else {
-      this.fieldWidth = '0';
-      this.placesWidth = '0';
-      this.dateRangePickerWidth = '0';
-      this.categoryWidth = '0';
+      this.setFieldWidth(0);
+      this.setSubFieldWidth('0');
     }
   }
 
-  onFieldClicked(id: string) {
-    this.resetWidth();
+  onFieldClicked(id: string): void {
+    this.setSubFieldWidth('100%');
     if (id === 'placeSearcher') {
       this.placesWidth = '300%';
     } else if (id === 'categoryPicker') {
@@ -70,17 +67,31 @@ export class SearchfieldComponent{
     }
   }
 
-  private resetWidth(): void {
-    this.placesWidth = '100%';
-    this.dateRangePickerWidth = '100%';
-    this.categoryWidth = '100%';
-  }
-
   onPlaceSelected(event): void {
     this.placesWidth = '100%';
   }
 
   onCategorySelected(event): void {
     this.categoryWidth = '100%';
+  }
+
+  private setFieldWidth(windowWidth: number): void {
+    if (windowWidth === 0) {
+      this.fieldWidth = '0';
+    } else {
+      const maxFieldWidth = 700;
+      const minFieldWidth = 420;
+      const fieldWidthRange = maxFieldWidth - minFieldWidth;
+      const maxWindowWidth = 1536;
+      const minWindowWidth = AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT;
+      const windowWidthRange = maxWindowWidth - minWindowWidth;
+      this.fieldWidth = (minFieldWidth + (windowWidth - minWindowWidth) * fieldWidthRange / windowWidthRange) + 'px';
+    }
+  }
+
+  private setSubFieldWidth(newWidth: string) {
+    this.placesWidth = newWidth;
+    this.dateRangePickerWidth = newWidth;
+    this.categoryWidth = newWidth;
   }
 }

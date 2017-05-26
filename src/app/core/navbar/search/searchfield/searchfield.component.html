@@ -2,7 +2,8 @@
   <div class="searchfield-group"
        [ngClass]="{'showSearch': showSearch}" [ngStyle]="{'width': fieldWidth}">
     <div class="searchfield-item" [ngStyle]="{'width': placesWidth}">
-      <aj-dropdown [dataList]="searchService.placeList"
+      <aj-dropdown #placeSearcher
+                   [dataList]="searchService.placeList"
                    [placeHolder]="'Places'"
                    [height]="fieldHeight"
                    [filterFunc]="searchService.filterPlaces"
@@ -16,7 +17,8 @@
       </aj-dropdown>
     </div>
     <div class="searchfield-item" [ngStyle]="{'width': placesWidth}">
-      <aj-daterangepicker [placeholder]="'Date Range'"
+      <aj-daterangepicker #dateRangePicker
+                          [placeholder]="'Date Range'"
                           [width]="dateRangePickerWidth"
                           [height]="fieldHeight"
                           [options]="searchService.dateRangePickerOptions"
@@ -24,7 +26,8 @@
       </aj-daterangepicker>
     </div>
     <div class="searchfield-item" [ngStyle]="{'width': categoryWidth}" tabindex="1">
-      <aj-dropdown [dataList]="searchService.categoryList"
+      <aj-dropdown #categoryPicker
+                   [dataList]="searchService.categoryList"
                    [placeHolder]="'Category'"
                    [height]="fieldHeight"
                    [displayProperty]="'display'"
@@ -34,7 +37,9 @@
       </aj-dropdown>
     </div>
   </div>
-  <a class="searchfield-link" (click)="onSearchClicked($event)">
+  <a class="searchfield-link"
+     (click)="!showSearch ? onSearchClicked($event) :
+     onSearchClicked($event); placeSearcher.clearField(); categoryPicker.clearField(); dateRangePicker.clearDateRange()">
     <i class="fa fa-fw fa-search" aria-hidden="true"></i>
   </a>
 </div>
