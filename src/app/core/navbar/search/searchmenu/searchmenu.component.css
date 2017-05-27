@@ -43,6 +43,7 @@
 }
 .panel-body {
   padding: 0;
+  /*height: 36px;*/
 }
 
 .btn:focus {
@@ -62,6 +63,9 @@
   font-size: 16px;
 }
 
+:host >>> aj-dropdown .inputgroup {
+  height: 38px;
+}
 :host >>> aj-dropdown .inputgroup > input {
   font-size: 17px;
 }
@@ -71,9 +75,10 @@
 :host >>> aj-dropdown .fa-pencil {
   font-size: 120%;
 }
+:host >>> aj-daterangepicker .selectiongroup {
+  height: 38px;
+}
 :host >>> aj-daterangepicker .drp .selection {
   font-size: 17px !important;
 }
-/*:host >>> aj-autocomplete .suggestions-selected {*/
-  /*background-color: black;*/
-/*}*/
+

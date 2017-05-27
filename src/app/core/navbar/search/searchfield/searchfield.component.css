@@ -74,7 +74,7 @@
   position: absolute;
   border: none;
   border-radius: 0 0 5px 5px;
-  margin-top: 8px;
+  margin-top: 9px;
   background-color: rgba(0, 0, 0, 0.50);
 }
 :host >>> aj-dropdown .dropdownmenu ul li a {
@@ -99,7 +99,7 @@
 }
 :host >>> aj-daterangepicker .selector {
   position: absolute;
-  margin-top: 8px;
+  margin-top: 9px;
   /*top: 50px;*/
 }
 :host >>> aj-daterangepicker .icon-drpcalendar:before {

@@ -15,20 +15,22 @@ export class SearchfieldComponent{
   placesWidth: string;
   dateRangePickerWidth: string;
   categoryWidth: string;
-  fieldHeight: string;
   showSearch: boolean;
 
   constructor(public searchService: SearchService) {
     this.showSearch = false;
     this.setFieldWidth(0);
     this.setSubFieldWidth('0');
-    this.fieldHeight = '30px';
   }
 
   @HostListener('window:resize', ['$event'])
   onWindowResize(event): void {
+    console.log(event.target.innerWidth);
     if (event.target.innerWidth >= AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT) {
-      this.setFieldWidth(event.target.innerWidth);
+      if (this.showSearch) {
+        this.setFieldWidth(event.target.innerWidth);
+        // this.setSubFieldWidth('100%');
+      }
     } else {
       this.setFieldWidth(0);
       this.setSubFieldWidth('0');

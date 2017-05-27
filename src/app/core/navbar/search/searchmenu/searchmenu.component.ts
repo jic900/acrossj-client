@@ -1,13 +1,12 @@
 import {
   Component,
-  AfterViewInit,
   ElementRef,
   Renderer2
 } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
-import { AppConstant, MenuState} from '../../../../config/app.config';
-import { Util } from '../../../../shared/util/util';
+import { AppConstant, MenuState} from 'app/config/app.config';
+import { Util } from 'app/shared/util/util';
 import { SearchService } from '../services/search.service';
 
 
@@ -18,20 +17,15 @@ import { SearchService } from '../services/search.service';
   providers: [SearchService]
 })
 
-export class SearchMenuComponent implements AfterViewInit {
+export class SearchMenuComponent {
 
   searchMenuState: number;
   fieldWidth: string;
-  fieldHeight: string;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2,
               public searchService: SearchService, private translate: TranslateService) {
     this.searchMenuState = MenuState.collapsed;
-  }
-
-  ngAfterViewInit(): void {
     this.setFieldWidth();
-    this.setFieldHeight();
   }
 
   isSearchMenuExpanded(): boolean {
@@ -60,10 +54,6 @@ export class SearchMenuComponent implements AfterViewInit {
       widthPercent = 100 - (windowWidth - AppConstant.IPHONE6_WIDTH) * 100 / (windowWidth * 1.5);
     }
     this.fieldWidth = windowWidth * widthPercent / 100 + 'px';
-  }
-
-  setFieldHeight(): void {
-    this.fieldHeight = this.elementRef.nativeElement.querySelector('#dropDownInput').offsetHeight + 'px';
   }
 
   setSearchMenuState(newState: number) {

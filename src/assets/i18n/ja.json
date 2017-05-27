@@ -12,6 +12,13 @@
           "CHINESE": "Chinese JA"
         }
       },
+      "AUTH": {
+        "LABEL": "",
+        "MENU": {
+          "SIGNIN": "サインイン",
+          "SIGNUP": "サインアップ"
+        }
+      },
       "USER": {
         "LABEL": "Username JA",
         "MENU": {

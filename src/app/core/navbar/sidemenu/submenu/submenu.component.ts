@@ -1,9 +1,11 @@
 import {
   Component,
-  Renderer2,
   Input,
+  Output,
+  EventEmitter,
   ElementRef,
-  HostListener, Output, EventEmitter, ViewChild
+  Renderer2,
+  HostListener,
 } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -14,9 +16,6 @@ import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
   selector: 'aj-submenu',
   templateUrl: './submenu.component.html',
   styleUrls: ['./submenu.component.css'],
-  // host: {
-  //   '(document:mouseup)': 'onMouseUp($event)'
-  // }
 })
 
 export class SubMenuComponent {
@@ -88,8 +87,8 @@ export class SubMenuComponent {
       if (type !== curLang) {
         this.translate.use(type);
       }
-      this.subMenuState = MenuState.collapsed;
     }
+    this.subMenuState = MenuState.collapsed;
   }
 
   onMouseEnter(event): void {

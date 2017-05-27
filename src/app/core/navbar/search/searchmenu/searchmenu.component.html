@@ -11,7 +11,6 @@
             <aj-dropdown #placeSearcher
                          [dataList]="searchService.placeList"
                          [placeHolder]="'NAVBAR.SEARCH.PLACES.MENU_INPUT_TXT'"
-                         [width]="fieldWidth"
                          [filterFunc]="searchService.filterPlaces"
                          [displayProperty]="'display'"
                          [displayMaxCount]="searchService.displayedPlacesMaxCount"
@@ -25,8 +24,6 @@
           <div class="panel-body">
             <aj-daterangepicker #dateRangePicker
                                 [placeholder]="'NAVBAR.SEARCH.DRP.INPUT.MENU_TXT'"
-                                [width]="fieldWidth"
-                                [height]="fieldHeight"
                                 [options]="searchService.dateRangePickerOptions">
             </aj-daterangepicker>
           </div>
@@ -36,8 +33,6 @@
             <aj-dropdown #categoryPicker
                          [dataList]="searchService.categoryList"
                          [placeHolder]="'NAVBAR.SEARCH.CATEGORY.MENU_INPUT_TXT'"
-                         [width]="fieldWidth"
-                         [height]="fieldHeight"
                          [displayProperty]="'display'"
                          (selected)="onCategorySelected($event)">
             </aj-dropdown>

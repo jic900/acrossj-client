@@ -30,8 +30,6 @@ export class DropDownComponent implements OnChanges {
 
   @Input() dataList: IMenuItem[];
   @Input() placeHolder: string;
-  @Input() width: string;
-  @Input() height: string;
   @Input() displayProperty: string;
   @Input() displayMaxCount: number;
   @Input() sorted: boolean;
@@ -49,8 +47,6 @@ export class DropDownComponent implements OnChanges {
   constructor(private elementRef: ElementRef, private translate: TranslateService) {
     this.dataList = [];
     this.placeHolder = 'Please Select';
-    this.width = '100%';
-    this.height = '34px';
     this.displayProperty = 'display';
     this.displayMaxCount = -1;
     this.sorted = false;

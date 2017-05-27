@@ -29,14 +29,23 @@ export const SideMenuDef = {
 };
 
 export const SubMenuDef = {
+  auth: {
+    display: 'NAVBAR.SIDE.AUTH.LABEL',
+    type: 'auth',
+    value: [
+      {display: 'NAVBAR.SIDE.AUTH.MENU.SIGNIN', link: '/signin'},
+      {display: 'NAVBAR.SIDE.AUTH.MENU.SIGNUP', link: '/signin'}
+    ],
+    iconClass: 'fa-user'
+  },
   user: {
     display: 'NAVBAR.SIDE.USER.LABEL',
     type: 'user',
     value: [
-      {display: 'Profile'},
-      {display: 'Your Trips'},
-      {display: 'Messages'},
-      {display: 'Uploads'}
+      {display: 'NAVBAR.SIDE.USER.MENU.PROFILE'},
+      {display: 'NAVBAR.SIDE.USER.MENU.TRIPS'},
+      {display: 'NAVBAR.SIDE.USER.MENU.MESSAGES'},
+      {display: 'NAVBAR.SIDE.USER.MENU.UPLOADS'}
     ],
     iconClass: 'fa-user'
   },
@@ -93,7 +102,7 @@ export const DateRangePickerOptions = {
 
 export const CategoryOptions = [
   {display: 'Skii'},
-  {display: 'Bicycling', iconClass: 'fa fa-bicycle'},
+  {display: 'Bicycling', iconClass: 'fa fa-bicycle', link: '/'},
   {display: 'Hiking'},
   {display: 'Other'}
 ];

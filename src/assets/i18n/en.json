@@ -12,6 +12,13 @@
           "CHINESE": "Chinese"
         }
       },
+      "AUTH": {
+        "LABEL": "",
+        "MENU": {
+          "SIGNIN": "Sign In",
+          "SIGNUP": "Sign Up"
+        }
+      },
       "USER": {
         "LABEL": "Username",
         "MENU": {
@@ -21,7 +28,7 @@
           "UPLOADS": "Uploads"
         }
       },
-      "SIGNIN_SIGNUP": "Log In / Sign Up",
+      "SIGNIN_SIGNUP": "Sign In / Sign Up",
       "SIGNOUT": "Sign Out"
     },
     "SEARCH": {

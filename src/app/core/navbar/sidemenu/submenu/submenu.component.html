@@ -9,7 +9,7 @@
   <ul #submenu class="submenu"
       [ngClass]="{'pre-collapsed': isSubMenuPreCollapsed(), 'pre-expanded': isSubMenuPreExpanded(), 'expanded': isSubMenuExpanded()}">
     <li *ngFor="let listItem of menuData.value">
-      <a (click)="onSubMenuClick(listItem.type)">
+      <a [routerLink]="listItem.link ? [listItem.link] : []" (click)="onSubMenuClick(listItem.type)">
         <i *ngIf="listItem.iconClass"
            class='fa fa-fw'
            [ngClass]="listItem.iconClass"

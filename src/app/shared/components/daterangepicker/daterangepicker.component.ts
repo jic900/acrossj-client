@@ -61,8 +61,6 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
   @Input() defaultMonth: string;
   @Input() selDateRange: string;
   @Input() placeholder: string;
-  @Input() width: string;
-  @Input() height: string;
   @Output() dateRangeChanged: EventEmitter<IDateRangeModel> = new EventEmitter<IDateRangeModel>();
   @Output() inputFieldChanged: EventEmitter<IInputFieldChanged> = new EventEmitter<IInputFieldChanged>();
   @Output() calendarViewChanged: EventEmitter<ICalendarViewChanged> = new EventEmitter<ICalendarViewChanged>();
@@ -76,7 +74,6 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
   };
 
   showSelector: boolean = false;
-  calWidth: string;
   visibleMonth: IMonth = {monthTxt: '', monthNbr: 0, year: 0};
   selectedMonth: IMonth = {monthTxt: '', monthNbr: 0, year: 0};
   weekDays: Array<string> = [];
@@ -135,8 +132,6 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
     firstDayOfWeek: <string> 'mo',
     sunHighlight: <boolean> true,
     markCurrentDay: <boolean> true,
-    height: <string> '34px',
-    width: <string> '100%',
     inline: <boolean> false,
     showClearDateRangeBtn: <boolean> true,
     selectionTxtFontSize: <string> '14px',
@@ -169,19 +164,25 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
               private drus: DateRangePickerService, private translate: TranslateService) {
     renderer.listen('document', 'click', (event: any) => {
       if (this.showSelector && event.target && this.elem.nativeElement !== event.target && !this.elem.nativeElement.contains(event.target)) {
-        this.emitCalendarOpened(false);
+        this.calendarOpened.emit(false);
         this.showSelector = false;
-        // this.calendarOpened.emit(false);
+
       }
       if (this.opts.editableMonthAndYear) {
         this.resetMonthYearEdit();
       }
     });
+
     translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.translateOptions();
       this.translateSelectedDates();
-      // this.clearDateRange();
     });
+
+    const self = this;
+    setTimeout(function() {
+      self.translateOptions();
+      self.translateSelectedDates();
+    }, 500);
   }
 
   resetMonthYearEdit(): void {
@@ -423,14 +424,9 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
   }
 
   openBtnClicked(): void {
-    // this.emitClicked();
-    if (! this.showSelector) {
-      this.setCalendarWidth();
-    }
-    this.emitCalendarOpened(!this.showSelector);
+    this.calendarOpened.emit(!this.showSelector);
     this.showSelector = !this.showSelector;
     this.cdr.detectChanges();
-    // this.calendarOpened.emit(this.showSelector);
     this.inputBlurOnDevice();
     if (this.showSelector) {
       this.setVisibleMonth();
@@ -659,7 +655,7 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
     // Accept button clicked
     let dateRangeModel: IDateRangeModel = this.getDateRangeModel(this.beginDate, this.endDate);
     this.selectionDayTxt = this.formatDate(this.beginDate) + ' - ' + this.formatDate(this.endDate);
-    this.emitCalendarOpened(false);
+    this.calendarOpened.emit(false);
     this.showSelector = false;
     // this.calendarOpened.emit(false);
     this.dateRangeChanged.emit(dateRangeModel);
@@ -924,18 +920,5 @@ export class DateRangePicker implements OnChanges, ControlValueAccessor {
 
   parseSelectedMonth(ms: string): IMonth {
     return this.drus.parseDefaultMonth(ms);
-  }
-
-  private emitCalendarOpened(isOpened: boolean): void {
-    this.calendarOpened.emit(isOpened);
-    this.setCalendarWidth();
-  }
-
-  private setCalendarWidth(): void {
-    const self = this;
-    setTimeout(function() {
-      const style = window.getComputedStyle(this.elem.nativeElement.firstElementChild);
-      self.calWidth = style.getPropertyValue('width');
-    }, 210);
   }
 }

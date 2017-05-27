@@ -43,11 +43,10 @@ export function HttpLoaderFactory(http: Http) {
 })
 
 export class AppModule {
-  constructor(private translate: TranslateService) {
 
+  constructor(private translate: TranslateService) {
     translate.addLangs(['en', 'ja', 'zh']);
     translate.setDefaultLang('en');
-
     let browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/en|ja|zh/) ? browserLang : 'en');
     // translate.use('zh');

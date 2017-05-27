@@ -22,7 +22,6 @@ export class SideMenuComponent {
   sideMenuData: IMenuItem;
   sideMenuState: number;
   authenticated: boolean;
-  subMenuState: number = MenuState.collapsed;
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {
     this.sideMenuData = SideMenuDef.topList;
@@ -37,9 +36,10 @@ export class SideMenuComponent {
   subMenuData(type: string) {
     if (type === 'language') {
       return SubMenuDef.language;
-    } else {
-      return SubMenuDef.user;
+    } else if (type === 'auth') {
+      return SubMenuDef.auth;
     }
+    return SubMenuDef.user;
   }
 
   getMinHeight(): string {

@@ -12,6 +12,13 @@
           "CHINESE": "中文"
         }
       },
+      "AUTH": {
+        "LABEL": "",
+        "MENU": {
+          "SIGNIN": "登录",
+          "SIGNUP": "注册"
+        }
+      },
       "USER": {
         "LABEL": "用户名",
         "MENU": {

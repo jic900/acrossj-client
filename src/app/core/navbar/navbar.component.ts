@@ -31,7 +31,7 @@ export class NavbarComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.windowWidth = window.innerWidth;
-    this.setAuthenticated(true);
+    this.setAuthenticated(false);
   }
 
   @HostListener('window:resize', ['$event'])

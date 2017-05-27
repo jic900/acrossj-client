@@ -7,5 +7,5 @@ import {LoginComponent} from "../core/auth/login.component";
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'signin', component: LoginComponent },
 ];
