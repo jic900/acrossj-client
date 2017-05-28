@@ -1,14 +1,15 @@
-.searchfield-container {
-  display: table;
-  position: relative;
-}
+/*.searchfield-container {*/
+  /*display: table;*/
+  /*position: relative;*/
+/*}*/
 
 .searchfield-group {
   display: table;
+  margin: 12px 0 8px;
   background-color: transparent;
   color: white;
   text-decoration: none;
-  table-layout: fixed;
+  table-layout: fixed !important;
   border: solid 1px white;
   border-radius: 4px;
   outline: none;
@@ -40,21 +41,6 @@
   transition: width 0.2s linear;
 }
 
-.searchfield-link {
-  display: table-cell;
-  position: relative;
-  top: 3px;
-  width: 50px;
-  padding: 15px 0 15px 0;
-  text-align: center;
-  line-height: 20px;
-}
-
-.searchfield-input {
-  width: 200px;
-  /*width: auto;*/
-}
-
 :host >>> aj-dropdown .inputgroup {
   border: none;
 }
@@ -74,7 +60,7 @@
   position: absolute;
   border: none;
   border-radius: 0 0 5px 5px;
-  margin-top: 9px;
+  margin-top: 10px;
   background-color: rgba(0, 0, 0, 0.50);
 }
 :host >>> aj-dropdown .dropdownmenu ul li a {
@@ -99,7 +85,7 @@
 }
 :host >>> aj-daterangepicker .selector {
   position: absolute;
-  margin-top: 9px;
+  margin-top: 10px;
   /*top: 50px;*/
 }
 :host >>> aj-daterangepicker .icon-drpcalendar:before {

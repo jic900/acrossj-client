@@ -21,6 +21,11 @@
           <!--<i class="fa fa-fw fa-search" aria-hidden="true"></i>-->
         <!--</a>-->
       </li>
+      <li *ngIf="!isDeviceWidth()">
+        <a class="nav-search" (click)="onSearchClicked($event)">
+          <i class="fa fa-fw fa-search" aria-hidden="true"></i>
+        </a>
+      </li>
       <li>
         <aj-submenu [menuData]="subMenuData('language')" (subMenuToggled)="onSubMenuToggled($event)">
         </aj-submenu>

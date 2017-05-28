@@ -108,7 +108,8 @@ export class DropDownComponent implements OnChanges {
   onFocus(event): void {
     // console.log('onFocus  ' + event.target.tagName);
     if (! this.autoComplete) {
-      this.inputBlurOnDevice();
+      // this.inputBlurOnDevice();
+      this.inputBlur();
     } else if (this.inputString !== '') {
       this.updateDisplayList();
     }
@@ -116,7 +117,7 @@ export class DropDownComponent implements OnChanges {
 
   onBlur(event): void {
     // console.log('onBlur  ' + event.target.tagName);
-    if (!Util.isPhoneOrTablet()) {
+    if (this.autoComplete && !Util.isPhoneOrTablet()) {
       let self = this;
       setTimeout(function() {
         self.resetDisplayList();
@@ -223,6 +224,11 @@ export class DropDownComponent implements OnChanges {
 
   isDropDownExpanded(): boolean {
     return this.menuState === MenuState.expanded;
+  }
+
+  private inputBlur(): void {
+    const inputField = this.elementRef.nativeElement.querySelector('#dropDownInput');
+    inputField.blur();
   }
 
   private inputBlurOnDevice(): void {

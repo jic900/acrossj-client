@@ -1,6 +1,8 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { AppConstant } from 'app/config/app.config';
+import { DropDownComponent } from 'app/shared/components/dropdown/dropdown.component';
+import { DateRangePicker } from 'app/shared/components/daterangepicker/daterangepicker.component';
 
 @Component({
   selector: 'aj-searchfield',
@@ -9,8 +11,11 @@ import { AppConstant } from 'app/config/app.config';
   providers: [SearchService]
 })
 
-export class SearchfieldComponent{
+export class SearchfieldComponent {
 
+  @ViewChild('placeSearcher') placeSearcher: DropDownComponent;
+  @ViewChild('dateRangePicker') dateRangePicker: DateRangePicker;
+  @ViewChild('categoryPicker') categoryPicker: DropDownComponent;
   fieldWidth: string;
   placesWidth: string;
   dateRangePickerWidth: string;
@@ -38,6 +43,7 @@ export class SearchfieldComponent{
   }
 
   onSearchClicked(event): void {
+    console.log('onSearchClicked');
     this.showSearch = ! this.showSearch;
     if (this.showSearch) {
       this.setFieldWidth(window.innerWidth);
@@ -45,6 +51,7 @@ export class SearchfieldComponent{
     } else {
       this.setFieldWidth(0);
       this.setSubFieldWidth('0');
+      this.resetSearchFields();
     }
   }
 
@@ -82,6 +89,12 @@ export class SearchfieldComponent{
 
   onCategorySelected(event): void {
     this.categoryWidth = '100%';
+  }
+
+  resetSearchFields() {
+    this.placeSearcher.clearField();
+    this.categoryPicker.clearField();
+    this.dateRangePicker.clearDateRange()
   }
 
   private setFieldWidth(windowWidth: number): void {

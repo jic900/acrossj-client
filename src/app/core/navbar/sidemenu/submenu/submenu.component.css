@@ -84,6 +84,9 @@
   li {
     font-size: 100%;
   }
+  li > a > .fa {
+    margin-right: 15px;
+  }
   .submenu-container > a {
     text-align: center;
     padding: 18px 0 12px 0;
@@ -96,6 +99,10 @@
     padding-top: 4px;
     padding-bottom: 4px;
     padding-left: 50px;
+  }
+  .submenu > li {
+    padding-left: 0;
+    margin-left: 0;
   }
   .submenu > li:hover {
     background-color: rgba(255, 255, 255, 0.30);
@@ -110,6 +117,7 @@
     padding-top: 10px;
     padding-bottom: 15px;
     -webkit-padding-start: 0;
+    -moz-padding-start: 0;
     position: fixed;
     list-style: none;
     background-color: rgba(0, 0, 0, 0.50);

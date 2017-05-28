@@ -65,11 +65,11 @@
   /*}*/
 /*}*/
 
-/*.navbar-search {*/
-  /*width: 50px;*/
-  /*padding: 15px 0 !important;*/
-  /*text-align: center;*/
-/*}*/
+.nav-search {
+  width: 50px;
+  padding: 18px 0 12px !important;
+  text-align: center;
+}
 
 /*:host >>> li > a > .fa {*/
   /*margin-right: 15px;*/
@@ -85,9 +85,6 @@
   :host >>> .fa {
     /*margin-right: 20px;*/
     font-size: 20px;
-  }
-  :host >>> li > a > .fa {
-    margin-right: 15px;
   }
 }
 /*:host >>> a > .fa {*/

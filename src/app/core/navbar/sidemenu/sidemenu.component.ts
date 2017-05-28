@@ -2,13 +2,14 @@ import {
   Component,
   ViewChildren,
   QueryList,
-  ChangeDetectorRef
+  ChangeDetectorRef, ViewChild
 } from '@angular/core';
 
 import { SubMenuComponent } from './submenu/submenu.component';
 import { AppConstant, MenuState, SideMenuDef, SubMenuDef } from 'app/config/app.config';
 import { Util } from 'app/shared/util/util';
 import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
+import { SearchfieldComponent } from '../search/searchfield/searchfield.component';
 
 @Component({
   selector: 'aj-sidemenu',
@@ -19,6 +20,7 @@ import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
 export class SideMenuComponent {
 
   @ViewChildren(SubMenuComponent) submenus: QueryList<SubMenuComponent>;
+  @ViewChild(SearchfieldComponent) searchfield: SearchfieldComponent;
   sideMenuData: IMenuItem;
   sideMenuState: number;
   authenticated: boolean;
@@ -27,6 +29,10 @@ export class SideMenuComponent {
     this.sideMenuData = SideMenuDef.topList;
     this.sideMenuState = MenuState.collapsed;
     this.authenticated = false;
+  }
+
+  onSearchClicked(event): void {
+    this.searchfield.onSearchClicked(event);
   }
 
   isSideMenuExpanded(): boolean {
