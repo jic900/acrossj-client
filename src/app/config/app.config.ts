@@ -17,50 +17,6 @@ export class AppConstant {
   // public static IPAD_PRO_WIDTH: number = 1024;
 }
 
-export const SideMenuDef = {
-  topList: {
-    display: '',
-    value: [
-      {display: 'NAVBAR.SIDE.ABOUT_US', iconClass: 'fa-info-circle'},
-      {display: 'NAVBAR.SIDE.CREATE_TRIP', iconClass: 'fa-calendar-plus-o'},
-      {display: 'NAVBAR.SIDE.HELP', iconClass: 'fa-question-circle-o'}
-    ]
-  }
-};
-
-export const SubMenuDef = {
-  auth: {
-    display: 'NAVBAR.SIDE.AUTH.LABEL',
-    type: 'auth',
-    value: [
-      {display: 'NAVBAR.SIDE.AUTH.MENU.SIGNIN', link: '/signin'},
-      {display: 'NAVBAR.SIDE.AUTH.MENU.SIGNUP', link: '/signin'}
-    ],
-    iconClass: 'fa-user'
-  },
-  user: {
-    display: 'NAVBAR.SIDE.USER.LABEL',
-    type: 'user',
-    value: [
-      {display: 'NAVBAR.SIDE.USER.MENU.PROFILE'},
-      {display: 'NAVBAR.SIDE.USER.MENU.TRIPS'},
-      {display: 'NAVBAR.SIDE.USER.MENU.MESSAGES'},
-      {display: 'NAVBAR.SIDE.USER.MENU.UPLOADS'}
-    ],
-    iconClass: 'fa-user'
-  },
-  language: {
-    display: 'NAVBAR.SIDE.LANGUAGE.LABEL',
-    type: 'language',
-    value: [
-      {display: 'NAVBAR.SIDE.LANGUAGE.MENU.ENGLISH', type: 'en', iconClass: 'flag-icon flag-icon-us'},
-      {display: 'NAVBAR.SIDE.LANGUAGE.MENU.JAPANESE', type: 'ja', iconClass: 'flag-icon flag-icon-jp'},
-      {display: 'NAVBAR.SIDE.LANGUAGE.MENU.CHINESE', type: 'zh', iconClass: 'flag-icon flag-icon-cn'}
-    ],
-    iconClass: 'fontello-globe'
-  }
-};
-
 export const MenuState = {
   pre_collapsed: 0,
   collapsed: 1,
@@ -68,41 +24,3 @@ export const MenuState = {
   expanded: 3,
 }
 
-export const DateRangePickerOptions = {
-  editableDateRangeField: false,
-  openSelectorOnInputClick: true,
-  // dateFormat: 'yyyy-mm-dd',
-  dateFormat: 'mmm dd',
-  dayLabels: {
-    su: 'NAVBAR.SEARCH.DRP.WEEKDAY.SUN',
-    mo: 'NAVBAR.SEARCH.DRP.WEEKDAY.MON',
-    tu: 'NAVBAR.SEARCH.DRP.WEEKDAY.TUE',
-    we: 'NAVBAR.SEARCH.DRP.WEEKDAY.WED',
-    th: 'NAVBAR.SEARCH.DRP.WEEKDAY.THU',
-    fr: 'NAVBAR.SEARCH.DRP.WEEKDAY.FRI',
-    sa: 'NAVBAR.SEARCH.DRP.WEEKDAY.SAT'
-  },
-  monthLabels: {
-    1: 'NAVBAR.SEARCH.DRP.MONTH.1',
-    2: 'NAVBAR.SEARCH.DRP.MONTH.2',
-    3: 'NAVBAR.SEARCH.DRP.MONTH.3',
-    4: 'NAVBAR.SEARCH.DRP.MONTH.4',
-    5: 'NAVBAR.SEARCH.DRP.MONTH.5',
-    6: 'NAVBAR.SEARCH.DRP.MONTH.6',
-    7: 'NAVBAR.SEARCH.DRP.MONTH.7',
-    8: 'NAVBAR.SEARCH.DRP.MONTH.8',
-    9: 'NAVBAR.SEARCH.DRP.MONTH.9',
-    10: 'NAVBAR.SEARCH.DRP.MONTH.10',
-    11: 'NAVBAR.SEARCH.DRP.MONTH.11',
-    12: 'NAVBAR.SEARCH.DRP.MONTH.12'
-  },
-  selectBeginDateTxt: 'NAVBAR.SEARCH.DRP.BEGIN_DATE',
-  selectEndDateTxt: 'NAVBAR.SEARCH.DRP.END_DATE',
-};
-
-export const CategoryOptions = [
-  {display: 'Skii'},
-  {display: 'Bicycling', iconClass: 'fa fa-bicycle', link: '/'},
-  {display: 'Hiking'},
-  {display: 'Other'}
-];

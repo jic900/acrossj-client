@@ -15,8 +15,6 @@
            [ngClass]="listItem.iconClass"
            aria-hidden="true">
         </i>{{ listItem.display | translate }}
-        <!--<span class="flag-icon-background flag-icon-us">{{ listItem.display | translate }}</span>-->
-        <!--<span [ngClass]="listItem.iconClass ? listItem.iconClass : ''">{{ listItem.display | translate }}</span>-->
       </a>
     </li>
     <li *ngIf="menuData.type === 'user' && ! this.isDeviceWidth();">

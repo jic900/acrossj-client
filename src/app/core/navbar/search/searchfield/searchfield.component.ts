@@ -1,4 +1,4 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, Input, ViewChild } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { AppConstant } from 'app/config/app.config';
 import { DropDownComponent } from 'app/shared/components/dropdown/dropdown.component';
@@ -13,6 +13,7 @@ import { DateRangePicker } from 'app/shared/components/daterangepicker/daterange
 
 export class SearchfieldComponent {
 
+  @Input() searchFieldData: {};
   @ViewChild('placeSearcher') placeSearcher: DropDownComponent;
   @ViewChild('dateRangePicker') dateRangePicker: DateRangePicker;
   @ViewChild('categoryPicker') categoryPicker: DropDownComponent;

@@ -2,14 +2,13 @@ import {
   Component,
   ViewChildren,
   QueryList,
-  ChangeDetectorRef, ViewChild
+  ChangeDetectorRef, ViewChild, Input
 } from '@angular/core';
 
 import { SubMenuComponent } from './submenu/submenu.component';
-import { AppConstant, MenuState, SideMenuDef, SubMenuDef } from 'app/config/app.config';
-import { Util } from 'app/shared/util/util';
-import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
 import { SearchfieldComponent } from '../search/searchfield/searchfield.component';
+import { AppConstant, MenuState } from 'app/config/app.config';
+import { Util } from 'app/shared/util/util';
 
 @Component({
   selector: 'aj-sidemenu',
@@ -21,12 +20,11 @@ export class SideMenuComponent {
 
   @ViewChildren(SubMenuComponent) submenus: QueryList<SubMenuComponent>;
   @ViewChild(SearchfieldComponent) searchfield: SearchfieldComponent;
-  sideMenuData: IMenuItem;
+  @Input() sideMenuData: {};
   sideMenuState: number;
   authenticated: boolean;
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {
-    this.sideMenuData = SideMenuDef.topList;
     this.sideMenuState = MenuState.collapsed;
     this.authenticated = false;
   }
@@ -37,15 +35,6 @@ export class SideMenuComponent {
 
   isSideMenuExpanded(): boolean {
     return this.sideMenuState === MenuState.expanded;
-  }
-
-  subMenuData(type: string) {
-    if (type === 'language') {
-      return SubMenuDef.language;
-    } else if (type === 'auth') {
-      return SubMenuDef.auth;
-    }
-    return SubMenuDef.user;
   }
 
   getMinHeight(): string {

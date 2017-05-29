@@ -1,6 +1,6 @@
 import {
   Component,
-  ElementRef,
+  ElementRef, Input,
   Renderer2
 } from '@angular/core';
 
@@ -19,6 +19,7 @@ import { SearchService } from '../services/search.service';
 
 export class SearchMenuComponent {
 
+  @Input() searchMenuData: {};
   searchMenuState: number;
   fieldWidth: string;
 

@@ -4,12 +4,14 @@ import {
   ElementRef,
   Renderer2,
   HostListener,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 
-import { SearchMenuComponent } from './search/searchmenu/searchmenu.component';
-import { AppConfig, AppConstant, MenuState } from 'app/config/app.config';
 import { SideMenuComponent } from './sidemenu/sidemenu.component';
+import { SearchMenuComponent } from './search/searchmenu/searchmenu.component';
+import { AppConstant, MenuState } from 'app/config/app.config';
+import { NavbarDef } from 'app/config/navbar.config';
+
 
 @Component({
   selector: 'aj-navbar',
@@ -21,17 +23,17 @@ export class NavbarComponent implements AfterViewInit {
 
   @ViewChild(SideMenuComponent) sideMenu: SideMenuComponent;
   @ViewChild(SearchMenuComponent) searchMenu: SearchMenuComponent;
-  homeLogo: string;
+  navbarConfig: {};
   windowWidth: number;
   authenticated: boolean;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    this.homeLogo = AppConfig.HOME_LOGO;
+    this.navbarConfig = NavbarDef;
   }
 
   ngAfterViewInit(): void {
     this.windowWidth = window.innerWidth;
-    this.setAuthenticated(true);
+    this.setAuthenticated(false);
   }
 
   @HostListener('window:resize', ['$event'])

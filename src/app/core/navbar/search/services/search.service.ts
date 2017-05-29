@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IMenuItem } from '../../../../shared/interfaces/menuitem.interface';
-import { AppConfig, CategoryOptions, DateRangePickerOptions } from '../../../../config/app.config';
-import { IOptions } from '../../../../shared/components/datepicker/interfaces/options.interface';
+import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
+import { CategoryOptions } from 'app/config/navbar.config';
 
 @Injectable()
 export class SearchService {
@@ -15,14 +14,14 @@ export class SearchService {
 
   placeList: IMenuItem[];
   categoryList: IMenuItem[];
-  dateRangePickerOptions: IOptions;
-  displayedPlacesMaxCount: number;
+  // dateRangePickerOptions: IOptions;
+  // displayedPlacesMaxCount: number;
 
   constructor() {
     this.placeList = this.getPlaceList();
     this.categoryList = CategoryOptions;
-    this.dateRangePickerOptions = DateRangePickerOptions;
-    this.displayedPlacesMaxCount = AppConfig.PLACE_SEARCH_RESULT_LIMIT;
+    // this.dateRangePickerOptions = DateRangePickerOptions;
+    // this.displayedPlacesMaxCount = AppConfig.PLACE_SEARCH_RESULT_LIMIT;
   }
 
   private getPlaceList(): IMenuItem[] {

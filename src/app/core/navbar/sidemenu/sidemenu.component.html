@@ -4,7 +4,7 @@
      [ngClass]="{'sideMenuExpanded': isSideMenuExpanded()}">
   <div class="navbar-nav-container" [ngStyle]="{'max-height': getMaxHeight(), 'overflow-y': getOverflowY()}">
     <ul class="nav navbar-nav">
-      <li *ngFor="let menuItem of sideMenuData.value">
+      <li *ngFor="let menuItem of sideMenuData.topList.value">
         <a [routerLink]="menuItem.link ? [menuItem.link] : []">
           <i *ngIf="isDeviceWidth()"
              class='fa fa-fw'
@@ -16,33 +16,30 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li *ngIf="!isDeviceWidth()">
-        <aj-searchfield></aj-searchfield>
-        <!--<a class="navbar-search">-->
-          <!--<i class="fa fa-fw fa-search" aria-hidden="true"></i>-->
-        <!--</a>-->
+        <aj-searchfield [searchFieldData]="sideMenuData.searchField"></aj-searchfield>
       </li>
       <li *ngIf="!isDeviceWidth()">
         <a class="nav-search" (click)="onSearchClicked($event)">
-          <i class="fa fa-fw fa-search" aria-hidden="true"></i>
+          <i [class]="sideMenuData.searchButton.iconClass" aria-hidden="true"></i>
         </a>
       </li>
       <li>
-        <aj-submenu [menuData]="subMenuData('language')" (subMenuToggled)="onSubMenuToggled($event)">
+        <aj-submenu [menuData]="sideMenuData.language" (subMenuToggled)="onSubMenuToggled($event)">
         </aj-submenu>
       </li>
       <li *ngIf="!authenticated && isDeviceWidth()" style="margin-top: 15px">
-        <a routerLink="/signin">{{'NAVBAR.SIDE.SIGNIN_SIGNUP'|translate}}</a>
+        <a [routerLink]="[sideMenuData.signinSignup.link]">{{sideMenuData.signinSignup.display | translate}}</a>
       </li>
       <li *ngIf="!authenticated && !isDeviceWidth()">
-        <aj-submenu [menuData]="subMenuData('auth')" (subMenuToggled)="onSubMenuToggled($event)">
+        <aj-submenu [menuData]="sideMenuData.auth" (subMenuToggled)="onSubMenuToggled($event)">
         </aj-submenu>
       </li>
       <li *ngIf="authenticated">
-        <aj-submenu [menuData]="subMenuData('user')" (subMenuToggled)="onSubMenuToggled($event)">
+        <aj-submenu [menuData]="sideMenuData.user" (subMenuToggled)="onSubMenuToggled($event)">
         </aj-submenu>
       </li>
       <li *ngIf="authenticated && isDeviceWidth()" style="margin-top: 15px">
-        <a href="#">{{'NAVBAR.SIDE.SIGNOUT'|translate}}</a>
+        <a [routerLink]="[sideMenuData.signout.link]">{{sideMenuData.signout.display | translate}}</a>
       </li>
     </ul>
   </div>

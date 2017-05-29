@@ -1,45 +1,34 @@
-<!--<div class="searchfield-container">-->
-  <div class="searchfield-group"
-       [ngClass]="{'showSearch': showSearch}" [ngStyle]="{'width': fieldWidth}">
-    <div class="searchfield-item" [ngStyle]="{'width': placesWidth}">
-      <aj-dropdown #placeSearcher
-                   [dataList]="searchService.placeList"
-                   [placeHolder]="'NAVBAR.SEARCH.PLACES.FIELD_INPUT_TXT'"
-                   [filterFunc]="searchService.filterPlaces"
-                   [displayProperty]="'display'"
-                   [displayMaxCount]="searchService.displayedPlacesMaxCount"
-                   [sorted]="true"
-                   [autoComplete]="true"
-                   (clicked)="onFieldClicked('placeSearcher')"
-                   (blurred)="onFieldBlurred('placeSearcher')"
-                   (selected)="onPlaceSelected($event)">
-      </aj-dropdown>
-    </div>
-    <div class="searchfield-item" [ngStyle]="{'width': dateRangePickerWidth}">
-      <aj-daterangepicker #dateRangePicker
-                          [placeholder]="'NAVBAR.SEARCH.DRP.INPUT.FIELD_TXT'"
-                          [options]="searchService.dateRangePickerOptions"
-                          (calendarOpened)="onCalendarOpened($event)">
-      </aj-daterangepicker>
-    </div>
-    <div class="searchfield-item" [ngStyle]="{'width': categoryWidth}">
-      <aj-dropdown #categoryPicker
-                   [dataList]="searchService.categoryList"
-                   [placeHolder]="'NAVBAR.SEARCH.CATEGORY.FIELD_INPUT_TXT'"
-                   [displayProperty]="'display'"
-                   (clicked)="onFieldClicked('categoryPicker')"
-                   (blurred)="onFieldBlurred('categoryPicker')"
-                   (selected)="onCategorySelected($event)">
-      </aj-dropdown>
-    </div>
+<div class="searchfield-group"
+     [ngClass]="{'showSearch': showSearch}" [ngStyle]="{'width': fieldWidth}">
+  <div class="searchfield-item" [ngStyle]="{'width': placesWidth}">
+    <aj-dropdown #placeSearcher
+                 [dataList]="searchService.placeList"
+                 [placeHolder]="searchFieldData.placeSearcher.fieldPlaceHolder"
+                 [filterFunc]="searchService.filterPlaces"
+                 [displayProperty]="searchFieldData.placeSearcher.displayProperty"
+                 [displayMaxCount]="searchFieldData.placeSearcher.displayMaxCount"
+                 [sorted]="searchFieldData.placeSearcher.sorted"
+                 [autoComplete]="searchFieldData.placeSearcher.autoComplete"
+                 (clicked)="onFieldClicked('placeSearcher')"
+                 (blurred)="onFieldBlurred('placeSearcher')"
+                 (selected)="onPlaceSelected($event)">
+    </aj-dropdown>
   </div>
-  <!--<a class="searchfield-link"-->
-     <!--(click)="! showSearch ? onSearchClicked($event) :-->
-                             <!--onSearchClicked($event);-->
-                             <!--placeSearcher.clearField();-->
-                             <!--categoryPicker.clearField();-->
-                             <!--dateRangePicker.clearDateRange()">-->
-    <!--<i class="fa fa-fw fa-search" aria-hidden="true"></i>-->
-  <!--</a>-->
-<!--</div>-->
-
+  <div class="searchfield-item" [ngStyle]="{'width': dateRangePickerWidth}">
+    <aj-daterangepicker #dateRangePicker
+                        [placeholder]="searchFieldData.dateRangePicker.fieldPlaceHolder"
+                        [options]="searchFieldData.dateRangePicker.options"
+                        (calendarOpened)="onCalendarOpened($event)">
+    </aj-daterangepicker>
+  </div>
+  <div class="searchfield-item" [ngStyle]="{'width': categoryWidth}">
+    <aj-dropdown #categoryPicker
+                 [dataList]="searchService.categoryList"
+                 [placeHolder]="searchFieldData.categoryPicker.fieldPlaceHolder"
+                 [displayProperty]="searchFieldData.categoryPicker.displayProperty"
+                 (clicked)="onFieldClicked('categoryPicker')"
+                 (blurred)="onFieldBlurred('categoryPicker')"
+                 (selected)="onCategorySelected($event)">
+    </aj-dropdown>
+  </div>
+</div>

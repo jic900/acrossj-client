@@ -4,18 +4,18 @@
   <div [ngStyle]="{'max-height': getMaxHeight(), 'overflow-y': getOverflowY()}">
     <div class="navbar-search-content"
          [style.width]="fieldWidth">
-      <label class="search-label">{{'NAVBAR.SEARCH.TITLE'|translate}}</label>
+      <label class="search-label">{{searchMenuData.title | translate}}</label>
       <div class="panel-group">
         <div class="panel panel-default">
           <div class="panel-body">
             <aj-dropdown #placeSearcher
                          [dataList]="searchService.placeList"
-                         [placeHolder]="'NAVBAR.SEARCH.PLACES.MENU_INPUT_TXT'"
+                         [placeHolder]="searchMenuData.placeSearcher.menuPlaceHolder"
                          [filterFunc]="searchService.filterPlaces"
-                         [displayProperty]="'display'"
-                         [displayMaxCount]="searchService.displayedPlacesMaxCount"
-                         [sorted]="true"
-                         [autoComplete]="true"
+                         [displayProperty]="searchMenuData.placeSearcher.displayProperty"
+                         [displayMaxCount]="searchMenuData.placeSearcher.displayMaxCount"
+                         [sorted]="searchMenuData.placeSearcher.sorted"
+                         [autoComplete]="searchMenuData.placeSearcher.autoComplete"
                          (selected)="onPlaceSelected($event)">
             </aj-dropdown>
           </div>
@@ -23,8 +23,8 @@
         <div id="datePickerPanel" class="panel panel-default">
           <div class="panel-body">
             <aj-daterangepicker #dateRangePicker
-                                [placeholder]="'NAVBAR.SEARCH.DRP.INPUT.MENU_TXT'"
-                                [options]="searchService.dateRangePickerOptions">
+                                [placeholder]="searchMenuData.dateRangePicker.menuPlaceHolder"
+                                [options]="searchMenuData.dateRangePicker.options">
             </aj-daterangepicker>
           </div>
         </div>
@@ -32,8 +32,8 @@
           <div class="panel-body">
             <aj-dropdown #categoryPicker
                          [dataList]="searchService.categoryList"
-                         [placeHolder]="'NAVBAR.SEARCH.CATEGORY.MENU_INPUT_TXT'"
-                         [displayProperty]="'display'"
+                         [placeHolder]="searchMenuData.categoryPicker.menuPlaceHolder"
+                         [displayProperty]="searchMenuData.categoryPicker.displayProperty"
                          (selected)="onCategorySelected($event)">
             </aj-dropdown>
           </div>
@@ -41,7 +41,7 @@
       </div>
       <button class="btn btn-clearall"
               (click)="placeSearcher.clearField(); categoryPicker.clearField(); dateRangePicker.clearDateRange()">
-        {{'NAVBAR.SEARCH.CLEAR_ALL'|translate}}
+        {{searchMenuData.clearAll | translate}}
       </button>
     </div>
   </div>
