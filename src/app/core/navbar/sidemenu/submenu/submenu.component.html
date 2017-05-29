@@ -10,11 +10,13 @@
       [ngClass]="{'pre-collapsed': isSubMenuPreCollapsed(), 'pre-expanded': isSubMenuPreExpanded(), 'expanded': isSubMenuExpanded()}">
     <li *ngFor="let listItem of menuData.value">
       <a [routerLink]="listItem.link ? [listItem.link] : []" (click)="onSubMenuClick(listItem.type)">
-        <i *ngIf="listItem.iconClass"
-           class='fa fa-fw'
-           [ngClass]="listItem.iconClass"
-           aria-hidden="true">
-        </i>{{ listItem.display | translate }}
+        <span>
+          <i *ngIf="listItem.iconClass"
+             class='fa fa-fw'
+             [ngClass]="listItem.iconClass"
+             aria-hidden="true">
+          </i>
+        </span>{{ listItem.display | translate }}
       </a>
     </li>
     <li *ngIf="menuData.type === 'user' && ! this.isDeviceWidth();">
