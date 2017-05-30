@@ -37,7 +37,7 @@
   .submenu-container > a > .caret {
     margin-left: 4px;
     border-width: 5px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
   .submenu-container > a > .caret.expanded {
     transform: rotate(-180deg);
@@ -61,7 +61,7 @@
     z-index: -1;
     transform: translateY(-2em);
     /*transition: all 0.3s ease-in-out, max-height 0.15s ease-in-out;*/
-    transition: all 0.4s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
   /*.submenu.pre-expanded {*/
     /*display: block;*/
@@ -92,9 +92,9 @@
     padding: 18px 0 12px 0;
     width: 50px;
   }
-  .submenu-container:hover .fa {
-    font-size: 23px;
-  }
+  /*.submenu-container:hover .fa {*/
+    /*font-size: 23px;*/
+  /*}*/
   .submenu > li > a {
     padding-top: 4px;
     padding-bottom: 4px;
@@ -108,7 +108,6 @@
     background-color: rgba(255, 255, 255, 0.50);
   }
   .submenu {
-    display: none;
     top: 50px;
     right: 0;
     border: none;
@@ -126,20 +125,10 @@
     transform: translateY(-2em);
     transition: all 0.5s ease-in-out;
   }
-  .submenu.pre-expanded {
-    display: block;
-  }
   .submenu.expanded {
-    display: block;
     opacity: 1;
     z-index: 1;
     transform: translateY(0%);
-  }
-  .submenu.pre-collapsed {
-    display: block;
-    opacity: 0;
-    z-index: -1;
-    transform: translateY(-2em);
   }
   .submenu > .signout-item {
     padding-left: 40px;

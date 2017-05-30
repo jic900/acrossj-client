@@ -1,4 +1,4 @@
-<div class="submenu-container" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
+<div class="submenu-container">
   <a (click)="onClick($event)">
     <i class="fa fa-fw" aria-hidden="true"
        [ngClass]="menuData.iconClass ? menuData.iconClass : ''"
@@ -6,8 +6,7 @@
     </i><span *ngIf="isDeviceWidth()">{{ menuData.display | translate }}</span>
     <span *ngIf="isDeviceWidth()" class="caret" [ngClass]="{'expanded': isSubMenuExpanded()}"></span>
   </a>
-  <ul #submenu class="submenu"
-      [ngClass]="{'pre-collapsed': isSubMenuPreCollapsed(), 'pre-expanded': isSubMenuPreExpanded(), 'expanded': isSubMenuExpanded()}">
+  <ul class="submenu" [ngClass]="{'expanded': isSubMenuExpanded()}">
     <li *ngFor="let listItem of menuData.value">
       <a [routerLink]="listItem.link ? [listItem.link] : []" (click)="onSubMenuClick(listItem.type)">
         <span>
