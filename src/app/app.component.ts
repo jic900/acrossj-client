@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   template: `
     <aj-navbar></aj-navbar>
     <router-outlet></router-outlet>
+    <aj-footer></aj-footer>
   `
 })
 export class AppComponent {}

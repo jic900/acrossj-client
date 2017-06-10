@@ -28,7 +28,8 @@
         </aj-submenu>
       </li>
       <li *ngIf="!authenticated && isDeviceWidth()" style="margin-top: 15px">
-        <a [routerLink]="[sideMenuData.signinSignup.link]">{{sideMenuData.signinSignup.display | translate}}</a>
+        <a [routerLink]="[sideMenuData.signinSignup.link]"
+           (click)="toggleSideMenuState()">{{sideMenuData.signinSignup.display | translate}}</a>
       </li>
       <li *ngIf="!authenticated && !isDeviceWidth()">
         <aj-submenu [menuData]="sideMenuData.auth" (subMenuToggled)="onSubMenuToggled($event)">

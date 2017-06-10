@@ -10,7 +10,7 @@ import {
 import { SideMenuComponent } from './sidemenu/sidemenu.component';
 import { SearchMenuComponent } from './search/searchmenu/searchmenu.component';
 import { AppConstant, MenuState } from 'app/config/app.config';
-import { NavbarDef } from 'app/config/navbar.config';
+import { NavbarConfig } from 'app/config/navbar.config';
 
 
 @Component({
@@ -28,12 +28,12 @@ export class NavbarComponent implements AfterViewInit {
   authenticated: boolean;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    this.navbarConfig = NavbarDef;
+    this.navbarConfig = NavbarConfig;
   }
 
   ngAfterViewInit(): void {
     this.windowWidth = window.innerWidth;
-    this.setAuthenticated(true);
+    this.setAuthenticated(false);
   }
 
   @HostListener('window:resize', ['$event'])

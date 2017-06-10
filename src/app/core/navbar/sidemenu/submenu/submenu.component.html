@@ -8,7 +8,8 @@
   </a>
   <ul class="submenu" [ngClass]="{'expanded': isSubMenuExpanded()}">
     <li *ngFor="let listItem of menuData.value">
-      <a [routerLink]="listItem.link ? [listItem.link] : []" (click)="onSubMenuClick(listItem.type)">
+      <a [routerLink]="listItem.link ? listItem.linkParam ? [listItem.link, listItem.linkParam] : [listItem.link] : []"
+         (click)="onSubMenuClick(listItem.type)">
         <span>
           <i *ngIf="listItem.iconClass"
              class='fa fa-fw'

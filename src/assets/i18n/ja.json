@@ -61,5 +61,9 @@
   },
   "HOME": {
     "WELCOME": "歓迎"
+  },
+  "AUTH": {
+    "SIGNIN": "Sign In JA",
+    "SIGNUP": "Sign Up JA"
   }
 }

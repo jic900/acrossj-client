@@ -60,7 +60,7 @@ const CategoryPicker = {
   displayProperty: 'display'
 };
 
-const SideMenuDef = {
+const SideMenuConfig = {
   topList: {
     display: '',
     value: [
@@ -82,8 +82,8 @@ const SideMenuDef = {
     display: 'NAVBAR.SIDE.AUTH.LABEL',
     type: 'auth',
     value: [
-      {display: 'NAVBAR.SIDE.AUTH.MENU.SIGNIN', link: '/signin'},
-      {display: 'NAVBAR.SIDE.AUTH.MENU.SIGNUP', link: '/signup'}
+      {display: 'NAVBAR.SIDE.AUTH.MENU.SIGNIN', link: '/auth', linkParam: 'signin'},
+      {display: 'NAVBAR.SIDE.AUTH.MENU.SIGNUP', link: '/auth', linkParam: 'signup'}
     ],
     iconClass: 'fa-user'
   },
@@ -110,7 +110,8 @@ const SideMenuDef = {
   },
   signinSignup: {
     display: 'NAVBAR.SIDE.SIGNIN_SIGNUP',
-    link: '/signin'
+    link: '/auth',
+    linkParam: 'signin'
   },
   signout: {
     display: 'NAVBAR.SIDE.SIGNOUT',
@@ -118,13 +119,13 @@ const SideMenuDef = {
   }
 };
 
-export const NavbarDef = {
+export const NavbarConfig = {
   homeLogo: '/assets/images/home_logo.png',
   searchButton: {
     display: '',
     iconClass: 'fa fa-search'
   },
-  sideMenu: SideMenuDef,
+  sideMenu: SideMenuConfig,
   searchMenu: {
     title: 'NAVBAR.SEARCH.TITLE',
     placeSearcher: PlaceSearcher,

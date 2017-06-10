@@ -9,4 +9,5 @@ export interface IMenuItem {
   description?: string;
   iconClass?: string;
   link?: string;
+  linkParam?: string;
 }

@@ -61,5 +61,9 @@
   },
   "HOME": {
     "WELCOME": "Welcome"
+  },
+  "AUTH": {
+    "SIGNIN": "Sign In",
+    "SIGNUP": "Sign Up"
   }
 }

@@ -10,7 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
 import { AppRoutes } from './config/routes.config';
-import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 
 
 export function HttpLoaderFactory(http: Http) {
@@ -39,7 +39,7 @@ export function HttpLoaderFactory(http: Http) {
     FeaturesModule
   ],
   providers: [],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 
 export class AppModule {

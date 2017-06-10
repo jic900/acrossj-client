@@ -61,5 +61,9 @@
   },
   "HOME": {
     "WELCOME": "欢迎"
+  },
+  "AUTH": {
+    "SIGNIN": "登 录",
+    "SIGNUP": "注 册"
   }
 }

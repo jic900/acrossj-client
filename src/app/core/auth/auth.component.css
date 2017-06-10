@@ -1,0 +1,125 @@
+.auth-container {
+  background-color: #EEEEEE;
+  min-height: calc(100vh - 60px);
+}
+
+:host >>> md-card {
+  padding: 24px 40px;
+}
+
+:host >>> md-tab-group .mat-tab-labels {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+:host >>> md-tab-group .mat-tab-label {
+  display: table-cell;
+  font-size: 20px;
+  font-weight: bold;
+}
+:host >>> .mat-ink-bar {
+  height: 3px;
+  /*background-color: grey;*/
+}
+
+:host >>> .mat-tab-header-pagination {
+  display: none !important;
+}
+
+.auth-form {
+  padding: 40px 0 25px;
+}
+.auth-input-group {
+  width: 100%;
+  padding: 20px 20px 15px;
+  border: solid 1px rgba(0, 0, 0, .12);
+}
+
+md-input-container {
+  width: 100%;
+  margin: 5px 0 5px;
+}
+
+:host >>> input {
+  font-size: 16px;
+}
+:host >>> .mat-input-placeholder-wrapper {
+  top: -1.5em;
+  padding-top: 1em;
+}
+:host >>> .mat-input-placeholder {
+  font-size: 16px;
+  padding-bottom: 0.5em;
+  /*padding-top: 0.5em;*/
+}
+
+:host >>> .mat-checkbox-inner-container {
+  width: 14px;
+  height: 14px;
+}
+:host >>> .mat-checkbox-label {
+  font-size: 13px !important;
+  font-weight: normal;
+  /*line-height: 14px;*/
+}
+/*.sigin-showpassword {*/
+  /*font-size: 12px;*/
+/*}*/
+
+/*.auth-forgotpassword-container {*/
+  /*width: 100%;*/
+  /*!*padding: 20px 0 20px;*!*/
+/*}*/
+.signin-forgotpassword {
+  display: block;
+  margin-top: 20px;
+  color: black;
+  text-align: center;
+  text-decoration: underline;
+  font-size: 14px;
+  /*clear: both;*/
+  /*margin: 0 auto;*/
+  /*background-color: inherit;*/
+  /*border: none;*/
+}
+
+.signin-btn-container {
+  width: 100%;
+  padding: 30px 0 20px;
+}
+.signin-btn {
+  display: block;
+  width: 100%;
+  height: 50px;
+  margin: 0 auto;
+  color: white;
+  background-color: rgba(0, 0, 0, .5);
+  border: none;
+  font-size: 16px;
+}
+@media (max-width: 768px) {
+  .auth-panel {
+    width: 100%;
+    min-height: inherit;
+    padding-top: 50px;
+    background-color: white;
+  }
+  :host >>> md-card {
+    padding: 24px 24px;
+    box-shadow: none !important;
+  }
+}
+@media (min-width: 769px) {
+  .auth-container {
+    padding-top: 100px;
+  }
+  .auth-panel {
+    width: 500px;
+    height: 100%;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+

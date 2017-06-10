@@ -1,3 +1,72 @@
-<p>
-  auth works!
-</p>
+<div class="auth-container">
+  <div class="auth-panel">
+    <md-card>
+      <md-tab-group [dynamicHeight]="true"
+                    [selectedIndex]="selectedIndex"
+                    (selectedIndexChange)="onSelectedTabIndexChange()">
+        <md-tab label="{{authConfig.signin.label | translate}}">
+          <form class="auth-form">
+            <div class="auth-input-group">
+              <md-input-container>
+                <input name="signInUsername"
+                       mdInput
+                       type="text"
+                       [(ngModel)]="signInUsername"
+                       placeholder="Email or Username">
+              </md-input-container>
+              <md-input-container>
+                <input name="signInPassword"
+                       mdInput
+                       type="{{signInPasswordInputType}}"
+                       [(ngModel)]="signInPassword"
+                       placeholder="Password">
+              </md-input-container>
+              <md-checkbox [disableRipple]="true"
+                           [color]="'primary'"
+                           (change)="onSignInPasswordInputTypeChange()">Show Password</md-checkbox>
+            </div>
+            <!--<div class="auth-forgotpassword-container">-->
+            <a class="signin-forgotpassword">Forgot Password?</a>
+            <!--</div>-->
+            <div class="signin-btn-container">
+              <button class="signin-btn" (click)="onSignInClick($event)">Sign In</button>
+            </div>
+          </form>
+        </md-tab>
+        <md-tab label="{{authConfig.signup.label | translate}}">
+          <form class="auth-form">
+            <div class="auth-input-group">
+              <md-input-container>
+                <input name="signUpUsername"
+                       mdInput
+                       type="text"
+                       [(ngModel)]="signUpUsername"
+                       placeholder="Email or Username">
+              </md-input-container>
+              <md-input-container>
+                <input name="signUpPassword"
+                       mdInput
+                       type="{{signUpPasswordInputType}}"
+                       [(ngModel)]="signUpPassword"
+                       placeholder="Password">
+              </md-input-container>
+              <md-input-container>
+                <input name="signUpConfirmPassword"
+                       mdInput
+                       type="{{signUpPasswordInputType}}"
+                       [(ngModel)]="signUpConfirmPassword"
+                       placeholder="Confirm Password">
+              </md-input-container>
+              <md-checkbox [disableRipple]="true"
+                           [color]="'primary'"
+                           (change)="onSignUpPasswordInputTypeChange()">Show Password</md-checkbox>
+            </div>
+            <div class="signin-btn-container">
+              <button class="signin-btn" (click)="onSignInClick($event)">Sign Up</button>
+            </div>
+          </form>
+        </md-tab>
+      </md-tab-group>
+    </md-card>
+  </div>
+</div>
