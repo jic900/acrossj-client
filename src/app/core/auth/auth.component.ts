@@ -50,7 +50,6 @@ export class AuthComponent implements OnInit {
   }
 
   onSelectedTabIndexChange(): void {
-    this.selectedIndex = this.selectedIndex === 0 ? 1 : 0;
     if (this.selectedIndex === 0) {
       this.resetSignUpInput();
     } else {

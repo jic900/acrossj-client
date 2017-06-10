@@ -2,7 +2,7 @@
   <div class="auth-panel">
     <md-card>
       <md-tab-group [dynamicHeight]="true"
-                    [selectedIndex]="selectedIndex"
+                    [(selectedIndex)]="selectedIndex"
                     (selectedIndexChange)="onSelectedTabIndexChange()">
         <md-tab label="{{authConfig.signin.label | translate}}">
           <form class="auth-form">
