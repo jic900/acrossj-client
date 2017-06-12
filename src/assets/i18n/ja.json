@@ -63,7 +63,22 @@
     "WELCOME": "歓迎"
   },
   "AUTH": {
-    "SIGNIN": "Sign In JA",
-    "SIGNUP": "Sign Up JA"
+    "SIGNIN": {
+      "LABEL": "Sign In JA",
+      "EMAIL_USERNAME": "Email or Username JA",
+      "PASSWORD": "Password JA",
+      "SHOW_PASSWORD": "Show Password JA",
+      "FORGOT_PASSWORD": "Forgot Password? JA",
+      "BTN_LABEL": "Sign In JA"
+    },
+    "SIGNUP": {
+      "LABEL": "Sign Up JA",
+      "USERNAME": "Username JA",
+      "EMAIL": "Email JA",
+      "PASSWORD": "Password JA",
+      "CONFIRM_PASSWORD": "Confirm Password JA",
+      "SHOW_PASSWORD": "Show Password JA",
+      "BTN_LABEL": "Sign Up JA"
+    }
   }
 }

@@ -49,13 +49,14 @@ md-input-container {
 }
 :host >>> .mat-input-placeholder {
   font-size: 16px;
+  padding-top: 0.9em;
   padding-bottom: 0.5em;
-  /*padding-top: 0.5em;*/
 }
 
 :host >>> .mat-checkbox-inner-container {
   width: 14px;
   height: 14px;
+  margin-right: 8px;
 }
 :host >>> .mat-checkbox-label {
   font-size: 13px !important;

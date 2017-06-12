@@ -5,64 +5,71 @@
                     [(selectedIndex)]="selectedIndex"
                     (selectedIndexChange)="onSelectedTabIndexChange()">
         <md-tab label="{{authConfig.signin.label | translate}}">
-          <form class="auth-form">
+          <form class="auth-form" (ngSubmit)="onSignIn(signInForm)" #signInForm="ngForm">
             <div class="auth-input-group">
               <md-input-container>
                 <input name="signInUsername"
                        mdInput
                        type="text"
-                       [(ngModel)]="signInUsername"
-                       placeholder="Email or Username">
+                       [(ngModel)]="signIn.username"
+                       placeholder="{{authConfig.signin.emailUsername | translate}}">
               </md-input-container>
               <md-input-container>
                 <input name="signInPassword"
                        mdInput
                        type="{{signInPasswordInputType}}"
-                       [(ngModel)]="signInPassword"
-                       placeholder="Password">
+                       [(ngModel)]="signIn.password"
+                       placeholder="{{authConfig.signin.password | translate}}">
               </md-input-container>
               <md-checkbox [disableRipple]="true"
                            [color]="'primary'"
-                           (change)="onSignInPasswordInputTypeChange()">Show Password</md-checkbox>
+                           (change)="onSignInPasswordInputTypeChange()">{{authConfig.signin.showPassword | translate}}</md-checkbox>
             </div>
             <!--<div class="auth-forgotpassword-container">-->
-            <a class="signin-forgotpassword">Forgot Password?</a>
+            <a class="signin-forgotpassword">{{authConfig.signin.forgotPassword | translate}}</a>
             <!--</div>-->
             <div class="signin-btn-container">
-              <button class="signin-btn" (click)="onSignInClick($event)">Sign In</button>
+              <button class="signin-btn" type="submit">{{authConfig.signin.btnLabel | translate}}</button>
             </div>
           </form>
         </md-tab>
         <md-tab label="{{authConfig.signup.label | translate}}">
-          <form class="auth-form">
+          <form class="auth-form" (ngSubmit)="onSignUp(signUpForm)" #signUpForm="ngForm">
             <div class="auth-input-group">
               <md-input-container>
                 <input name="signUpUsername"
                        mdInput
                        type="text"
-                       [(ngModel)]="signUpUsername"
-                       placeholder="Email or Username">
+                       [(ngModel)]="signUp.username"
+                       placeholder="{{authConfig.signup.username | translate}}">
+              </md-input-container>
+              <md-input-container>
+                <input name="signUpEmail"
+                       mdInput
+                       type="text"
+                       [(ngModel)]="signUp.email"
+                       placeholder="{{authConfig.signup.email | translate}}">
               </md-input-container>
               <md-input-container>
                 <input name="signUpPassword"
                        mdInput
                        type="{{signUpPasswordInputType}}"
-                       [(ngModel)]="signUpPassword"
-                       placeholder="Password">
+                       [(ngModel)]="signUp.password"
+                       placeholder="{{authConfig.signup.password | translate}}">
               </md-input-container>
               <md-input-container>
                 <input name="signUpConfirmPassword"
                        mdInput
                        type="{{signUpPasswordInputType}}"
-                       [(ngModel)]="signUpConfirmPassword"
-                       placeholder="Confirm Password">
+                       [(ngModel)]="signUp.confirmPassword"
+                       placeholder="{{authConfig.signup.confirmPassword | translate}}">
               </md-input-container>
               <md-checkbox [disableRipple]="true"
                            [color]="'primary'"
-                           (change)="onSignUpPasswordInputTypeChange()">Show Password</md-checkbox>
+                           (change)="onSignUpPasswordInputTypeChange()">{{authConfig.signup.showPassword | translate}}</md-checkbox>
             </div>
             <div class="signin-btn-container">
-              <button class="signin-btn" (click)="onSignInClick($event)">Sign Up</button>
+              <button class="signin-btn" type="submit">{{authConfig.signup.btnLabel | translate}}</button>
             </div>
           </form>
         </md-tab>

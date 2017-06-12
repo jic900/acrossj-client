@@ -1,7 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from './auth.service';
 import { AuthConfig } from 'app/config/auth.config';
+
+interface ISignInData {
+  username: string;
+  password: string;
+}
+
+interface ISignUpData {
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 
 @Component({
   selector: 'aj-auth',
@@ -13,17 +26,16 @@ export class AuthComponent implements OnInit {
 
   authConfig: {};
   selectedIndex: number;
-  signInUsername: string;
-  signInPassword: string;
-  signUpUsername: string;
-  signUpPassword: string;
-  signUpConfirmPassword: string;
+  signIn: ISignInData;
+  signUp: ISignUpData;
   signInPasswordInputType: string;
   signUpPasswordInputType: string;
   private sub: any;
 
   constructor(private authService: AuthService, private route: ActivatedRoute) {
     this.authConfig = AuthConfig;
+    this.signIn = {username: '', password: ''};
+    this.signUp = {username: '', email: '', password: '', confirmPassword: ''};
     this.signInPasswordInputType = 'password';
     this.signUpPasswordInputType = 'password';
   }
@@ -53,24 +65,37 @@ export class AuthComponent implements OnInit {
 
   onSelectedTabIndexChange(): void {
     if (this.selectedIndex === 0) {
-      this.resetSignUpInput();
+      this.resetSignUp();
     } else {
-      this.resetSignInInput();
+      this.resetSignIn();
     }
+  }
+
+  onSignIn(form: NgForm): void {
+    console.log(form.value.signInUsername);
+    console.log(form.value.signInPassword);
+  }
+
+  onSignUp(form: NgForm): void {
+    console.log(form.value.signUpUsername);
+    console.log(form.value.signUpEmail);
+    console.log(form.value.signUpPassword);
+    console.log(form.value.signUpConfirmPassword);
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
 
-  private resetSignInInput(): void {
-    this.signInUsername = '';
-    this.signInPassword = '';
+  private resetSignIn(): void {
+    this.signIn.username = '';
+    this.signIn.password = '';
   }
 
-  private resetSignUpInput(): void {
-    this.signUpUsername = '';
-    this.signUpPassword = '';
-    this.signUpConfirmPassword = '';
+  private resetSignUp(): void {
+    this.signUp.username = '';
+    this.signUp.email = '';
+    this.signUp.password = '';
+    this.signUp.confirmPassword = '';
   }
 }

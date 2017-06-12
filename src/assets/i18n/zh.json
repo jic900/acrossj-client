@@ -63,7 +63,22 @@
     "WELCOME": "欢迎"
   },
   "AUTH": {
-    "SIGNIN": "登 录",
-    "SIGNUP": "注 册"
+    "SIGNIN": {
+      "LABEL": "登 录",
+      "EMAIL_USERNAME": "邮件或用户名",
+      "PASSWORD": "密码",
+      "SHOW_PASSWORD": "显示密码",
+      "FORGOT_PASSWORD": "忘记密码？",
+      "BTN_LABEL": "登 录"
+    },
+    "SIGNUP": {
+      "LABEL": "注 册",
+      "USERNAME": "用户名",
+      "EMAIL": "邮件",
+      "PASSWORD": "密码",
+      "CONFIRM_PASSWORD": "确认密码",
+      "SHOW_PASSWORD": "显示密码",
+      "BTN_LABEL": "注 册"
+    }
   }
 }

@@ -84,7 +84,7 @@
   li {
     font-size: 100%;
   }
-  li > a > .fa {
+  li > a .fa {
     margin-right: 15px;
   }
   .submenu-container > a {

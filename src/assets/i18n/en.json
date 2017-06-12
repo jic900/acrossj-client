@@ -63,7 +63,22 @@
     "WELCOME": "Welcome"
   },
   "AUTH": {
-    "SIGNIN": "Sign In",
-    "SIGNUP": "Sign Up"
+    "SIGNIN": {
+      "LABEL": "Sign In",
+      "EMAIL_USERNAME": "Email or Username",
+      "PASSWORD": "Password",
+      "SHOW_PASSWORD": "Show Password",
+      "FORGOT_PASSWORD": "Forgot Password?",
+      "BTN_LABEL": "Sign In"
+    },
+    "SIGNUP": {
+      "LABEL": "Sign Up",
+      "USERNAME": "Username",
+      "EMAIL": "Email",
+      "PASSWORD": "Password",
+      "CONFIRM_PASSWORD": "Confirm Password",
+      "SHOW_PASSWORD": "Show Password",
+      "BTN_LABEL": "Sign Up"
+    }
   }
 }
