@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from './auth.service';
 import { AuthConfig } from 'app/config/auth.config';
 
 @Component({
   selector: 'aj-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  styleUrls: ['./auth.component.css'],
+  providers: [AuthService]
 })
 export class AuthComponent implements OnInit {
 
@@ -20,7 +22,7 @@ export class AuthComponent implements OnInit {
   signUpPasswordInputType: string;
   private sub: any;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private authService: AuthService, private route: ActivatedRoute) {
     this.authConfig = AuthConfig;
     this.signInPasswordInputType = 'password';
     this.signUpPasswordInputType = 'password';
