@@ -65,7 +65,7 @@
   "AUTH": {
     "SIGNIN": {
       "LABEL": "Sign In JA",
-      "EMAIL_USERNAME": "Email or Username JA",
+      "USERNAME": "Email or Username JA",
       "PASSWORD": "Password JA",
       "SHOW_PASSWORD": "Show Password JA",
       "FORGOT_PASSWORD": "Forgot Password? JA",

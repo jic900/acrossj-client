@@ -65,7 +65,7 @@
   "AUTH": {
     "SIGNIN": {
       "LABEL": "Sign In",
-      "EMAIL_USERNAME": "Email or Username",
+      "USERNAME": "Email or Username",
       "PASSWORD": "Password",
       "SHOW_PASSWORD": "Show Password",
       "FORGOT_PASSWORD": "Forgot Password?",
@@ -79,6 +79,37 @@
       "CONFIRM_PASSWORD": "Confirm Password",
       "SHOW_PASSWORD": "Show Password",
       "BTN_LABEL": "Sign Up"
+    }
+  },
+  "ERRORS": {
+    "GENERIC": "Something went wrong",
+    "VALIDATION": {
+      "USER": {
+        "USERNAME": {
+          "UNIQUE": "Username already exists",
+          "REQUIRED": "Username is required",
+          "MINLENGTH": "Invalid Username: minimum 2 characters",
+          "MAXLENGTH": "Invalid Username: maximum 20 characters",
+          "MATCH": "Invalid Username: one or more characters not allowed"
+        },
+        "EMAIL": {
+          "UNIQUE": "Email already exists",
+          "REQUIRED": "Email is required",
+          "MATCH": "Invalid Email"
+        },
+        "PASSWORD": {
+          "REQUIRED": "Password is required",
+          "MINLENGTH": "Invalid Password: minimum 4 characters"
+        },
+        "CONFIRM_PASSWORD": {
+          "REQUIRED": "Confirm Password is required",
+          "MINLENGTH": "Invalid Confirm Password: minimum 4 characters"
+        },
+        "ROLE": {
+          "MATCH": ""
+        },
+        "PASSWORD_MATCH": "Password and Confirm Password does not match"
+      }
     }
   }
 }

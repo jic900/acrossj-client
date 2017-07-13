@@ -65,7 +65,7 @@
   "AUTH": {
     "SIGNIN": {
       "LABEL": "登 录",
-      "EMAIL_USERNAME": "邮件或用户名",
+      "USERNAME": "邮件或用户名",
       "PASSWORD": "密码",
       "SHOW_PASSWORD": "显示密码",
       "FORGOT_PASSWORD": "忘记密码？",

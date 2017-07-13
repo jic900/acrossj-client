@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from './auth.service';
+import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from './services/auth.service';
 import { AuthConfig } from 'app/config/auth.config';
+import { AuthValidator } from './auth.validator';
 
 interface ISignInData {
   username: string;
@@ -22,7 +24,7 @@ interface ISignUpData {
   styleUrls: ['./auth.component.css'],
   providers: [AuthService]
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnInit, OnDestroy {
 
   authConfig: {};
   selectedIndex: number;
@@ -30,10 +32,12 @@ export class AuthComponent implements OnInit {
   signUp: ISignUpData;
   signInPasswordInputType: string;
   signUpPasswordInputType: string;
+  authValidator: AuthValidator;
   private sub: any;
 
-  constructor(private authService: AuthService, private route: ActivatedRoute) {
+  constructor(private authService: AuthService, private route: ActivatedRoute, private translate: TranslateService) {
     this.authConfig = AuthConfig;
+    this.authValidator = new AuthValidator();
     this.signIn = {username: '', password: ''};
     this.signUp = {username: '', email: '', password: '', confirmPassword: ''};
     this.signInPasswordInputType = 'password';
@@ -77,10 +81,12 @@ export class AuthComponent implements OnInit {
   }
 
   onSignUp(form: NgForm): void {
-    console.log(form.value.signUpUsername);
-    console.log(form.value.signUpEmail);
-    console.log(form.value.signUpPassword);
-    console.log(form.value.signUpConfirmPassword);
+    const signupData = {
+      username: form.value.signUpUsername,
+      email: form.value.signUpEmail,
+      password: form.value.signUpPassword
+    }
+    console.log(form.value);
   }
 
   ngOnDestroy() {

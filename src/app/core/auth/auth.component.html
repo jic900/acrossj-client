@@ -12,14 +12,31 @@
                        mdInput
                        type="text"
                        [(ngModel)]="signIn.username"
-                       placeholder="{{authConfig.signin.emailUsername | translate}}">
+                       [formControl]="authValidator.signinUsername"
+                       placeholder="{{authConfig.signin.username | translate}}">
+                <md-error *ngIf="authValidator.signinUsername.hasError('required')">
+                  {{AuthConfig.validation.signin.username.required.error | translate}}
+                </md-error>
+                <md-error *ngIf="authValidator.signinUsername.hasError('minLength')">
+                  {{AuthConfig.validation.signin.username.minLength.error | translate}}
+                </md-error>
+                <md-error *ngIf="authValidator.signinUsername.hasError('pattern')">
+                  {{AuthConfig.validation.signin.username.pattern.error | translate}}
+                </md-error>
               </md-input-container>
               <md-input-container>
                 <input name="signInPassword"
                        mdInput
                        type="{{signInPasswordInputType}}"
                        [(ngModel)]="signIn.password"
+                       [formControl]="authValidator.signinPassword"
                        placeholder="{{authConfig.signin.password | translate}}">
+                <md-error *ngIf="authValidator.signinPassword.hasError('required')">
+                  {{AuthConfig.validation.signin.password.required.error | translate}}
+                </md-error>
+                <md-error *ngIf="authValidator.signinPassword.hasError('minLength')">
+                  {{AuthConfig.validation.signin.password.minLength.error | translate}}
+                </md-error>
               </md-input-container>
               <md-checkbox [disableRipple]="true"
                            [color]="'primary'"
@@ -41,28 +58,62 @@
                        mdInput
                        type="text"
                        [(ngModel)]="signUp.username"
+                       [formControl]="authValidator.signupUsername"
                        placeholder="{{authConfig.signup.username | translate}}">
+                <md-error *ngIf="authValidator.signupUsername.hasError('required')">
+                  {{AuthConfig.validation.signup.username.required.error | translate}}
+                </md-error>
+                <md-error *ngIf="authValidator.signupUsername.hasError('minLength')">
+                  {{AuthConfig.validation.signup.username.minLength.error | translate}}
+                </md-error>
+                <md-error *ngIf="authValidator.signupUsername.hasError('maxLength')">
+                  {{AuthConfig.validation.signup.username.maxLength.error | translate}}
+                </md-error>
+                <md-error *ngIf="authValidator.signupUsername.hasError('pattern')">
+                  {{AuthConfig.validation.signup.username.pattern.error | translate}}
+                </md-error>
               </md-input-container>
               <md-input-container>
                 <input name="signUpEmail"
                        mdInput
                        type="text"
                        [(ngModel)]="signUp.email"
+                       [formControl]="authValidator.signupEmail"
                        placeholder="{{authConfig.signup.email | translate}}">
+                <md-error *ngIf="authValidator.signupEmail.hasError('required')">
+                  {{AuthConfig.validation.signup.email.required.error | translate}}
+                </md-error>
+                <md-error *ngIf="authValidator.signupEmail.hasError('pattern')">
+                  {{AuthConfig.validation.signup.email.pattern.error | translate}}
+                </md-error>
               </md-input-container>
               <md-input-container>
                 <input name="signUpPassword"
                        mdInput
                        type="{{signUpPasswordInputType}}"
                        [(ngModel)]="signUp.password"
+                       [formControl]="authValidator.signupPassword"
                        placeholder="{{authConfig.signup.password | translate}}">
+                <md-error *ngIf="authValidator.signupPassword.hasError('required')">
+                  {{AuthConfig.validation.signup.password.required.error | translate}}
+                </md-error>
+                <md-error *ngIf="authValidator.signupPassword.hasError('minLength')">
+                  {{AuthConfig.validation.signup.password.minLength.error | translate}}
+                </md-error>
               </md-input-container>
               <md-input-container>
                 <input name="signUpConfirmPassword"
                        mdInput
                        type="{{signUpPasswordInputType}}"
                        [(ngModel)]="signUp.confirmPassword"
+                       [formControl]="authValidator.signupConfirmPassword"
                        placeholder="{{authConfig.signup.confirmPassword | translate}}">
+                <md-error *ngIf="authValidator.signupConfirmPassword.hasError('required')">
+                  {{AuthConfig.validation.signup.confirmPassword.required.error | translate}}
+                </md-error>
+                <md-error *ngIf="authValidator.signupConfirmPassword.hasError('minLength')">
+                  {{AuthConfig.validation.signup.confirmPassword.minLength.error | translate}}
+                </md-error>
               </md-input-container>
               <md-checkbox [disableRipple]="true"
                            [color]="'primary'"
