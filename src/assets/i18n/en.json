@@ -90,12 +90,12 @@
           "REQUIRED": "Username is required",
           "MINLENGTH": "Invalid Username: minimum 2 characters",
           "MAXLENGTH": "Invalid Username: maximum 20 characters",
-          "MATCH": "Invalid Username: one or more characters not allowed"
+          "PATTERN": "Invalid Username: one or more characters not allowed"
         },
         "EMAIL": {
           "UNIQUE": "Email already exists",
           "REQUIRED": "Email is required",
-          "MATCH": "Invalid Email"
+          "PATTERN": "Invalid Email"
         },
         "PASSWORD": {
           "REQUIRED": "Password is required",

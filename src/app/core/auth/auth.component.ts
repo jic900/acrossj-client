@@ -1,22 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from './services/auth.service';
 import { AuthConfig } from 'app/config/auth.config';
-import { AuthValidator } from './auth.validator';
-
-interface ISignInData {
-  username: string;
-  password: string;
-}
-
-interface ISignUpData {
-  username: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+import { Util } from 'app/shared/util/util';
 
 @Component({
   selector: 'aj-auth',
@@ -27,24 +15,30 @@ interface ISignUpData {
 export class AuthComponent implements OnInit, OnDestroy {
 
   authConfig: {};
+  signinForm: FormGroup;
+  signupForm: FormGroup;
+  @ViewChild('signinNgForm') signinNgForm;
+  @ViewChild('signupNgForm') signupNgForm;
+  signinSubmitted: boolean;
+  signupSubmitted: boolean;
   selectedIndex: number;
-  signIn: ISignInData;
-  signUp: ISignUpData;
   signInPasswordInputType: string;
   signUpPasswordInputType: string;
-  authValidator: AuthValidator;
   private sub: any;
 
   constructor(private authService: AuthService, private route: ActivatedRoute, private translate: TranslateService) {
     this.authConfig = AuthConfig;
-    this.authValidator = new AuthValidator();
-    this.signIn = {username: '', password: ''};
-    this.signUp = {username: '', email: '', password: '', confirmPassword: ''};
     this.signInPasswordInputType = 'password';
     this.signUpPasswordInputType = 'password';
   }
 
   ngOnInit(): void {
+    const customValidators = {'passwordMatch': this.passwordMatch}
+    this.signinForm = Util.createFormGroup(AuthConfig.signin.formGroup, customValidators);
+    this.signupForm = Util.createFormGroup(AuthConfig.signup.formGroup, customValidators);
+    this.signinSubmitted = false;
+    this.signupSubmitted = false;
+
     this.sub = this.route.params.subscribe(params => {
       this.selectedIndex = 0;
       if (params['id'] === 'signup') {
@@ -53,6 +47,24 @@ export class AuthComponent implements OnInit, OnDestroy {
       // this.selectedIndex = +params['id']; // (+) converts string 'id' to a number
       // In a real app: dispatch action to load the details here.
     });
+  }
+
+  passwordMatch(formGroup: FormGroup): {} {
+    console.log('passwordMatch');
+    return formGroup.get('password').value === formGroup.get('confirmPassword').value ? null : {'passwordMatch': true};
+  }
+
+  showError(formName: string, controlName: string): boolean {
+    const formControl = formName === 'signin' ? this.signinForm.get(controlName) : this.signupForm.get(controlName);
+    const submitted = formName === 'signin' ? this.signinSubmitted : this.signupSubmitted;
+    return !formControl.valid && (formControl.touched || submitted);
+  }
+
+  getErrorMessage(formName: string, controlName: string): string {
+    const formGroup = formName === 'signin' ? this.signinForm : this.signupForm;
+    const formControl = formGroup.get(controlName);
+    const errors = formName === 'signin' ? AuthConfig.signin.errors[controlName] : AuthConfig.signup.errors[controlName];
+    return Util.getValidationError(formGroup.get(controlName), errors);
   }
 
   onSignInClick(event): void {
@@ -75,33 +87,40 @@ export class AuthComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSignIn(form: NgForm): void {
-    console.log(form.value.signInUsername);
-    console.log(form.value.signInPassword);
+  onSignIn(): void {
+    this.signinSubmitted = true;
+    // console.log(this.signinForm);
   }
 
-  onSignUp(form: NgForm): void {
-    const signupData = {
-      username: form.value.signUpUsername,
-      email: form.value.signUpEmail,
-      password: form.value.signUpPassword
-    }
-    console.log(form.value);
+  onSignUp(): void {
+    // const signupData = {
+    //   username: form.value.signUpUsername,
+    //   email: form.value.signUpEmail,
+    //   password: form.value.signUpPassword
+    // }
+    // console.log(form.value);
+    this.signupSubmitted = true;
+    // console.log(this.signupForm);
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
 
+  // errorStateMatcher(control: FormControl, form: FormGroupDirective | NgForm): boolean {
+  //   // Error when invalid control is dirty, touched, or submitted
+  //   const isSubmitted = form && form.submitted;
+  //   return !!(control.invalid && isSubmitted);
+  //   // return !!(control.invalid && (control.dirty || control.touched || isSubmitted));
+  // }
+
   private resetSignIn(): void {
-    this.signIn.username = '';
-    this.signIn.password = '';
+    this.signinSubmitted = false;
+    this.signinNgForm.resetForm();
   }
 
   private resetSignUp(): void {
-    this.signUp.username = '';
-    this.signUp.email = '';
-    this.signUp.password = '';
-    this.signUp.confirmPassword = '';
+    this.signupSubmitted = false;
+    this.signupNgForm.resetForm();
   }
 }

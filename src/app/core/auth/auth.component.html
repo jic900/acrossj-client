@@ -5,122 +5,91 @@
                     [(selectedIndex)]="selectedIndex"
                     (selectedIndexChange)="onSelectedTabIndexChange()">
         <md-tab label="{{authConfig.signin.label | translate}}">
-          <form class="auth-form" (ngSubmit)="onSignIn(signInForm)" #signInForm="ngForm">
+          <form class="auth-form" novalidate [formGroup]="signinForm" (ngSubmit)="onSignIn()" #signinNgForm="ngForm">
             <div class="auth-input-group">
               <md-input-container>
-                <input name="signInUsername"
+                <input id="signInUsername"
                        mdInput
                        type="text"
-                       [(ngModel)]="signIn.username"
-                       [formControl]="authValidator.signinUsername"
-                       placeholder="{{authConfig.signin.username | translate}}">
-                <md-error *ngIf="authValidator.signinUsername.hasError('required')">
-                  {{AuthConfig.validation.signin.username.required.error | translate}}
-                </md-error>
-                <md-error *ngIf="authValidator.signinUsername.hasError('minLength')">
-                  {{AuthConfig.validation.signin.username.minLength.error | translate}}
-                </md-error>
-                <md-error *ngIf="authValidator.signinUsername.hasError('pattern')">
-                  {{AuthConfig.validation.signin.username.pattern.error | translate}}
+                       formControlName="{{authConfig.signin.username.controlName}}"
+                       placeholder="{{authConfig.signin.username.placeHolder | translate}}">
+                <md-error *ngIf="showError('signin', authConfig.signin.username.controlName)">
+                  {{getErrorMessage('signin', authConfig.signin.username.controlName) | translate}}
                 </md-error>
               </md-input-container>
               <md-input-container>
-                <input name="signInPassword"
+                <input id="signInPassword"
                        mdInput
                        type="{{signInPasswordInputType}}"
-                       [(ngModel)]="signIn.password"
-                       [formControl]="authValidator.signinPassword"
-                       placeholder="{{authConfig.signin.password | translate}}">
-                <md-error *ngIf="authValidator.signinPassword.hasError('required')">
-                  {{AuthConfig.validation.signin.password.required.error | translate}}
-                </md-error>
-                <md-error *ngIf="authValidator.signinPassword.hasError('minLength')">
-                  {{AuthConfig.validation.signin.password.minLength.error | translate}}
+                       formControlName="{{authConfig.signin.password.controlName}}"
+                       placeholder="{{authConfig.signin.password.placeHolder | translate}}">
+                <md-error *ngIf="showError('signin', authConfig.signin.password.controlName)">
+                  {{getErrorMessage('signin', authConfig.signin.password.controlName) | translate}}
                 </md-error>
               </md-input-container>
               <md-checkbox [disableRipple]="true"
                            [color]="'primary'"
-                           (change)="onSignInPasswordInputTypeChange()">{{authConfig.signin.showPassword | translate}}</md-checkbox>
+                           (change)="onSignInPasswordInputTypeChange()">{{authConfig.signin.showPassword.label | translate}}
+              </md-checkbox>
             </div>
             <!--<div class="auth-forgotpassword-container">-->
-            <a class="signin-forgotpassword">{{authConfig.signin.forgotPassword | translate}}</a>
+            <a class="signin-forgotpassword">{{authConfig.signin.forgotPassword.label | translate}}</a>
             <!--</div>-->
             <div class="signin-btn-container">
-              <button class="signin-btn" type="submit">{{authConfig.signin.btnLabel | translate}}</button>
+              <button class="signin-btn" type="submit">{{authConfig.signin.submitButton.label | translate}}</button>
             </div>
           </form>
         </md-tab>
         <md-tab label="{{authConfig.signup.label | translate}}">
-          <form class="auth-form" (ngSubmit)="onSignUp(signUpForm)" #signUpForm="ngForm">
+          <form class="auth-form" novalidate [formGroup]="signupForm" (ngSubmit)="onSignUp()" #signupNgForm="ngForm">
             <div class="auth-input-group">
               <md-input-container>
-                <input name="signUpUsername"
+                <input id="signUpUsername"
                        mdInput
                        type="text"
-                       [(ngModel)]="signUp.username"
-                       [formControl]="authValidator.signupUsername"
-                       placeholder="{{authConfig.signup.username | translate}}">
-                <md-error *ngIf="authValidator.signupUsername.hasError('required')">
-                  {{AuthConfig.validation.signup.username.required.error | translate}}
-                </md-error>
-                <md-error *ngIf="authValidator.signupUsername.hasError('minLength')">
-                  {{AuthConfig.validation.signup.username.minLength.error | translate}}
-                </md-error>
-                <md-error *ngIf="authValidator.signupUsername.hasError('maxLength')">
-                  {{AuthConfig.validation.signup.username.maxLength.error | translate}}
-                </md-error>
-                <md-error *ngIf="authValidator.signupUsername.hasError('pattern')">
-                  {{AuthConfig.validation.signup.username.pattern.error | translate}}
+                       formControlName="{{authConfig.signup.username.controlName}}"
+                       placeholder="{{authConfig.signup.username.placeHolder | translate}}">
+                <md-error *ngIf="showError('signup', authConfig.signup.username.controlName)">
+                  {{getErrorMessage('signup', authConfig.signup.username.controlName) | translate}}
                 </md-error>
               </md-input-container>
               <md-input-container>
-                <input name="signUpEmail"
+                <input id="signUpEmail"
                        mdInput
                        type="text"
-                       [(ngModel)]="signUp.email"
-                       [formControl]="authValidator.signupEmail"
-                       placeholder="{{authConfig.signup.email | translate}}">
-                <md-error *ngIf="authValidator.signupEmail.hasError('required')">
-                  {{AuthConfig.validation.signup.email.required.error | translate}}
-                </md-error>
-                <md-error *ngIf="authValidator.signupEmail.hasError('pattern')">
-                  {{AuthConfig.validation.signup.email.pattern.error | translate}}
+                       formControlName="{{authConfig.signup.email.controlName}}"
+                       placeholder="{{authConfig.signup.email.placeHolder | translate}}">
+                <md-error *ngIf="showError('signup', authConfig.signup.email.controlName)">
+                  {{getErrorMessage('signup', authConfig.signup.email.controlName) | translate}}
                 </md-error>
               </md-input-container>
               <md-input-container>
-                <input name="signUpPassword"
+                <input id="signUpPassword"
                        mdInput
                        type="{{signUpPasswordInputType}}"
-                       [(ngModel)]="signUp.password"
-                       [formControl]="authValidator.signupPassword"
-                       placeholder="{{authConfig.signup.password | translate}}">
-                <md-error *ngIf="authValidator.signupPassword.hasError('required')">
-                  {{AuthConfig.validation.signup.password.required.error | translate}}
-                </md-error>
-                <md-error *ngIf="authValidator.signupPassword.hasError('minLength')">
-                  {{AuthConfig.validation.signup.password.minLength.error | translate}}
+                       formControlName="{{authConfig.signup.password.controlName}}"
+                       placeholder="{{authConfig.signup.password.placeHolder | translate}}">
+                <md-error *ngIf="showError('signup', authConfig.signup.password.controlName)">
+                  {{getErrorMessage('signup', authConfig.signup.password.controlName) | translate}}
                 </md-error>
               </md-input-container>
               <md-input-container>
-                <input name="signUpConfirmPassword"
+                <input id="signUpConfirmPassword"
                        mdInput
                        type="{{signUpPasswordInputType}}"
-                       [(ngModel)]="signUp.confirmPassword"
-                       [formControl]="authValidator.signupConfirmPassword"
-                       placeholder="{{authConfig.signup.confirmPassword | translate}}">
-                <md-error *ngIf="authValidator.signupConfirmPassword.hasError('required')">
-                  {{AuthConfig.validation.signup.confirmPassword.required.error | translate}}
-                </md-error>
-                <md-error *ngIf="authValidator.signupConfirmPassword.hasError('minLength')">
-                  {{AuthConfig.validation.signup.confirmPassword.minLength.error | translate}}
+                       formControlName="{{authConfig.signup.confirmPassword.controlName}}"
+                       placeholder="{{authConfig.signup.confirmPassword.placeHolder | translate}}">
+                <md-error *ngIf="showError('signup', authConfig.signup.confirmPassword.controlName)">
+                  {{getErrorMessage('signup', authConfig.signup.confirmPassword.controlName) | translate}}
                 </md-error>
               </md-input-container>
               <md-checkbox [disableRipple]="true"
                            [color]="'primary'"
-                           (change)="onSignUpPasswordInputTypeChange()">{{authConfig.signup.showPassword | translate}}</md-checkbox>
+                           (change)="onSignUpPasswordInputTypeChange()">{{authConfig.signup.showPassword.label | translate}}
+              </md-checkbox>
             </div>
             <div class="signin-btn-container">
-              <button class="signin-btn" type="submit">{{authConfig.signup.btnLabel | translate}}</button>
+              <button class="signin-btn" type="submit">{{authConfig.signup.submitButton.label | translate}}</button>
             </div>
           </form>
         </md-tab>

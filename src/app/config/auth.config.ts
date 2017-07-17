@@ -5,94 +5,139 @@
 export const AuthConfig = {
   signin: {
     label: 'AUTH.SIGNIN.LABEL',
-    username: 'AUTH.SIGNIN.EMAIL_USERNAME',
-    password: 'AUTH.SIGNIN.PASSWORD',
-    showPassword: 'AUTH.SIGNIN.SHOW_PASSWORD',
-    forgotPassword: 'AUTH.SIGNIN.FORGOT_PASSWORD',
-    btnLabel: 'AUTH.SIGNIN.BTN_LABEL'
+    username: {
+      controlName: 'username',
+      placeHolder: 'AUTH.SIGNIN.USERNAME'
+    },
+    password: {
+      controlName: 'password',
+      placeHolder: 'AUTH.SIGNIN.PASSWORD'
+    },
+    showPassword: {
+      label: 'AUTH.SIGNIN.SHOW_PASSWORD'
+    },
+    forgotPassword: {
+      label: 'AUTH.SIGNIN.FORGOT_PASSWORD'
+    },
+    submitButton: {
+      label: 'AUTH.SIGNIN.BTN_LABEL'
+    },
+    formGroup: [
+      {
+        type: 'control',
+        name: 'username',
+        validators: [
+          {name: 'required', type: 'builtin'},
+          {name: 'minlength', type: 'builtin', value: 2},
+          {name: 'pattern', type: 'builtin', value: /^[^~!@#$%^&*()+`{}|\[\]\\:";'<>?,\/]*$/}
+        ]
+      },
+      {
+        type: 'control',
+        name: 'password',
+        validators: [
+          {name: 'required', type: 'builtin'},
+          {name: 'minlength', type: 'builtin', value: 4}
+        ]
+      },
+    ],
+    errors: {
+      username: [
+        {code: 'required', message: 'ERRORS.VALIDATION.USER.USERNAME.REQUIRED'},
+        {code: 'minlength', message: 'ERRORS.VALIDATION.USER.USERNAME.MINLENGTH'},
+        {code: 'pattern', message: 'ERRORS.VALIDATION.USER.USERNAME.PATTERN'}
+      ],
+      password: [
+        {code: 'required', message: 'ERRORS.VALIDATION.USER.PASSWORD.REQUIRED'},
+        {code: 'minlength', message: 'ERRORS.VALIDATION.USER.PASSWORD.MINLENGTH'}
+      ]
+    }
   },
   signup: {
     label: 'AUTH.SIGNUP.LABEL',
-    username: 'AUTH.SIGNUP.USERNAME',
-    email: 'AUTH.SIGNUP.EMAIL',
-    password: 'AUTH.SIGNUP.PASSWORD',
-    confirmPassword: 'AUTH.SIGNUP.CONFIRM_PASSWORD',
-    showPassword: 'AUTH.SIGNUP.SHOW_PASSWORD',
-    btnLabel: 'AUTH.SIGNUP.BTN_LABEL'
-  },
-  validation: {
-    signin: {
-      username: {
-        required: {
-          error: 'ERRORS.VALIDATION.USER.USERNAME.REQUIRED'
-        },
-        minLength: {
-          rule: 2,
-          error: 'ERRORS.VALIDATION.USER.USERNAME.MINLENGTH'
-        },
-        pattern: {
-          rule: /^[^~!@#$%^&*()+`{}|\[\]\\:";'<>?,\/]*$/,
-          error: 'ERRORS.VALIDATION.USER.USERNAME.MATCH'
-        }
-      },
-      password: {
-        required: {
-          error: 'ERRORS.VALIDATION.USER.PASSWORD.REQUIRED'
-        },
-        minLength: {
-          rule: 4,
-          error: 'ERRORS.VALIDATION.USER.PASSWORD.MINLENGTH'
-        }
-      }
+    username: {
+      controlName: 'username',
+      placeHolder: 'AUTH.SIGNUP.USERNAME'
     },
-    signup: {
-      username: {
-        required: {
-          error: 'ERRORS.VALIDATION.USER.USERNAME.REQUIRED'
-        },
-        minLength: {
-          rule: 2,
-          error: 'ERRORS.VALIDATION.USER.USERNAME.MINLENGTH'
-        },
-        maxLength: {
-          rule: 20,
-          error: 'ERRORS.VALIDATION.USER.USERNAME.MAXLENGTH'
-        },
-        pattern: {
-          rule: /^[^~!@#$%^&*()+`{}|\[\]\\:";'<>?,\/]*$/,
-          error: 'ERRORS.VALIDATION.USER.USERNAME.MATCH'
-        }
+    email: {
+      controlName: 'email',
+      placeHolder: 'AUTH.SIGNUP.EMAIL'
+    },
+    password: {
+      controlName: 'password',
+      placeHolder: 'AUTH.SIGNUP.PASSWORD'
+    },
+    confirmPassword: {
+      controlName: 'confirmPassword',
+      placeHolder: 'AUTH.SIGNUP.CONFIRM_PASSWORD'
+    },
+    showPassword: {
+      label: 'AUTH.SIGNUP.SHOW_PASSWORD'
+    },
+    submitButton: {
+      label: 'AUTH.SIGNUP.BTN_LABEL'
+    },
+    formGroup: [
+      {
+        type: 'control',
+        name: 'username',
+        validators: [
+          {name: 'required', type: 'builtin'},
+          {name: 'minlength', type: 'builtin', value: 2},
+          {name: 'maxlength', type: 'builtin', value: 20},
+          {name: 'pattern', type: 'builtin', value: /^[^~!@#$%^&*()+`{}|\[\]\\:";'<>?,\/]*$/}
+        ]
       },
-      email: {
-        required: {
-          error: 'ERRORS.VALIDATION.USER.EMAIL.REQUIRED'
-        },
-        pattern: {
-          rule: /.+@.+\..+/i,
-          error: 'ERRORS.VALIDATION.USER.EMAIL.MATCH'
-        }
+      {
+        type: 'control',
+        name: 'email',
+        validators: [
+          {name: 'required', type: 'builtin'},
+          {name: 'pattern', type: 'builtin', value: /.+@.+\..+/i}
+        ]
       },
-      password: {
-        required: {
-          error: 'ERRORS.VALIDATION.USER.PASSWORD.REQUIRED'
-        },
-        minLength: {
-          rule: 4,
-          error: 'ERRORS.VALIDATION.USER.PASSWORD.MINLENGTH'
-        }
+      {
+        type: 'control',
+        name: 'password',
+        validators: [
+          {name: 'required', type: 'builtin'},
+          {name: 'minlength', type: 'builtin', value: 4},
+        ]
       },
-      confirmPassword: {
-        required: {
-          error: 'ERRORS.VALIDATION.USER.CONFIRM_PASSWORD.REQUIRED'
-        },
-        minLength: {
-          rule: 4,
-          error: 'ERRORS.VALIDATION.USER.CONFIRM_PASSWORD.MINLENGTH'
-        }
+      {
+        type: 'control',
+        name: 'confirmPassword',
+        validators: [
+          {name: 'required', type: 'builtin'},
+          {name: 'minlength', type: 'builtin', value: 4},
+        ]
       },
-      passwordMatch: {
-        error: 'ERRORS.VALIDATION.USER.PASSWORD_MATCH'
+      {
+        type: 'validator',
+        name: 'passwordMatch'
       }
+    ],
+    errors: {
+      username: [
+        {code: 'required', message: 'ERRORS.VALIDATION.USER.USERNAME.REQUIRED'},
+        {code: 'minlength', message: 'ERRORS.VALIDATION.USER.USERNAME.MINLENGTH'},
+        {code: 'maxlength', message: 'ERRORS.VALIDATION.USER.USERNAME.MAXLENGTH'},
+        {code: 'pattern', message: 'ERRORS.VALIDATION.USER.USERNAME.PATTERN'}
+      ],
+      email: [
+        {code: 'required', message: 'ERRORS.VALIDATION.USER.EMAIL.REQUIRED'},
+        {code: 'pattern', message: 'ERRORS.VALIDATION.USER.EMAIL.PATTERN'}
+      ],
+      password: [
+        {code: 'required', message: 'ERRORS.VALIDATION.USER.PASSWORD.REQUIRED'},
+        {code: 'minlength', message: 'ERRORS.VALIDATION.USER.PASSWORD.MINLENGTH'},
+        {code: 'passwordMatch', message: 'ERRORS.VALIDATION.USER.PASSWORD_MATCH'}
+      ],
+      confirmPassword: [
+        {code: 'required', message: 'ERRORS.VALIDATION.USER.CONFIRM_PASSWORD.REQUIRED'},
+        {code: 'minlength', message: 'ERRORS.VALIDATION.USER.CONFIRM_PASSWORD.MINLENGTH'},
+        {code: 'passwordMatch', message: 'ERRORS.VALIDATION.USER.PASSWORD_MATCH'}
+]
     }
   }
 };

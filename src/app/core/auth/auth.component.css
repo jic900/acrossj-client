@@ -53,6 +53,12 @@ md-input-container {
   padding-bottom: 0.5em;
 }
 
+:host >>> .mat-input-subscript-wrapper {
+  margin-top: -1em;
+  line-height: 1.5em;
+  font-size: 12px;
+}
+
 :host >>> .mat-checkbox-inner-container {
   width: 14px;
   height: 14px;
