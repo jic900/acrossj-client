@@ -10,6 +10,7 @@
               <md-input-container>
                 <input id="signInUsername"
                        mdInput
+                       validateonblur
                        type="text"
                        formControlName="{{authConfig.signin.username.controlName}}"
                        placeholder="{{authConfig.signin.username.placeHolder | translate}}">
@@ -20,6 +21,7 @@
               <md-input-container>
                 <input id="signInPassword"
                        mdInput
+                       validateonblur
                        type="{{signInPasswordInputType}}"
                        formControlName="{{authConfig.signin.password.controlName}}"
                        placeholder="{{authConfig.signin.password.placeHolder | translate}}">
@@ -46,6 +48,7 @@
               <md-input-container>
                 <input id="signUpUsername"
                        mdInput
+                       validateonblur
                        type="text"
                        formControlName="{{authConfig.signup.username.controlName}}"
                        placeholder="{{authConfig.signup.username.placeHolder | translate}}">
@@ -56,6 +59,7 @@
               <md-input-container>
                 <input id="signUpEmail"
                        mdInput
+                       validateonblur
                        type="text"
                        formControlName="{{authConfig.signup.email.controlName}}"
                        placeholder="{{authConfig.signup.email.placeHolder | translate}}">
@@ -66,6 +70,7 @@
               <md-input-container>
                 <input id="signUpPassword"
                        mdInput
+                       validateonblur
                        type="{{signUpPasswordInputType}}"
                        formControlName="{{authConfig.signup.password.controlName}}"
                        placeholder="{{authConfig.signup.password.placeHolder | translate}}">
@@ -76,6 +81,7 @@
               <md-input-container>
                 <input id="signUpConfirmPassword"
                        mdInput
+                       validateonblur
                        type="{{signUpPasswordInputType}}"
                        formControlName="{{authConfig.signup.confirmPassword.controlName}}"
                        placeholder="{{authConfig.signup.confirmPassword.placeHolder | translate}}">

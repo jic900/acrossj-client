@@ -7,11 +7,10 @@ import { Http, RequestOptions } from '@angular/http';
 import { LoaderService } from './services/http/loader/loader.service';
 import { HttpService } from './services/http/http.service';
 import { AuthConfig } from 'angular2-jwt';
-import { DelayDirective } from './directives/delay.directive';
 import { DateRangePicker } from './components/daterangepicker/daterangepicker.component';
 import { DateRangePickerFocusDirective } from './components/daterangepicker/directives/daterangepicker.focus.directive';
 import { DropDownComponent } from './components/dropdown/dropdown.component';
-
+import { ValidateOnBlurDirective } from './directives/validate-onblur.directive';
 
 export function httpServiceFactory(http: Http, options: RequestOptions, loaderService: LoaderService) {
   return new HttpService(new AuthConfig({
@@ -30,15 +29,16 @@ export function httpServiceFactory(http: Http, options: RequestOptions, loaderSe
     TranslateModule.forChild({}),
   ],
   declarations: [
-    DelayDirective,
     DateRangePicker,
     DateRangePickerFocusDirective,
-    DropDownComponent
+    DropDownComponent,
+    ValidateOnBlurDirective
   ],
   exports: [
     TranslateModule,
     DateRangePicker,
-    DropDownComponent
+    DropDownComponent,
+    ValidateOnBlurDirective
   ],
   providers: [
     LoaderService,

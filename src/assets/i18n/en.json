@@ -90,7 +90,7 @@
           "REQUIRED": "Username is required",
           "MINLENGTH": "Invalid Username: minimum 2 characters",
           "MAXLENGTH": "Invalid Username: maximum 20 characters",
-          "PATTERN": "Invalid Username: one or more characters not allowed"
+          "PATTERN": "Invalid Username: special characters not allowed"
         },
         "EMAIL": {
           "UNIQUE": "Email already exists",

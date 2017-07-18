@@ -62,7 +62,6 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   getErrorMessage(formName: string, controlName: string): string {
     const formGroup = formName === 'signin' ? this.signinForm : this.signupForm;
-    const formControl = formGroup.get(controlName);
     const errors = formName === 'signin' ? AuthConfig.signin.errors[controlName] : AuthConfig.signup.errors[controlName];
     return Util.getValidationError(formGroup.get(controlName), errors);
   }
