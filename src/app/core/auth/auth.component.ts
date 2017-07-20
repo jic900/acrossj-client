@@ -50,19 +50,34 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   passwordMatch(formGroup: FormGroup): {} {
-    console.log('passwordMatch');
+    // console.log(formGroup);
+    // console.log(formGroup.get('password').value === formGroup.get('confirmPassword').value ? null : {'passwordMatch': true});
     return formGroup.get('password').value === formGroup.get('confirmPassword').value ? null : {'passwordMatch': true};
   }
 
-  showError(formName: string, controlName: string): boolean {
-    const formControl = formName === 'signin' ? this.signinForm.get(controlName) : this.signupForm.get(controlName);
+  validateFailed(formName: string, controlName: string, groupValidatorName?: string): boolean {
+    const formGroup = formName === 'signin' ? this.signinForm : this.signupForm;
+    const formControl = formGroup.get(controlName);
     const submitted = formName === 'signin' ? this.signinSubmitted : this.signupSubmitted;
-    return !formControl.valid && (formControl.touched || submitted);
+    if (!groupValidatorName) {
+      return !formControl.valid && (formControl.touched || submitted);
+    } else {
+      // console.log(formGroup);
+      return formGroup.hasError(groupValidatorName) && (formControl.touched || submitted);
+    }
   }
 
-  getErrorMessage(formName: string, controlName: string): string {
+  groupValidateFailed(formName: string, controlName: string, groupValidatorName?: string): boolean {
+    const formGroup = formName === 'signin' ? this.signinForm : this.signupForm;
+    const formControl = formGroup.get(controlName);
+    const submitted = formName === 'signin' ? this.signinSubmitted : this.signupSubmitted;
+    return formGroup.hasError(groupValidatorName) && (formControl.touched || submitted);
+  }
+
+  getError(formName: string, controlName: string): string {
     const formGroup = formName === 'signin' ? this.signinForm : this.signupForm;
     const errors = formName === 'signin' ? AuthConfig.signin.errors[controlName] : AuthConfig.signup.errors[controlName];
+    // console.log(Util.getValidationError(formGroup.get(controlName), errors));
     return Util.getValidationError(formGroup.get(controlName), errors);
   }
 

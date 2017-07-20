@@ -117,6 +117,7 @@ export const AuthConfig = {
         name: 'passwordMatch'
       }
     ],
+    validatorName: 'passwordMatch',
     errors: {
       username: [
         {code: 'required', message: 'ERRORS.VALIDATION.USER.USERNAME.REQUIRED'},
@@ -130,14 +131,13 @@ export const AuthConfig = {
       ],
       password: [
         {code: 'required', message: 'ERRORS.VALIDATION.USER.PASSWORD.REQUIRED'},
-        {code: 'minlength', message: 'ERRORS.VALIDATION.USER.PASSWORD.MINLENGTH'},
-        {code: 'passwordMatch', message: 'ERRORS.VALIDATION.USER.PASSWORD_MATCH'}
+        {code: 'minlength', message: 'ERRORS.VALIDATION.USER.PASSWORD.MINLENGTH'}
       ],
       confirmPassword: [
         {code: 'required', message: 'ERRORS.VALIDATION.USER.CONFIRM_PASSWORD.REQUIRED'},
-        {code: 'minlength', message: 'ERRORS.VALIDATION.USER.CONFIRM_PASSWORD.MINLENGTH'},
-        {code: 'passwordMatch', message: 'ERRORS.VALIDATION.USER.PASSWORD_MATCH'}
-]
+        {code: 'minlength', message: 'ERRORS.VALIDATION.USER.CONFIRM_PASSWORD.MINLENGTH'}
+      ],
+      groupValidator: {code: 'passwordMatch', message: 'ERRORS.VALIDATION.USER.PASSWORD_MATCH'}
     }
   }
 };

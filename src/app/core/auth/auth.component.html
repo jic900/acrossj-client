@@ -14,8 +14,8 @@
                        type="text"
                        formControlName="{{authConfig.signin.username.controlName}}"
                        placeholder="{{authConfig.signin.username.placeHolder | translate}}">
-                <md-error *ngIf="showError('signin', authConfig.signin.username.controlName)">
-                  {{getErrorMessage('signin', authConfig.signin.username.controlName) | translate}}
+                <md-error *ngIf="validateFailed('signin', authConfig.signin.username.controlName)">
+                  {{getError('signin', authConfig.signin.username.controlName) | translate}}
                 </md-error>
               </md-input-container>
               <md-input-container>
@@ -25,8 +25,8 @@
                        type="{{signInPasswordInputType}}"
                        formControlName="{{authConfig.signin.password.controlName}}"
                        placeholder="{{authConfig.signin.password.placeHolder | translate}}">
-                <md-error *ngIf="showError('signin', authConfig.signin.password.controlName)">
-                  {{getErrorMessage('signin', authConfig.signin.password.controlName) | translate}}
+                <md-error *ngIf="validateFailed('signin', authConfig.signin.password.controlName)">
+                  {{getError('signin', authConfig.signin.password.controlName) | translate}}
                 </md-error>
               </md-input-container>
               <md-checkbox [disableRipple]="true"
@@ -52,8 +52,8 @@
                        type="text"
                        formControlName="{{authConfig.signup.username.controlName}}"
                        placeholder="{{authConfig.signup.username.placeHolder | translate}}">
-                <md-error *ngIf="showError('signup', authConfig.signup.username.controlName)">
-                  {{getErrorMessage('signup', authConfig.signup.username.controlName) | translate}}
+                <md-error *ngIf="validateFailed('signup', authConfig.signup.username.controlName)">
+                  {{getError('signup', authConfig.signup.username.controlName) | translate}}
                 </md-error>
               </md-input-container>
               <md-input-container>
@@ -63,8 +63,8 @@
                        type="text"
                        formControlName="{{authConfig.signup.email.controlName}}"
                        placeholder="{{authConfig.signup.email.placeHolder | translate}}">
-                <md-error *ngIf="showError('signup', authConfig.signup.email.controlName)">
-                  {{getErrorMessage('signup', authConfig.signup.email.controlName) | translate}}
+                <md-error *ngIf="validateFailed('signup', authConfig.signup.email.controlName)">
+                  {{getError('signup', authConfig.signup.email.controlName) | translate}}
                 </md-error>
               </md-input-container>
               <md-input-container>
@@ -74,20 +74,23 @@
                        type="{{signUpPasswordInputType}}"
                        formControlName="{{authConfig.signup.password.controlName}}"
                        placeholder="{{authConfig.signup.password.placeHolder | translate}}">
-                <md-error *ngIf="showError('signup', authConfig.signup.password.controlName)">
-                  {{getErrorMessage('signup', authConfig.signup.password.controlName) | translate}}
+                <md-error *ngIf="validateFailed('signup', authConfig.signup.password.controlName)">
+                  {{getError('signup', authConfig.signup.password.controlName) | translate}}
                 </md-error>
               </md-input-container>
-              <md-input-container>
+              <md-input-container [class.mat-input-invalid]="groupValidateFailed('signup', authConfig.signup.confirmPassword.controlName, authConfig.signup.validatorName)">
                 <input id="signUpConfirmPassword"
                        mdInput
                        validateonblur
                        type="{{signUpPasswordInputType}}"
                        formControlName="{{authConfig.signup.confirmPassword.controlName}}"
                        placeholder="{{authConfig.signup.confirmPassword.placeHolder | translate}}">
-                <md-error *ngIf="showError('signup', authConfig.signup.confirmPassword.controlName)">
-                  {{getErrorMessage('signup', authConfig.signup.confirmPassword.controlName) | translate}}
+                <md-error *ngIf="validateFailed('signup', authConfig.signup.confirmPassword.controlName)">
+                  {{getError('signup', authConfig.signup.confirmPassword.controlName) | translate}}
                 </md-error>
+                <md-hint *ngIf="validateFailed('signup', authConfig.signup.confirmPassword.controlName, authConfig.signup.validatorName)" style="color: red">
+                  {{authConfig.signup.errors.groupValidator.message | translate}}
+                </md-hint>
               </md-input-container>
               <md-checkbox [disableRipple]="true"
                            [color]="'primary'"
