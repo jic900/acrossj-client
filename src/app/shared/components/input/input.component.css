@@ -1,0 +1,23 @@
+md-input-container {
+  width: 100%;
+  margin: 7px 0 7px;
+}
+
+:host >>> input {
+  font-size: 16px;
+}
+:host >>> .mat-input-placeholder-wrapper {
+  top: -1.5em;
+  padding-top: 1em;
+}
+:host >>> .mat-input-placeholder {
+  font-size: 16px;
+  padding-top: 0.9em;
+  padding-bottom: 0.5em;
+}
+
+:host >>> .mat-input-subscript-wrapper {
+  margin-top: -1em;
+  line-height: 1.5em;
+  font-size: 12px;
+}

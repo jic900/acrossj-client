@@ -1,0 +1,21 @@
+<form class="auth-form" novalidate [formGroup]="formGroup" (ngSubmit)="onSignIn($event)" #form="ngForm">
+  <div class="auth-input-group">
+    <aj-input
+      *ngFor="let inputData of inputListData"
+      [inputData]="inputData"
+      [type]="inputData.controlName==='password' ? passwordType: inputData.type"
+      [submitted]="submitted"
+      (bindControl)="onBindControl($event)">
+    </aj-input>
+    <md-checkbox [disableRipple]="true"
+                 [color]="'primary'"
+                 (change)="onPasswordTypeChange()">{{formData.labels.showPassword| translate}}
+    </md-checkbox>
+  </div>
+  <!--<div class="auth-forgotpassword-container">-->
+  <a class="auth-forgotpassword">{{formData.labels.forgotPassword | translate}}</a>
+  <!--</div>-->
+  <div class="auth-btn-container">
+    <button class="auth-btn" type="submit">{{formData.labels.submitButton | translate}}</button>
+  </div>
+</form>

@@ -4,103 +4,11 @@
       <md-tab-group [dynamicHeight]="true"
                     [(selectedIndex)]="selectedIndex"
                     (selectedIndexChange)="onSelectedTabIndexChange()">
-        <md-tab label="{{authConfig.signin.label | translate}}">
-          <form class="auth-form" novalidate [formGroup]="signinForm" (ngSubmit)="onSignIn()" #signinNgForm="ngForm">
-            <div class="auth-input-group">
-              <md-input-container>
-                <input id="signInUsername"
-                       mdInput
-                       validateonblur
-                       type="text"
-                       formControlName="{{authConfig.signin.username.controlName}}"
-                       placeholder="{{authConfig.signin.username.placeHolder | translate}}">
-                <md-error *ngIf="validateFailed('signin', authConfig.signin.username.controlName)">
-                  {{getError('signin', authConfig.signin.username.controlName) | translate}}
-                </md-error>
-              </md-input-container>
-              <md-input-container>
-                <input id="signInPassword"
-                       mdInput
-                       validateonblur
-                       type="{{signInPasswordInputType}}"
-                       formControlName="{{authConfig.signin.password.controlName}}"
-                       placeholder="{{authConfig.signin.password.placeHolder | translate}}">
-                <md-error *ngIf="validateFailed('signin', authConfig.signin.password.controlName)">
-                  {{getError('signin', authConfig.signin.password.controlName) | translate}}
-                </md-error>
-              </md-input-container>
-              <md-checkbox [disableRipple]="true"
-                           [color]="'primary'"
-                           (change)="onSignInPasswordInputTypeChange()">{{authConfig.signin.showPassword.label | translate}}
-              </md-checkbox>
-            </div>
-            <!--<div class="auth-forgotpassword-container">-->
-            <a class="signin-forgotpassword">{{authConfig.signin.forgotPassword.label | translate}}</a>
-            <!--</div>-->
-            <div class="signin-btn-container">
-              <button class="signin-btn" type="submit">{{authConfig.signin.submitButton.label | translate}}</button>
-            </div>
-          </form>
+        <md-tab label="{{authConfig.signin.labels.form | translate}}">
+          <aj-signin [formData]="authConfig.signin"></aj-signin>
         </md-tab>
-        <md-tab label="{{authConfig.signup.label | translate}}">
-          <form class="auth-form" novalidate [formGroup]="signupForm" (ngSubmit)="onSignUp()" #signupNgForm="ngForm">
-            <div class="auth-input-group">
-              <md-input-container>
-                <input id="signUpUsername"
-                       mdInput
-                       validateonblur
-                       type="text"
-                       formControlName="{{authConfig.signup.username.controlName}}"
-                       placeholder="{{authConfig.signup.username.placeHolder | translate}}">
-                <md-error *ngIf="validateFailed('signup', authConfig.signup.username.controlName)">
-                  {{getError('signup', authConfig.signup.username.controlName) | translate}}
-                </md-error>
-              </md-input-container>
-              <md-input-container>
-                <input id="signUpEmail"
-                       mdInput
-                       validateonblur
-                       type="text"
-                       formControlName="{{authConfig.signup.email.controlName}}"
-                       placeholder="{{authConfig.signup.email.placeHolder | translate}}">
-                <md-error *ngIf="validateFailed('signup', authConfig.signup.email.controlName)">
-                  {{getError('signup', authConfig.signup.email.controlName) | translate}}
-                </md-error>
-              </md-input-container>
-              <md-input-container>
-                <input id="signUpPassword"
-                       mdInput
-                       validateonblur
-                       type="{{signUpPasswordInputType}}"
-                       formControlName="{{authConfig.signup.password.controlName}}"
-                       placeholder="{{authConfig.signup.password.placeHolder | translate}}">
-                <md-error *ngIf="validateFailed('signup', authConfig.signup.password.controlName)">
-                  {{getError('signup', authConfig.signup.password.controlName) | translate}}
-                </md-error>
-              </md-input-container>
-              <md-input-container [class.mat-input-invalid]="groupValidateFailed('signup', authConfig.signup.confirmPassword.controlName, authConfig.signup.validatorName)">
-                <input id="signUpConfirmPassword"
-                       mdInput
-                       validateonblur
-                       type="{{signUpPasswordInputType}}"
-                       formControlName="{{authConfig.signup.confirmPassword.controlName}}"
-                       placeholder="{{authConfig.signup.confirmPassword.placeHolder | translate}}">
-                <md-error *ngIf="validateFailed('signup', authConfig.signup.confirmPassword.controlName)">
-                  {{getError('signup', authConfig.signup.confirmPassword.controlName) | translate}}
-                </md-error>
-                <md-hint *ngIf="validateFailed('signup', authConfig.signup.confirmPassword.controlName, authConfig.signup.validatorName)" style="color: red">
-                  {{authConfig.signup.errors.groupValidator.message | translate}}
-                </md-hint>
-              </md-input-container>
-              <md-checkbox [disableRipple]="true"
-                           [color]="'primary'"
-                           (change)="onSignUpPasswordInputTypeChange()">{{authConfig.signup.showPassword.label | translate}}
-              </md-checkbox>
-            </div>
-            <div class="signin-btn-container">
-              <button class="signin-btn" type="submit">{{authConfig.signup.submitButton.label | translate}}</button>
-            </div>
-          </form>
+        <md-tab label="{{authConfig.signup.labels.form | translate}}">
+          <aj-signup [formData]="authConfig.signup"></aj-signup>
         </md-tab>
       </md-tab-group>
     </md-card>

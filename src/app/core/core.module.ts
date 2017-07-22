@@ -11,6 +11,8 @@ import { SideMenuComponent } from './navbar/sidemenu/sidemenu.component';
 import { SearchfieldComponent } from './navbar/search/searchfield/searchfield.component';
 import { AuthComponent } from './auth/auth.component';
 import { FooterComponent } from './footer/footer.component';
+import { SignUpComponent } from './auth/signup/signup.component';
+import { SignInComponent } from './auth/signin/signin.component';
 
 @NgModule({
   imports: [
@@ -31,6 +33,8 @@ import { FooterComponent } from './footer/footer.component';
     SideMenuComponent,
     SearchfieldComponent,
     AuthComponent,
+    SignUpComponent,
+    SignInComponent,
     FooterComponent
   ],
   exports: [

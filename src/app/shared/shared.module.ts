@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MdInputModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { Http, RequestOptions } from '@angular/http';
 import { LoaderService } from './services/http/loader/loader.service';
@@ -11,6 +12,7 @@ import { DateRangePicker } from './components/daterangepicker/daterangepicker.co
 import { DateRangePickerFocusDirective } from './components/daterangepicker/directives/daterangepicker.focus.directive';
 import { DropDownComponent } from './components/dropdown/dropdown.component';
 import { ValidateOnBlurDirective } from './directives/validate-onblur.directive';
+import { InputComponent } from './components/input/input.component';
 
 export function httpServiceFactory(http: Http, options: RequestOptions, loaderService: LoaderService) {
   return new HttpService(new AuthConfig({
@@ -25,20 +27,24 @@ export function httpServiceFactory(http: Http, options: RequestOptions, loaderSe
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule,
+    MdInputModule,
     TranslateModule.forChild({}),
   ],
   declarations: [
     DateRangePicker,
     DateRangePickerFocusDirective,
     DropDownComponent,
-    ValidateOnBlurDirective
+    ValidateOnBlurDirective,
+    InputComponent
   ],
   exports: [
     TranslateModule,
     DateRangePicker,
     DropDownComponent,
-    ValidateOnBlurDirective
+    ValidateOnBlurDirective,
+    InputComponent
   ],
   providers: [
     LoaderService,
