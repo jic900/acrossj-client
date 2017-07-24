@@ -21,10 +21,10 @@ export class AuthService {
     this.authenticated$.next(isAuthenticated);
   }
 
-  signup(): void {
+  signup(signupData: {}): void {
 
   }
-  signin(): void {
+  signin(signinData: {}): void {
 
   }
   // login() {

@@ -4,7 +4,6 @@
       *ngFor="let inputData of inputListData"
       [inputData]="inputData"
       [type]="inputData.controlName==='password' || inputData.controlName==='confirmPassword' ? passwordType: inputData.type"
-      [submitted]="submitted"
       [formValidateData]="getFormValidateData(inputData.controlName)"
       (bindControl)="onBindControl($event)">
     </aj-input>
@@ -14,6 +13,12 @@
     </md-checkbox>
   </div>
   <div class="auth-btn-container">
-    <button class="auth-btn" type="submit">{{formData.labels.submitButton | translate}}</button>
+    <button
+      class="auth-btn"
+      [disabled]="!isValid()"
+      [ngClass]="{'disabled': !isValid()}"
+      type="submit">
+      {{formData.labels.submitButton | translate}}
+    </button>
   </div>
 </form>

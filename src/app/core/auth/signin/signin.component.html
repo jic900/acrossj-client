@@ -4,7 +4,6 @@
       *ngFor="let inputData of inputListData"
       [inputData]="inputData"
       [type]="inputData.controlName==='password' ? passwordType: inputData.type"
-      [submitted]="submitted"
       (bindControl)="onBindControl($event)">
     </aj-input>
     <md-checkbox [disableRipple]="true"
@@ -16,6 +15,12 @@
   <a class="auth-forgotpassword">{{formData.labels.forgotPassword | translate}}</a>
   <!--</div>-->
   <div class="auth-btn-container">
-    <button class="auth-btn" type="submit">{{formData.labels.submitButton | translate}}</button>
+    <button
+      class="auth-btn"
+      [disabled]="!isValid()"
+      [ngClass]="{'disabled': !isValid()}"
+      type="submit">
+      {{formData.labels.submitButton | translate}}
+    </button>
   </div>
 </form>

@@ -80,6 +80,10 @@
   border: none;
   font-size: 16px;
 }
+.auth-btn.disabled {
+  background-color: rgba(0, 0, 0, .35);
+}
+
 @media (max-width: 768px) {
   .auth-panel {
     width: 100%;

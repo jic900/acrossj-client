@@ -6,11 +6,13 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { IFormControlData } from 'app/shared/interfaces/formcontroldata.interface';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'aj-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['../auth.component.css']
+  styleUrls: ['../auth.component.css'],
+  providers: [AuthService]
 })
 
 export class SignInComponent implements OnInit {
@@ -20,9 +22,9 @@ export class SignInComponent implements OnInit {
   formGroup: FormGroup;
   @ViewChild('form') form;
   passwordType: string;
-  submitted: boolean;
+  inProcess: boolean;
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.inputListData = this.formData['controls']
@@ -33,8 +35,11 @@ export class SignInComponent implements OnInit {
         return control.data;
       });
     this.passwordType = 'password';
-    this.submitted = false;
     this.formGroup = new FormGroup({});
+  }
+
+  isValid(): boolean {
+    return this.formGroup.valid && !this.inProcess;
   }
 
   onBindControl(controlData: {}): void {
@@ -47,12 +52,13 @@ export class SignInComponent implements OnInit {
 
   onSignIn(event): void {
     event.preventDefault();
-    this.submitted = true;
-    // console.log(this.signinForm);
+    console.log(this.formGroup);
+    this.inProcess = true;
+    this.authService.signin(this.formGroup.value);
+    this.inProcess = false;
   }
 
   reset(): void {
-    this.submitted = false;
     this.form.resetForm();
   }
 }

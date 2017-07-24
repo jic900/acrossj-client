@@ -20,7 +20,6 @@ export class InputComponent implements OnInit {
   @Input() inputData: IFormControlData;
   @Input() type: string;
   @Input() customValidators: {};
-  @Input() submitted: boolean;
   @Input() formValidateData: {};
   @Output() bindControl: EventEmitter<{}>;
   formControl: FormControl;
@@ -72,12 +71,12 @@ export class InputComponent implements OnInit {
   }
 
   validateFailed(): boolean {
-    return this.formControl.invalid && (this.formControl.touched || this.submitted);
+    return this.formControl.invalid && this.formControl.touched;
   }
 
   formValidateFailed(): boolean {
     if (this.formValidateData) {
-      return this.formValidateData['function']() && (this.formControl.touched || this.submitted);
+      return this.formControl.valid && this.formValidateData['validateFailed']() && this.formControl.touched;
     }
     return false;
   }

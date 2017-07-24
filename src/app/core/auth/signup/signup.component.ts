@@ -6,11 +6,13 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { IFormControlData } from 'app/shared/interfaces/formcontroldata.interface';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'aj-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['../auth.component.css']
+  styleUrls: ['../auth.component.css'],
+  providers: [AuthService]
 })
 export class SignUpComponent implements OnInit {
 
@@ -19,9 +21,9 @@ export class SignUpComponent implements OnInit {
   formGroup: FormGroup;
   @ViewChild('form') form;
   passwordType: string;
-  submitted: boolean;
+  inProcess: boolean;
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.inputListData = this.formData['controls']
@@ -32,8 +34,11 @@ export class SignUpComponent implements OnInit {
         return control.data;
       });
     this.passwordType = 'password';
-    this.submitted = false;
     this.formGroup = new FormGroup({}, this.passwordMatch);
+  }
+
+  isValid(): boolean {
+    return this.formGroup.valid && !this.inProcess;
   }
 
   onBindControl(controlData: {}): void {
@@ -45,8 +50,6 @@ export class SignUpComponent implements OnInit {
   }
 
   passwordMatch(formGroup: FormGroup): {} {
-    // console.log(formGroup);
-    // console.log(formGroup.get('password').value === formGroup.get('confirmPassword').value ? null : {'passwordMatch': true});
     const passwordControl = formGroup.get('password');
     const confirmPasswordControl = formGroup.get('confirmPassword');
     if (passwordControl && confirmPasswordControl) {
@@ -56,13 +59,17 @@ export class SignUpComponent implements OnInit {
 
   getFormValidateData(controlName: string) {
     if (controlName === 'confirmPassword') {
-      return {'function': this.formValidateFailed, 'error': this.formData['validator'].error};
+      return {'validateFailed': this.formValidateFailed, 'error': this.getFormValidateError};
     }
     return null;
   }
 
   formValidateFailed = () => {
     return this.formGroup.hasError('passwordMatch');
+  }
+
+  getFormValidateError = () => {
+    return this.formData['validator'].error;
   }
 
   onSignUp(event): void {
@@ -73,12 +80,13 @@ export class SignUpComponent implements OnInit {
     // }
     // console.log(form.value);
     event.preventDefault();
-    this.submitted = true;
-    // console.log(this.signinForm);
+    console.log(this.formGroup);
+    this.inProcess = true;
+    this.authService.signup(this.formGroup.value);
+    this.inProcess = false;
   }
 
   reset(): void {
-    this.submitted = false;
     this.form.resetForm();
   }
 

@@ -1,5 +1,5 @@
 <md-input-container [class.mat-input-invalid]="formValidateFailed()">
-  <input id="{{controlName}}"
+  <input id="{{inputData.controlName}}"
          mdInput
          validateonblur
          type="{{type}}"
@@ -9,6 +9,6 @@
     {{getValidatorError() | translate}}
   </md-error>
   <md-hint *ngIf="formValidateFailed()" style="color: red">
-    {{formValidateData.error | translate}}
+    {{formValidateData.error() | translate}}
   </md-hint>
 </md-input-container>
