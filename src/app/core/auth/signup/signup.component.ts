@@ -2,7 +2,8 @@ import {
   Component,
   OnInit,
   Input,
-  ViewChild
+  ViewChild,
+  ChangeDetectorRef
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { IFormControlData } from 'app/shared/interfaces/formcontroldata.interface';
@@ -21,7 +22,9 @@ export class SignUpComponent implements OnInit {
   formGroup: FormGroup;
   @ViewChild('form') form;
   passwordType: string;
-  inProcess: boolean;
+  processing: boolean;
+  message: string;
+  success: boolean;
 
   constructor(private authService: AuthService) {}
 
@@ -34,11 +37,19 @@ export class SignUpComponent implements OnInit {
         return control.data;
       });
     this.passwordType = 'password';
+    this.message = null;
+    this.success = false;
     this.formGroup = new FormGroup({}, this.passwordMatch);
   }
 
   isValid(): boolean {
-    return this.formGroup.valid && !this.inProcess;
+    return this.formGroup.valid && !this.processing;;
+  }
+
+  onClicked(event): void {
+    console.log('onClicked');
+    this.success = false;
+    this.message = null;
   }
 
   onBindControl(controlData: {}): void {
@@ -73,20 +84,40 @@ export class SignUpComponent implements OnInit {
   }
 
   onSignUp(event): void {
-    // const signupData = {
-    //   username: form.value.signUpUsername,
-    //   email: form.value.signUpEmail,
-    //   password: form.value.signUpPassword
-    // }
-    // console.log(form.value);
     event.preventDefault();
-    console.log(this.formGroup);
-    this.inProcess = true;
-    this.authService.signup(this.formGroup.value);
-    this.inProcess = false;
+    // console.log(this.formGroup);
+    this.message = null;
+    this.processing = true;
+
+    const onSuccess = () => {
+      this.message = this.formData['successMessage'];
+      this.success = true;
+      this.form.resetForm();
+    }
+
+    this.authService.signup(this.formGroup.value)
+      .subscribe(
+        data => {
+          // console.log(data);
+          onSuccess();
+          this.processing = false;
+        },
+        err => {
+          // console.log(err);
+          // Ignore error when verify email is failed to be sent
+          if (err.name !== 'SendVerifyMail') {
+            this.message = err.message;
+          } else {
+            onSuccess();
+          }
+          this.processing = false;
+        }
+      );
   }
 
   reset(): void {
+    this.message = null;
+    this.success = false;
     this.form.resetForm();
   }
 

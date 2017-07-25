@@ -4,6 +4,7 @@
          validateonblur
          type="{{type}}"
          [formControl]="formControl"
+         (click)="onClick($event)"
          placeholder="{{inputData.placeHolder | translate}}">
   <md-error *ngIf="validateFailed()">
     {{getValidatorError() | translate}}

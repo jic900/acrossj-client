@@ -22,10 +22,12 @@ export class InputComponent implements OnInit {
   @Input() customValidators: {};
   @Input() formValidateData: {};
   @Output() bindControl: EventEmitter<{}>;
+  @Output() clicked: EventEmitter<void>;
   formControl: FormControl;
 
   constructor() {
     this.bindControl = new EventEmitter<{}>();
+    this.clicked = new EventEmitter<void>();
   }
 
   ngOnInit() {
@@ -46,6 +48,10 @@ export class InputComponent implements OnInit {
     });
     this.formControl = new FormControl('', validators, asyncValidators);
     this.bindControl.emit({'name': this.inputData.controlName, 'control': this.formControl});
+  }
+
+  onClick(event): void {
+    this.clicked.emit();
   }
 
   getBuiltinValidator(validator: IValidator): Function {

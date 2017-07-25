@@ -7,9 +7,14 @@ export const AppConfig = {
   HOME_BACKGROUND: '/assets/images/home_bg.png',
   // MENU_HOVER_MODE: true,
   PLACE_SEARCH_RESULT_LIMIT: 5,
-  HTTP_TIMEOUT: 5000,           // in millisecond
-  HTTP_RETRY_DELAY: 500,        // in millisecond
-  HTTP_RETRY_MAX: 3
+  HTTP_TIMEOUT: 10000,           // in millisecond
+  HTTP_RETRY_DELAY: 1000,        // in millisecond
+  HTTP_RETRY_MAX: 3,
+  ERROR: {
+    SYSTEM_UNAVAILABLE: 'ERRORS.GENERIC.SYSTEM_UNAVAILABLE',
+    GATEWAY_TIMEOUT: 'ERRORS.GENERIC.GATEWAY_TIMEOUT',
+    OTHERS: 'ERRORS.GENERIC.OTHERS'
+  }
 }
 
 // export class AppConfig {

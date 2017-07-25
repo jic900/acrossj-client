@@ -22,7 +22,9 @@ export class SignInComponent implements OnInit {
   formGroup: FormGroup;
   @ViewChild('form') form;
   passwordType: string;
-  inProcess: boolean;
+  processing: boolean;
+  message: string;
+  errorMessage: string;
 
   constructor(private authService: AuthService) {}
 
@@ -35,11 +37,13 @@ export class SignInComponent implements OnInit {
         return control.data;
       });
     this.passwordType = 'password';
+    this.message = null;
+    this.errorMessage = null;
     this.formGroup = new FormGroup({});
   }
 
   isValid(): boolean {
-    return this.formGroup.valid && !this.inProcess;
+    return this.formGroup.valid && !this.processing;
   }
 
   onBindControl(controlData: {}): void {
@@ -52,13 +56,17 @@ export class SignInComponent implements OnInit {
 
   onSignIn(event): void {
     event.preventDefault();
-    console.log(this.formGroup);
-    this.inProcess = true;
+    // console.log(this.formGroup);
+    this.processing = true;
+    this.message = null;
+    this.errorMessage = null;
     this.authService.signin(this.formGroup.value);
-    this.inProcess = false;
+    this.processing = false;
   }
 
   reset(): void {
+    this.message = null;
+    this.errorMessage = null;
     this.form.resetForm();
   }
 }

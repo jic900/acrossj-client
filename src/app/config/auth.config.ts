@@ -42,7 +42,8 @@ export const AuthConfig = {
     labels: {
       form: 'AUTH.SIGNUP.LABEL',
       showPassword: 'AUTH.SIGNUP.SHOW_PASSWORD',
-      submitButton: 'AUTH.SIGNUP.BTN_LABEL'
+      submitButton: 'AUTH.SIGNUP.BTN_LABEL',
+      resendEmail: 'AUTH.SIGNUP.RESEND_EMAIL'
     },
     controls: [
       {
@@ -99,6 +100,7 @@ export const AuthConfig = {
     validator: {
       name: 'passwordMatch',
       error: 'ERRORS.VALIDATION.USER.PASSWORD_MATCH'
-    }
+    },
+    successMessage: 'MESSAGES.AUTH.SIGNUP_SUCCESS'
   }
 };

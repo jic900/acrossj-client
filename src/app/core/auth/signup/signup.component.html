@@ -1,11 +1,15 @@
 <form class="auth-form" novalidate [formGroup]="formGroup" (ngSubmit)="onSignUp($event)" #form="ngForm">
+  <label class="auth-message" [ngClass]="{'show': message, 'error': !success}">
+    {{message | translate}}
+  </label>
+  <a *ngIf="success" class="auth-resendemail">{{formData.labels.resendEmail | translate}}</a>
   <div class="auth-input-group">
     <aj-input
       *ngFor="let inputData of inputListData"
       [inputData]="inputData"
       [type]="inputData.controlName==='password' || inputData.controlName==='confirmPassword' ? passwordType: inputData.type"
       [formValidateData]="getFormValidateData(inputData.controlName)"
-      (bindControl)="onBindControl($event)">
+      (bindControl)="onBindControl($event)" (clicked)="onClicked($event)">
     </aj-input>
     <md-checkbox [disableRipple]="true"
                  [color]="'primary'"

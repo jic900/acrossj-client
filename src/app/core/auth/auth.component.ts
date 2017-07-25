@@ -18,14 +18,14 @@ export class AuthComponent implements OnInit, OnDestroy {
   @ViewChild(SignInComponent) signInForm: SignInComponent;
   @ViewChild(SignUpComponent) signUpForm: SignUpComponent;
   selectedIndex: number;
-  private sub: any;
+  private subscription: any;
 
   constructor(private route: ActivatedRoute) {
     this.authConfig = AuthConfig;
   }
 
   ngOnInit(): void {
-    this.sub = this.route.params.subscribe(params => {
+    this.subscription = this.route.params.subscribe(params => {
       this.selectedIndex = 0;
       if (params['id'] === 'signup') {
         this.selectedIndex = 1;
@@ -40,6 +40,6 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }

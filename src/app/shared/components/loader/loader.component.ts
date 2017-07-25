@@ -5,7 +5,7 @@ import { LoaderService } from './loader.service';
 import { LoaderState } from './loader';
 
 @Component({
-    selector: 'angular-loader',
+    selector: 'aj-loader',
     templateUrl: 'loader.component.html',
     styleUrls: ['loader.component.css']
 })
@@ -15,11 +15,9 @@ export class LoaderComponent implements OnInit {
 
     private subscription: Subscription;
 
-    constructor(
-        private loaderService: LoaderService
-    ) { }
+    constructor(private loaderService: LoaderService) { }
 
-    ngOnInit() { 
+    ngOnInit() {
         this.subscription = this.loaderService.loaderState
             .subscribe((state: LoaderState) => {
                 this.show = state.show;

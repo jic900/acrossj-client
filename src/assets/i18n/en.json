@@ -78,11 +78,21 @@
       "PASSWORD": "Password",
       "CONFIRM_PASSWORD": "Confirm Password",
       "SHOW_PASSWORD": "Show Password",
-      "BTN_LABEL": "Sign Up"
+      "BTN_LABEL": "Sign Up",
+      "RESEND_EMAIL": "Resend Verification Email"
+    }
+  },
+  "MESSAGES": {
+    "AUTH": {
+      "SIGNUP_SUCCESS": "Your account is successfully created and a verification email has been sent."
     }
   },
   "ERRORS": {
-    "GENERIC": "Something went wrong",
+    "GENERIC": {
+      "SYSTEM_UNAVAILABLE": "System is currently unavailable, please try again later",
+      "GATEWAY_TIMEOUT": "Request is timed out, please try again later",
+      "OTHERS": "Something went wrong, please try again later"
+    },
     "VALIDATION": {
       "USER": {
         "USERNAME": {
@@ -93,7 +103,7 @@
           "PATTERN": "Invalid Username: special characters not allowed"
         },
         "EMAIL": {
-          "UNIQUE": "Email already exists",
+          "UNIQUE": "Email already exists, please choose another email",
           "REQUIRED": "Email is required",
           "PATTERN": "Invalid Email"
         },

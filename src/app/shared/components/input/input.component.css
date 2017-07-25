@@ -6,6 +6,15 @@ md-input-container {
 :host >>> input {
   font-size: 16px;
 }
+
+:host >>> input:-webkit-autofill,
+:host >>> input:-webkit-autofill:hover,
+:host >>> input:-webkit-autofill:focus,
+:host >>> input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+
 :host >>> .mat-input-placeholder-wrapper {
   top: -1.5em;
   padding-top: 1em;

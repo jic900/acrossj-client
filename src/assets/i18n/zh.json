@@ -78,7 +78,8 @@
       "PASSWORD": "密码",
       "CONFIRM_PASSWORD": "确认密码",
       "SHOW_PASSWORD": "显示密码",
-      "BTN_LABEL": "注 册"
+      "BTN_LABEL": "注 册",
+      "RESEND_EMAIL": "点击发送认证邮件"
     }
   }
 }

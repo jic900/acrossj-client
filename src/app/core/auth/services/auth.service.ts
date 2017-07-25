@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tokenNotExpired } from 'angular2-jwt';
 import { Router } from '@angular/router';
+import { HttpService } from 'app/shared/services/http/http.service';
+import { EndPoint } from 'app/config/endpoint.config';
+import { IHttpResponse } from 'app/shared/interfaces/httpresponse.interface';
 
 @Injectable()
 export class AuthService {
@@ -9,7 +12,7 @@ export class AuthService {
   authenticated: boolean;
   authenticated$: BehaviorSubject<boolean>;
 
-  constructor(private router: Router) {
+  constructor(private httpService: HttpService, private router: Router) {
     this.authenticated$ = new BehaviorSubject<boolean>(this.authenticated);
     if (tokenNotExpired('token')) {
       this.setAuthenticated(true);
@@ -21,9 +24,11 @@ export class AuthService {
     this.authenticated$.next(isAuthenticated);
   }
 
-  signup(signupData: {}): void {
-
+  signup(signupData: {}): Observable<{}> {
+    return this.httpService.post(EndPoint.auth.signup, signupData)
+      .map(response => response.json);
   }
+
   signin(signinData: {}): void {
 
   }
