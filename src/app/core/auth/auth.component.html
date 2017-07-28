@@ -1,7 +1,10 @@
 <div class="auth-container">
   <div class="auth-panel">
     <md-card>
-      <md-tab-group [dynamicHeight]="true"
+      <aj-verifyemail [hidden]="!hideTab"></aj-verifyemail>
+      <!--<label [hidden]="!hideTab">Verifying Email ...</label>-->
+      <md-tab-group [hidden]="hideTab"
+                    [dynamicHeight]="true"
                     [(selectedIndex)]="selectedIndex"
                     (selectedIndexChange)="onSelectedTabIndexChange()">
         <md-tab label="{{authConfig.signin.labels.form | translate}}">

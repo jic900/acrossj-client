@@ -84,7 +84,12 @@
   },
   "MESSAGES": {
     "AUTH": {
-      "SIGNUP_SUCCESS": "Your account is successfully created and a verification email has been sent."
+      "SIGNUP_SUCCESS": "Your account is successfully created and a verification email has been sent.",
+      "VERIFY_EMAIL": {
+        "INPROGRESS": "Verifying email ...",
+        "SUCCESS": "Your email has been successfully verified. Please sign in.",
+        "ALREADY_VERIFIED": "Your email has been previously verified. Please sign in."
+      }
     }
   },
   "ERRORS": {
@@ -93,17 +98,24 @@
       "GATEWAY_TIMEOUT": "Request is timed out, please try again later",
       "OTHERS": "Something went wrong, please try again later"
     },
+    "USER": {
+      "NOTFOUND": "The username or email entered could not be found",
+      "PASSWORD_MISMATCH": "The password entered is incorrect"
+    },
+    "VERIFY_EMAIL": {
+      "FAILED": "Email verification failed due to invalid or expired email link. Please resend verification email"
+    },
     "VALIDATION": {
       "USER": {
         "USERNAME": {
-          "UNIQUE": "Username already exists",
+          "UNIQUE": "Username entered already exists, please choose another username",
           "REQUIRED": "Username is required",
           "MINLENGTH": "Invalid Username: minimum 2 characters",
           "MAXLENGTH": "Invalid Username: maximum 20 characters",
           "PATTERN": "Invalid Username: special characters not allowed"
         },
         "EMAIL": {
-          "UNIQUE": "Email already exists, please choose another email",
+          "UNIQUE": "Email entered already exists, please choose another email",
           "REQUIRED": "Email is required",
           "PATTERN": "Invalid Email"
         },

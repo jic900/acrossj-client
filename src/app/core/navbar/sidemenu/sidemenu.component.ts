@@ -2,13 +2,14 @@ import {
   Component,
   ViewChildren,
   QueryList,
-  ChangeDetectorRef, ViewChild, Input
+  ViewChild, Input, OnInit
 } from '@angular/core';
 
 import { SubMenuComponent } from './submenu/submenu.component';
 import { SearchfieldComponent } from '../search/searchfield/searchfield.component';
 import { AppConstant, MenuState } from 'app/config/app.config';
 import { Util } from 'app/shared/util/util';
+import { AuthService } from 'app/core/auth/services/auth.service';
 
 @Component({
   selector: 'aj-sidemenu',
@@ -16,7 +17,7 @@ import { Util } from 'app/shared/util/util';
   styleUrls: ['./sidemenu.component.css']
 })
 
-export class SideMenuComponent {
+export class SideMenuComponent implements OnInit {
 
   @ViewChildren(SubMenuComponent) submenus: QueryList<SubMenuComponent>;
   @ViewChild(SearchfieldComponent) searchfield: SearchfieldComponent;
@@ -24,9 +25,14 @@ export class SideMenuComponent {
   sideMenuState: number;
   authenticated: boolean;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private authService: AuthService) {
     this.sideMenuState = MenuState.collapsed;
-    this.authenticated = false;
+    this.authenticated = authService.authenticated;
+  }
+
+  ngOnInit(): void {
+    this.authService.authenticated$.subscribe(
+      isAuthenticated => this.authenticated = isAuthenticated);
   }
 
   onSearchClicked(event): void {
@@ -54,11 +60,6 @@ export class SideMenuComponent {
 
   getTransition(): string {
     return this.isDeviceWidth() ? 'all 0.5s ease-in-out 0s' : '';
-  }
-
-  setAuthenticated(isAuthenticated: boolean): void {
-    this.authenticated = isAuthenticated;
-    this.changeDetectorRef.detectChanges();
   }
 
   setSideMenuState(newState: number): void {

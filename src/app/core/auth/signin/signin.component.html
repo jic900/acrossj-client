@@ -1,5 +1,5 @@
 <form class="auth-form" novalidate [formGroup]="formGroup" (ngSubmit)="onSignIn($event)" #form="ngForm">
-  <label class="auth-message" [ngClass]="{'show': message && message !== ''}">
+  <label class="auth-message" [ngClass]="{'error': message}">
     {{message | translate}}
   </label>
   <div class="auth-input-group">
@@ -7,7 +7,8 @@
       *ngFor="let inputData of inputListData"
       [inputData]="inputData"
       [type]="inputData.controlName==='password' ? passwordType: inputData.type"
-      (bindControl)="onBindControl($event)">
+      (bindControl)="onBindControl($event)"
+      (clicked)="onClicked($event)">
     </aj-input>
     <md-checkbox [disableRipple]="true"
                  [color]="'primary'"

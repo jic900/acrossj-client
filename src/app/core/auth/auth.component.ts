@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { AuthService } from './services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthConfig } from 'app/config/auth.config';
 import { SignInComponent } from './signin/signin.component';
 import { SignUpComponent } from './signup/signup.component';
+import { VerifyEmailComponent } from './verifyemail/verifyemail.component';
 
 @Component({
   selector: 'aj-auth',
@@ -17,19 +16,30 @@ export class AuthComponent implements OnInit, OnDestroy {
   authConfig: {};
   @ViewChild(SignInComponent) signInForm: SignInComponent;
   @ViewChild(SignUpComponent) signUpForm: SignUpComponent;
+  @ViewChild(VerifyEmailComponent) verifyEmailComponent: VerifyEmailComponent;
   selectedIndex: number;
-  private subscription: any;
+  subscription: any;
+  hideTab: boolean;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
     this.authConfig = AuthConfig;
+    this.hideTab = false;
   }
 
   ngOnInit(): void {
     this.subscription = this.route.params.subscribe(params => {
-      this.selectedIndex = 0;
-      if (params['id'] === 'signup') {
-        this.selectedIndex = 1;
+      if (params['id'] === 'verifyemail') {
+        this.hideTab = true;
+        this.router.navigateByUrl(this.route.snapshot.url.join('/'));
+        this.verifyEmailComponent.verifyEmail(this.route.snapshot.queryParams['token']);
+      } else {
+        this.hideTab = false;
+        this.selectedIndex = 0;
+        if (params['id'] === 'signup') {
+          this.selectedIndex = 1;
+        }
       }
+
       // this.selectedIndex = +params['id']; // (+) converts string 'id' to a number
       // In a real app: dispatch action to load the details here.
     });

@@ -7,6 +7,10 @@
   padding: 24px 40px;
 }
 
+:host >>> md-tab-group[hidden] {
+  display: none;
+}
+
 :host >>> md-tab-group .mat-tab-labels {
   display: table;
   table-layout: fixed;
@@ -40,13 +44,20 @@
   font-size: 14px;
   font-weight: bold;
 }
-.auth-message.show {
+/*.auth-message.show {*/
   /*height: 50px;*/
   /*line-height: 50px;*/
-}
+/*}*/
 .auth-message.error {
   color: #f44336;
   font-size: 13px;
+  font-weight: normal;
+}
+
+.verifyemail-container {
+  margin-top: 20px;
+  height: 150px;
+  font-size: 14px;
   font-weight: normal;
 }
 

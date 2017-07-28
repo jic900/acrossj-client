@@ -13,9 +13,10 @@ export class AuthService {
   authenticated$: BehaviorSubject<boolean>;
 
   constructor(private httpService: HttpService, private router: Router) {
+    this.authenticated = false;
     this.authenticated$ = new BehaviorSubject<boolean>(this.authenticated);
     if (tokenNotExpired('token')) {
-      this.setAuthenticated(true);
+      this.authenticated = true;
     }
   }
 
@@ -26,12 +27,19 @@ export class AuthService {
 
   signup(signupData: {}): Observable<{}> {
     return this.httpService.post(EndPoint.auth.signup, signupData)
-      .map(response => response.json);
+      .map(response => response.json());
   }
 
-  signin(signinData: {}): void {
-
+  signin(signinData: {}): Observable<{}> {
+    return this.httpService.post(EndPoint.auth.signin, signinData)
+      .map(response => response.json());
   }
+
+  verifyEmail(verifyEmailData: {}): Observable<{}> {
+    return this.httpService.post(EndPoint.auth.verifyEmail, verifyEmailData)
+      .map(response => response.json());
+  }
+
   // login() {
   //   // Auth0 authorize request
   //   // Note: nonce is automatically generated: https://auth0.com/docs/libraries/auth0js/v8#using-nonce

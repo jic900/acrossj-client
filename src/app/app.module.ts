@@ -12,6 +12,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './config/routes.config';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AuthService } from './core/auth/services/auth.service';
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http, 'src/assets/i18n/', '.json');
@@ -39,7 +40,7 @@ export function HttpLoaderFactory(http: Http) {
     SharedModule,
     FeaturesModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 

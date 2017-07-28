@@ -7,6 +7,8 @@ import { AppConfig } from 'app/config/app.config';
 import { EndPointBase } from 'app/config/endpoint.config';
 
 const ERR_CONNECTION_REFUSED = 0;
+const ERR_SYSTEM_UNAVAILABLE = 503;
+const ERR_GATEWAY_TIMEOUT = 504;
 
 @Injectable()
 export class HttpService extends AuthHttp {
@@ -79,16 +81,19 @@ export class HttpService extends AuthHttp {
   }
 
   private onCatch(error: any, caught: Observable<any>): Observable<any> {
-    if (error.status === 0) {
-      error.status = 503;
+    if (error.status === ERR_CONNECTION_REFUSED) {
+      error.status = ERR_SYSTEM_UNAVAILABLE;
       error.message = AppConfig.ERROR.SYSTEM_UNAVAILABLE;
     } else if (error instanceof TimeoutError) {
       error = {
-        status: 504,
+        status: ERR_GATEWAY_TIMEOUT,
         message: AppConfig.ERROR.GATEWAY_TIMEOUT
       }
     } else {
       error = error.json();
+      if (error.name !== 'Validation') {
+        error.message = AppConfig.ERROR.GENERIC;
+      }
     }
     // console.log(error);
     return Observable.throw(error);

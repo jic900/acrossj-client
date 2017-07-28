@@ -6,8 +6,7 @@ import {
   Output
 } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { IFormControlData } from 'app/shared/interfaces/formcontroldata.interface';
-import { IValidator } from 'app/shared/interfaces/validator.interface';
+import { IFormControlData, IValidator } from 'app/shared/interfaces/formdata.interface';
 
 @Component({
   selector: 'aj-input',

@@ -36,7 +36,11 @@ export const AuthConfig = {
           ]
         }
       }
-    ]
+    ],
+    errors: {
+      userNotFound: 'ERRORS.USER.NOTFOUND',
+      invalidPassword: 'ERRORS.USER.PASSWORD_MISMATCH'
+    }
   },
   signup: {
     labels: {
@@ -99,8 +103,18 @@ export const AuthConfig = {
     ],
     validator: {
       name: 'passwordMatch',
+      type: 'custom',
       error: 'ERRORS.VALIDATION.USER.PASSWORD_MATCH'
     },
     successMessage: 'MESSAGES.AUTH.SIGNUP_SUCCESS'
+  },
+  verifyEmail: {
+    resendEmail: 'AUTH.SIGNUP.RESEND_EMAIL',
+    messages: {
+      inProgress: 'MESSAGES.AUTH.VERIFY_EMAIL.INPROGRESS',
+      success: 'MESSAGES.AUTH.VERIFY_EMAIL.SUCCESS',
+      alreadyVerified: 'MESSAGES.AUTH.VERIFY_EMAIL.ALREADY_VERIFIED',
+      failed: 'ERRORS.VERIFY_EMAIL.FAILED'
+    }
   }
 };

@@ -12,11 +12,10 @@ import { SearchMenuComponent } from './search/searchmenu/searchmenu.component';
 import { AppConstant, MenuState } from 'app/config/app.config';
 import { NavbarConfig } from 'app/config/navbar.config';
 
-
 @Component({
   selector: 'aj-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
+  styleUrls: ['./navbar.component.css']
 })
 
 export class NavbarComponent implements AfterViewInit {
@@ -25,7 +24,6 @@ export class NavbarComponent implements AfterViewInit {
   @ViewChild(SearchMenuComponent) searchMenu: SearchMenuComponent;
   navbarConfig: {};
   windowWidth: number;
-  authenticated: boolean;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     this.navbarConfig = NavbarConfig;
@@ -33,7 +31,6 @@ export class NavbarComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.windowWidth = window.innerWidth;
-    this.setAuthenticated(false);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -47,11 +44,6 @@ export class NavbarComponent implements AfterViewInit {
       }
       this.searchMenu.setFieldWidth();
     }
-  }
-
-  setAuthenticated(isAuthenticated: boolean) {
-    this.authenticated = isAuthenticated;
-    this.sideMenu.setAuthenticated(isAuthenticated);
   }
 
   onSideMenuButtonClick(event): void {

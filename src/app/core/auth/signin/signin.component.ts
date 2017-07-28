@@ -4,32 +4,32 @@ import {
   Input,
   ViewChild
 } from '@angular/core';
+
+import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
-import { IFormControlData } from 'app/shared/interfaces/formcontroldata.interface';
 import { AuthService } from '../services/auth.service';
+import { IFormData, IFormControlData } from 'app/shared/interfaces/formdata.interface';
 
 @Component({
   selector: 'aj-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['../auth.component.css'],
-  providers: [AuthService]
+  styleUrls: ['../auth.component.css']
 })
 
 export class SignInComponent implements OnInit {
 
-  @Input() formData: {};
+  @Input() formData: IFormData;
   inputListData: IFormControlData[];
   formGroup: FormGroup;
   @ViewChild('form') form;
   passwordType: string;
   processing: boolean;
   message: string;
-  errorMessage: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.inputListData = this.formData['controls']
+    this.inputListData = this.formData.controls
       .filter(control => {
         return control.type === 'input';
       })
@@ -38,12 +38,15 @@ export class SignInComponent implements OnInit {
       });
     this.passwordType = 'password';
     this.message = null;
-    this.errorMessage = null;
     this.formGroup = new FormGroup({});
   }
 
   isValid(): boolean {
     return this.formGroup.valid && !this.processing;
+  }
+
+  onClicked(event): void {
+    this.message = null;
   }
 
   onBindControl(controlData: {}): void {
@@ -56,17 +59,40 @@ export class SignInComponent implements OnInit {
 
   onSignIn(event): void {
     event.preventDefault();
-    // console.log(this.formGroup);
     this.processing = true;
     this.message = null;
-    this.errorMessage = null;
-    this.authService.signin(this.formGroup.value);
-    this.processing = false;
+
+    this.authService.signin(this.formGroup.value)
+      .subscribe(
+        data => {
+          // console.log(data);
+          // onSuccess();
+          this.message = 'success';
+          this.processing = false;
+          this.reset();
+          this.authService.setAuthenticated(true);
+          // TODO: navigate to previous page if exisits.
+          this.router.navigateByUrl('/');
+        },
+        err => {
+          console.log(err);
+          if (err.name === 'InvalidUserName') {
+            this.message = this.formData.errors['userNotFound'];
+          } else if (err.name === 'InvalidPassword') {
+            this.message = this.formData.errors['invalidPassword'];
+          } else if (err.name === 'NotVerified') {
+            this.message = 'User not verified';
+            this.authService.setAuthenticated(true);
+          } else {
+            this.message = err.message;
+          }
+          this.processing = false;
+        }
+      );
   }
 
   reset(): void {
     this.message = null;
-    this.errorMessage = null;
     this.form.resetForm();
   }
 }

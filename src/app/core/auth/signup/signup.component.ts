@@ -2,22 +2,20 @@ import {
   Component,
   OnInit,
   Input,
-  ViewChild,
-  ChangeDetectorRef
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { IFormControlData } from 'app/shared/interfaces/formcontroldata.interface';
 import { AuthService } from '../services/auth.service';
+import { IFormData, IFormControlData } from 'app/shared/interfaces/formdata.interface';
 
 @Component({
   selector: 'aj-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['../auth.component.css'],
-  providers: [AuthService]
+  styleUrls: ['../auth.component.css']
 })
 export class SignUpComponent implements OnInit {
 
-  @Input() formData: {};
+  @Input() formData: IFormData;
   inputListData: IFormControlData[];
   formGroup: FormGroup;
   @ViewChild('form') form;
@@ -29,7 +27,7 @@ export class SignUpComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.inputListData = this.formData['controls']
+    this.inputListData = this.formData.controls
       .filter(control => {
         return control.type === 'input';
       })
@@ -47,7 +45,6 @@ export class SignUpComponent implements OnInit {
   }
 
   onClicked(event): void {
-    console.log('onClicked');
     this.success = false;
     this.message = null;
   }
@@ -80,17 +77,16 @@ export class SignUpComponent implements OnInit {
   }
 
   getFormValidateError = () => {
-    return this.formData['validator'].error;
+    return this.formData.validator.error;
   }
 
   onSignUp(event): void {
     event.preventDefault();
-    // console.log(this.formGroup);
     this.message = null;
     this.processing = true;
 
     const onSuccess = () => {
-      this.message = this.formData['successMessage'];
+      this.message = this.formData.successMessage;
       this.success = true;
       this.form.resetForm();
     }
@@ -103,7 +99,6 @@ export class SignUpComponent implements OnInit {
           this.processing = false;
         },
         err => {
-          // console.log(err);
           // Ignore error when verify email is failed to be sent
           if (err.name !== 'SendVerifyMail') {
             this.message = err.message;

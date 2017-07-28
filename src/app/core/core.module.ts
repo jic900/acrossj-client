@@ -13,6 +13,7 @@ import { AuthComponent } from './auth/auth.component';
 import { FooterComponent } from './footer/footer.component';
 import { SignUpComponent } from './auth/signup/signup.component';
 import { SignInComponent } from './auth/signin/signin.component';
+import { VerifyEmailComponent } from './auth/verifyemail/verifyemail.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { SignInComponent } from './auth/signin/signin.component';
     AuthComponent,
     SignUpComponent,
     SignInComponent,
-    FooterComponent
+    FooterComponent,
+    VerifyEmailComponent
   ],
   exports: [
     NavbarComponent,
