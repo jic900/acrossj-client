@@ -2,10 +2,10 @@
  * Created by LAE84266 on 31/07/2017.
  */
 
-import { ISimpleComponent } from './simple-component.interface';
+import { IComponent } from './component.interface';
 import { IValidator } from './validator.interface';
 
-export interface IForm extends ISimpleComponent {
+export interface IForm extends IComponent {
   validator?: IValidator;
   asyncValidator?: IValidator;
 }

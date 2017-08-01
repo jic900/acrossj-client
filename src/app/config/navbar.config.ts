@@ -60,6 +60,21 @@ const CategoryPicker = {
   displayProperty: 'display'
 };
 
+const SideMenuConfig111 = {
+  elements: [
+    {
+      name: 'sidemenu',
+      type: 'menu',
+      links: [],
+      submenus: []
+    },
+    {
+      name: 'searchButton',
+      type: 'button',
+      display: ''
+    }
+  ]
+}
 const SideMenuConfig = {
   topList: {
     display: '',

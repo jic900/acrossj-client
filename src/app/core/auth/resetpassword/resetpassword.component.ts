@@ -1,12 +1,8 @@
-import {
-  Component,
-  Input,
-  OnInit
-} from '@angular/core';
-
+import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { AuthService } from '../services/auth.service';
+import { AuthConfig } from 'app/config/auth.config';
 import { IForm } from 'app/config/interfaces/form.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
 
@@ -16,18 +12,17 @@ import { IInputElement } from 'app/config/interfaces/input-element.interface';
   styleUrls: ['../auth.component.css']
 })
 
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent {
 
-  @Input() formData: IForm;
+  formData: IForm;
   formElements: {};
   inputElements: IInputElement[];
   formGroup: FormGroup;
   processing: boolean;
   message: string;
 
-  constructor(private authService: AuthService) { }
-
-  ngOnInit() {
+  constructor(private authService: AuthService) {
+    this.formData = AuthConfig.resetPassword;
     this.formElements = _.mapKeys(this.formData.elements, 'name');
     this.inputElements = this.formData.elements.filter(element => {
       return element.type === 'input';

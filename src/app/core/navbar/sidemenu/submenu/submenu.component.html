@@ -1,8 +1,7 @@
 <div class="submenu-container">
   <a (click)="onClick($event)">
     <i class="fa fa-fw" aria-hidden="true"
-       [ngClass]="menuData.iconClass ? menuData.iconClass : ''"
-       [ngClass]="{'expanded': isSubMenuPreExpanded()}">
+       [ngClass]="menuData.iconClass ? menuData.iconClass : ''">
     </i><span *ngIf="isDeviceWidth()">{{ menuData.display | translate }}</span>
     <span *ngIf="isDeviceWidth()" class="caret" [ngClass]="{'expanded': isSubMenuExpanded()}"></span>
   </a>

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { AuthConfig } from 'app/config/auth.config';
-import { Router } from '@angular/router';
-import { ISimpleComponent } from 'app/config/interfaces/simple-component.interface';
+import { IComponent } from 'app/config/interfaces/component.interface';
 
 @Component({
   selector: 'aj-verifyemail',
@@ -12,7 +12,7 @@ import { ISimpleComponent } from 'app/config/interfaces/simple-component.interfa
 
 export class VerifyEmailComponent {
 
-  componentData: ISimpleComponent;
+  componentData: IComponent;
   message: string;
   showResendLink: boolean;
 

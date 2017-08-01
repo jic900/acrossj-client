@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as _ from 'lodash';
 import { AuthConfig } from 'app/config/auth.config';
+import { IComponent } from 'app/config/interfaces/component.interface';
 import { SignInComponent } from './signin/signin.component';
 import { SignUpComponent } from './signup/signup.component';
 import { VerifyEmailComponent } from './verifyemail/verifyemail.component';
@@ -13,7 +15,7 @@ import { VerifyEmailComponent } from './verifyemail/verifyemail.component';
 
 export class AuthComponent implements OnInit, OnDestroy {
 
-  authConfig: {};
+  authData: IComponent;
   @ViewChild(SignInComponent) signInForm: SignInComponent;
   @ViewChild(SignUpComponent) signUpForm: SignUpComponent;
   @ViewChild(VerifyEmailComponent) verifyEmailComponent: VerifyEmailComponent;
@@ -22,7 +24,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   hideTab: boolean;
 
   constructor(private route: ActivatedRoute, private router: Router) {
-    this.authConfig = AuthConfig;
+    this.authData = _.mapKeys(AuthConfig.auth.elements, 'name');
     this.hideTab = false;
   }
 

@@ -1,12 +1,8 @@
-import {
-  Component,
-  Input,
-  OnInit
-} from '@angular/core';
-
+import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { AuthService } from '../services/auth.service';
+import { AuthConfig } from 'app/config/auth.config';
 import { IForm } from 'app/config/interfaces/form.interface';
 
 @Component({
@@ -14,17 +10,17 @@ import { IForm } from 'app/config/interfaces/form.interface';
   templateUrl: './forgotpassword.component.html',
   styleUrls: ['../auth.component.css']
 })
-export class ForgotPasswordComponent implements OnInit {
 
-  @Input() formData: IForm;
+export class ForgotPasswordComponent {
+
+  formData: IForm;
   formElements: {};
   formGroup: FormGroup;
   processing: boolean;
   message: string;
 
-  constructor(private authService: AuthService) { }
-
-  ngOnInit() {
+  constructor(private authService: AuthService) {
+    this.formData = AuthConfig.forgotPassword;
     this.formElements = _.mapKeys(this.formData.elements, 'name');
     this.message = null;
     this.formGroup = new FormGroup({});

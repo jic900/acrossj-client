@@ -3,8 +3,31 @@
  */
 
 export const AuthConfig = {
+  auth: {
+    elements: [
+      {
+        name: 'signin',
+        type: 'label',
+        display: 'AUTH.SIGNIN.LABEL'
+      },
+      {
+        name: 'signup',
+        type: 'label',
+        display: 'AUTH.SIGNUP.LABEL'
+      },
+      {
+        name: 'forgotPassword',
+        type: 'label',
+        display: 'AUTH.FORGOT_PASSWORD.LABEL'
+      },
+      {
+        name: 'resetPassword',
+        type: 'label',
+        display: 'AUTH.RESET_PASSWORD.LABEL'
+      }
+    ]
+  },
   signin: {
-    title: 'AUTH.SIGNIN.LABEL',
     elements: [
       {
         name: 'username',
@@ -51,7 +74,6 @@ export const AuthConfig = {
     }
   },
   signup: {
-    title: 'AUTH.SIGNUP.LABEL',
     elements: [
       {
         name: 'username',
@@ -119,7 +141,6 @@ export const AuthConfig = {
 
   },
   verifyEmail: {
-    title: '',
     elements: [
       {
         name: 'sendVerifyEmail',
@@ -138,7 +159,6 @@ export const AuthConfig = {
     }
   },
   forgotPassword: {
-    title: 'AUTH.FORGOT_PASSWORD.LABEL',
     elements: [
       {
         name: 'email',
@@ -160,7 +180,6 @@ export const AuthConfig = {
     }
   },
   resetPassword: {
-    title: 'AUTH.RESET_PASSWORD.LABEL',
     elements: [
       {
         name: 'oldPassword',
@@ -209,191 +228,4 @@ export const AuthConfig = {
       success: 'MESSAGES.AUTH.RESET_PASSWORD.SUCCESS'
     }
   }
-  // signin: {
-  //   labels: {
-  //     form: 'AUTH.SIGNIN.LABEL',
-  //     showPassword: 'AUTH.SIGNIN.SHOW_PASSWORD',
-  //     forgotPassword: 'AUTH.SIGNIN.FORGOT_PASSWORD',
-  //     submitButton: 'AUTH.SIGNIN.BTN_LABEL'
-  //   },
-  //   controls: [
-  //     {
-  //       type: 'input',
-  //       data: {
-  //         controlName: 'username',
-  //         type: 'text',
-  //         placeHolder: 'AUTH.SIGNIN.USERNAME',
-  //         validators: [
-  //           {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.USERNAME.REQUIRED'},
-  //           {name: 'minlength', type: 'builtin', value: 2, error: 'ERRORS.VALIDATION.USER.USERNAME.MINLENGTH'},
-  //           {name: 'pattern', type: 'builtin', value: /^[^~!@#$%^&*()+`{}|\[\]\\:";'<>?,\/]*$/, error: 'ERRORS.VALIDATION.USER.USERNAME.PATTERN'}
-  //         ]
-  //       }
-  //     },
-  //     {
-  //       type: 'input',
-  //       data: {
-  //         controlName: 'password',
-  //         type: 'password',
-  //         placeHolder: 'AUTH.SIGNIN.PASSWORD',
-  //         validators: [
-  //           {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.PASSWORD.REQUIRED'},
-  //           {name: 'minlength', type: 'builtin', value: 4, error: 'ERRORS.VALIDATION.USER.PASSWORD.MINLENGTH'}
-  //         ]
-  //       }
-  //     }
-  //   ],
-  //   errors: {
-  //     userNotFound: 'ERRORS.USER.NOTFOUND',
-  //     invalidPassword: 'ERRORS.USER.PASSWORD_MISMATCH'
-  //   }
-  // },
-  // signup: {
-  //   labels: {
-  //     form: 'AUTH.SIGNUP.LABEL',
-  //     showPassword: 'AUTH.SIGNUP.SHOW_PASSWORD',
-  //     submitButton: 'AUTH.SIGNUP.BTN_LABEL',
-  //     resendEmail: 'AUTH.SIGNUP.RESEND_EMAIL'
-  //   },
-  //   controls: [
-  //     {
-  //       type: 'input',
-  //       data: {
-  //         controlName: 'username',
-  //         type: 'text',
-  //         placeHolder: 'AUTH.SIGNUP.USERNAME',
-  //         validators: [
-  //           {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.USERNAME.REQUIRED'},
-  //           {name: 'minlength', type: 'builtin', value: 2, error: 'ERRORS.VALIDATION.USER.USERNAME.MINLENGTH'},
-  //           {name: 'maxlength', type: 'builtin', value: 20, error: 'ERRORS.VALIDATION.USER.USERNAME.MAXLENGTH'},
-  //           {name: 'pattern', type: 'builtin', value: /^[^~!@#$%^&*()+`{}|\[\]\\:";'<>?,\/]*$/, error: 'ERRORS.VALIDATION.USER.USERNAME.PATTERN'}
-  //         ]
-  //       }
-  //     },
-  //     {
-  //       type: 'input',
-  //       data: {
-  //         controlName: 'email',
-  //         type: 'text',
-  //         placeHolder: 'AUTH.SIGNUP.EMAIL',
-  //         validators: [
-  //           {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.EMAIL.REQUIRED'},
-  //           {name: 'pattern', type: 'builtin', value: /.+@.+\..+/i, error: 'ERRORS.VALIDATION.USER.EMAIL.PATTERN'}
-  //         ]
-  //       }
-  //     },
-  //     {
-  //       type: 'input',
-  //       data: {
-  //         controlName: 'password',
-  //         type: 'password',
-  //         placeHolder: 'AUTH.SIGNUP.PASSWORD',
-  //         validators: [
-  //           {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.PASSWORD.REQUIRED'},
-  //           {name: 'minlength', type: 'builtin', value: 4, error: 'ERRORS.VALIDATION.USER.PASSWORD.MINLENGTH'}
-  //         ]
-  //       }
-  //     },
-  //     {
-  //       type: 'input',
-  //       data: {
-  //         controlName: 'confirmPassword',
-  //         type: 'password',
-  //         placeHolder: 'AUTH.SIGNUP.CONFIRM_PASSWORD',
-  //         validators: [
-  //           {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.CONFIRM_PASSWORD.REQUIRED'},
-  //           {name: 'minlength', type: 'builtin', value: 4, error: 'ERRORS.VALIDATION.USER.CONFIRM_PASSWORD.MINLENGTH'}
-  //         ]
-  //       }
-  //     },
-  //   ],
-  //   validator: {
-  //     name: 'passwordMatch',
-  //     type: 'custom',
-  //     error: 'ERRORS.VALIDATION.USER.PASSWORD_MATCH'
-  //   },
-  //   messages: {
-  //     success: 'MESSAGES.AUTH.SIGNUP.SUCCESS'
-  //   }
-  // },
-  // verifyEmail: {
-  //   sendEmail: 'AUTH.VERIFY_EMAIL.SEND_EMAIL',
-  //   messages: {
-  //     inProgress: 'MESSAGES.AUTH.VERIFY_EMAIL.INPROGRESS',
-  //     success: 'MESSAGES.AUTH.VERIFY_EMAIL.SUCCESS',
-  //     alreadyVerified: 'MESSAGES.AUTH.VERIFY_EMAIL.ALREADY_VERIFIED',
-  //     failed: 'ERRORS.VERIFY_EMAIL.FAILED'
-  //   }
-  // },
-  // forgotPassword: {
-  //   labels: {
-  //     form: 'AUTH.FORGOT_PASSWORD.LABEL',
-  //     submitButton: 'AUTH.FORGOT_PASSWORD.BTN_LABEL',
-  //   },
-  //   controls: [
-  //     {
-  //       type: 'input',
-  //       data: {
-  //         controlName: 'email',
-  //         type: 'text',
-  //         placeHolder: 'AUTH.FORGOT_PASSWORD.EMAIL',
-  //         validators: [
-  //           {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.EMAIL.REQUIRED'},
-  //           {name: 'pattern', type: 'builtin', value: /.+@.+\..+/i, error: 'ERRORS.VALIDATION.USER.EMAIL.PATTERN'}
-  //         ]
-  //       }
-  //     }
-  //   ],
-  //   messages: {
-  //     success: 'MESSAGES.AUTH.FORGOT_PASSWORD.SUCCESS'
-  //   }
-  // },
-  // resetPassword: {
-  //   labels: {
-  //     form: 'AUTH.RESET_PASSWORD.LABEL',
-  //     showPassword: 'AUTH.RESET_PASSWORD.SHOW_PASSWORD',
-  //     submitButton: 'AUTH.RESET_PASSWORD.BTN_LABEL'
-  //   },
-  //   controls: [
-  //     {
-  //       type: 'input',
-  //       data: {
-  //         controlName: 'oldPassword',
-  //         type: 'password',
-  //         placeHolder: 'AUTH.RESET_PASSWORD.OLD_PASSWORD',
-  //         validators: [
-  //           {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.OLD_PASSWORD.REQUIRED'},
-  //           {name: 'minlength', type: 'builtin', value: 4, error: 'ERRORS.VALIDATION.USER.OLD_PASSWORD.MINLENGTH'}
-  //         ]
-  //       }
-  //     },
-  //     {
-  //       type: 'input',
-  //       data: {
-  //         controlName: 'password',
-  //         type: 'password',
-  //         placeHolder: 'AUTH.RESET_PASSWORD.PASSWORD',
-  //         validators: [
-  //           {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.PASSWORD.REQUIRED'},
-  //           {name: 'minlength', type: 'builtin', value: 4, error: 'ERRORS.VALIDATION.USER.PASSWORD.MINLENGTH'}
-  //         ]
-  //       }
-  //     },
-  //     {
-  //       type: 'input',
-  //       data: {
-  //         controlName: 'confirmPassword',
-  //         type: 'password',
-  //         placeHolder: 'AUTH.RESET_PASSWORD.CONFIRM_PASSWORD',
-  //         validators: [
-  //           {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.CONFIRM_PASSWORD.REQUIRED'},
-  //           {name: 'minlength', type: 'builtin', value: 4, error: 'ERRORS.VALIDATION.USER.CONFIRM_PASSWORD.MINLENGTH'}
-  //         ]
-  //       }
-  //     },
-  //   ],
-  //   messages: {
-  //     success: 'MESSAGES.AUTH.RESET_PASSWORD.SUCCESS'
-  //   }
-  // }
 };
