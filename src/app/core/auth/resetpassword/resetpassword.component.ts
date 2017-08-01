@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { AuthService } from '../services/auth.service';
-import { AuthConfig } from 'app/config/auth.config';
+import { ResetPasswordConfig } from 'app/config/auth.config';
 import { IForm } from 'app/config/interfaces/form.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
 
@@ -22,7 +22,7 @@ export class ResetPasswordComponent {
   message: string;
 
   constructor(private authService: AuthService) {
-    this.formData = AuthConfig.resetPassword;
+    this.formData = ResetPasswordConfig;
     this.formElements = _.mapKeys(this.formData.elements, 'name');
     this.inputElements = this.formData.elements.filter(element => {
       return element.type === 'input';

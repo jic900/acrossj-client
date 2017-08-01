@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { AuthConfig } from 'app/config/auth.config';
+import { VerifyEmailConfig } from 'app/config/auth.config';
 import { IComponent } from 'app/config/interfaces/component.interface';
 
 @Component({
@@ -17,7 +17,7 @@ export class VerifyEmailComponent {
   showResendLink: boolean;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.componentData = AuthConfig.verifyEmail;
+    this.componentData = VerifyEmailConfig;
   }
 
   verifyEmail(token: string): void {

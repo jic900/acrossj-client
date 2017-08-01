@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { AuthService } from '../services/auth.service';
-import { AuthConfig } from 'app/config/auth.config';
+import { ForgotPasswordConfig } from 'app/config/auth.config';
 import { IForm } from 'app/config/interfaces/form.interface';
 
 @Component({
@@ -20,7 +20,7 @@ export class ForgotPasswordComponent {
   message: string;
 
   constructor(private authService: AuthService) {
-    this.formData = AuthConfig.forgotPassword;
+    this.formData = ForgotPasswordConfig;
     this.formElements = _.mapKeys(this.formData.elements, 'name');
     this.message = null;
     this.formGroup = new FormGroup({});

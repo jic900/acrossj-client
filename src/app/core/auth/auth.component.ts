@@ -24,7 +24,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   hideTab: boolean;
 
   constructor(private route: ActivatedRoute, private router: Router) {
-    this.authData = _.mapKeys(AuthConfig.auth.elements, 'name');
+    this.authData = _.mapKeys(AuthConfig.elements, 'name');
     this.hideTab = false;
   }
 

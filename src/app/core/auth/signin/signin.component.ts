@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { AuthService } from '../services/auth.service';
-import { AuthConfig } from 'app/config/auth.config';
+import { SignInConfig } from 'app/config/auth.config';
 import { IForm } from 'app/config/interfaces/form.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
 
@@ -30,7 +30,7 @@ export class SignInComponent {
   message: string;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.formData = AuthConfig.signin;
+    this.formData = SignInConfig;
     this.formElements = _.mapKeys(this.formData.elements, 'name');
     this.inputElements = this.formData.elements.filter(element => {
       return element.type === 'input';
