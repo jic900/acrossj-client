@@ -9,6 +9,18 @@ import { AuthService } from '../services/auth.service';
 import { SignUpConfig } from 'app/config/auth.config';
 import { IForm } from 'app/config/interfaces/form.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
+import { IElement } from 'app/config/interfaces/element.interface';
+import { ILinkElement } from 'app/config/interfaces/link-element.interface';
+
+interface ISignUp {
+  username: IInputElement;
+  email: IInputElement;
+  password: IInputElement;
+  confirmPassword: IInputElement;
+  showPassword: IElement;
+  submitButton: IElement;
+  sendVerifyEmail: ILinkElement;
+}
 
 @Component({
   selector: 'aj-signup',
@@ -19,7 +31,7 @@ import { IInputElement } from 'app/config/interfaces/input-element.interface';
 export class SignUpComponent {
 
   formData: IForm;
-  formElements: {};
+  formElements: ISignUp;
   inputElements: IInputElement[];
   formGroup: FormGroup;
   @ViewChild('form') form;
@@ -29,7 +41,7 @@ export class SignUpComponent {
   success: boolean;
 
   constructor(private authService: AuthService) {
-    this.formData = SignUpConfig;
+    this.formData = new SignUpConfig();
     this.formElements = _.mapKeys(this.formData.elements, 'name');
     this.inputElements = this.formData.elements.filter(element => {
       return element.type === 'input';

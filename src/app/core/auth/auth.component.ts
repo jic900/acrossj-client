@@ -2,10 +2,17 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
 import { AuthConfig } from 'app/config/auth.config';
-import { IComponent } from 'app/config/interfaces/component.interface';
+import { IElement } from 'app/config/interfaces/element.interface';
 import { SignInComponent } from './signin/signin.component';
 import { SignUpComponent } from './signup/signup.component';
 import { VerifyEmailComponent } from './verifyemail/verifyemail.component';
+
+interface IAuth {
+  signin: IElement;
+  signup: IElement;
+  forgotPassword: IElement;
+  resetPassword: IElement;
+}
 
 @Component({
   selector: 'aj-auth',
@@ -15,7 +22,7 @@ import { VerifyEmailComponent } from './verifyemail/verifyemail.component';
 
 export class AuthComponent implements OnInit, OnDestroy {
 
-  authData: IComponent;
+  authData: IAuth;
   @ViewChild(SignInComponent) signInForm: SignInComponent;
   @ViewChild(SignUpComponent) signUpForm: SignUpComponent;
   @ViewChild(VerifyEmailComponent) verifyEmailComponent: VerifyEmailComponent;
@@ -24,7 +31,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   hideTab: boolean;
 
   constructor(private route: ActivatedRoute, private router: Router) {
-    this.authData = _.mapKeys(AuthConfig.elements, 'name');
+    this.authData = _.mapKeys(new AuthConfig().elements, 'name');
     this.hideTab = false;
   }
 

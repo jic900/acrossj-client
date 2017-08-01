@@ -2,8 +2,15 @@
  * Created by LAE84266 on 09/06/2017.
  */
 
-export const AuthConfig = {
-  elements: [
+import { IComponent } from './interfaces/component.interface';
+import { IForm } from './interfaces/form.interface';
+import { IElement } from './interfaces/element.interface';
+import { ILinkElement } from './interfaces/link-element.interface';
+import { IInputElement } from './interfaces/input-element.interface';
+import { IValidator } from './interfaces/validator.interface';
+
+export class AuthConfig implements IComponent {
+  elements: IElement[] = [
     {
       name: 'signin',
       type: 'label',
@@ -25,10 +32,10 @@ export const AuthConfig = {
       display: 'AUTH.RESET_PASSWORD.LABEL'
     }
   ]
-};
+}
 
-export const SignInConfig = {
-  elements: [
+export class SignInConfig implements IForm {
+  elements: [IInputElement, IInputElement, IElement, ILinkElement, IElement] = [
     {
       name: 'username',
       type: 'input',
@@ -64,18 +71,18 @@ export const SignInConfig = {
       type: 'button',
       display: 'AUTH.SIGNIN.BTN_LABEL'
     }
-  ],
-  messages: {
+  ];
+  messages: {} = {
     success: 'MESSAGES.AUTH.SIGNIN.SUCCESS'
-  },
-  errors: {
+  };
+  errors: {} = {
     userNotFound: 'ERRORS.USER.NOTFOUND',
     invalidPassword: 'ERRORS.USER.PASSWORD_MISMATCH'
-  }
+  };
 };
 
-export const SignUpConfig = {
-  elements: [
+export class SignUpConfig implements IForm {
+  elements: [IInputElement, IInputElement, IInputElement, IInputElement, IElement, IElement, ILinkElement] = [
     {
       name: 'username',
       type: 'input',
@@ -130,38 +137,38 @@ export const SignUpConfig = {
       display: 'AUTH.SIGNUP.SEND_EMAIL',
       link: {path: 'auth', param: 'sendverifyemail'}
     }
-  ],
-  validator: {
+  ];
+  validator: IValidator = {
     name: 'passwordMatch',
     type: 'custom',
     error: 'ERRORS.VALIDATION.USER.PASSWORD_MATCH'
-  },
-  messages: {
+  };
+  messages: {} = {
     success: 'MESSAGES.AUTH.SIGNUP.SUCCESS'
   }
 };
 
-export const VerifyEmailConfig = {
-  elements: [
+export class VerifyEmailConfig implements IComponent {
+  elements: ILinkElement[] = [
     {
       name: 'sendVerifyEmail',
       type: 'link',
       display: 'AUTH.VERIFY_EMAIL.SEND_EMAIL',
       link: {path: 'auth', param: 'sendverifyemail'}
     }
-  ],
-  messages: {
+  ];
+  messages: {} = {
     inProgress: 'MESSAGES.AUTH.VERIFY_EMAIL.INPROGRESS',
     success: 'MESSAGES.AUTH.VERIFY_EMAIL.SUCCESS',
     alreadyVerified: 'MESSAGES.AUTH.VERIFY_EMAIL.ALREADY_VERIFIED'
-  },
-  errors: {
+  };
+  errors: {} = {
     failed: 'ERRORS.VERIFY_EMAIL.FAILED'
   }
 };
 
-export const ForgotPasswordConfig = {
-  elements: [
+export class ForgotPasswordConfig implements IForm {
+  elements: [IInputElement, IElement] = [
     {
       name: 'email',
       type: 'input',
@@ -176,14 +183,14 @@ export const ForgotPasswordConfig = {
       type: 'button',
       display: 'AUTH.FORGOT_PASSWORD.BTN_LABEL'
     }
-  ],
-  messages: {
+  ];
+  messages: {} = {
     success: 'MESSAGES.AUTH.FORGOT_PASSWORD.SUCCESS'
   }
 };
 
-export const ResetPasswordConfig = {
-  elements: [
+export class ResetPasswordConfig implements IForm {
+  elements: [IInputElement, IInputElement, IInputElement, IElement, IElement] = [
     {
       name: 'oldPassword',
       type: 'input',
@@ -221,13 +228,13 @@ export const ResetPasswordConfig = {
       type: 'button',
       display: 'AUTH.RESET_PASSWORD.BTN_LABEL'
     },
-  ],
-  validator: {
+  ];
+  validator: IValidator = {
     name: 'passwordMatch',
     type: 'custom',
     error: 'ERRORS.VALIDATION.USER.PASSWORD_MATCH'
-  },
-  messages: {
+  };
+  messages: {} = {
     success: 'MESSAGES.AUTH.RESET_PASSWORD.SUCCESS'
   }
 };

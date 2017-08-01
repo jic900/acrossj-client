@@ -10,7 +10,16 @@ import { AuthService } from '../services/auth.service';
 import { SignInConfig } from 'app/config/auth.config';
 import { IForm } from 'app/config/interfaces/form.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
+import { IElement } from 'app/config/interfaces/element.interface';
+import { ILinkElement } from 'app/config/interfaces/link-element.interface';
 
+interface ISignIn {
+  username: IInputElement;
+  password: IInputElement;
+  showPassword: IElement;
+  forgotPassword: ILinkElement;
+  submitButton: IElement;
+}
 
 @Component({
   selector: 'aj-signin',
@@ -21,7 +30,7 @@ import { IInputElement } from 'app/config/interfaces/input-element.interface';
 export class SignInComponent {
 
   formData: IForm;
-  formElements: {};
+  formElements: ISignIn;
   inputElements: IInputElement[];
   formGroup: FormGroup;
   @ViewChild('form') form;
@@ -30,7 +39,7 @@ export class SignInComponent {
   message: string;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.formData = SignInConfig;
+    this.formData = new SignInConfig();
     this.formElements = _.mapKeys(this.formData.elements, 'name');
     this.inputElements = this.formData.elements.filter(element => {
       return element.type === 'input';

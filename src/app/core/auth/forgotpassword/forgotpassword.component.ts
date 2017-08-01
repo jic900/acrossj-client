@@ -4,6 +4,13 @@ import * as _ from 'lodash';
 import { AuthService } from '../services/auth.service';
 import { ForgotPasswordConfig } from 'app/config/auth.config';
 import { IForm } from 'app/config/interfaces/form.interface';
+import { IInputElement } from 'app/config/interfaces/input-element.interface';
+import { IElement } from 'app/config/interfaces/element.interface';
+
+interface IForgotPassword {
+  email: IInputElement;
+  submitButton: IElement;
+}
 
 @Component({
   selector: 'aj-forgotpassword',
@@ -14,13 +21,13 @@ import { IForm } from 'app/config/interfaces/form.interface';
 export class ForgotPasswordComponent {
 
   formData: IForm;
-  formElements: {};
+  formElements: IForgotPassword;
   formGroup: FormGroup;
   processing: boolean;
   message: string;
 
   constructor(private authService: AuthService) {
-    this.formData = ForgotPasswordConfig;
+    this.formData = new ForgotPasswordConfig();
     this.formElements = _.mapKeys(this.formData.elements, 'name');
     this.message = null;
     this.formGroup = new FormGroup({});

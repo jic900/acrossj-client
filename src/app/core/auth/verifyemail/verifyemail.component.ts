@@ -3,6 +3,11 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { VerifyEmailConfig } from 'app/config/auth.config';
 import { IComponent } from 'app/config/interfaces/component.interface';
+import { ILinkElement } from 'app/config/interfaces/link-element.interface';
+
+interface IVerifyEmail {
+  sendVerifyEmail: ILinkElement;
+}
 
 @Component({
   selector: 'aj-verifyemail',
@@ -17,7 +22,7 @@ export class VerifyEmailComponent {
   showResendLink: boolean;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.componentData = VerifyEmailConfig;
+    this.componentData = new VerifyEmailConfig();
   }
 
   verifyEmail(token: string): void {
