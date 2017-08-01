@@ -40,6 +40,21 @@ export class AuthService {
       .map(response => response.json());
   }
 
+  forgotPassword(forgotPasswordData: {}): Observable<{}> {
+    return this.httpService.post(EndPoint.auth.forgotPassword, forgotPasswordData)
+      .map(response => response.json());
+  }
+
+  resetPassword(resetPasswordData: {}): Observable<{}> {
+    return this.httpService.post(EndPoint.auth.resetPassword, resetPasswordData)
+      .map(response => response.json());
+  }
+
+  sendVerifyEmail(sendVerifyEmailData: {}): Observable<{}> {
+    return this.httpService.post(EndPoint.auth.sendVerifyEmail, sendVerifyEmailData)
+      .map(response => response.json());
+  }
+
   // login() {
   //   // Auth0 authorize request
   //   // Note: nonce is automatically generated: https://auth0.com/docs/libraries/auth0js/v8#using-nonce

@@ -6,7 +6,8 @@ import {
   Output
 } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { IFormControlData, IValidator } from 'app/shared/interfaces/formdata.interface';
+import { IInputElement } from 'app/config/interfaces/input-element.interface';
+import { IValidator } from 'app/config/interfaces/validator.interface';
 
 @Component({
   selector: 'aj-input',
@@ -16,7 +17,7 @@ import { IFormControlData, IValidator } from 'app/shared/interfaces/formdata.int
 
 export class InputComponent implements OnInit {
 
-  @Input() inputData: IFormControlData;
+  @Input() inputData: IInputElement;
   @Input() type: string;
   @Input() customValidators: {};
   @Input() formValidateData: {};
@@ -46,7 +47,7 @@ export class InputComponent implements OnInit {
       }
     });
     this.formControl = new FormControl('', validators, asyncValidators);
-    this.bindControl.emit({'name': this.inputData.controlName, 'control': this.formControl});
+    this.bindControl.emit({'name': this.inputData.name, 'control': this.formControl});
   }
 
   onClick(event): void {

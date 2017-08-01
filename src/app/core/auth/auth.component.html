@@ -7,12 +7,18 @@
                     [dynamicHeight]="true"
                     [(selectedIndex)]="selectedIndex"
                     (selectedIndexChange)="onSelectedTabIndexChange()">
-        <md-tab label="{{authConfig.signin.labels.form | translate}}">
+        <md-tab label="{{authConfig.signin.title | translate}}">
           <aj-signin [formData]="authConfig.signin"></aj-signin>
         </md-tab>
-        <md-tab label="{{authConfig.signup.labels.form | translate}}">
+        <md-tab label="{{authConfig.signup.title | translate}}">
           <aj-signup [formData]="authConfig.signup"></aj-signup>
         </md-tab>
+        <!--<md-tab label="{{authConfig.signup.labels.form | translate}}">-->
+          <!--<aj-forgotpassword [formData]="authConfig.forgotPassword"></aj-forgotpassword>-->
+        <!--</md-tab>-->
+        <!--<md-tab label="{{authConfig.signup.labels.form | translate}}">-->
+          <!--<aj-resetpassword [formData]="authConfig.resetPassword"></aj-resetpassword>-->
+        <!--</md-tab>-->
       </md-tab-group>
     </md-card>
   </div>

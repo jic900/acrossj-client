@@ -4,19 +4,19 @@
   </label>
   <div class="auth-input-group">
     <aj-input
-      *ngFor="let inputData of inputListData"
-      [inputData]="inputData"
-      [type]="inputData.controlName==='password' ? passwordType: inputData.type"
+      *ngFor="let element of inputElements"
+      [inputData]="element"
+      [type]="element.name==='password' ? passwordType : 'text'"
       (bindControl)="onBindControl($event)"
       (clicked)="onClicked($event)">
     </aj-input>
     <md-checkbox [disableRipple]="true"
                  [color]="'primary'"
-                 (change)="onPasswordTypeChange()">{{formData.labels.showPassword| translate}}
+                 (change)="onPasswordTypeChange()">{{formElements.showPassword.display | translate}}
     </md-checkbox>
   </div>
   <!--<div class="auth-forgotpassword-container">-->
-  <a class="auth-forgotpassword">{{formData.labels.forgotPassword | translate}}</a>
+  <a class="auth-forgotpassword">{{formElements.forgotPassword.display | translate}}</a>
   <!--</div>-->
   <div class="auth-btn-container">
     <button
@@ -24,7 +24,7 @@
       [disabled]="!isValid()"
       [ngClass]="{'disabled': !isValid()}"
       type="submit">
-      {{formData.labels.submitButton | translate}}
+      {{formElements.submitButton.display | translate}}
     </button>
   </div>
 </form>

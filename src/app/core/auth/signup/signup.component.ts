@@ -5,8 +5,10 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import * as _ from 'lodash';
 import { AuthService } from '../services/auth.service';
-import { IFormData, IFormControlData } from 'app/shared/interfaces/formdata.interface';
+import { IForm } from 'app/config/interfaces/form.interface';
+import { IInputElement } from 'app/config/interfaces/input-element.interface';
 
 @Component({
   selector: 'aj-signup',
@@ -15,8 +17,9 @@ import { IFormData, IFormControlData } from 'app/shared/interfaces/formdata.inte
 })
 export class SignUpComponent implements OnInit {
 
-  @Input() formData: IFormData;
-  inputListData: IFormControlData[];
+  @Input() formData: IForm;
+  formElements: {};
+  inputElements: IInputElement[];
   formGroup: FormGroup;
   @ViewChild('form') form;
   passwordType: string;
@@ -27,13 +30,10 @@ export class SignUpComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.inputListData = this.formData.controls
-      .filter(control => {
-        return control.type === 'input';
-      })
-      .map(control => {
-        return control.data;
-      });
+    this.formElements = _.mapKeys(this.formData.elements, 'name');
+    this.inputElements = this.formData.elements.filter(element => {
+      return element.type === 'input';
+    });
     this.passwordType = 'password';
     this.message = null;
     this.success = false;
@@ -86,7 +86,7 @@ export class SignUpComponent implements OnInit {
     this.processing = true;
 
     const onSuccess = () => {
-      this.message = this.formData.successMessage;
+      this.message = this.formData.messages['success'];
       this.success = true;
       this.form.resetForm();
     }

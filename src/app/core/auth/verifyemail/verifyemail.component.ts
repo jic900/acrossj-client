@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { AuthConfig } from 'app/config/auth.config';
 import { Router } from '@angular/router';
+import { ISimpleComponent } from 'app/config/interfaces/simple-component.interface';
 
 @Component({
   selector: 'aj-verifyemail',
@@ -11,24 +12,24 @@ import { Router } from '@angular/router';
 
 export class VerifyEmailComponent {
 
-  verifyEmailData: {};
+  componentData: ISimpleComponent;
   message: string;
   showResendLink: boolean;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.verifyEmailData = AuthConfig.verifyEmail;
+    this.componentData = AuthConfig.verifyEmail;
   }
 
   verifyEmail(token: string): void {
-    this.message = AuthConfig.verifyEmail.messages.inProgress;
+    this.message = this.componentData.messages['inProgress'];
     this.showResendLink = false;
     this.authService.verifyEmail({'token': token})
       .subscribe(
         data => {
           if (data['status'] === 'Verified') {
-            this.message = AuthConfig.verifyEmail.messages.success;
+            this.message = this.componentData.messages['success'];
           } else if (data['status'] === 'AlreadyVerified') {
-            this.message = AuthConfig.verifyEmail.messages.alreadyVerified;
+            this.message = this.componentData.messages['alreadyVerified'];
           }
           // TODO: login page selected tab not working
           setTimeout(() => {
@@ -38,7 +39,7 @@ export class VerifyEmailComponent {
         err => {
           console.log(err);
           if (err.name === 'TokenExpired' || err.name === 'InvalidToken' || err.name === 'UserNotFound') {
-            this.message = AuthConfig.verifyEmail.messages.failed;
+            this.message = this.componentData.errors['failed'];
             this.showResendLink = true;
           } else {
             this.message = err.message;

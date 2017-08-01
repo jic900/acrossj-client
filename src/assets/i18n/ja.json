@@ -2,7 +2,7 @@
   "NAVBAR": {
     "SIDE": {
       "ABOUT_US": "About Us JA",
-      "CREATE_TRIP": "Create a Trip JA",
+      "CREATE_EVENT": "Create an Event JA",
       "HELP": "Help JA",
       "LANGUAGE": {
         "LABEL": "Language JA",
@@ -20,10 +20,10 @@
         }
       },
       "USER": {
-        "LABEL": "Username JA",
+        "LABEL": "My Account JA",
         "MENU": {
           "PROFILE": "Profile JA",
-          "TRIPS": "Your Trips JA",
+          "EVENTS": "My Events JA",
           "MESSAGES": "Messages JA",
           "UPLOADS": "Uploads JA"
         }
@@ -79,7 +79,10 @@
       "CONFIRM_PASSWORD": "Confirm Password JA",
       "SHOW_PASSWORD": "Show Password JA",
       "BTN_LABEL": "Sign Up JA",
-      "RESEND_EMAIL": "Resend Verification Email JA"
+      "RESEND_EMAIL": "Send Verification Email JA"
+    },
+    "VERIFY_EMAIL": {
+      "SEND_EMAIL": "Send Verification Email JA"
     }
   }
 }

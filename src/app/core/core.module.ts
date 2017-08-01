@@ -14,6 +14,9 @@ import { FooterComponent } from './footer/footer.component';
 import { SignUpComponent } from './auth/signup/signup.component';
 import { SignInComponent } from './auth/signin/signin.component';
 import { VerifyEmailComponent } from './auth/verifyemail/verifyemail.component';
+import { ForgotPasswordComponent } from './auth/forgotpassword/forgotpassword.component';
+import { ResetPasswordComponent } from './auth/resetpassword/resetpassword.component';
+import { SendVerifyEmailComponent } from './auth/sendverifyemail/sendverifyemail.component';
 
 @NgModule({
   imports: [
@@ -37,7 +40,10 @@ import { VerifyEmailComponent } from './auth/verifyemail/verifyemail.component';
     SignUpComponent,
     SignInComponent,
     FooterComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    SendVerifyEmailComponent
   ],
   exports: [
     NavbarComponent,

@@ -28,6 +28,19 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.route.params.subscribe(params => {
+      if (params['id'] !== 'signin' && params['id'] !== 'signup') {
+        this.hideTab = true;
+        if (params['id'] === 'verifyemail') {
+          this.router.navigateByUrl(this.route.snapshot.url.join('/'));
+          this.verifyEmailComponent.verifyEmail(this.route.snapshot.queryParams['token']);
+        }
+      } else {
+        this.hideTab = false;
+        this.selectedIndex = 0;
+        if (params['id'] === 'signup') {
+          this.selectedIndex = 1;
+        }
+      }
       if (params['id'] === 'verifyemail') {
         this.hideTab = true;
         this.router.navigateByUrl(this.route.snapshot.url.join('/'));

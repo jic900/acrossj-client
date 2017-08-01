@@ -2,7 +2,7 @@
   "NAVBAR": {
     "SIDE": {
       "ABOUT_US": "关于我们",
-      "CREATE_TRIP": "创建活动",
+      "CREATE_EVENT": "创建活动",
       "HELP": "帮助",
       "LANGUAGE": {
         "LABEL": "语言",
@@ -20,12 +20,12 @@
         }
       },
       "USER": {
-        "LABEL": "用户名",
+        "LABEL": "我的帐户",
         "MENU": {
-          "PROFILE": "Profile",
-          "TRIPS": "Your Trips",
-          "MESSAGES": "Messages",
-          "UPLOADS": "Uploads"
+          "PROFILE": "简介",
+          "EVENTS": "我的活动",
+          "MESSAGES": "消息",
+          "UPLOADS": "我的上传"
         }
       },
       "SIGNIN_SIGNUP": "登录 / 注册",
@@ -80,6 +80,9 @@
       "SHOW_PASSWORD": "显示密码",
       "BTN_LABEL": "注 册",
       "RESEND_EMAIL": "发送认证邮件"
+    },
+    "VERIFY_EMAIL": {
+      "SEND_EMAIL": "发送认证邮件"
     }
   }
 }

@@ -65,7 +65,7 @@ const SideMenuConfig = {
     display: '',
     value: [
       {display: 'NAVBAR.SIDE.ABOUT_US', iconClass: 'fa-info-circle'},
-      {display: 'NAVBAR.SIDE.CREATE_TRIP', iconClass: 'fa-calendar-plus-o'},
+      {display: 'NAVBAR.SIDE.CREATE_EVENT', iconClass: 'fa-calendar-plus-o'},
       {display: 'NAVBAR.SIDE.HELP', iconClass: 'fa-question-circle-o'}
     ]
   },
@@ -92,7 +92,7 @@ const SideMenuConfig = {
     type: 'user',
     value: [
       {display: 'NAVBAR.SIDE.USER.MENU.PROFILE'},
-      {display: 'NAVBAR.SIDE.USER.MENU.TRIPS'},
+      {display: 'NAVBAR.SIDE.USER.MENU.EVENTS'},
       {display: 'NAVBAR.SIDE.USER.MENU.MESSAGES'},
       {display: 'NAVBAR.SIDE.USER.MENU.UPLOADS'}
     ],

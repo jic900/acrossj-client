@@ -7,8 +7,10 @@ import {
 
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
+import * as _ from 'lodash';
 import { AuthService } from '../services/auth.service';
-import { IFormData, IFormControlData } from 'app/shared/interfaces/formdata.interface';
+import { IForm } from 'app/config/interfaces/form.interface';
+import { IInputElement } from 'app/config/interfaces/input-element.interface';
 
 @Component({
   selector: 'aj-signin',
@@ -18,8 +20,9 @@ import { IFormData, IFormControlData } from 'app/shared/interfaces/formdata.inte
 
 export class SignInComponent implements OnInit {
 
-  @Input() formData: IFormData;
-  inputListData: IFormControlData[];
+  @Input() formData: IForm;
+  formElements: {};
+  inputElements: IInputElement[];
   formGroup: FormGroup;
   @ViewChild('form') form;
   passwordType: string;
@@ -29,12 +32,9 @@ export class SignInComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.inputListData = this.formData.controls
-      .filter(control => {
-        return control.type === 'input';
-      })
-      .map(control => {
-        return control.data;
+    this.formElements = _.mapKeys(this.formData.elements, 'name');
+    this.inputElements = this.formData.elements.filter(element => {
+        return element.type === 'input';
       });
     this.passwordType = 'password';
     this.message = null;
@@ -75,7 +75,7 @@ export class SignInComponent implements OnInit {
           this.router.navigateByUrl('/');
         },
         err => {
-          console.log(err);
+          // console.log(err);
           if (err.name === 'InvalidUserName') {
             this.message = this.formData.errors['userNotFound'];
           } else if (err.name === 'InvalidPassword') {

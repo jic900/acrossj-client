@@ -2,7 +2,7 @@
   "NAVBAR": {
     "SIDE": {
       "ABOUT_US": "About Us",
-      "CREATE_TRIP": "Create a Trip",
+      "CREATE_EVENT": "Create an Event",
       "HELP": "Help",
       "LANGUAGE": {
         "LABEL": "Language",
@@ -20,10 +20,10 @@
         }
       },
       "USER": {
-        "LABEL": "Username",
+        "LABEL": "My Account",
         "MENU": {
           "PROFILE": "Profile",
-          "TRIPS": "Your Trips",
+          "EVENTS": "My Events",
           "MESSAGES": "Messages",
           "UPLOADS": "Uploads"
         }
@@ -79,16 +79,44 @@
       "CONFIRM_PASSWORD": "Confirm Password",
       "SHOW_PASSWORD": "Show Password",
       "BTN_LABEL": "Sign Up",
-      "RESEND_EMAIL": "Resend Verification Email"
+      "SEND_EMAIL": "Send Verification Email"
+    },
+    "VERIFY_EMAIL": {
+      "SEND_EMAIL": "Send Verification Email"
+    },
+    "FORGOT_PASSWORD": {
+      "LABEL": "Reset Password Email",
+      "EMAIL": "Email",
+      "BTN_LABEL": "Send Reset Password Email"
+    },
+    "RESET_PASSWORD": {
+      "LABEL": "Reset Password",
+      "USERNAME": "Username",
+      "OLD_PASSWORD": "Old Password",
+      "PASSWORD": "Password",
+      "CONFIRM_PASSWORD": "Confirm Password",
+      "SHOW_PASSWORD": "Show Password",
+      "BTN_LABEL": "Reset Password"
     }
   },
   "MESSAGES": {
     "AUTH": {
-      "SIGNUP_SUCCESS": "Your account is successfully created and a verification email has been sent.",
+      "SIGNIN": {
+        "SUCCESS": "You are successfully signed in."
+      },
+      "SIGNUP": {
+        "SUCCESS": "Your account is successfully created and a verification email has been sent."
+      },
       "VERIFY_EMAIL": {
         "INPROGRESS": "Verifying email ...",
         "SUCCESS": "Your email has been successfully verified. Please sign in.",
         "ALREADY_VERIFIED": "Your email has been previously verified. Please sign in."
+      },
+      "FORGOT_PASSWORD": {
+        "SUCCESS": "Email containing a reset password link has been sent."
+      },
+      "RESET_PASSWORD": {
+        "SUCCESS": "New password has been successfully reset. Please sign in."
       }
     }
   },
@@ -118,6 +146,10 @@
           "UNIQUE": "Email entered already exists, please choose another email",
           "REQUIRED": "Email is required",
           "PATTERN": "Invalid Email"
+        },
+        "OLD_PASSWORD": {
+          "REQUIRED": "Old Password is required",
+          "MINLENGTH": "Invalid Old Password: minimum 4 characters"
         },
         "PASSWORD": {
           "REQUIRED": "Password is required",
