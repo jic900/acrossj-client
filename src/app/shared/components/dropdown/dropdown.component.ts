@@ -12,7 +12,7 @@ import {
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { MenuState } from 'app/config/app.config';
 import { Util } from 'app/shared/util/util';
-import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
+import { ILinkElement } from 'app/config/interfaces/link-element.interface';
 
 
 @Component({
@@ -28,7 +28,7 @@ import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
 
 export class DropDownComponent implements OnChanges {
 
-  @Input() dataList: IMenuItem[];
+  @Input() dataList: ILinkElement[];
   @Input() placeHolder: string;
   @Input() displayProperty: string;
   @Input() displayMaxCount: number;
@@ -39,7 +39,7 @@ export class DropDownComponent implements OnChanges {
   @Output() clicked: EventEmitter<void>;
   @Output() blurred: EventEmitter<void>;
   inputString: string;
-  displayList: IMenuItem[];
+  displayList: ILinkElement[];
   selectedIndex: number;
   menuState: number;
   menuWidth: string;
@@ -81,9 +81,9 @@ export class DropDownComponent implements OnChanges {
   }
 
   defaultFilterfunc(filterString: string,
-                    sourceList: IMenuItem[],
+                    sourceList: ILinkElement[],
                     filterProperty: string,
-                    maxCount: number): IMenuItem[] {
+                    maxCount: number): ILinkElement[] {
     let resultList = [];
     for (const item of sourceList) {
       const itemValue = item[filterProperty].toLowerCase();

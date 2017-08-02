@@ -10,12 +10,12 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" routerLink="">
-        <img [src]="navbarConfig.homeLogo" alt="Across Japan">
+        <img [src]="navbarData.logo.path" alt="Across Japan">
       </a>
       <button *ngIf="!searchMenu.isSearchMenuExpanded()"
               class="navbar-toggle navbar-button-search"
               (click)="onSearchMenuButtonClick($event)">
-        <span><i [class]="navbarConfig.searchButton.iconClass" aria-hidden="true"></i></span>
+        <span><i [class]="navbarData.searchButton.iconClass" aria-hidden="true"></i></span>
       </button>
       <button *ngIf="searchMenu.isSearchMenuExpanded()"
               class="navbar-toggle navbar-button-close"
@@ -24,7 +24,7 @@
       </button>
     </div>
 
-    <aj-sidemenu [sideMenuData]="navbarConfig.sideMenu"></aj-sidemenu>
-    <aj-searchmenu [searchMenuData]="navbarConfig.searchMenu"></aj-searchmenu>
+    <aj-sidemenu></aj-sidemenu>
+    <aj-searchmenu></aj-searchmenu>
   </div>
 </nav>

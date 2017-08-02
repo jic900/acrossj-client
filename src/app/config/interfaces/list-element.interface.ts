@@ -6,5 +6,5 @@ import { ILinkElement } from './link-element.interface';
 import { IElement } from './element.interface';
 
 export interface IListElement extends IElement {
-  links: ILinkElement[];
+  list: ILinkElement[] | IElement[];
 }

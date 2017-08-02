@@ -8,7 +8,7 @@ import {
 
 import { TranslateService } from '@ngx-translate/core';
 import { AppConstant, MenuState } from 'app/config/app.config';
-import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
+import { IListElement } from 'app/config/interfaces/list-element.interface';
 
 @Component({
   selector: 'aj-submenu',
@@ -21,7 +21,7 @@ import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
 
 export class SubMenuComponent {
 
-  @Input() menuData: IMenuItem;
+  @Input() menuData: IListElement;
   @Output() subMenuToggled: EventEmitter<any>;
   subMenuState: number;
   otherMenuExpanded: boolean;
@@ -44,7 +44,7 @@ export class SubMenuComponent {
   }
 
   onClick(event): void {
-    this.subMenuToggled.emit({type: this.menuData.type, expanded: !this.isSubMenuExpanded()});
+    this.subMenuToggled.emit({name: this.menuData.name, expanded: !this.isSubMenuExpanded()});
     if (this.isDeviceWidth() && !this.isSubMenuExpanded() && this.otherMenuExpanded) {
       const self = this;
       setTimeout(function() {
@@ -55,11 +55,11 @@ export class SubMenuComponent {
     }
   }
 
-  onSubMenuClick(type: string): void {
-    if (this.menuData.type === 'language') {
+  onSubMenuClick(langName: string): void {
+    if (this.menuData.name === 'language') {
       const curLang = this.translate.currentLang;
-      if (type !== curLang) {
-        this.translate.use(type);
+      if (langName !== curLang) {
+        this.translate.use(langName);
       }
     }
     this.subMenuState = MenuState.collapsed;
@@ -75,9 +75,5 @@ export class SubMenuComponent {
 
   isDeviceWidth(): boolean {
     return window.innerWidth < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT;
-  }
-
-  showLogout(): boolean {
-    return this.menuData.type === 'user' && ! this.isDeviceWidth();
   }
 }

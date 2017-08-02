@@ -1,8 +1,22 @@
-import { Component, HostListener, Input, ViewChild } from '@angular/core';
-import { SearchService } from '../services/search.service';
+import {
+  Component,
+  HostListener,
+  ViewChild
+} from '@angular/core';
+import * as _ from 'lodash';
+import { SearchFieldConfig } from 'app/config/navbar.config';
+import { IDropDownElement } from 'app/config/interfaces/dropdown-element.interface';
+import { IDateRangePickerElement } from 'app/config/interfaces/daterangepicker-element.interface';
 import { AppConstant } from 'app/config/app.config';
+import { SearchService } from '../services/search.service';
 import { DropDownComponent } from 'app/shared/components/dropdown/dropdown.component';
 import { DateRangePicker } from 'app/shared/components/daterangepicker/daterangepicker.component';
+
+interface ISearchField {
+  placeSearcher: IDropDownElement;
+  dateRangePicker: IDateRangePickerElement;
+  categoryPicker: IDropDownElement;
+}
 
 @Component({
   selector: 'aj-searchfield',
@@ -13,7 +27,7 @@ import { DateRangePicker } from 'app/shared/components/daterangepicker/daterange
 
 export class SearchfieldComponent {
 
-  @Input() searchFieldData: {};
+  searchFieldData: ISearchField;
   @ViewChild('placeSearcher') placeSearcher: DropDownComponent;
   @ViewChild('dateRangePicker') dateRangePicker: DateRangePicker;
   @ViewChild('categoryPicker') categoryPicker: DropDownComponent;
@@ -24,6 +38,7 @@ export class SearchfieldComponent {
   showSearch: boolean;
 
   constructor(public searchService: SearchService) {
+    this.searchFieldData = _.mapKeys(new SearchFieldConfig().elements, 'name');
     this.showSearch = false;
     this.setFieldWidth(0);
     this.setSubFieldWidth('0');

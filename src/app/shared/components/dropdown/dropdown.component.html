@@ -2,7 +2,7 @@
   <div class="inputgroup">
     <input id="dropDownInput"
            type="text"
-           placeholder="{{placeHolder|translate}}"
+           placeholder="{{placeHolder | translate}}"
            [(ngModel)]="inputString"
            (focus)="onFocus($event)"
            (ngModelChange)="onInputChange($event)"
@@ -24,9 +24,10 @@
        [style.width]="menuWidth">
     <ul *ngFor="let item of displayList; let idx = index">
       <li [class.dropdownmenu-selected]="idx === selectedIndex">
-        <a [routerLink]="item.link ? [item.link] : []" (click)="onSelect(item)">
+        <a [routerLink]="item.link ? item.link.param ? [item.link.path, item.link.param] : [item.link.path] : []"
+           (click)="onSelect(item)">
           <span>
-            <i [ngClass]="item.iconClass && item.iconClass!=='' ? item.iconClass : ''" aria-hidden="true"></i>
+            <i [ngClass]="item.iconClass && item.iconClass !== '' ? item.iconClass : ''" aria-hidden="true"></i>
           </span>
           &nbsp;{{item[displayProperty]}}
         </a>

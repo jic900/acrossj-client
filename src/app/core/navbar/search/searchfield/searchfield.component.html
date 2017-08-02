@@ -3,7 +3,7 @@
   <div class="searchfield-item" [ngStyle]="{'width': placesWidth}">
     <aj-dropdown #placeSearcher
                  [dataList]="searchService.placeList"
-                 [placeHolder]="searchFieldData.placeSearcher.fieldPlaceHolder"
+                 [placeHolder]="searchFieldData.placeSearcher.placeHolder"
                  [filterFunc]="searchService.filterPlaces"
                  [displayProperty]="searchFieldData.placeSearcher.displayProperty"
                  [displayMaxCount]="searchFieldData.placeSearcher.displayMaxCount"
@@ -16,7 +16,7 @@
   </div>
   <div class="searchfield-item" [ngStyle]="{'width': dateRangePickerWidth}">
     <aj-daterangepicker #dateRangePicker
-                        [placeholder]="searchFieldData.dateRangePicker.fieldPlaceHolder"
+                        [placeholder]="searchFieldData.dateRangePicker.placeHolder"
                         [options]="searchFieldData.dateRangePicker.options"
                         (calendarOpened)="onCalendarOpened($event)">
     </aj-daterangepicker>
@@ -24,7 +24,7 @@
   <div class="searchfield-item" [ngStyle]="{'width': categoryWidth}">
     <aj-dropdown #categoryPicker
                  [dataList]="searchService.categoryList"
-                 [placeHolder]="searchFieldData.categoryPicker.fieldPlaceHolder"
+                 [placeHolder]="searchFieldData.categoryPicker.placeHolder"
                  [displayProperty]="searchFieldData.categoryPicker.displayProperty"
                  (clicked)="onFieldClicked('categoryPicker')"
                  (blurred)="onFieldBlurred('categoryPicker')"

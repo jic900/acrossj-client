@@ -4,13 +4,13 @@
   <div [ngStyle]="{'max-height': getMaxHeight(), 'overflow-y': getOverflowY()}">
     <div class="navbar-search-content"
          [style.width]="fieldWidth">
-      <label class="search-label">{{searchMenuData.title | translate}}</label>
+      <label class="search-label">{{searchMenuData.title.display | translate}}</label>
       <div class="panel-group">
         <div class="panel panel-default">
           <div class="panel-body">
             <aj-dropdown #placeSearcher
                          [dataList]="searchService.placeList"
-                         [placeHolder]="searchMenuData.placeSearcher.menuPlaceHolder"
+                         [placeHolder]="searchMenuData.placeSearcher.placeHolder"
                          [filterFunc]="searchService.filterPlaces"
                          [displayProperty]="searchMenuData.placeSearcher.displayProperty"
                          [displayMaxCount]="searchMenuData.placeSearcher.displayMaxCount"
@@ -23,7 +23,7 @@
         <div id="datePickerPanel" class="panel panel-default">
           <div class="panel-body">
             <aj-daterangepicker #dateRangePicker
-                                [placeholder]="searchMenuData.dateRangePicker.menuPlaceHolder"
+                                [placeholder]="searchMenuData.dateRangePicker.placeHolder"
                                 [options]="searchMenuData.dateRangePicker.options">
             </aj-daterangepicker>
           </div>
@@ -32,7 +32,7 @@
           <div class="panel-body">
             <aj-dropdown #categoryPicker
                          [dataList]="searchService.categoryList"
-                         [placeHolder]="searchMenuData.categoryPicker.menuPlaceHolder"
+                         [placeHolder]="searchMenuData.categoryPicker.placeHolder"
                          [displayProperty]="searchMenuData.categoryPicker.displayProperty"
                          (selected)="onCategorySelected($event)">
             </aj-dropdown>
@@ -41,7 +41,7 @@
       </div>
       <button class="btn btn-clearall"
               (click)="placeSearcher.clearField(); categoryPicker.clearField(); dateRangePicker.clearDateRange()">
-        {{searchMenuData.clearAll | translate}}
+        {{searchMenuData.clearAll.display | translate}}
       </button>
     </div>
   </div>

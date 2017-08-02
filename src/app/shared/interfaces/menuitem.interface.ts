@@ -2,7 +2,7 @@
  * Created by LAE84266 on 07/05/2017.
  */
 
-export interface IMenuItem {
+export interface IMenuItemsss {
   display: string;
   type?: string;
   value?: any;

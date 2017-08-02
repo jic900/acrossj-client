@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IMenuItem } from 'app/shared/interfaces/menuitem.interface';
-import { CategoryOptions } from 'app/config/navbar.config';
+import { ILinkElement } from 'app/config/interfaces/link-element.interface';
 
 @Injectable()
 export class SearchService {
@@ -12,30 +11,30 @@ export class SearchService {
     'Norway', 'Poland', 'Portugal', 'Romania', 'Russia', 'San Marino', 'Serbia', 'Slovakia',
     'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom', '日本', '中国'];
 
-  placeList: IMenuItem[];
-  categoryList: IMenuItem[];
-  // dateRangePickerOptions: IOptions;
-  // displayedPlacesMaxCount: number;
+  placeList: ILinkElement[];
+  categoryList: ILinkElement[] = [
+    {name: 'skii', display: 'Skii', link: null},
+    {name: 'bicycling', display: 'Bicycling', iconClass: 'fa fa-bicycle', link: {path: '/'}},
+    {name: 'hiking', display: 'Hiking', link: null},
+    {name: 'other', display: 'Other', link: null}
+  ];
 
   constructor() {
     this.placeList = this.getPlaceList();
-    this.categoryList = CategoryOptions;
-    // this.dateRangePickerOptions = DateRangePickerOptions;
-    // this.displayedPlacesMaxCount = AppConfig.PLACE_SEARCH_RESULT_LIMIT;
   }
 
-  private getPlaceList(): IMenuItem[] {
-    let resultList: IMenuItem[] = [];
+  private getPlaceList(): ILinkElement[] {
+    let resultList: ILinkElement[] = [];
     for (const place of this.places) {
-      resultList.push({display: place});
+      resultList.push({name: place, display: place, link: null});
     }
     return resultList;
   }
 
   filterPlaces(filterString: string,
-               sourceList: IMenuItem[],
+               sourceList: ILinkElement[],
                filterProperty: string,
-               maxCount: number): IMenuItem[] {
+               maxCount: number): ILinkElement[] {
     let filteredList = [], startsWithList = [], includesList = [];
     const lowerSearchStr = filterString.toLowerCase();
     for (const item of sourceList) {

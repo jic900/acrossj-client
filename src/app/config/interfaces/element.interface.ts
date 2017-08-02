@@ -4,7 +4,7 @@
 
 export interface IElement {
   name: string;
-  type: string;
+  type?: string;
   display?: string;
   iconClass?: string;
 }

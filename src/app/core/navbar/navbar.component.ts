@@ -6,11 +6,18 @@ import {
   HostListener,
   ViewChild
 } from '@angular/core';
-
+import * as _ from 'lodash';
+import { NavBarConfig } from 'app/config/navbar.config';
+import { IImageElement } from 'app/config/interfaces/image-element.interface';
+import { IElement } from 'app/config/interfaces/element.interface';
+import { AppConstant, MenuState } from 'app/config/app.config';
 import { SideMenuComponent } from './sidemenu/sidemenu.component';
 import { SearchMenuComponent } from './search/searchmenu/searchmenu.component';
-import { AppConstant, MenuState } from 'app/config/app.config';
-import { NavbarConfig } from 'app/config/navbar.config';
+
+interface INavBar {
+  logo: IImageElement;
+  searchButton: IElement;
+}
 
 @Component({
   selector: 'aj-navbar',
@@ -20,13 +27,13 @@ import { NavbarConfig } from 'app/config/navbar.config';
 
 export class NavbarComponent implements AfterViewInit {
 
+  navbarData: INavBar;
   @ViewChild(SideMenuComponent) sideMenu: SideMenuComponent;
   @ViewChild(SearchMenuComponent) searchMenu: SearchMenuComponent;
-  navbarConfig: {};
   windowWidth: number;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    this.navbarConfig = NavbarConfig;
+    this.navbarData = _.mapKeys(new NavBarConfig().elements, 'name');
   }
 
   ngAfterViewInit(): void {

@@ -19,7 +19,7 @@
           "SIGNUP": "注册"
         }
       },
-      "USER": {
+      "ACCOUNT": {
         "LABEL": "我的帐户",
         "MENU": {
           "PROFILE": "简介",
