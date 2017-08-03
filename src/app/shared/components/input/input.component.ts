@@ -37,15 +37,17 @@ export class InputComponent implements OnInit {
   generateFormControl(controlValidators: IValidator[], customValidators: {}): void{
     let validators = [];
     let asyncValidators = [];
-    controlValidators.forEach(validator => {
-      if (validator.type === 'builtin') {
-        validators.push(this.getBuiltinValidator(validator));
-      } else if (validator.type === 'custom') {
-        validators.push(customValidators[validator.name]);
-      } else if (validator.type === 'customAsync') {
-        asyncValidators.push(customValidators[validator.name]);
-      }
-    });
+    if (controlValidators) {
+      controlValidators.forEach(validator => {
+        if (validator.type === 'builtin') {
+          validators.push(this.getBuiltinValidator(validator));
+        } else if (validator.type === 'custom') {
+          validators.push(customValidators[validator.name]);
+        } else if (validator.type === 'customAsync') {
+          asyncValidators.push(customValidators[validator.name]);
+        }
+      });
+    }
     this.formControl = new FormControl('', validators, asyncValidators);
     this.bindControl.emit({'name': this.inputData.name, 'control': this.formControl});
   }

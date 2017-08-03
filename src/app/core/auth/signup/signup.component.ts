@@ -47,6 +47,7 @@ export class SignUpComponent {
       return element.type === 'input';
     });
     this.passwordType = 'password';
+    this.processing = false;
     this.message = null;
     this.success = false;
     this.formGroup = new FormGroup({}, this.passwordMatch);

@@ -3,6 +3,7 @@
          mdInput
          validateonblur
          type="{{type}}"
+         [readonly]="inputData.readOnly ? inputData.readOnly : false"
          [formControl]="formControl"
          (click)="onClick($event)"
          placeholder="{{inputData.placeHolder | translate}}">

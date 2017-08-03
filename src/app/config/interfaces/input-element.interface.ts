@@ -7,5 +7,6 @@ import { IValidator } from './validator.interface';
 
 export interface IInputElement extends IElement {
   placeHolder: string;
+  readOnly?: boolean;
   validators?: IValidator[];
 }

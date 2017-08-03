@@ -75,8 +75,8 @@
       "LABEL": "Sign Up",
       "USERNAME": "Username",
       "EMAIL": "Email",
-      "PASSWORD": "Password",
-      "CONFIRM_PASSWORD": "Confirm Password",
+      "PASSWORD": "New Password",
+      "CONFIRM_PASSWORD": "Confirm New Password",
       "SHOW_PASSWORD": "Show Password",
       "BTN_LABEL": "Sign Up",
       "SEND_EMAIL": "Send Verification Email"
@@ -88,17 +88,18 @@
     },
     "FORGOT_PASSWORD": {
       "LABEL": "Reset Password",
-      "EMAIL": "Email",
+      "EMAIL": "Username or Email",
       "BTN_LABEL": "Send Reset Password Email"
     },
     "RESET_PASSWORD": {
       "LABEL": "Reset Password",
       "USERNAME": "Username",
-      "OLD_PASSWORD": "Old Password",
-      "PASSWORD": "Password",
-      "CONFIRM_PASSWORD": "Confirm Password",
+      "OLD_PASSWORD": "Current Password",
+      "PASSWORD": "New Password",
+      "CONFIRM_PASSWORD": "Confirm New Password",
       "SHOW_PASSWORD": "Show Password",
-      "BTN_LABEL": "Reset Password"
+      "BTN_LABEL": "Reset Password",
+      "SEND_EMAIL": "Send Reset Password Email"
     }
   },
   "MESSAGES": {
@@ -115,7 +116,8 @@
         "ALREADY_VERIFIED": "Your email has been previously verified. Please sign in."
       },
       "FORGOT_PASSWORD": {
-        "SUCCESS": "Email containing a reset password link has been sent."
+        "HINT": "Please enter your username or email below. An email will be sent to reset your password.",
+        "SUCCESS": "An email has been successfully sent. Please follow instruction in the email to reset your password."
       },
       "RESET_PASSWORD": {
         "SUCCESS": "New password has been successfully reset. Please sign in."
@@ -129,11 +131,14 @@
       "OTHERS": "Something went wrong, please try again later."
     },
     "USER": {
-      "NOTFOUND": "The username or email entered could not be found.",
+      "NOTFOUND": "The username or email entered does not exist.",
       "PASSWORD_MISMATCH": "The password entered is incorrect."
     },
     "VERIFY_EMAIL": {
       "FAILED": "Email verification failed due to invalid or expired email link. Please resend verification email."
+    },
+    "FORGOT_PASSWORD": {
+      "NOTFOUND": "The username or email entered does not exist."
     },
     "VALIDATION": {
       "USER": {

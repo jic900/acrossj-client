@@ -7,6 +7,7 @@ import { IElement } from 'app/config/interfaces/element.interface';
 import { SignInComponent } from './signin/signin.component';
 import { SignUpComponent } from './signup/signup.component';
 import { VerifyEmailComponent } from './verifyemail/verifyemail.component';
+import { ResetPasswordComponent } from './resetpassword/resetpassword.component';
 
 
 interface IAuth {
@@ -26,10 +27,10 @@ interface IAuth {
 export class AuthComponent implements OnInit, OnDestroy {
 
   authData: IAuth;
-  @ViewChild('tabGroup') tabGroup: any;
   @ViewChild(SignInComponent) signInForm: SignInComponent;
   @ViewChild(SignUpComponent) signUpForm: SignUpComponent;
   @ViewChild(VerifyEmailComponent) verifyEmailComponent: VerifyEmailComponent;
+  @ViewChild(ResetPasswordComponent) resetPasswordComponent: ResetPasswordComponent;
   selectedIndex: number;
   subscription: any;
   authState: string;
@@ -60,39 +61,23 @@ export class AuthComponent implements OnInit, OnDestroy {
             break;
           }
           case 'verifyemail': {
-            // this.router.navigateByUrl(this.route.snapshot.url.join('/'));
+            this.router.navigateByUrl(this.route.snapshot.url.join('/'));
             this.verifyEmailComponent.verifyEmail(this.route.snapshot.queryParams['token']);
             break;
           }
-          case 'forgotpassword': {
-
-          }
           case 'resetpassword': {
-
+            const token = this.route.snapshot.queryParams['token'];
+            console.log(token);
+            this.router.navigateByUrl(this.route.snapshot.url.join('/'));
+            setTimeout(()=>{
+              if (token) {
+                this.resetPasswordComponent.setToken(token);
+              }
+            }, 500);
           }
         }
-        // if (params['id'] !== 'signin' && params['id'] !== 'signup' && params['id'] !== 'signout') {
-        //   this.hideTab = true;
-        //   if (params['id'] === 'verifyemail') {
-        //     this.router.navigateByUrl(this.route.snapshot.url.join('/'));
-        //     this.verifyEmailComponent.verifyEmail(this.route.snapshot.queryParams['token']);
-        //   }
-        // } else {
-        //   this.hideTab = false;
-        //   this.selectedIndex = 0;
-        //   if (params['id'] === 'signup') {
-        //     this.selectedIndex = 1;
-        //   } else if (params['id'] === 'signout') {
-        //     this.authService.signout();
-        //     this.router.navigateByUrl('/');
-        //   }
-        // }
-
-        // this.selectedIndex = +params['id']; // (+) converts string 'id' to a number
-        // In a real app: dispatch action to load the details here.
       });
     }
-
   }
 
   onSelectedTabIndexChange(): void {

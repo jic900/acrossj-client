@@ -18,7 +18,8 @@
     </md-checkbox>
   </div>
   <!--<div class="auth-forgotpassword-container">-->
-  <a class="auth-forgotpassword">{{formElements.forgotPassword.display | translate}}</a>
+  <a [routerLink]="[formElements.forgotPassword.link.path, formElements.forgotPassword.link.param]"
+     class="auth-forgotpassword">{{formElements.forgotPassword.display | translate}}</a>
   <!--</div>-->
   <div class="auth-btn-container">
     <button

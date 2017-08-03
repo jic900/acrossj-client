@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { AuthService } from '../services/auth.service';
@@ -22,19 +22,32 @@ export class ForgotPasswordComponent {
 
   formData: IForm;
   formElements: IForgotPassword;
+  @ViewChild('form') form;
   formGroup: FormGroup;
   processing: boolean;
   message: string;
+  success: boolean;
 
   constructor(private authService: AuthService) {
     this.formData = new ForgotPasswordConfig();
     this.formElements = _.mapKeys(this.formData.elements, 'name');
-    this.message = null;
+    this.processing = false;
+    this.message = this.message = this.formData.messages['hint'];
+    this.success = true;
     this.formGroup = new FormGroup({});
   }
 
+  isValid(): boolean {
+    return this.formGroup.valid && !this.processing;
+  }
+
   onClicked(event): void {
-    this.message = null;
+    this.success = true;
+    this.message = this.formData.messages['hint'];
+  }
+
+  onBindControl(controlData: {}): void {
+    this.formGroup.addControl(controlData['name'], controlData['control']);
   }
 
   onForgotPassword(event): void {
@@ -42,29 +55,28 @@ export class ForgotPasswordComponent {
     this.processing = true;
     this.message = null;
 
+    const onSuccess = () => {
+      this.message = this.formData.messages['success'];
+      this.success = true;
+      this.form.resetForm();
+    }
+
     this.authService.forgotPassword(this.formGroup.value)
       .subscribe(
         data => {
-          // // console.log(data);
-          // // onSuccess();
-          // this.message = 'success';
-          // this.processing = false;
-          // this.authService.setAuthenticated(true);
-          // // this.router.navigateByUrl('/');
+          onSuccess();
+          this.processing = false;
         },
         err => {
-          // console.log(err);
-          // if (err.name === 'InvalidUserName') {
-          //   this.message = this.formData.errors['userNotFound'];
-          // } else if (err.name === 'InvalidPassword') {
-          //   this.message = this.formData.errors['invalidPassword'];
-          // } else if (err.name === 'NotVerified') {
-          //   this.message = 'User not verified';
-          //   this.authService.setAuthenticated(true);
-          // } else {
-          //   this.message = err.message;
-          // }
-          // this.processing = false;
+          if (err.name === 'UserNotFound') {
+            this.message = this.formData.errors['userNotFound'];
+          } else if (err.name === 'SendResetPasswordMail') {
+            onSuccess();
+          } else {
+            this.message = err.message;
+          }
+          this.processing = false;
+          this.success = false;
         }
       );
   }

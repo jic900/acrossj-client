@@ -48,7 +48,7 @@ export class SignInConfig implements IForm {
       validators: [
         {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.USERNAME.REQUIRED'},
         {name: 'minlength', type: 'builtin', value: 2, error: 'ERRORS.VALIDATION.USER.USERNAME.MINLENGTH'},
-        {name: 'pattern', type: 'builtin', value: /^[^~!@#$%^&*()+`{}|\[\]\\:";'<>?,\/]*$/, error: 'ERRORS.VALIDATION.USER.USERNAME.PATTERN'}
+        {name: 'pattern', type: 'builtin', value: /^[^~!#$%^&*()+`{}|\[\]\\:";'<>?,\/]*$/, error: 'ERRORS.VALIDATION.USER.USERNAME.PATTERN'}
       ]
     },
     {
@@ -150,7 +150,7 @@ export class SignUpConfig implements IForm {
   };
   messages: {} = {
     success: 'MESSAGES.AUTH.SIGNUP.SUCCESS'
-  }
+  };
 };
 
 export class VerifyEmailConfig implements IComponent {
@@ -175,7 +175,7 @@ export class VerifyEmailConfig implements IComponent {
   };
   errors: {} = {
     failed: 'ERRORS.VERIFY_EMAIL.FAILED'
-  }
+  };
 };
 
 export class ForgotPasswordConfig implements IForm {
@@ -185,8 +185,9 @@ export class ForgotPasswordConfig implements IForm {
       type: 'input',
       placeHolder: 'AUTH.FORGOT_PASSWORD.EMAIL',
       validators: [
-        {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.EMAIL.REQUIRED'},
-        {name: 'pattern', type: 'builtin', value: /.+@.+\..+/i, error: 'ERRORS.VALIDATION.USER.EMAIL.PATTERN'}
+        {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.USERNAME.REQUIRED'},
+        {name: 'minlength', type: 'builtin', value: 2, error: 'ERRORS.VALIDATION.USER.USERNAME.MINLENGTH'},
+        {name: 'pattern', type: 'builtin', value: /^[^~!#$%^&*()+`{}|\[\]\\:";'<>?,\/]*$/, error: 'ERRORS.VALIDATION.USER.USERNAME.PATTERN'}
       ]
     },
     {
@@ -196,12 +197,22 @@ export class ForgotPasswordConfig implements IForm {
     }
   ];
   messages: {} = {
+    hint: 'MESSAGES.AUTH.FORGOT_PASSWORD.HINT',
     success: 'MESSAGES.AUTH.FORGOT_PASSWORD.SUCCESS'
-  }
+  };
+  errors: {} = {
+    userNotFound: 'ERRORS.FORGOT_PASSWORD.NOTFOUND'
+  };
 };
 
 export class ResetPasswordConfig implements IForm {
-  elements: [IInputElement, IInputElement, IInputElement, IElement, IElement] = [
+  elements: [IInputElement, IInputElement, IInputElement, IInputElement, IElement, IElement, ILinkElement] = [
+    {
+      name: 'username',
+      type: 'input',
+      placeHolder: 'AUTH.RESET_PASSWORD.USERNAME',
+      readOnly: true
+    },
     {
       name: 'oldPassword',
       type: 'input',
@@ -239,6 +250,12 @@ export class ResetPasswordConfig implements IForm {
       type: 'button',
       display: 'AUTH.RESET_PASSWORD.BTN_LABEL'
     },
+    {
+      name: 'sendEmail',
+      type: 'link',
+      display: 'AUTH.RESET_PASSWORD.SEND_EMAIL',
+      link: {path: '/auth', param: 'forgotpassword'}
+    }
   ];
   validator: IValidator = {
     name: 'passwordMatch',
