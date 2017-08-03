@@ -6,10 +6,12 @@ import { ForgotPasswordConfig } from 'app/config/auth.config';
 import { IForm } from 'app/config/interfaces/form.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
+import { ILinkElement } from 'app/config/interfaces/link-element.interface';
 
 interface IForgotPassword {
   email: IInputElement;
   submitButton: IElement;
+  backSignIn: ILinkElement;
 }
 
 @Component({
@@ -26,14 +28,14 @@ export class ForgotPasswordComponent {
   formGroup: FormGroup;
   processing: boolean;
   message: string;
-  success: boolean;
+  showInput: boolean;
 
   constructor(private authService: AuthService) {
     this.formData = new ForgotPasswordConfig();
     this.formElements = _.mapKeys(this.formData.elements, 'name');
     this.processing = false;
     this.message = this.message = this.formData.messages['hint'];
-    this.success = true;
+    this.showInput = true;
     this.formGroup = new FormGroup({});
   }
 
@@ -42,7 +44,7 @@ export class ForgotPasswordComponent {
   }
 
   onClicked(event): void {
-    this.success = true;
+    // this.success = true;
     this.message = this.formData.messages['hint'];
   }
 
@@ -57,7 +59,7 @@ export class ForgotPasswordComponent {
 
     const onSuccess = () => {
       this.message = this.formData.messages['success'];
-      this.success = true;
+      this.showInput = false;
       this.form.resetForm();
     }
 
@@ -70,13 +72,14 @@ export class ForgotPasswordComponent {
         err => {
           if (err.name === 'UserNotFound') {
             this.message = this.formData.errors['userNotFound'];
+            this.showInput = true;
           } else if (err.name === 'SendResetPasswordMail') {
             onSuccess();
+            this.showInput = false;
           } else {
             this.message = err.message;
           }
           this.processing = false;
-          this.success = false;
         }
       );
   }

@@ -9,7 +9,6 @@ import { IInputElement } from 'app/config/interfaces/input-element.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
 import { ILinkElement } from 'app/config/interfaces/link-element.interface';
 
-
 interface IResetPassword {
   username: IInputElement;
   oldPassword: IInputElement;
@@ -18,6 +17,7 @@ interface IResetPassword {
   showPassword: IElement;
   submitButton: IElement;
   sendEmail: ILinkElement;
+  backSignIn: ILinkElement;
 }
 
 @Component({
@@ -55,7 +55,8 @@ export class ResetPasswordComponent {
     this.message = null;
     this.success = false;
     this.processing = false;
-    this.formGroup = new FormGroup({});
+    this.showResendLink = false;
+    this.formGroup = new FormGroup({}, this.passwordMatch);
     this.jwtHelper = new JwtHelper();
   }
 
@@ -65,12 +66,43 @@ export class ResetPasswordComponent {
 
   setToken(token: string): void {
     this.token = token;
-    const decodedToken = this.jwtHelper.decodeToken(token);
-    this.formGroup.get('username').setValue(decodedToken.username);
+    let decodedToken;
+    try {
+      decodedToken = this.jwtHelper.decodeToken(token);
+    } catch (e) {}
+    if (!decodedToken) {
+      this.message = this.formData.errors['failed'];
+      this.showResendLink = true;
+    } else {
+      this.formGroup.get('username').setValue(decodedToken.username);
+    }
   }
 
   onClicked(event): void {
     this.message = null;
+  }
+
+  passwordMatch(formGroup: FormGroup): {} {
+    const passwordControl = formGroup.get('password');
+    const confirmPasswordControl = formGroup.get('confirmPassword');
+    if (passwordControl && confirmPasswordControl) {
+      return passwordControl.value === confirmPasswordControl.value ? null : {'passwordMatch': true};
+    }
+  }
+
+  getFormValidateData(controlName: string) {
+    if (controlName === 'confirmPassword') {
+      return {'validateFailed': this.formValidateFailed, 'error': this.getFormValidateError};
+    }
+    return null;
+  }
+
+  formValidateFailed = () => {
+    return this.formGroup.hasError('passwordMatch');
+  }
+
+  getFormValidateError = () => {
+    return this.formData.validator.error;
   }
 
   onBindControl(controlData: {}): void {
@@ -95,15 +127,16 @@ export class ResetPasswordComponent {
         data => {
           this.message = this.formData.messages['success'];
           this.success = true;
-          this.form.resetForm();
         },
         err => {
           if (err.name === 'TokenExpired' || err.name === 'InvalidToken' || err.name === 'VerifyToken') {
-
-          } else if (err.name === 'UserNotFound') {
-            this.message = this.formData.errors['userNotFound'];
+            this.message = this.formData.errors['failed'];
+            this.showResendLink = true;
           } else {
             this.message = err.message;
+            this.form.resetForm();
+            const decodedToken = this.jwtHelper.decodeToken(this.token);
+            this.formGroup.get('username').setValue(decodedToken.username);
           }
           this.processing = false;
         }

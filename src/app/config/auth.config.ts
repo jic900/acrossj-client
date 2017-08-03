@@ -179,7 +179,7 @@ export class VerifyEmailConfig implements IComponent {
 };
 
 export class ForgotPasswordConfig implements IForm {
-  elements: [IInputElement, IElement] = [
+  elements: [IInputElement, IElement, ILinkElement] = [
     {
       name: 'email',
       type: 'input',
@@ -194,6 +194,12 @@ export class ForgotPasswordConfig implements IForm {
       name: 'submitButton',
       type: 'button',
       display: 'AUTH.FORGOT_PASSWORD.BTN_LABEL'
+    },
+    {
+      name: 'backSignIn',
+      type: 'link',
+      display: 'AUTH.FORGOT_PASSWORD.BACK_SIGNIN',
+      link: {path: '/auth', param: 'signin'}
     }
   ];
   messages: {} = {
@@ -206,7 +212,7 @@ export class ForgotPasswordConfig implements IForm {
 };
 
 export class ResetPasswordConfig implements IForm {
-  elements: [IInputElement, IInputElement, IInputElement, IInputElement, IElement, IElement, ILinkElement] = [
+  elements: [IInputElement, IInputElement, IInputElement, IInputElement, IElement, IElement, ILinkElement, ILinkElement] = [
     {
       name: 'username',
       type: 'input',
@@ -255,6 +261,12 @@ export class ResetPasswordConfig implements IForm {
       type: 'link',
       display: 'AUTH.RESET_PASSWORD.SEND_EMAIL',
       link: {path: '/auth', param: 'forgotpassword'}
+    },
+    {
+      name: 'backSignIn',
+      type: 'link',
+      display: 'AUTH.RESET_PASSWORD.BACK_SIGNIN',
+      link: {path: '/auth', param: 'signin'}
     }
   ];
   validator: IValidator = {
@@ -264,6 +276,9 @@ export class ResetPasswordConfig implements IForm {
   };
   messages: {} = {
     success: 'MESSAGES.AUTH.RESET_PASSWORD.SUCCESS'
-  }
+  };
+  errors: {} = {
+    failed: 'ERRORS.RESET_PASSWORD.FAILED'
+  };
 };
 

@@ -87,9 +87,10 @@
       "BACK_SIGNIN": "Back to Sign In"
     },
     "FORGOT_PASSWORD": {
-      "LABEL": "Reset Password",
+      "LABEL": "Reset Password Email",
       "EMAIL": "Username or Email",
-      "BTN_LABEL": "Send Reset Password Email"
+      "BTN_LABEL": "Send Reset Password Email",
+      "BACK_SIGNIN": "Back to Sign In"
     },
     "RESET_PASSWORD": {
       "LABEL": "Reset Password",
@@ -99,7 +100,8 @@
       "CONFIRM_PASSWORD": "Confirm New Password",
       "SHOW_PASSWORD": "Show Password",
       "BTN_LABEL": "Reset Password",
-      "SEND_EMAIL": "Send Reset Password Email"
+      "SEND_EMAIL": "Send Reset Password Email",
+      "BACK_SIGNIN": "Back to Sign In"
     }
   },
   "MESSAGES": {
@@ -140,6 +142,9 @@
     "FORGOT_PASSWORD": {
       "NOTFOUND": "The username or email entered does not exist."
     },
+    "RESET_PASSWORD": {
+      "FAILED": "Reset password failed due to invalid or expired email link. Please resend reset password email."
+    },
     "VALIDATION": {
       "USER": {
         "USERNAME": {
@@ -169,7 +174,7 @@
         "ROLE": {
           "MATCH": ""
         },
-        "PASSWORD_MATCH": "Password and Confirm Password does not match"
+        "PASSWORD_MATCH": "New Password and Confirm New Password does not match"
       }
     }
   }
