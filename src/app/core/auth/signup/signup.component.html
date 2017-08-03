@@ -1,8 +1,10 @@
 <form class="auth-form" novalidate [formGroup]="formGroup" (ngSubmit)="onSignUp($event)" #form="ngForm">
-  <label class="auth-message" [ngClass]="{'error': !success}">
-    {{message | translate}}
-  </label>
-  <a *ngIf="success" class="auth-resendemail">{{formElements.sendVerifyEmail.display | translate}}</a>
+  <div class="auth-message-container">
+    <label class="auth-message" [ngClass]="{'error': !success}">
+      {{message | translate}}
+    </label>
+    <a *ngIf="success" class="auth-resendemail">{{formElements.sendVerifyEmail.display | translate}}</a>
+  </div>
   <div class="auth-input-group">
     <aj-input
       *ngFor="let element of inputElements"

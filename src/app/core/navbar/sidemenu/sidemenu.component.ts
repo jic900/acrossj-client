@@ -111,6 +111,10 @@ export class SideMenuComponent implements OnInit {
     });
   }
 
+  onSignOut() {
+    this.setSideMenuState(MenuState.collapsed);
+  }
+
   isDeviceWidth(): boolean {
     return window.innerWidth < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT;
   }

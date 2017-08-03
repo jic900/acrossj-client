@@ -59,7 +59,6 @@ export class SearchfieldComponent {
   }
 
   onSearchClicked(event): void {
-    console.log('onSearchClicked');
     this.showSearch = ! this.showSearch;
     if (this.showSearch) {
       this.setFieldWidth(window.innerWidth);

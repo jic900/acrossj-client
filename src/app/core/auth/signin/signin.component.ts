@@ -45,6 +45,7 @@ export class SignInComponent {
       return element.type === 'input';
     });
     this.passwordType = 'password';
+    this.processing = false;
     this.message = null;
     this.formGroup = new FormGroup({});
   }
@@ -78,7 +79,7 @@ export class SignInComponent {
           this.message = 'success';
           this.processing = false;
           this.reset();
-          this.authService.setAuthenticated(true);
+          // this.authService.setAuthenticated(true);
           // TODO: navigate to previous page if exisits.
           this.router.navigateByUrl('/');
         },

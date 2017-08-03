@@ -1,7 +1,9 @@
 <form class="auth-form" novalidate [formGroup]="formGroup" (ngSubmit)="onSignIn($event)" #form="ngForm">
-  <label class="auth-message" [ngClass]="{'error': message}">
-    {{message | translate}}
-  </label>
+  <div class="auth-message-container">
+    <label class="auth-message" [ngClass]="{'error': message}">
+      {{message | translate}}
+    </label>
+  </div>
   <div class="auth-input-group">
     <aj-input
       *ngFor="let element of inputElements"

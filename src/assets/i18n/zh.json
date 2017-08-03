@@ -82,7 +82,22 @@
       "RESEND_EMAIL": "发送认证邮件"
     },
     "VERIFY_EMAIL": {
+      "LABEL": "邮件认证状态",
       "SEND_EMAIL": "发送认证邮件"
+    },
+    "FORGOT_PASSWORD": {
+      "LABEL": "Reset Password",
+      "EMAIL": "Email",
+      "BTN_LABEL": "Send Reset Password Email"
+    },
+    "RESET_PASSWORD": {
+      "LABEL": "Reset Password",
+      "USERNAME": "Username",
+      "OLD_PASSWORD": "Old Password",
+      "PASSWORD": "Password",
+      "CONFIRM_PASSWORD": "Confirm Password",
+      "SHOW_PASSWORD": "Show Password",
+      "BTN_LABEL": "Reset Password"
     }
   }
 }

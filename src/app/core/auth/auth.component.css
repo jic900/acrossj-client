@@ -6,10 +6,29 @@
 :host >>> md-card {
   padding: 24px 40px;
 }
-
-:host >>> md-tab-group[hidden] {
+:host >>> md-card[hidden] {
   display: none;
 }
+
+:host >>> md-card-header {
+  border-bottom: 1px solid rgba(0,0,0,.25);
+}
+
+:host >>> .mat-card-title {
+  font-size: 20px !important;
+  font-weight: bold;
+  /*line-height: 16px;*/
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+
+/*:host >>> md-tab-group[hidden] {*/
+  /*display: none;*/
+/*}*/
+
+/*:host >>> md-tab[hidden] {*/
+  /*display: none;*/
+/*}*/
 
 :host >>> md-tab-group .mat-tab-labels {
   display: table;
@@ -34,31 +53,56 @@
   padding: 10px 0 25px;
 }
 
+.auth-message-container {
+  margin: 0 5px 0;
+}
 .auth-message {
   width: 100%;
   margin-top: 20px;
-  padding: 0 5px 0;
+  /*padding: 0 5px 0;*/
   /*height: 40px;*/
   /*line-height: 40px;*/
   color: rgba(0, 0, 0, .8);
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: normal;
+  /*opacity: 0.6;*/
 }
-/*.auth-message.show {*/
-  /*height: 50px;*/
-  /*line-height: 50px;*/
-/*}*/
 .auth-message.error {
   color: #f44336;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
 }
 
-.auth-message-container {
-  margin-top: 20px;
+.verify-email-container {
+  margin: 20px 8px 0;
   height: 150px;
+  font-size: 15px;
+  /*opacity: 0.6;*/
+}
+
+.auth-resendemail {
+  margin-top: 10px;
+  display: block;
+  padding: 10px 0px 10px;
   font-size: 14px;
-  font-weight: normal;
+  text-decoration: underline;
+  color: black;
+}
+
+.auth-back-link {
+  margin-left: 8px;
+  margin-bottom: 20px;
+}
+.auth-back-link a {
+  color: black;
+  font-size: 15px;
+}
+.auth-back-link a:hover {
+  text-decoration: none;
+}
+.auth-back-link .fa {
+  width: 1.25em;
+  font-size: 120%;
 }
 
 .auth-input-group {
@@ -97,14 +141,6 @@
   /*margin: 0 auto;*/
   /*background-color: inherit;*/
   /*border: none;*/
-}
-
-.auth-resendemail {
-  display: block;
-  padding: 10px 5px 10px;
-  font-size: 13px;
-  text-decoration: underline;
-  color: black;
 }
 
 .auth-btn-container {

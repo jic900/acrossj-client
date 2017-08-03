@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import * as _ from 'lodash';
 import { VerifyEmailConfig } from 'app/config/auth.config';
 import { IComponent } from 'app/config/interfaces/component.interface';
 import { ILinkElement } from 'app/config/interfaces/link-element.interface';
+import { AuthService } from '../services/auth.service';
 
 interface IVerifyEmail {
   sendVerifyEmail: ILinkElement;
+  backSignIn: ILinkElement;
 }
 
 @Component({
@@ -18,11 +20,13 @@ interface IVerifyEmail {
 export class VerifyEmailComponent {
 
   componentData: IComponent;
+  elements: IVerifyEmail;
   message: string;
   showResendLink: boolean;
 
   constructor(private authService: AuthService, private router: Router) {
     this.componentData = new VerifyEmailConfig();
+    this.elements = _.mapKeys(this.componentData.elements, 'name');
   }
 
   verifyEmail(token: string): void {
@@ -37,13 +41,13 @@ export class VerifyEmailComponent {
             this.message = this.componentData.messages['alreadyVerified'];
           }
           // TODO: login page selected tab not working
-          setTimeout(() => {
-            this.router.navigateByUrl('auth/login');
-          }, 3000);
+          // setTimeout(() => {
+          //   this.router.navigateByUrl('/auth/signin');
+          // }, 3000);
         },
         err => {
-          console.log(err);
-          if (err.name === 'TokenExpired' || err.name === 'InvalidToken' || err.name === 'UserNotFound') {
+          // console.log(err);
+          if (err.name === 'TokenExpired' || err.name === 'InvalidToken' || err.name === 'VerifyToken' || err.name === 'UserNotFound') {
             this.message = this.componentData.errors['failed'];
             this.showResendLink = true;
           } else {

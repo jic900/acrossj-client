@@ -82,10 +82,12 @@
       "SEND_EMAIL": "Send Verification Email"
     },
     "VERIFY_EMAIL": {
-      "SEND_EMAIL": "Send Verification Email"
+      "LABEL": "Email Verification Status",
+      "SEND_EMAIL": "Send Verification Email",
+      "BACK_SIGNIN": "Back to Sign In"
     },
     "FORGOT_PASSWORD": {
-      "LABEL": "Reset Password Email",
+      "LABEL": "Reset Password",
       "EMAIL": "Email",
       "BTN_LABEL": "Send Reset Password Email"
     },
@@ -122,21 +124,21 @@
   },
   "ERRORS": {
     "GENERIC": {
-      "SYSTEM_UNAVAILABLE": "System is currently unavailable, please try again later",
-      "GATEWAY_TIMEOUT": "Request is timed out, please try again later",
-      "OTHERS": "Something went wrong, please try again later"
+      "SYSTEM_UNAVAILABLE": "System is currently unavailable, please try again later.",
+      "GATEWAY_TIMEOUT": "Request is timed out, please try again later.",
+      "OTHERS": "Something went wrong, please try again later."
     },
     "USER": {
-      "NOTFOUND": "The username or email entered could not be found",
-      "PASSWORD_MISMATCH": "The password entered is incorrect"
+      "NOTFOUND": "The username or email entered could not be found.",
+      "PASSWORD_MISMATCH": "The password entered is incorrect."
     },
     "VERIFY_EMAIL": {
-      "FAILED": "Email verification failed due to invalid or expired email link. Please resend verification email"
+      "FAILED": "Email verification failed due to invalid or expired email link. Please resend verification email."
     },
     "VALIDATION": {
       "USER": {
         "USERNAME": {
-          "UNIQUE": "Username entered already exists, please choose another username",
+          "UNIQUE": "Username entered already exists, please choose another username.",
           "REQUIRED": "Username is required",
           "MINLENGTH": "Invalid Username: minimum 2 characters",
           "MAXLENGTH": "Invalid Username: maximum 20 characters",

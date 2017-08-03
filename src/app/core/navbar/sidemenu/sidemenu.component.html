@@ -40,7 +40,8 @@
         </aj-submenu>
       </li>
       <li *ngIf="authenticated && isDeviceWidth()" style="margin-top: 15px">
-        <a [routerLink]="[bottomMenuLinks.signout.link.path]">{{bottomMenuLinks.signout.display | translate}}</a>
+        <a [routerLink]="[bottomMenuLinks.signout.link.path, bottomMenuLinks.signout.link.param]"
+           (click)="onSignOut()">{{bottomMenuLinks.signout.display | translate}}</a>
       </li>
     </ul>
   </div>

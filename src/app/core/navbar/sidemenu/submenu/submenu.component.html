@@ -19,8 +19,7 @@
       </a>
     </li>
     <li *ngIf="menuData.name === 'account' && ! this.isDeviceWidth()">
-      <a [routerLink]="['/']">{{'NAVBAR.SIDE.SIGNOUT'|translate}}</a>
+      <a [routerLink]="['/auth', 'signout']">{{'NAVBAR.SIDE.SIGNOUT'|translate}}</a>
     </li>
   </ul>
 </div>
-

@@ -69,7 +69,7 @@ export class SideMenuConfig implements IComponent {
         {
           name: 'signout',
           display: 'NAVBAR.SIDE.SIGNOUT',
-          link: {path: '/'}
+          link: {path: '/auth', param: 'signout'}
         }
       ],
       submenus: [

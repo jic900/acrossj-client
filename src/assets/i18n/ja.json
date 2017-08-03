@@ -82,7 +82,22 @@
       "RESEND_EMAIL": "Send Verification Email JA"
     },
     "VERIFY_EMAIL": {
+      "LABEL": "Email Verification Status JA",
       "SEND_EMAIL": "Send Verification Email JA"
+    },
+    "FORGOT_PASSWORD": {
+      "LABEL": "Reset Password JA",
+      "EMAIL": "Email JA",
+      "BTN_LABEL": "Send Reset Password Email JA"
+    },
+    "RESET_PASSWORD": {
+      "LABEL": "Reset Password JA",
+      "USERNAME": "Username JA",
+      "OLD_PASSWORD": "Old Password JA",
+      "PASSWORD": "Password JA",
+      "CONFIRM_PASSWORD": "Confirm Password JA",
+      "SHOW_PASSWORD": "Show Password JA",
+      "BTN_LABEL": "Reset Password JA"
     }
   }
 }

@@ -22,6 +22,11 @@ export class AuthConfig implements IComponent {
       display: 'AUTH.SIGNUP.LABEL'
     },
     {
+      name: 'verifyEmail',
+      type: 'label',
+      display: 'AUTH.VERIFY_EMAIL.LABEL'
+    },
+    {
       name: 'forgotPassword',
       type: 'label',
       display: 'AUTH.FORGOT_PASSWORD.LABEL'
@@ -64,7 +69,7 @@ export class SignInConfig implements IForm {
       name: 'forgotPassword',
       type: 'link',
       display: 'AUTH.SIGNIN.FORGOT_PASSWORD',
-      link: {path: 'auth', param: 'forgotpassword'}
+      link: {path: '/auth', param: 'forgotpassword'}
     },
     {
       name: 'submitButton',
@@ -135,7 +140,7 @@ export class SignUpConfig implements IForm {
       name: 'sendVerifyEmail',
       type: 'link',
       display: 'AUTH.SIGNUP.SEND_EMAIL',
-      link: {path: 'auth', param: 'sendverifyemail'}
+      link: {path: '/auth', param: 'sendverifyemail'}
     }
   ];
   validator: IValidator = {
@@ -154,7 +159,13 @@ export class VerifyEmailConfig implements IComponent {
       name: 'sendVerifyEmail',
       type: 'link',
       display: 'AUTH.VERIFY_EMAIL.SEND_EMAIL',
-      link: {path: 'auth', param: 'sendverifyemail'}
+      link: {path: '/auth', param: 'sendverifyemail'}
+    },
+    {
+      name: 'backSignIn',
+      type: 'link',
+      display: 'AUTH.VERIFY_EMAIL.BACK_SIGNIN',
+      link: {path: '/auth', param: 'signin'}
     }
   ];
   messages: {} = {
