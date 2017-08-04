@@ -106,7 +106,6 @@ export class ResetPasswordComponent {
   }
 
   onBindControl(controlData: {}): void {
-    console.log('control name:  ' + controlData['name']);
     this.formGroup.addControl(controlData['name'], controlData['control']);
   }
 
@@ -118,9 +117,12 @@ export class ResetPasswordComponent {
     event.preventDefault();
     this.processing = true;
     this.message = null;
-    const requestData = {
+    let requestData = {
       token: this.token,
-      password: this.formGroup.value.password
+      newPassword: this.formGroup.value.password
+    };
+    if (this.authService.authenticated) {
+      requestData['currentPassword'] = this.formGroup.value.oldPassword;
     }
     this.authService.resetPassword(requestData)
       .subscribe(
@@ -132,8 +134,17 @@ export class ResetPasswordComponent {
           if (err.name === 'TokenExpired' || err.name === 'InvalidToken' || err.name === 'VerifyToken') {
             this.message = this.formData.errors['failed'];
             this.showResendLink = true;
+          } else if (err.name === 'UserNotFound') {
+            this.message = this.formData.errors['userNotFound'];
+            this.showResendLink = true;
           } else {
-            this.message = err.message;
+            if (err.name === 'InvalidPassword') {
+              this.message = this.formData.errors['invalidPassword'];
+            } else if (err.name === 'SamePassword') {
+              this.message = this.formData.errors['samePassword'];
+            } else {
+              this.message = err.message;
+            }
             this.form.resetForm();
             const decodedToken = this.jwtHelper.decodeToken(this.token);
             this.formGroup.get('username').setValue(decodedToken.username);

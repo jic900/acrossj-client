@@ -33,14 +33,18 @@ export class ForgotPasswordComponent {
   constructor(private authService: AuthService) {
     this.formData = new ForgotPasswordConfig();
     this.formElements = _.mapKeys(this.formData.elements, 'name');
-    this.processing = false;
-    this.message = this.message = this.formData.messages['hint'];
-    this.showInput = true;
     this.formGroup = new FormGroup({});
+    this.reset();
   }
 
   isValid(): boolean {
     return this.formGroup.valid && !this.processing;
+  }
+
+  reset(): void {
+    this.processing = false;
+    this.message = this.message = this.formData.messages['hint'];
+    this.showInput = true;
   }
 
   onClicked(event): void {

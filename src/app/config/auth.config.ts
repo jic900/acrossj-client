@@ -27,6 +27,11 @@ export class AuthConfig implements IComponent {
       display: 'AUTH.VERIFY_EMAIL.LABEL'
     },
     {
+      name: 'sendVerifyEmail',
+      type: 'label',
+      display: 'AUTH.SEND_VERIFY_EMAIL.LABEL'
+    },
+    {
       name: 'forgotPassword',
       type: 'label',
       display: 'AUTH.FORGOT_PASSWORD.LABEL'
@@ -178,6 +183,39 @@ export class VerifyEmailConfig implements IComponent {
   };
 };
 
+export class SendVerifyEmailConfig implements IForm {
+  elements: [IInputElement, IElement, ILinkElement] = [
+    {
+      name: 'email',
+      type: 'input',
+      placeHolder: 'AUTH.SEND_VERIFY_EMAIL.EMAIL',
+      validators: [
+        {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.USERNAME.REQUIRED'},
+        {name: 'minlength', type: 'builtin', value: 2, error: 'ERRORS.VALIDATION.USER.USERNAME.MINLENGTH'},
+        {name: 'pattern', type: 'builtin', value: /^[^~!#$%^&*()+`{}|\[\]\\:";'<>?,\/]*$/, error: 'ERRORS.VALIDATION.USER.USERNAME.PATTERN'}
+      ]
+    },
+    {
+      name: 'submitButton',
+      type: 'button',
+      display: 'AUTH.SEND_VERIFY_EMAIL.BTN_LABEL'
+    },
+    {
+      name: 'backSignIn',
+      type: 'link',
+      display: 'AUTH.SEND_VERIFY_EMAIL.BACK_SIGNIN',
+      link: {path: '/auth', param: 'signin'}
+    }
+  ];
+  messages: {} = {
+    hint: 'MESSAGES.AUTH.SEND_VERIFY_EMAIL.HINT',
+    success: 'MESSAGES.AUTH.SEND_VERIFY_EMAIL.SUCCESS'
+  };
+  errors: {} = {
+    userNotFound: 'ERRORS.SEND_VERIFY_EMAIL.NOTFOUND'
+  };
+};
+
 export class ForgotPasswordConfig implements IForm {
   elements: [IInputElement, IElement, ILinkElement] = [
     {
@@ -278,7 +316,10 @@ export class ResetPasswordConfig implements IForm {
     success: 'MESSAGES.AUTH.RESET_PASSWORD.SUCCESS'
   };
   errors: {} = {
-    failed: 'ERRORS.RESET_PASSWORD.FAILED'
+    failed: 'ERRORS.RESET_PASSWORD.FAILED',
+    userNotFound: 'ERRORS.RESET_PASSWORD.NOTFOUND',
+    invalidPassword: 'ERRORS.RESET_PASSWORD.INVALID_PASSWORD',
+    samePassword: 'ERRORS.RESET_PASSWORD.SAME_PASSWORD'
   };
 };
 

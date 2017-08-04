@@ -1,4 +1,9 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  OnDestroy,
+  ViewChild
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
 import { AuthConfig } from 'app/config/auth.config';
@@ -7,13 +12,15 @@ import { IElement } from 'app/config/interfaces/element.interface';
 import { SignInComponent } from './signin/signin.component';
 import { SignUpComponent } from './signup/signup.component';
 import { VerifyEmailComponent } from './verifyemail/verifyemail.component';
+import { SendVerifyEmailComponent } from './sendverifyemail/sendverifyemail.component';
+import { ForgotPasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetPasswordComponent } from './resetpassword/resetpassword.component';
-
 
 interface IAuth {
   signin: IElement;
   signup: IElement;
   verifyEmail: IElement;
+  sendVerifyEmail: IElement;
   forgotPassword: IElement;
   resetPassword: IElement;
 }
@@ -24,12 +31,14 @@ interface IAuth {
   styleUrls: ['./auth.component.css']
 })
 
-export class AuthComponent implements OnInit, OnDestroy {
+export class AuthComponent implements AfterViewInit, OnDestroy {
 
   authData: IAuth;
-  @ViewChild(SignInComponent) signInForm: SignInComponent;
-  @ViewChild(SignUpComponent) signUpForm: SignUpComponent;
+  @ViewChild(SignInComponent) signInComponent: SignInComponent;
+  @ViewChild(SignUpComponent) signUpComponent: SignUpComponent;
   @ViewChild(VerifyEmailComponent) verifyEmailComponent: VerifyEmailComponent;
+  @ViewChild(SendVerifyEmailComponent) sendVerifyEmailComponent: SendVerifyEmailComponent;
+  @ViewChild(ForgotPasswordComponent) forgotPasswordComponent: ForgotPasswordComponent;
   @ViewChild(ResetPasswordComponent) resetPasswordComponent: ResetPasswordComponent;
   selectedIndex: number;
   subscription: any;
@@ -42,46 +51,55 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.selectedIndex = 1;
   }
 
-  ngOnInit(): void {
-    if (!this.subscription) {
-      this.subscription = this.route.params.subscribe(params => {
-        this.authState = params['id'];
-        switch (this.authState) {
-          case 'signin': {
-            this.selectedIndex = 0;
-            break;
-          }
-          case 'signup': {
-            this.selectedIndex = 1;
-            break;
-          }
-          case 'signout': {
-            this.authService.signout();
-            this.router.navigateByUrl('/');
-            break;
-          }
-          case 'verifyemail': {
-            this.router.navigateByUrl(this.route.snapshot.url.join('/'));
-            this.verifyEmailComponent.verifyEmail(this.route.snapshot.queryParams['token']);
-            break;
-          }
-          case 'resetpassword': {
-            const token = this.route.snapshot.queryParams['token'];
-            console.log(token);
-            this.router.navigateByUrl(this.route.snapshot.url.join('/'));
-            setTimeout(()=>{
-              if (token) {
-                this.resetPasswordComponent.setToken(token);
-              }
-            }, 500);
-          }
+  ngAfterViewInit(): void {
+    this.subscription = this.route.params.subscribe(params => {
+      this.authState = params['id'];
+      switch (this.authState) {
+        case 'signin': {
+          this.selectedIndex = 0;
+          this.signInComponent.reset();
+          break;
         }
-      });
-    }
+        case 'signup': {
+          this.selectedIndex = 1;
+          this.signUpComponent.reset();
+          break;
+        }
+        case 'signout': {
+          this.authService.signout();
+          this.router.navigateByUrl('/');
+          break;
+        }
+        case 'verifyemail': {
+          this.router.navigateByUrl(this.route.snapshot.url.join('/'));
+          this.verifyEmailComponent.verifyEmail(this.route.snapshot.queryParams['token']);
+          break;
+        }
+        case 'sendverifyemail': {
+          this.sendVerifyEmailComponent.reset();
+          break;
+        }
+        case 'forgotpassword': {
+          this.forgotPasswordComponent.reset();
+          break;
+        }
+        case 'resetpassword': {
+          const token = this.route.snapshot.queryParams['token'];
+          this.router.navigateByUrl(this.route.snapshot.url.join('/'));
+          setTimeout(()=>{
+            if (token) {
+              this.resetPasswordComponent.setToken(token);
+            }
+          }, 500);
+          break;
+        }
+      }
+    });
   }
 
   onSelectedTabIndexChange(): void {
-    this.selectedIndex === 0 ? this.signUpForm.reset() : this.signInForm.reset();
+    // this.selectedIndex === 0 ? this.signUpForm.reset() : this.signInForm.reset();
+    this.selectedIndex === 0 ? this.router.navigateByUrl('/auth/signin') : this.router.navigateByUrl('/auth/signup');
   }
 
   ngOnDestroy() {

@@ -1,8 +1,4 @@
-import {
-  Component,
-  ViewChild
-} from '@angular/core';
-
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
@@ -32,8 +28,8 @@ export class SignInComponent {
   formData: IForm;
   formElements: ISignIn;
   inputElements: IInputElement[];
-  formGroup: FormGroup;
   @ViewChild('form') form;
+  formGroup: FormGroup;
   passwordType: string;
   processing: boolean;
   message: string;
@@ -74,17 +70,13 @@ export class SignInComponent {
     this.authService.signin(this.formGroup.value)
       .subscribe(
         data => {
-          // console.log(data);
-          // onSuccess();
           this.message = 'success';
           this.processing = false;
           this.reset();
-          // this.authService.setAuthenticated(true);
           // TODO: navigate to previous page if exisits.
           this.router.navigateByUrl('/');
         },
         err => {
-          // console.log(err);
           if (err.name === 'InvalidUserName') {
             this.message = this.formData.errors['userNotFound'];
           } else if (err.name === 'InvalidPassword') {
@@ -103,5 +95,6 @@ export class SignInComponent {
   reset(): void {
     this.message = null;
     this.form.resetForm();
+    // this.formGroup.reset();
   }
 }

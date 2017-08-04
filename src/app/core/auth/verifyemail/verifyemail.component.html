@@ -1,6 +1,8 @@
 <div class="verify-email-container">
   <span>{{message | translate}}</span>
-  <a *ngIf="showResendLink" class="auth-resendemail">{{elements.sendVerifyEmail.display | translate}}</a>
+  <a *ngIf="showResendLink" class="auth-resendemail"
+     [routerLink]="[elements.sendVerifyEmail.link.path, elements.sendVerifyEmail.link.param]"
+  >{{elements.sendVerifyEmail.display | translate}}</a>
 </div>
 <!--<a [routerLink]="[bottomMenuLinks.signout.link.path, bottomMenuLinks.signout.link.param]">-->
   <!--<i class="fa fa-fw" aria-hidden="true"-->

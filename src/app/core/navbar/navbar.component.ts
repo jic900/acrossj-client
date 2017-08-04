@@ -1,8 +1,6 @@
 import {
   Component,
   AfterViewInit,
-  ElementRef,
-  Renderer2,
   HostListener,
   ViewChild
 } from '@angular/core';
@@ -32,7 +30,7 @@ export class NavbarComponent implements AfterViewInit {
   @ViewChild(SearchMenuComponent) searchMenu: SearchMenuComponent;
   windowWidth: number;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor() {
     this.navbarData = _.mapKeys(new NavBarConfig().elements, 'name');
   }
 

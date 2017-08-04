@@ -1,8 +1,4 @@
-import {
-  Component,
-  ViewChild
-} from '@angular/core';
-
+import { Component, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { AuthService } from '../services/auth.service';
@@ -33,8 +29,8 @@ export class SignUpComponent {
   formData: IForm;
   formElements: ISignUp;
   inputElements: IInputElement[];
-  formGroup: FormGroup;
   @ViewChild('form') form;
+  formGroup: FormGroup;
   passwordType: string;
   processing: boolean;
   message: string;
@@ -107,7 +103,6 @@ export class SignUpComponent {
     this.authService.signup(this.formGroup.value)
       .subscribe(
         data => {
-          // console.log(data);
           onSuccess();
           this.processing = false;
         },
@@ -127,6 +122,7 @@ export class SignUpComponent {
     this.message = null;
     this.success = false;
     this.form.resetForm();
+    // this.formGroup.reset();
   }
 
   // errorStateMatcher(control: FormControl, form: FormGroupDirective | NgForm): boolean {

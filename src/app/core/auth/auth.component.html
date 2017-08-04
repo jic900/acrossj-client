@@ -23,6 +23,15 @@
       </md-card-content>
     </md-card>
 
+    <md-card [hidden]="authState != 'sendverifyemail'">
+      <md-card-header>
+        <md-card-title>{{authData.sendVerifyEmail.display | translate}}</md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <aj-sendverifyemail></aj-sendverifyemail>
+      </md-card-content>
+    </md-card>
+
     <md-card [hidden]="authState != 'forgotpassword'">
       <md-card-header>
         <md-card-title>{{authData.forgotPassword.display | translate}}</md-card-title>

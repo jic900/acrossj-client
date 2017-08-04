@@ -1,16 +1,10 @@
-import {
-  Component,
-  ElementRef,
-  Renderer2
-} from '@angular/core';
-
+import { Component } from '@angular/core';
 import * as _ from 'lodash';
 import { SearchMenuConfig } from 'app/config/navbar.config';
 import { IDropDownElement } from 'app/config/interfaces/dropdown-element.interface';
 import { IDateRangePickerElement } from 'app/config/interfaces/daterangepicker-element.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
 import { AppConstant, MenuState} from 'app/config/app.config';
-import { TranslateService } from '@ngx-translate/core';
 import { Util } from 'app/shared/util/util';
 import { SearchService } from '../services/search.service';
 
@@ -36,10 +30,7 @@ export class SearchMenuComponent {
   searchMenuState: number;
   fieldWidth: string;
 
-  constructor(private elementRef: ElementRef,
-              private renderer: Renderer2,
-              public searchService: SearchService,
-              private translate: TranslateService) {
+  constructor(public searchService: SearchService) {
     this.searchMenuData = _.mapKeys(new SearchMenuConfig().elements, 'name');
     this.searchMenuState = MenuState.collapsed;
     this.setFieldWidth();

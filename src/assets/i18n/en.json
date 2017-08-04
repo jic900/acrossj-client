@@ -86,6 +86,12 @@
       "SEND_EMAIL": "Send Verification Email",
       "BACK_SIGNIN": "Back to Sign In"
     },
+    "SEND_VERIFY_EMAIL": {
+      "LABEL": "Verification Email",
+      "EMAIL": "Username or Email",
+      "BTN_LABEL": "Send Verification Email",
+      "BACK_SIGNIN": "Back to Sign In"
+    },
     "FORGOT_PASSWORD": {
       "LABEL": "Reset Password Email",
       "EMAIL": "Username or Email",
@@ -117,6 +123,10 @@
         "SUCCESS": "Your email has been successfully verified. Please sign in.",
         "ALREADY_VERIFIED": "Your email has been previously verified. Please sign in."
       },
+      "SEND_VERIFY_EMAIL": {
+        "HINT": "Please enter your username or email below. An email will be sent to verify your account.",
+        "SUCCESS": "An email has been successfully sent. Please follow instruction in the email to activate your account."
+      },
       "FORGOT_PASSWORD": {
         "HINT": "Please enter your username or email below. An email will be sent to reset your password.",
         "SUCCESS": "An email has been successfully sent. Please follow instruction in the email to reset your password."
@@ -139,11 +149,17 @@
     "VERIFY_EMAIL": {
       "FAILED": "Email verification failed due to invalid or expired email link. Please resend verification email."
     },
+    "SEND_VERIFY_EMAIL": {
+      "NOTFOUND": "The username or email entered does not exist."
+    },
     "FORGOT_PASSWORD": {
       "NOTFOUND": "The username or email entered does not exist."
     },
     "RESET_PASSWORD": {
-      "FAILED": "Reset password failed due to invalid or expired email link. Please resend reset password email."
+      "FAILED": "Reset password failed due to invalid or expired email link. Please resend reset password email.",
+      "NOTFOUND": "The username does not exist.",
+      "INVALID_PASSWORD": "The current password entered is incorrect.",
+      "SAME_PASSWORD": "Your new password cannot be the same as the current password."
     },
     "VALIDATION": {
       "USER": {

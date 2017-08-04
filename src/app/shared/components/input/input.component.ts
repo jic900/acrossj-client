@@ -1,6 +1,8 @@
 import {
   Component,
   OnInit,
+  ElementRef,
+  Renderer2,
   EventEmitter,
   Input,
   Output
@@ -25,7 +27,7 @@ export class InputComponent implements OnInit {
   @Output() clicked: EventEmitter<void>;
   formControl: FormControl;
 
-  constructor() {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     this.bindControl = new EventEmitter<{}>();
     this.clicked = new EventEmitter<void>();
   }
@@ -53,7 +55,12 @@ export class InputComponent implements OnInit {
   }
 
   onClick(event): void {
-    this.clicked.emit();
+    // workaround to fix angular 2 material bug
+    if (this.inputData.readOnly) {
+      this.renderer.removeClass(this.elementRef.nativeElement.firstElementChild, 'mat-focused');
+    } else {
+      this.clicked.emit();
+    }
   }
 
   getBuiltinValidator(validator: IValidator): Function {
