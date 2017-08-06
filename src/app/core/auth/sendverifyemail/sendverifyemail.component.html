@@ -1,18 +1,8 @@
 <form class="auth-form" novalidate [formGroup]="formGroup" (ngSubmit)="onSendVerifyEmail($event)" #form="ngForm">
-  <div class="auth-message-container">
-    <label class="auth-message">
-      {{message | translate}}
-    </label>
-  </div>
-  <div *ngIf="!showInput" class="auth-back-link auth-extra-space">
-    <a [routerLink]="[formElements.backSignIn.link.path, formElements.backSignIn.link.param]">
-      <i class="fa fa-angle-left" aria-hidden="true">
-      </i><span>{{ formElements.backSignIn.display | translate }}</span>
-    </a>
-  </div>
+  <aj-message *ngIf="message" [data]="message"></aj-message>
   <div *ngIf="showInput" class="auth-input-group-no-border">
     <aj-input
-      [inputData]="formElements.email"
+      [inputData]="formElements.username"
       [type]="'text'"
       (bindControl)="onBindControl($event)"
       (clicked)="onClicked($event)">

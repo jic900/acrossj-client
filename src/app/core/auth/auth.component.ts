@@ -84,13 +84,18 @@ export class AuthComponent implements AfterViewInit, OnDestroy {
           break;
         }
         case 'resetpassword': {
-          const token = this.route.snapshot.queryParams['token'];
-          this.router.navigateByUrl(this.route.snapshot.url.join('/'));
-          setTimeout(()=>{
-            if (token) {
-              this.resetPasswordComponent.setToken(token);
-            }
-          }, 500);
+          if (this.authService.authenticated) {
+            this.router.navigateByUrl('/profile/changepassword');
+            // this.resetPasswordComponent.notAllowedWhenSignedIn();
+          } else {
+            const token = this.route.snapshot.queryParams['token'];
+            this.router.navigateByUrl(this.route.snapshot.url.join('/'));
+            setTimeout(()=>{
+              if (token) {
+                this.resetPasswordComponent.setToken(token);
+              }
+            }, 500);
+          }
           break;
         }
       }

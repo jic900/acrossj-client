@@ -8,6 +8,8 @@ import { IForm } from 'app/config/interfaces/form.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
 import { ILinkElement } from 'app/config/interfaces/link-element.interface';
+import { IMessageElement } from 'app/config/interfaces/message-element';
+import { Util } from 'app/shared/util/util';
 
 interface ISignIn {
   username: IInputElement;
@@ -15,6 +17,13 @@ interface ISignIn {
   showPassword: IElement;
   forgotPassword: ILinkElement;
   submitButton: IElement;
+}
+
+interface ISignInMessage {
+  success: IMessageElement;
+  invalidUsername: IMessageElement;
+  invalidPassword: IMessageElement;
+  notVerified: IMessageElement;
 }
 
 @Component({
@@ -28,11 +37,12 @@ export class SignInComponent {
   formData: IForm;
   formElements: ISignIn;
   inputElements: IInputElement[];
+  messages: ISignInMessage;
   @ViewChild('form') form;
   formGroup: FormGroup;
   passwordType: string;
   processing: boolean;
-  message: string;
+  message: IMessageElement;
 
   constructor(private authService: AuthService, private router: Router) {
     this.formData = new SignInConfig();
@@ -40,6 +50,7 @@ export class SignInComponent {
     this.inputElements = this.formData.elements.filter(element => {
       return element.type === 'input';
     });
+    this.messages = _.mapKeys(this.formData.messages, 'name');
     this.passwordType = 'password';
     this.processing = false;
     this.message = null;
@@ -65,27 +76,26 @@ export class SignInComponent {
   onSignIn(event): void {
     event.preventDefault();
     this.processing = true;
-    this.message = null;
+    // this.message = null;
 
     this.authService.signin(this.formGroup.value)
       .subscribe(
         data => {
-          this.message = 'success';
+          this.message = this.messages.success;
           this.processing = false;
           this.reset();
           // TODO: navigate to previous page if exisits.
           this.router.navigateByUrl('/');
         },
         err => {
-          if (err.name === 'InvalidUserName') {
-            this.message = this.formData.errors['userNotFound'];
+          if (err.name === 'UserNotFound') {
+            this.message = this.messages.invalidUsername;
           } else if (err.name === 'InvalidPassword') {
-            this.message = this.formData.errors['invalidPassword'];
+            this.message = this.messages.invalidPassword;
           } else if (err.name === 'NotVerified') {
-            this.message = 'User not verified';
-            this.authService.setAuthenticated(true);
+            this.message = this.messages.notVerified;
           } else {
-            this.message = err.message;
+            this.message = Util.createErrorMessage(err.name, err.message);
           }
           this.processing = false;
         }

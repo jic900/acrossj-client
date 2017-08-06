@@ -57,7 +57,9 @@ export class InputComponent implements OnInit {
   onClick(event): void {
     // workaround to fix angular 2 material bug
     if (this.inputData.readOnly) {
-      this.renderer.removeClass(this.elementRef.nativeElement.firstElementChild, 'mat-focused');
+      setTimeout(() => {
+        this.renderer.removeClass(this.elementRef.nativeElement.firstElementChild, 'mat-focused');
+      }, 10);
     } else {
       this.clicked.emit();
     }

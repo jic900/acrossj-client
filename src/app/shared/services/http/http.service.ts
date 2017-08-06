@@ -82,15 +82,20 @@ export class HttpService extends AuthHttp {
 
   private onCatch(error: any, caught: Observable<any>): Observable<any> {
     if (error.status === ERR_CONNECTION_REFUSED) {
+      error.name = 'SystemUnavailable';
       error.status = ERR_SYSTEM_UNAVAILABLE;
       error.message = AppConfig.ERROR.SYSTEM_UNAVAILABLE;
     } else if (error instanceof TimeoutError) {
       error = {
+        name: 'GatewayTimeout',
         status: ERR_GATEWAY_TIMEOUT,
         message: AppConfig.ERROR.GATEWAY_TIMEOUT
       }
     } else {
       error = error.json();
+      if (!error.name) {
+        error.name = 'Unexpected';
+      }
       if (error.name !== 'Validation') {
         error.message = AppConfig.ERROR.GENERIC;
       }

@@ -14,6 +14,7 @@ import { DateRangePickerFocusDirective } from './components/daterangepicker/dire
 import { DropDownComponent } from './components/dropdown/dropdown.component';
 import { ValidateOnBlurDirective } from './directives/validate-onblur.directive';
 import { InputComponent } from './components/input/input.component';
+import { MessageComponent } from './components/message/message.component';
 
 
 export function httpServiceFactory(http: Http, options: RequestOptions, loaderService: LoaderService) {
@@ -41,7 +42,8 @@ export function httpServiceFactory(http: Http, options: RequestOptions, loaderSe
     DropDownComponent,
     ValidateOnBlurDirective,
     InputComponent,
-    LoaderComponent
+    LoaderComponent,
+    MessageComponent
   ],
   exports: [
     TranslateModule,
@@ -49,7 +51,8 @@ export function httpServiceFactory(http: Http, options: RequestOptions, loaderSe
     DropDownComponent,
     ValidateOnBlurDirective,
     InputComponent,
-    LoaderComponent
+    LoaderComponent,
+    MessageComponent
   ],
   providers: [
     LoaderService,

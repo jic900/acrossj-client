@@ -7,6 +7,8 @@ import { IForm } from 'app/config/interfaces/form.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
 import { ILinkElement } from 'app/config/interfaces/link-element.interface';
+import { IMessageElement } from 'app/config/interfaces/message-element';
+import { Util } from 'app/shared/util/util';
 
 interface ISignUp {
   username: IInputElement;
@@ -15,7 +17,10 @@ interface ISignUp {
   confirmPassword: IInputElement;
   showPassword: IElement;
   submitButton: IElement;
-  sendVerifyEmail: ILinkElement;
+}
+
+interface ISignUpMessage {
+  success: IMessageElement;
 }
 
 @Component({
@@ -29,12 +34,12 @@ export class SignUpComponent {
   formData: IForm;
   formElements: ISignUp;
   inputElements: IInputElement[];
+  messages: ISignUpMessage;
   @ViewChild('form') form;
   formGroup: FormGroup;
   passwordType: string;
   processing: boolean;
-  message: string;
-  success: boolean;
+  message: IMessageElement;
 
   constructor(private authService: AuthService) {
     this.formData = new SignUpConfig();
@@ -42,10 +47,10 @@ export class SignUpComponent {
     this.inputElements = this.formData.elements.filter(element => {
       return element.type === 'input';
     });
+    this.messages = _.mapKeys(this.formData.messages, 'name');
     this.passwordType = 'password';
     this.processing = false;
     this.message = null;
-    this.success = false;
     this.formGroup = new FormGroup({}, this.passwordMatch);
   }
 
@@ -54,7 +59,6 @@ export class SignUpComponent {
   }
 
   onClicked(event): void {
-    this.success = false;
     this.message = null;
   }
 
@@ -91,36 +95,34 @@ export class SignUpComponent {
 
   onSignUp(event): void {
     event.preventDefault();
-    this.message = null;
+    // this.message = null;
     this.processing = true;
 
     const onSuccess = () => {
-      this.message = this.formData.messages['success'];
-      this.success = true;
+      this.message = this.messages.success;
       this.form.resetForm();
+      this.processing = false;
     }
 
     this.authService.signup(this.formGroup.value)
       .subscribe(
         data => {
           onSuccess();
-          this.processing = false;
         },
         err => {
           // Ignore error when verify email is failed to be sent
-          if (err.name !== 'SendVerifyMail') {
-            this.message = err.message;
-          } else {
+          if (err.name === 'SendVerifyMail') {
             onSuccess();
+          } else {
+            this.message = Util.createErrorMessage(err.name, err.message);
+            this.processing = false;
           }
-          this.processing = false;
         }
       );
   }
 
   reset(): void {
     this.message = null;
-    this.success = false;
     this.form.resetForm();
     // this.formGroup.reset();
   }

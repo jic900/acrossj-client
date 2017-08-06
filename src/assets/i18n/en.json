@@ -69,7 +69,8 @@
       "PASSWORD": "Password",
       "SHOW_PASSWORD": "Show Password",
       "FORGOT_PASSWORD": "Forgot Password?",
-      "BTN_LABEL": "Sign In"
+      "BTN_LABEL": "Sign In",
+      "SEND_EMAIL": "Send Verification Email"
     },
     "SIGNUP": {
       "LABEL": "Sign Up",
@@ -88,20 +89,19 @@
     },
     "SEND_VERIFY_EMAIL": {
       "LABEL": "Verification Email",
-      "EMAIL": "Username or Email",
+      "USERNAME": "Username or Email",
       "BTN_LABEL": "Send Verification Email",
       "BACK_SIGNIN": "Back to Sign In"
     },
     "FORGOT_PASSWORD": {
       "LABEL": "Reset Password Email",
-      "EMAIL": "Username or Email",
+      "USERNAME": "Username or Email",
       "BTN_LABEL": "Send Reset Password Email",
       "BACK_SIGNIN": "Back to Sign In"
     },
     "RESET_PASSWORD": {
       "LABEL": "Reset Password",
       "USERNAME": "Username",
-      "OLD_PASSWORD": "Current Password",
       "PASSWORD": "New Password",
       "CONFIRM_PASSWORD": "Confirm New Password",
       "SHOW_PASSWORD": "Show Password",
@@ -110,10 +110,28 @@
       "BACK_SIGNIN": "Back to Sign In"
     }
   },
+  "PROFILE": {
+    "CHANGE_PASSWORD": {
+      "LABEL": "Change Password",
+      "OLD_PASSWORD": "Current Password",
+      "PASSWORD": "New Password",
+      "CONFIRM_PASSWORD": "Confirm New Password",
+      "SHOW_PASSWORD": "Show Password",
+      "BTN_LABEL": "Change Password"
+    }
+  },
   "MESSAGES": {
+    "GENERIC": {
+      "SYSTEM_UNAVAILABLE": "System is currently unavailable, please try again later.",
+      "GATEWAY_TIMEOUT": "Request is timed out, please try again later.",
+      "OTHERS": "Something went wrong, please try again later."
+    },
     "AUTH": {
       "SIGNIN": {
-        "SUCCESS": "You are successfully signed in."
+        "SUCCESS": "You are successfully signed in.",
+        "INVALID_USERNAME": "The username or email entered does not exist.",
+        "INVALID_PASSWORD": "The password entered is incorrect.",
+        "NOT_VERIFIED": "Your account is not verified, please verify your account first."
       },
       "SIGNUP": {
         "SUCCESS": "Your account is successfully created and a verification email has been sent."
@@ -121,46 +139,37 @@
       "VERIFY_EMAIL": {
         "INPROGRESS": "Verifying email ...",
         "SUCCESS": "Your email has been successfully verified. Please sign in.",
-        "ALREADY_VERIFIED": "Your email has been previously verified. Please sign in."
+        "ALREADY_VERIFIED": "Your email has been previously verified. Please sign in.",
+        "INVALID_TOKEN": "Email verification failed due to invalid or expired email link. Please resend verification email."
       },
       "SEND_VERIFY_EMAIL": {
         "HINT": "Please enter your username or email below. An email will be sent to verify your account.",
-        "SUCCESS": "An email has been successfully sent. Please follow instruction in the email to activate your account."
+        "SUCCESS": "An email has been successfully sent. Please follow instruction in the email to activate your account.",
+        "INVALID_USERNAME": "The username or email entered does not exist."
       },
       "FORGOT_PASSWORD": {
         "HINT": "Please enter your username or email below. An email will be sent to reset your password.",
-        "SUCCESS": "An email has been successfully sent. Please follow instruction in the email to reset your password."
+        "SUCCESS": "An email has been successfully sent. Please follow instruction in the email to reset your password.",
+        "INVALID_USERNAME": "The username or email entered does not exist."
       },
       "RESET_PASSWORD": {
-        "SUCCESS": "New password has been successfully reset. Please sign in."
+        "SUCCESS": "New password has been successfully reset. Please sign in.",
+        "INVALID_TOKEN": "Reset password failed due to invalid or expired email link. Please resend reset password email.",
+        "INVALID_USERNAME": "The username does not exist."
+      }
+    },
+    "PROFILE": {
+      "PERSONAL_INFO": {
+        "CHANGE_PASSWORD": {
+          "SUCCESS": "Your password has been successfully changed.",
+          "INVALID_USERNAME": "The username does not exist.",
+          "INVALID_PASSWORD": "The current password entered is incorrect.",
+          "SAME_PASSWORD": "Your new password cannot be the same as the current password."
+        }
       }
     }
   },
   "ERRORS": {
-    "GENERIC": {
-      "SYSTEM_UNAVAILABLE": "System is currently unavailable, please try again later.",
-      "GATEWAY_TIMEOUT": "Request is timed out, please try again later.",
-      "OTHERS": "Something went wrong, please try again later."
-    },
-    "USER": {
-      "NOTFOUND": "The username or email entered does not exist.",
-      "PASSWORD_MISMATCH": "The password entered is incorrect."
-    },
-    "VERIFY_EMAIL": {
-      "FAILED": "Email verification failed due to invalid or expired email link. Please resend verification email."
-    },
-    "SEND_VERIFY_EMAIL": {
-      "NOTFOUND": "The username or email entered does not exist."
-    },
-    "FORGOT_PASSWORD": {
-      "NOTFOUND": "The username or email entered does not exist."
-    },
-    "RESET_PASSWORD": {
-      "FAILED": "Reset password failed due to invalid or expired email link. Please resend reset password email.",
-      "NOTFOUND": "The username does not exist.",
-      "INVALID_PASSWORD": "The current password entered is incorrect.",
-      "SAME_PASSWORD": "Your new password cannot be the same as the current password."
-    },
     "VALIDATION": {
       "USER": {
         "USERNAME": {
@@ -171,7 +180,7 @@
           "PATTERN": "Invalid Username: special characters not allowed"
         },
         "EMAIL": {
-          "UNIQUE": "Email entered already exists, please choose another email",
+          "UNIQUE": "Email entered already exists, please choose another email.",
           "REQUIRED": "Email is required",
           "PATTERN": "Invalid Email"
         },
@@ -190,7 +199,7 @@
         "ROLE": {
           "MATCH": ""
         },
-        "PASSWORD_MATCH": "New Password and Confirm New Password does not match"
+        "PASSWORD_MATCH": "Password does not match"
       }
     }
   }

@@ -1,18 +1,4 @@
 <div class="verify-email-container">
-  <span>{{message | translate}}</span>
-  <a *ngIf="showResendLink" class="auth-resendemail"
-     [routerLink]="[elements.sendVerifyEmail.link.path, elements.sendVerifyEmail.link.param]"
-  >{{elements.sendVerifyEmail.display | translate}}</a>
-</div>
-<!--<a [routerLink]="[bottomMenuLinks.signout.link.path, bottomMenuLinks.signout.link.param]">-->
-  <!--<i class="fa fa-fw" aria-hidden="true"-->
-     <!--[ngClass]="menuData.iconClass ? menuData.iconClass : ''">-->
-  <!--</i><span>{{ menuData.display | translate }}</span>-->
-<!--</a>-->
-<div class="auth-back-link">
-  <a [routerLink]="[elements.backSignIn.link.path, elements.backSignIn.link.param]">
-    <i class="fa fa-angle-left" aria-hidden="true">
-    </i><span>{{ elements.backSignIn.display | translate }}</span>
-  </a>
+  <aj-message *ngIf="message" [data]="message"></aj-message>
 </div>
 

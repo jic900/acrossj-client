@@ -6,12 +6,18 @@ import { SendVerifyEmailConfig } from 'app/config/auth.config';
 import { IForm } from 'app/config/interfaces/form.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
-import { ILinkElement } from 'app/config/interfaces/link-element.interface';
+import { IMessageElement } from 'app/config/interfaces/message-element';
+import { Util } from 'app/shared/util/util';
 
 interface ISendVerifyEmail {
-  email: IInputElement;
+  username: IInputElement;
   submitButton: IElement;
-  backSignIn: ILinkElement;
+}
+
+interface ISendVerifyEmailMessage {
+  hint: IMessageElement;
+  success: IMessageElement;
+  invalidUsername: IMessageElement;
 }
 
 @Component({
@@ -23,15 +29,17 @@ export class SendVerifyEmailComponent {
 
   formData: IForm;
   formElements: ISendVerifyEmail;
+  messages: ISendVerifyEmailMessage;
   @ViewChild('form') form;
   formGroup: FormGroup;
   processing: boolean;
-  message: string;
+  message: IMessageElement;
   showInput: boolean;
 
   constructor(private authService: AuthService) {
     this.formData = new SendVerifyEmailConfig();
     this.formElements = _.mapKeys(this.formData.elements, 'name');
+    this.messages = _.mapKeys(this.formData.messages, 'name');
     this.formGroup = new FormGroup({});
     this.reset();
   }
@@ -42,13 +50,12 @@ export class SendVerifyEmailComponent {
 
   reset(): void {
     this.processing = false;
-    this.message = this.message = this.formData.messages['hint'];
+    this.message = this.messages.hint;
     this.showInput = true;
   }
 
   onClicked(event): void {
-    // this.success = true;
-    this.message = this.formData.messages['hint'];
+    this.message = this.messages.hint;
   }
 
   onBindControl(controlData: {}): void {
@@ -58,10 +65,10 @@ export class SendVerifyEmailComponent {
   onSendVerifyEmail(event): void {
     event.preventDefault();
     this.processing = true;
-    this.message = null;
+    // this.message = null;
 
     const onSuccess = () => {
-      this.message = this.formData.messages['success'];
+      this.message = this.messages.success;
       this.showInput = false;
       this.form.resetForm();
     }
@@ -74,13 +81,12 @@ export class SendVerifyEmailComponent {
         },
         err => {
           if (err.name === 'UserNotFound') {
-            this.message = this.formData.errors['userNotFound'];
+            this.message = this.messages.invalidUsername;
             this.showInput = true;
-          } else if (err.name === 'SendResetPasswordMail') {
+          } else if (err.name === 'SendVerifyMail') {
             onSuccess();
-            this.showInput = false;
           } else {
-            this.message = err.message;
+            this.message = Util.createErrorMessage(err.name, err.message);
           }
           this.processing = false;
         }

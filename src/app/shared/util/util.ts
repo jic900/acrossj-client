@@ -1,3 +1,4 @@
+import { IMessageElement } from 'app/config/interfaces/message-element';
 /**
  * Created by qiz264 on 2017-04-20.
  */
@@ -41,5 +42,15 @@ export class Util {
   public static sortByProperty(prop: string) {
     return (a, b) =>
       a[prop].toLowerCase() !== b[prop].toLowerCase() ? a[prop].toLowerCase() < b[prop].toLowerCase() ? -1 : 1 : 0;
+  }
+
+  public static createErrorMessage(name: string, error: string): IMessageElement {
+    return {
+      name: name,
+      message: {
+        display: error,
+        iconClass: ''
+      }
+    }
   }
 }

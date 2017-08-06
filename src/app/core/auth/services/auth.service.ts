@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { tokenNotExpired } from 'angular2-jwt';
+import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
 import { HttpService } from 'app/shared/services/http/http.service';
 import { EndPoint } from 'app/config/endpoint.config';
 
@@ -32,8 +32,10 @@ export class AuthService {
     return this.httpService.post(EndPoint.auth.signin, signinData)
       .map(response => {
         const body = response.json();
-        localStorage.setItem('user', body.username);
+        const decodedToken = new JwtHelper().decodeToken(body.token);
         localStorage.setItem('token', body.token);
+        localStorage.setItem('username', decodedToken.username);
+        localStorage.setItem('role', decodedToken.role);
         this.setAuthenticated(true);
         return body;
       });
@@ -41,7 +43,8 @@ export class AuthService {
 
   signout(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem('username');
+    localStorage.removeItem('role');
     this.setAuthenticated(false);
   }
 
