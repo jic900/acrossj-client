@@ -2,7 +2,8 @@
  * Created by LAE84266 on 05/07/2017.
  */
 
-export const EndPointBase = 'http://127.0.0.1:10007/api/';
+// export const EndPointBase = 'http://127.0.0.1:10007/api/';
+export const EndPointBase = 'http://68.149.121.215:10007/api/';
 
 export const EndPoint = {
   auth: {
