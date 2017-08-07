@@ -47,8 +47,7 @@ export class AuthComponent implements AfterViewInit, OnDestroy {
 
   constructor(private authService: AuthService,
               private route: ActivatedRoute,
-              private router: Router,
-              private cdRef: ChangeDetectorRef) {
+              private router: Router) {
     this.authData = _.mapKeys(new AuthConfig().elements, 'name');
     this.selectedIndex = 1;
   }
@@ -60,13 +59,11 @@ export class AuthComponent implements AfterViewInit, OnDestroy {
         case 'signin': {
           this.selectedIndex = 0;
           this.signInComponent.reset();
-          this.cdRef.detectChanges();
           break;
         }
         case 'signup': {
           this.selectedIndex = 1;
           this.signUpComponent.reset();
-          this.cdRef.detectChanges();
           break;
         }
         case 'signout': {

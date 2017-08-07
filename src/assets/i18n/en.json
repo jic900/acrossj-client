@@ -80,7 +80,7 @@
       "CONFIRM_PASSWORD": "Confirm New Password",
       "SHOW_PASSWORD": "Show Password",
       "BTN_LABEL": "Sign Up",
-      "SEND_EMAIL": "Resend Verification Email"
+      "SEND_EMAIL": "Send Verification Email"
     },
     "VERIFY_EMAIL": {
       "LABEL": "Email Verification Status",
