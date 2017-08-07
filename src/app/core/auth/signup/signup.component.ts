@@ -6,7 +6,6 @@ import { SignUpConfig } from 'app/config/auth.config';
 import { IForm } from 'app/config/interfaces/form.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
-import { ILinkElement } from 'app/config/interfaces/link-element.interface';
 import { IMessageElement } from 'app/config/interfaces/message-element';
 import { Util } from 'app/shared/util/util';
 

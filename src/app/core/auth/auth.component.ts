@@ -72,7 +72,12 @@ export class AuthComponent implements AfterViewInit, OnDestroy {
         }
         case 'verifyemail': {
           this.router.navigateByUrl(this.route.snapshot.url.join('/'));
-          this.verifyEmailComponent.verifyEmail(this.route.snapshot.queryParams['token']);
+          const token = this.route.snapshot.queryParams['token'];
+          if (!token) {
+            this.router.navigateByUrl('/');
+          } else {
+            this.verifyEmailComponent.verifyEmail(this.route.snapshot.queryParams['token']);
+          }
           break;
         }
         case 'sendverifyemail': {
@@ -85,16 +90,20 @@ export class AuthComponent implements AfterViewInit, OnDestroy {
         }
         case 'resetpassword': {
           if (this.authService.authenticated) {
-            this.router.navigateByUrl('/profile/changepassword');
-            // this.resetPasswordComponent.notAllowedWhenSignedIn();
+            this.router.navigateByUrl('/');
+            // this.router.navigateByUrl('/profile/changepassword');
           } else {
             const token = this.route.snapshot.queryParams['token'];
-            this.router.navigateByUrl(this.route.snapshot.url.join('/'));
-            setTimeout(()=>{
-              if (token) {
-                this.resetPasswordComponent.setToken(token);
-              }
-            }, 500);
+            if (!token) {
+              this.router.navigateByUrl('/');
+            } else {
+              this.router.navigateByUrl(this.route.snapshot.url.join('/'));
+              setTimeout(()=>{
+                if (token) {
+                  this.resetPasswordComponent.setToken(token);
+                }
+              }, 500);
+            }
           }
           break;
         }
