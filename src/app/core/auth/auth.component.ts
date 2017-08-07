@@ -2,7 +2,8 @@ import {
   Component,
   AfterViewInit,
   OnDestroy,
-  ViewChild, ChangeDetectorRef
+  ViewChild,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
