@@ -5,6 +5,11 @@ import { CoreModule } from '../core/core.module';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileMenuComponent } from './profile/profilemenu/profilemenu.component';
+import { PersonalInfoComponent } from './profile/personalinfo/personalinfo.component';
+
+
 
 @NgModule({
   imports: [
@@ -14,7 +19,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   declarations: [
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProfileComponent,
+    ProfileMenuComponent,
+    PersonalInfoComponent
   ],
   exports: [
     HomeComponent
