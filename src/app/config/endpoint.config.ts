@@ -12,6 +12,10 @@ export const EndPoint = {
     forgotPassword: 'auth/forgotpassword',
     resetPassword: 'auth/resetpassword',
     sendVerifyEmail: 'auth/sendverifyemail',
-    verifyEmail: 'auth/verifyemail'
+    verifyEmail: 'auth/verifyemail',
+    refreshToken: 'auth/refreshtoken'
+  },
+  profile: {
+    changePassword: 'profile/changepassword'
   }
 }

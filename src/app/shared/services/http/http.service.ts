@@ -3,12 +3,14 @@ import { AuthConfig, AuthHttp } from 'angular2-jwt';
 import { Http, RequestOptions, RequestOptionsArgs, Response } from '@angular/http';
 import { Observable, TimeoutError } from 'rxjs';
 import { LoaderService } from 'app/shared/components/loader/loader.service';
+import { AuthService } from 'app/core/auth/services/auth.service';
 import { AppConfig } from 'app/config/app.config';
 import { EndPointBase } from 'app/config/endpoint.config';
 
 const ERR_CONNECTION_REFUSED = 0;
 const ERR_SYSTEM_UNAVAILABLE = 503;
 const ERR_GATEWAY_TIMEOUT = 504;
+const ERR_UNAUTHORIZED = 401;
 
 @Injectable()
 export class HttpService extends AuthHttp {
@@ -17,8 +19,9 @@ export class HttpService extends AuthHttp {
     options: AuthConfig,
     http: Http,
     defaultOptions: RequestOptions,
-    private loaderService: LoaderService
-  ) {
+    private loaderService: LoaderService,
+    private authService: AuthService) {
+
     super(options, http, defaultOptions);
   }
 
@@ -91,6 +94,8 @@ export class HttpService extends AuthHttp {
         status: ERR_GATEWAY_TIMEOUT,
         message: AppConfig.ERROR.GATEWAY_TIMEOUT
       }
+    // } else if (error.status === ERR_UNAUTHORIZED && (error.name === 'TokenExpired' || error.name === 'InvalidToken')) {
+    //   this.authService.refreshToken();
     } else {
       error = error.json();
       if (!error.name) {

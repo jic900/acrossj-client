@@ -154,8 +154,7 @@
       },
       "RESET_PASSWORD": {
         "SUCCESS": "New password has been successfully reset. Please sign in.",
-        "INVALID_TOKEN": "Reset password failed due to invalid or expired email link. Please resend reset password email.",
-        "INVALID_USERNAME": "The username does not exist."
+        "INVALID_TOKEN": "Reset password failed due to invalid or expired email link. Please resend reset password email."
       }
     },
     "PROFILE": {

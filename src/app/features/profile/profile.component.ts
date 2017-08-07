@@ -2,7 +2,13 @@
  * Created by LAE86643 on 8/6/2017.
  */
 
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  OnDestroy
+} from '@angular/core';
+
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'aj-profile',
@@ -10,12 +16,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements AfterViewInit, OnDestroy {
 
-  constructor() { }
+  subscription: any;
+  profileState: string;
 
-  ngOnInit() {
+  constructor(private route: ActivatedRoute) { }
+
+  ngAfterViewInit(): void {
+    this.subscription = this.route.params.subscribe(params => {
+      this.profileState = params['id'];
+      switch (this.profileState) {
+        case 'changepassword': {
+          break;
+        }
+      }
+    });
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
 

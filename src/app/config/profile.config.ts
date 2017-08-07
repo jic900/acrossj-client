@@ -8,7 +8,7 @@ import { IInputElement } from './interfaces/input-element.interface';
 import { IValidator } from './interfaces/validator.interface';
 import { IMessageElement } from './interfaces/message-element';
 
-export class ResetPasswordConfig implements IForm {
+export class ChangePasswordConfig implements IForm {
   elements: [IInputElement, IInputElement, IInputElement, IElement, IElement] = [
     {
       name: 'oldPassword',
@@ -56,19 +56,15 @@ export class ResetPasswordConfig implements IForm {
   messages: IMessageElement[] = [
     {
       name: 'success',
-      message: {display: 'MESSAGES.PROFILE.CHANGE_PASSWORD.SUCCESS', iconClass: ''}
-    },
-    {
-      name: 'invalidUsername',
-      message: {display: 'MESSAGES.PROFILE.PERSONAL_INFO.CHANGE_PASSWORD.INVALID_USERNAME', iconClass: ''}
+      message: {display: 'MESSAGES.PROFILE.CHANGE_PASSWORD.SUCCESS', type: 'success', iconClass: 'fa-check-circle'}
     },
     {
       name: 'invalidPassword',
-      message: {display: 'MESSAGES.PROFILE.PERSONAL_INFO.CHANGE_PASSWORD.INVALID_PASSWORD', iconClass: ''}
+      message: {display: 'MESSAGES.PROFILE.PERSONAL_INFO.CHANGE_PASSWORD.INVALID_PASSWORD', type: 'error', iconClass: 'fa-times-circle'}
     },
     {
       name: 'samePassword',
-      message: {display: 'MESSAGES.PROFILE.PERSONAL_INFO.CHANGE_PASSWORD.SAME_PASSWORD', iconClass: ''}
+      message: {display: 'MESSAGES.PROFILE.PERSONAL_INFO.CHANGE_PASSWORD.SAME_PASSWORD', type: 'error', iconClass: 'fa-times-circle'}
     }
   ];
 };

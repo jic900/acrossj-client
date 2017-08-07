@@ -23,6 +23,10 @@ export class AuthService {
     this.authenticated$.next(isAuthenticated);
   }
 
+  refreshToken(): void {
+
+  }
+
   signup(signupData: {}): Observable<{}> {
     return this.httpService.post(EndPoint.auth.signup, signupData)
       .map(response => response.json());

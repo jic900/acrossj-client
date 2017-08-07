@@ -1,50 +1,48 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { JwtHelper } from 'angular2-jwt';
 import * as _ from 'lodash';
-import { AuthService } from '../services/auth.service';
-import { ResetPasswordConfig } from 'app/config/auth.config';
+import { ProfileService } from '../services/profile.service';
+import { ChangePasswordConfig } from 'app/config/profile.config';
 import { IForm } from 'app/config/interfaces/form.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
 import { IMessageElement } from 'app/config/interfaces/message-element';
 import { Util } from 'app/shared/util/util';
 
-interface IResetPassword {
-  username: IInputElement;
+interface IChangePassword {
+  oldPassword: IInputElement;
   password: IInputElement;
   confirmPassword: IInputElement;
   showPassword: IElement;
   submitButton: IElement;
 }
 
-interface IResetPasswordMessage {
+interface IChangePasswordMessage {
   success: IMessageElement;
-  invalidToken: IMessageElement;
+  invalidPassword: IMessageElement;
+  samePassword: IMessageElement;
 }
 
 @Component({
-  selector: 'aj-resetpassword',
-  templateUrl: './resetpassword.component.html',
-  styleUrls: ['../auth.component.css']
+  selector: 'aj-changepassword',
+  templateUrl: './changepassword.component.html',
+  styleUrls: ['../profile.component.css']
 })
 
-export class ResetPasswordComponent {
+export class ChangePasswordComponent {
 
   formData: IForm;
-  formElements: IResetPassword;
+  formElements: IChangePassword;
   inputElements: IInputElement[];
-  messages: IResetPasswordMessage;
+  messages: IChangePasswordMessage;
+  @ViewChild('form') form;
   formGroup: FormGroup;
   passwordType: string;
   processing: boolean;
   message: IMessageElement;
-  jwtHelper: JwtHelper;
-  token: string;
-  showInput: boolean;
 
-  constructor(private authService: AuthService) {
-    this.formData = new ResetPasswordConfig();
+  constructor(private profileService: ProfileService) {
+    this.formData = new ChangePasswordConfig();
     this.formElements = _.mapKeys(this.formData.elements, 'name');
     this.inputElements = this.formData.elements.filter(element => {
       return element.type === 'input';
@@ -53,27 +51,11 @@ export class ResetPasswordComponent {
     this.passwordType = 'password';
     this.message = null;
     this.processing = false;
-    this.showInput = true;
     this.formGroup = new FormGroup({}, this.passwordMatch);
-    this.jwtHelper = new JwtHelper();
   }
 
   isValid(): boolean {
     return this.formGroup.valid && !this.processing;
-  }
-
-  setToken(token: string): void {
-    this.token = token;
-    let decodedToken;
-    try {
-      decodedToken = this.jwtHelper.decodeToken(token);
-    } catch (e) {}
-    if (!decodedToken) {
-      this.message = this.messages.invalidToken;
-      this.showInput = false;
-    } else {
-      this.formGroup.get('username').setValue(decodedToken.username);
-    }
   }
 
   onClicked(event): void {
@@ -111,30 +93,29 @@ export class ResetPasswordComponent {
     this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
   }
 
-  onResetPassword(event): void {
+  onChangePassword(event): void {
     event.preventDefault();
     this.processing = true;
     this.message = null;
     const requestData = {
-      token: this.token,
+      currentPassword: this.formGroup.value.oldPassword,
       newPassword: this.formGroup.value.password
     };
 
-    this.authService.resetPassword(requestData)
+    this.profileService.changePassword(requestData)
       .subscribe(
         data => {
           this.message = this.messages.success;
-          this.showInput = false;
+          this.form.resetForm();
         },
         err => {
-          if (err.name === 'EmailLinkExpired' || err.name === 'InvalidEmailLink' || err.name === 'VerifyToken' || err.name === 'UserNotFound') {
-            this.message = this.messages.invalidToken;
-            this.showInput = false;
+          if (err.name === 'InvalidPassword') {
+            this.message = this.messages.invalidPassword;
+          } else if (err.name === 'SamePassword') {
+            this.message = this.messages.samePassword;
           } else {
             this.message = Util.createErrorMessage(err.name, err.message);
-            // this.form.resetForm();
-            // const decodedToken = this.jwtHelper.decodeToken(this.token);
-            // this.formGroup.get('username').setValue(decodedToken.username);
+            this.form.resetForm();
           }
           this.processing = false;
         }

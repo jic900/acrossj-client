@@ -318,11 +318,6 @@ export class ResetPasswordConfig implements IForm {
       name: 'invalidToken',
       message: {display: 'MESSAGES.AUTH.RESET_PASSWORD.INVALID_TOKEN', type: 'error', iconClass: 'fa-times-circle'},
       link: {name: 'sendEmail', display: 'AUTH.RESET_PASSWORD.SEND_EMAIL', link: {path: '/auth', param: 'forgotpassword'}}
-    },
-    {
-      name: 'invalidUsername',
-      message: {display: 'MESSAGES.AUTH.RESET_PASSWORD.INVALID_USERNAME', type: 'error', iconClass: 'fa-times-circle'},
-      link: {name: 'sendEmail', display: 'AUTH.RESET_PASSWORD.SEND_EMAIL', link: {path: '/auth', param: 'forgotpassword'}}
     }
   ];
 };
