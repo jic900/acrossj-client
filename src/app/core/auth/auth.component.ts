@@ -2,7 +2,7 @@ import {
   Component,
   AfterViewInit,
   OnDestroy,
-  ViewChild
+  ViewChild, ChangeDetectorRef
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
@@ -46,7 +46,8 @@ export class AuthComponent implements AfterViewInit, OnDestroy {
 
   constructor(private authService: AuthService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private cdRef: ChangeDetectorRef) {
     this.authData = _.mapKeys(new AuthConfig().elements, 'name');
     this.selectedIndex = 1;
   }
@@ -58,11 +59,13 @@ export class AuthComponent implements AfterViewInit, OnDestroy {
         case 'signin': {
           this.selectedIndex = 0;
           this.signInComponent.reset();
+          this.cdRef.detectChanges();
           break;
         }
         case 'signup': {
           this.selectedIndex = 1;
           this.signUpComponent.reset();
+          this.cdRef.detectChanges();
           break;
         }
         case 'signout': {
@@ -98,7 +101,7 @@ export class AuthComponent implements AfterViewInit, OnDestroy {
               this.router.navigateByUrl('/');
             } else {
               this.router.navigateByUrl(this.route.snapshot.url.join('/'));
-              setTimeout(()=>{
+              setTimeout(() => {
                 if (token) {
                   this.resetPasswordComponent.setToken(token);
                 }
