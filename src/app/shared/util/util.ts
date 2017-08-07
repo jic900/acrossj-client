@@ -49,7 +49,8 @@ export class Util {
       name: name,
       message: {
         display: error,
-        iconClass: ''
+        type: 'error',
+        iconClass: 'fa-times-circle'
       }
     }
   }
