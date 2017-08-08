@@ -137,10 +137,10 @@
         "SUCCESS": "Your account is successfully created and a verification email has been sent."
       },
       "VERIFY_EMAIL": {
-        "INPROGRESS": "Verifying email ...",
-        "SUCCESS": "Your email has been successfully verified. Please sign in.",
-        "ALREADY_VERIFIED": "Your email has been previously verified. Please sign in.",
-        "INVALID_TOKEN": "Email verification failed due to invalid or expired email link. Please resend verification email."
+        "INPROGRESS": "Verifying account ...",
+        "SUCCESS": "Your account has been successfully verified. Please sign in.",
+        "ALREADY_VERIFIED": "Your account has been previously verified. Please sign in.",
+        "INVALID_TOKEN": "Account verification failed due to invalid or expired email link. Please resend verification email."
       },
       "SEND_VERIFY_EMAIL": {
         "HINT": "Please enter your username or email below. An email will be sent to verify your account.",

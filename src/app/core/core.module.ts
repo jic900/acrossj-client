@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MdTabsModule, MdCardModule, MdInputModule, MdCheckboxModule } from '@angular/material';
+import { MdTabsModule, MdCardModule, MdCheckboxModule } from '@angular/material';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SubMenuComponent } from './navbar/sidemenu/submenu/submenu.component';
 import { SearchMenuComponent } from './navbar/search/searchmenu/searchmenu.component';
@@ -21,13 +21,11 @@ import { SendVerifyEmailComponent } from './auth/sendverifyemail/sendverifyemail
 @NgModule({
   imports: [
     CommonModule,
-    // FormsModule,
     ReactiveFormsModule,
     SharedModule,
     RouterModule,
     MdTabsModule,
     MdCardModule,
-    MdInputModule,
     MdCheckboxModule
   ],
   declarations: [

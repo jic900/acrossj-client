@@ -43,7 +43,6 @@
 }
 :host >>> .mat-ink-bar {
   height: 3px;
-  /*background-color: grey;*/
 }
 
 :host >>> .mat-tab-header-pagination {
@@ -82,27 +81,16 @@
 :host >>> .mat-checkbox-label {
   font-size: 13px !important;
   font-weight: normal;
-  /*line-height: 14px;*/
 }
-/*.sigin-showpassword {*/
-  /*font-size: 12px;*/
-/*}*/
 
-/*.auth-forgotpassword-container {*/
-  /*width: 100%;*/
-  /*!*padding: 20px 0 20px;*!*/
-/*}*/
 .auth-forgotpassword {
   display: block;
-  margin-top: 20px;
+  width: fit-content;
+  margin: 20px auto 0;
   color: black;
   text-align: center;
   text-decoration: underline;
   font-size: 14px;
-  /*clear: both;*/
-  /*margin: 0 auto;*/
-  /*background-color: inherit;*/
-  /*border: none;*/
 }
 
 .auth-btn-container {

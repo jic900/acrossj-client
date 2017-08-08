@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { MdInputModule, MdProgressBarModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { Http, RequestOptions } from '@angular/http';
+import { AuthService } from 'app/core/auth/services/auth.service';
 import { LoaderService } from './components/loader/loader.service';
 import { LoaderComponent } from './components/loader/loader.component';
 import { HttpService } from './services/http/http.service';
@@ -17,13 +18,13 @@ import { InputComponent } from './components/input/input.component';
 import { MessageComponent } from './components/message/message.component';
 
 
-export function httpServiceFactory(http: Http, options: RequestOptions, loaderService: LoaderService) {
+export function httpServiceFactory(http: Http, options: RequestOptions, loaderService: LoaderService, authService: AuthService) {
   return new HttpService(new AuthConfig({
     tokenName: 'token',
     tokenGetter: (() => localStorage.getItem('token')),
     globalHeaders: [{'Content-Type':'application/json'}],
     noJwtError: true
-  }), http, options, loaderService);
+  }), http, options, loaderService, authService);
 }
 
 @NgModule({

@@ -28,6 +28,7 @@ export class InputComponent implements OnInit {
   formControl: FormControl;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    this.type = 'text';
     this.bindControl = new EventEmitter<{}>();
     this.clicked = new EventEmitter<void>();
   }

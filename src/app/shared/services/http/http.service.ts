@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthConfig, AuthHttp } from 'angular2-jwt';
-import { Http, RequestOptions, RequestOptionsArgs, Response } from '@angular/http';
+import { Http, RequestOptions, RequestOptionsArgs, Request, Response } from '@angular/http';
 import { Observable, TimeoutError } from 'rxjs';
 import { LoaderService } from 'app/shared/components/loader/loader.service';
 import { AuthService } from 'app/core/auth/services/auth.service';
@@ -26,31 +26,35 @@ export class HttpService extends AuthHttp {
   }
 
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.get(this.getFullUrl(url), options));
+    return super.get(this.getFullUrl(url), options);
   }
 
   post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.post(this.getFullUrl(url), body, options));
+    return super.post(this.getFullUrl(url), body, options);
   }
 
   put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.put(this.getFullUrl(url), body, options));
+    return super.put(this.getFullUrl(url), body, options);
   }
 
   delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.delete(this.getFullUrl(url), options));
+    return super.delete(this.getFullUrl(url), options);
   }
 
   patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.patch(this.getFullUrl(url), body, options));
+    return super.patch(this.getFullUrl(url), body, options);
   }
 
   head(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.head(this.getFullUrl(url), options));
+    return super.head(this.getFullUrl(url), options);
   }
 
   options(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.options(this.getFullUrl(url), options));
+    return super.options(this.getFullUrl(url), options);
+  }
+
+  request(request: string|Request, options?: RequestOptionsArgs): Observable<Response> {
+    return this.intercept(super.request(request, options));
   }
 
   private intercept(observable: Observable<Response>): Observable<Response> {
