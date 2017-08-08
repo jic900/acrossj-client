@@ -12,8 +12,8 @@ export class ProfileService {
 
   constructor(private httpService: HttpService) {}
 
-  changePassword(resetPasswordData: {}): Observable<{}> {
-    return this.httpService.post(EndPoint.auth.resetPassword, resetPasswordData)
+  changePassword(changePasswordData: {}): Observable<{}> {
+    return this.httpService.post(EndPoint.profile.changePassword, changePasswordData)
       .map(response => response.json());
   }
 
