@@ -1,11 +1,14 @@
 import {
   Component,
+  OnInit,
+  OnDestroy,
   ViewChildren,
-  QueryList,
-  ViewChild, Input, OnInit
+  ViewChild,
+  QueryList
 } from '@angular/core';
-
+import { Subscription } from 'rxjs/Subscription';
 import * as _ from 'lodash';
+
 import { SideMenuConfig } from 'app/config/navbar.config';
 import { IListElement } from 'app/config/interfaces/list-element.interface';
 import { IMenuElement } from 'app/config/interfaces/menu-element.interface';
@@ -37,7 +40,7 @@ interface IBottomMenuSubmenus {
   styleUrls: ['./sidemenu.component.css']
 })
 
-export class SideMenuComponent implements OnInit {
+export class SideMenuComponent implements OnInit, OnDestroy {
 
   @ViewChildren(SubMenuComponent) submenus: QueryList<SubMenuComponent>;
   @ViewChild(SearchfieldComponent) searchfield: SearchfieldComponent;
@@ -46,6 +49,7 @@ export class SideMenuComponent implements OnInit {
   bottomMenuSubmenus: IBottomMenuSubmenus;
   sideMenuState: number;
   authenticated: boolean;
+  subscription: Subscription;
 
   constructor(private authService: AuthService) {
     this.sideMenuData = _.mapKeys(new SideMenuConfig().elements, 'name');
@@ -56,8 +60,12 @@ export class SideMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.authenticated$.subscribe(
+    this.subscription = this.authService.authenticated$.subscribe(
       isAuthenticated => this.authenticated = isAuthenticated);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   onSearchClicked(event): void {

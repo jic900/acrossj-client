@@ -5,7 +5,9 @@ import {
   ViewChild
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 import * as _ from 'lodash';
+
 import { AuthConfig } from 'app/config/auth.config';
 import { AuthService } from './services/auth.service';
 import { IElement } from 'app/config/interfaces/element.interface';
@@ -41,7 +43,7 @@ export class AuthComponent implements AfterViewInit, OnDestroy {
   @ViewChild(ForgotPasswordComponent) forgotPasswordComponent: ForgotPasswordComponent;
   @ViewChild(ResetPasswordComponent) resetPasswordComponent: ResetPasswordComponent;
   selectedIndex: number;
-  subscription: any;
+  subscription: Subscription;
   authState: string;
 
   constructor(private authService: AuthService,

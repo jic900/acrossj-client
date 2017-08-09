@@ -41,37 +41,24 @@ export class HttpService extends AuthHttp {
     return this.post(EndPoint.getUrl('auth.refreshToken'), reqBody)
       .map(response => response.json())
       .map(data => {
-        console.log(data);
         this.localStorageService.saveToken(data.token);
         this.refreshingToken = false;
         return data;
+      })
+      .catch(err => {
+        this.localStorageService.deleteToken();
+        this.refreshingToken = false;
+        return Observable.throw(err);
       });
   }
 
   request(request: string|Request, options?: RequestOptionsArgs): Observable<Response> {
     if (this.localStorageService.tokenExistsAndExpired() && !this.refreshingToken) {
-      return this.intercept(this.refreshToken().flatMap(data => super.request(request, options)));
+      return this.refreshToken().flatMap(data => this.intercept(super.request(request, options)));
     } else {
       return this.intercept(super.request(request, options));
     }
   }
-
-  // request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
-  //   if (this.securityService.hasTokenExpired()) {
-  //     return this.securityService
-  //       .refreshAuthenticationObservable()
-  //       .flatMap((authenticationResult:AuthenticationResult) => {
-  //         if (authenticationResult.authenticated) {
-  //           this.securityService.setAuthorizationHeader(request.headers);
-  //           return super.request(url, request);
-  //         } else {
-  //           return Observable.throw(new Error('Can't refresh the token'));
-  //         }
-  //       });
-  //   } else {
-  //     return super.request(url, options);
-  //   }
-  // }
 
   private intercept(observable: Observable<Response>): Observable<Response> {
     this.loaderService.show();
@@ -110,8 +97,9 @@ export class HttpService extends AuthHttp {
         status: ERR_GATEWAY_TIMEOUT,
         message: AppConfig.ERROR.GATEWAY_TIMEOUT
       }
-    // } else if (error.status === ERR_UNAUTHORIZED && (error.name === 'TokenExpired' || error.name === 'InvalidToken')) {
-    //   this.authService.refreshToken();
+    } else if (error.status === ERR_UNAUTHORIZED && (error.name === 'TokenExpired' || error.name === 'InvalidToken')) {
+      this.localStorageService.deleteToken();
+      // this.authService.refreshToken();
     } else {
       error = error.json();
       if (!error.name) {
@@ -121,7 +109,7 @@ export class HttpService extends AuthHttp {
         error.message = AppConfig.ERROR.GENERIC;
       }
     }
-    console.log(error);
+    // console.log(error);
     return Observable.throw(error);
   }
 

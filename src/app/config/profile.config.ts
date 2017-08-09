@@ -13,7 +13,7 @@ export class ChangePasswordConfig implements IForm {
     {
       name: 'oldPassword',
       type: 'input',
-      placeHolder: 'AUTH.RESET_PASSWORD.OLD_PASSWORD',
+      placeHolder: 'PROFILE.CHANGE_PASSWORD.OLD_PASSWORD',
       validators: [
         {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.OLD_PASSWORD.REQUIRED'},
         {name: 'minlength', type: 'builtin', value: 4, error: 'ERRORS.VALIDATION.USER.OLD_PASSWORD.MINLENGTH'}
@@ -22,7 +22,7 @@ export class ChangePasswordConfig implements IForm {
     {
       name: 'password',
       type: 'input',
-      placeHolder: 'AUTH.RESET_PASSWORD.PASSWORD',
+      placeHolder: 'PROFILE.CHANGE_PASSWORD.PASSWORD',
       validators: [
         {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.PASSWORD.REQUIRED'},
         {name: 'minlength', type: 'builtin', value: 4, error: 'ERRORS.VALIDATION.USER.PASSWORD.MINLENGTH'}
@@ -31,7 +31,7 @@ export class ChangePasswordConfig implements IForm {
     {
       name: 'confirmPassword',
       type: 'input',
-      placeHolder: 'AUTH.RESET_PASSWORD.CONFIRM_PASSWORD',
+      placeHolder: 'PROFILE.CHANGE_PASSWORD.CONFIRM_PASSWORD',
       validators: [
         {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.CONFIRM_PASSWORD.REQUIRED'},
         {name: 'minlength', type: 'builtin', value: 4, error: 'ERRORS.VALIDATION.USER.CONFIRM_PASSWORD.MINLENGTH'}
@@ -40,12 +40,12 @@ export class ChangePasswordConfig implements IForm {
     {
       name: 'showPassword',
       type: 'checkbox',
-      display: 'AUTH.RESET_PASSWORD.SHOW_PASSWORD'
+      display: 'PROFILE.CHANGE_PASSWORD.SHOW_PASSWORD'
     },
     {
       name: 'submitButton',
       type: 'button',
-      display: 'AUTH.RESET_PASSWORD.BTN_LABEL'
+      display: 'PROFILE.CHANGE_PASSWORD.BTN_LABEL'
     }
   ];
   validator: IValidator = {

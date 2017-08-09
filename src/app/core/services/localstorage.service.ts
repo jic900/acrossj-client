@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
 
 @Injectable()
 export class LocalStorageService {
 
   jwtHelper: JwtHelper;
+  tokenDeleted$: Subject<void>;
 
   constructor() {
     this.jwtHelper = new JwtHelper();
+    this.tokenDeleted$ = new Subject<void>();
   }
 
   tokenNotExpired(): boolean {
@@ -33,5 +36,6 @@ export class LocalStorageService {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('role');
+    this.tokenDeleted$.next();
   }
 }

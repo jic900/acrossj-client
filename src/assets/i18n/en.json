@@ -159,12 +159,12 @@
     },
     "PROFILE": {
       "PERSONAL_INFO": {
-        "CHANGE_PASSWORD": {
-          "SUCCESS": "Your password has been successfully changed.",
-          "INVALID_USERNAME": "The username does not exist.",
-          "INVALID_PASSWORD": "The current password entered is incorrect.",
-          "SAME_PASSWORD": "Your new password cannot be the same as the current password."
-        }
+      },
+      "CHANGE_PASSWORD": {
+        "SUCCESS": "Your password has been successfully changed.",
+        "INVALID_USERNAME": "The username does not exist.",
+        "INVALID_PASSWORD": "The current password entered is incorrect.",
+        "SAME_PASSWORD": "Your new password cannot be the same as the current password."
       }
     }
   },

@@ -1,22 +1,35 @@
-import { Injectable } from '@angular/core';
+import {
+  OnDestroy,
+  Injectable
+} from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 
 import { HttpService } from 'app/core/services/http.service';
 import { LocalStorageService } from 'app/core/services/localstorage.service';
 import { EndPoint } from 'app/config/endpoint.config';
 
 @Injectable()
-export class AuthService {
+export class AuthService implements OnDestroy {
 
   authenticated: boolean;
   authenticated$: BehaviorSubject<boolean>;
+  subscription: Subscription;
 
   constructor(private httpService: HttpService, private localStorageService: LocalStorageService) {
     this.authenticated = false;
     this.authenticated$ = new BehaviorSubject<boolean>(this.authenticated);
     if (localStorageService.tokenNotExpired()) {
       this.setAuthenticated(true);
+    } else {
+      this.localStorageService.deleteToken();
     }
+    this.subscription = this.localStorageService.tokenDeleted$
+      .subscribe(() => this.setAuthenticated(false));
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   setAuthenticated(isAuthenticated: boolean): void {
@@ -52,7 +65,6 @@ export class AuthService {
 
   signout(): void {
     this.localStorageService.deleteToken();
-    this.setAuthenticated(false);
   }
 
   verifyEmail(verifyEmailData: {}): Observable<{}> {
