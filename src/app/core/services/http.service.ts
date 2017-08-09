@@ -1,11 +1,18 @@
 import { Injectable } from '@angular/core';
-import { AuthConfig, AuthHttp } from 'angular2-jwt';
-import { Http, RequestOptions, RequestOptionsArgs, Request, Response } from '@angular/http';
+import {
+  Http,
+  RequestOptions,
+  RequestOptionsArgs,
+  Request,
+  Response
+} from '@angular/http';
 import { Observable, TimeoutError } from 'rxjs';
-import { LoaderService } from 'app/shared/components/loader/loader.service';
-import { AuthService } from 'app/core/auth/services/auth.service';
+import { AuthConfig, AuthHttp } from 'angular2-jwt';
+
 import { AppConfig } from 'app/config/app.config';
-import { EndPointBase } from 'app/config/endpoint.config';
+import { EndPoint } from 'app/config/endpoint.config';
+import { LoaderService } from '../loader/loader.service';
+import { LocalStorageService } from './localstorage.service';
 
 const ERR_CONNECTION_REFUSED = 0;
 const ERR_SYSTEM_UNAVAILABLE = 503;
@@ -15,47 +22,56 @@ const ERR_UNAUTHORIZED = 401;
 @Injectable()
 export class HttpService extends AuthHttp {
 
+  refreshingToken: boolean;
+
   constructor(
     options: AuthConfig,
     http: Http,
     defaultOptions: RequestOptions,
     private loaderService: LoaderService,
-    private authService: AuthService) {
-
+    private localStorageService: LocalStorageService
+  ) {
     super(options, http, defaultOptions);
+    this.refreshingToken = false;
   }
 
-  get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return super.get(this.getFullUrl(url), options);
-  }
-
-  post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return super.post(this.getFullUrl(url), body, options);
-  }
-
-  put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return super.put(this.getFullUrl(url), body, options);
-  }
-
-  delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return super.delete(this.getFullUrl(url), options);
-  }
-
-  patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return super.patch(this.getFullUrl(url), body, options);
-  }
-
-  head(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return super.head(this.getFullUrl(url), options);
-  }
-
-  options(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return super.options(this.getFullUrl(url), options);
+  refreshToken(): Observable<{}> {
+    const reqBody = {'username': this.localStorageService.get('username')};
+    this.refreshingToken = true;
+    return this.post(EndPoint.getUrl('auth.refreshToken'), reqBody)
+      .map(response => response.json())
+      .map(data => {
+        console.log(data);
+        this.localStorageService.saveToken(data.token);
+        this.refreshingToken = false;
+        return data;
+      });
   }
 
   request(request: string|Request, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.request(request, options));
+    if (this.localStorageService.tokenExistsAndExpired() && !this.refreshingToken) {
+      return this.intercept(this.refreshToken().flatMap(data => super.request(request, options)));
+    } else {
+      return this.intercept(super.request(request, options));
+    }
   }
+
+  // request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
+  //   if (this.securityService.hasTokenExpired()) {
+  //     return this.securityService
+  //       .refreshAuthenticationObservable()
+  //       .flatMap((authenticationResult:AuthenticationResult) => {
+  //         if (authenticationResult.authenticated) {
+  //           this.securityService.setAuthorizationHeader(request.headers);
+  //           return super.request(url, request);
+  //         } else {
+  //           return Observable.throw(new Error('Can't refresh the token'));
+  //         }
+  //       });
+  //   } else {
+  //     return super.request(url, options);
+  //   }
+  // }
 
   private intercept(observable: Observable<Response>): Observable<Response> {
     this.loaderService.show();
@@ -83,10 +99,6 @@ export class HttpService extends AuthHttp {
     // });
   }
 
-  private getFullUrl(url: string): string {
-    return EndPointBase + url;
-  }
-
   private onCatch(error: any, caught: Observable<any>): Observable<any> {
     if (error.status === ERR_CONNECTION_REFUSED) {
       error.name = 'SystemUnavailable';
@@ -109,7 +121,7 @@ export class HttpService extends AuthHttp {
         error.message = AppConfig.ERROR.GENERIC;
       }
     }
-    // console.log(error);
+    console.log(error);
     return Observable.throw(error);
   }
 
@@ -133,9 +145,4 @@ export class HttpService extends AuthHttp {
       return Observable.throw(error);
     });
   }
-
-  // private onRetry(error: any): Observable<any> {
-  //   console.log(error);
-  //   return error.delay(AppConfig.HTTP_RETRY_DELAY);
-  // }
 }

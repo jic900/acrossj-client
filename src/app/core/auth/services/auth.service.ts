@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
-import { HttpService } from 'app/shared/services/http/http.service';
+
+import { HttpService } from 'app/core/services/http.service';
+import { LocalStorageService } from 'app/core/services/localstorage.service';
 import { EndPoint } from 'app/config/endpoint.config';
 
 @Injectable()
@@ -10,10 +11,10 @@ export class AuthService {
   authenticated: boolean;
   authenticated$: BehaviorSubject<boolean>;
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private localStorageService: LocalStorageService) {
     this.authenticated = false;
     this.authenticated$ = new BehaviorSubject<boolean>(this.authenticated);
-    if (tokenNotExpired('token')) {
+    if (localStorageService.tokenNotExpired()) {
       this.setAuthenticated(true);
     }
   }
@@ -23,52 +24,54 @@ export class AuthService {
     this.authenticated$.next(isAuthenticated);
   }
 
-  refreshToken(): void {
-
-  }
+  // refreshToken(): Observable<{}> {
+  //   const reqBody = {'username': localStorage.getItem('username')};
+  //   return this.httpService.post(EndPoint.getUrl('auth.refreshToken'), reqBody)
+  //     .map(response => response.json())
+  //     .map(data => {
+  //       this.setToken(data.token);
+  //       return data;
+  //     })
+  //     .catch(err => Observable.throw(err));
+  // }
 
   signup(signupData: {}): Observable<{}> {
-    return this.httpService.post(EndPoint.auth.signup, signupData)
+    return this.httpService.post(EndPoint.getUrl('auth.signup'), signupData)
       .map(response => response.json());
   }
 
   signin(signinData: {}): Observable<{}> {
-    return this.httpService.post(EndPoint.auth.signin, signinData)
-      .map(response => {
-        const body = response.json();
-        const decodedToken = new JwtHelper().decodeToken(body.token);
-        localStorage.setItem('token', body.token);
-        localStorage.setItem('username', decodedToken.username);
-        localStorage.setItem('role', decodedToken.role);
+    return this.httpService.post(EndPoint.getUrl('auth.signin'), signinData)
+      .map(response => response.json())
+      .map(data => {
+        this.localStorageService.saveToken(data.token);
         this.setAuthenticated(true);
-        return body;
+        return data;
       });
   }
 
   signout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    localStorage.removeItem('role');
+    this.localStorageService.deleteToken();
     this.setAuthenticated(false);
   }
 
   verifyEmail(verifyEmailData: {}): Observable<{}> {
-    return this.httpService.post(EndPoint.auth.verifyEmail, verifyEmailData)
+    return this.httpService.post(EndPoint.getUrl('auth.verifyEmail'), verifyEmailData)
       .map(response => response.json());
   }
 
   forgotPassword(forgotPasswordData: {}): Observable<{}> {
-    return this.httpService.post(EndPoint.auth.forgotPassword, forgotPasswordData)
+    return this.httpService.post(EndPoint.getUrl('auth.forgotPassword'), forgotPasswordData)
       .map(response => response.json());
   }
 
   resetPassword(resetPasswordData: {}): Observable<{}> {
-    return this.httpService.post(EndPoint.auth.resetPassword, resetPasswordData)
+    return this.httpService.post(EndPoint.getUrl('auth.resetPassword'), resetPasswordData)
       .map(response => response.json());
   }
 
   sendVerifyEmail(sendVerifyEmailData: {}): Observable<{}> {
-    return this.httpService.post(EndPoint.auth.sendVerifyEmail, sendVerifyEmailData)
+    return this.httpService.post(EndPoint.getUrl('auth.sendVerifyEmail'), sendVerifyEmailData)
       .map(response => response.json());
   }
 }

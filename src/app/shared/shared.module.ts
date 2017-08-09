@@ -2,30 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MdInputModule, MdProgressBarModule } from '@angular/material';
+import { MdInputModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
-import { Http, RequestOptions } from '@angular/http';
-import { AuthService } from 'app/core/auth/services/auth.service';
-import { LoaderService } from './components/loader/loader.service';
-import { LoaderComponent } from './components/loader/loader.component';
-import { HttpService } from './services/http/http.service';
-import { AuthConfig } from 'angular2-jwt';
+
 import { DateRangePicker } from './components/daterangepicker/daterangepicker.component';
 import { DateRangePickerFocusDirective } from './components/daterangepicker/directives/daterangepicker.focus.directive';
 import { DropDownComponent } from './components/dropdown/dropdown.component';
 import { ValidateOnBlurDirective } from './directives/validate-onblur.directive';
 import { InputComponent } from './components/input/input.component';
 import { MessageComponent } from './components/message/message.component';
-
-
-export function httpServiceFactory(http: Http, options: RequestOptions, loaderService: LoaderService, authService: AuthService) {
-  return new HttpService(new AuthConfig({
-    tokenName: 'token',
-    tokenGetter: (() => localStorage.getItem('token')),
-    globalHeaders: [{'Content-Type':'application/json'}],
-    noJwtError: true
-  }), http, options, loaderService, authService);
-}
 
 @NgModule({
   imports: [
@@ -34,7 +19,6 @@ export function httpServiceFactory(http: Http, options: RequestOptions, loaderSe
     ReactiveFormsModule,
     RouterModule,
     MdInputModule,
-    MdProgressBarModule,
     TranslateModule.forChild({}),
   ],
   declarations: [
@@ -43,7 +27,6 @@ export function httpServiceFactory(http: Http, options: RequestOptions, loaderSe
     DropDownComponent,
     ValidateOnBlurDirective,
     InputComponent,
-    LoaderComponent,
     MessageComponent
   ],
   exports: [
@@ -52,17 +35,10 @@ export function httpServiceFactory(http: Http, options: RequestOptions, loaderSe
     DropDownComponent,
     ValidateOnBlurDirective,
     InputComponent,
-    LoaderComponent,
     MessageComponent
   ],
-  providers: [
-    LoaderService,
-    {
-      provide: HttpService,
-      useFactory: httpServiceFactory,
-      deps: [Http, RequestOptions, LoaderService]
-    }
-  ]
+  providers: []
 })
+
 export class SharedModule {
 }

@@ -4,7 +4,8 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpService } from 'app/shared/services/http/http.service';
+
+import { HttpService } from 'app/core/services/http.service';
 import { EndPoint } from 'app/config/endpoint.config';
 
 @Injectable()
@@ -13,7 +14,7 @@ export class ProfileService {
   constructor(private httpService: HttpService) {}
 
   changePassword(changePasswordData: {}): Observable<{}> {
-    return this.httpService.post(EndPoint.profile.changePassword, changePasswordData)
+    return this.httpService.post(EndPoint.getUrl('profile.changePassword'), changePasswordData)
       .map(response => response.json());
   }
 

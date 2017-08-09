@@ -9,13 +9,15 @@ import { LoaderState } from './loader';
     templateUrl: 'loader.component.html',
     styleUrls: ['loader.component.css']
 })
-export class LoaderComponent implements OnInit {
 
-    show = false;
+export class LoaderComponent implements OnInit, OnDestroy {
 
+    show: boolean;
     private subscription: Subscription;
 
-    constructor(private loaderService: LoaderService) { }
+    constructor(private loaderService: LoaderService) {
+      this.show = false;
+    }
 
     ngOnInit() {
         this.subscription = this.loaderService.loaderState
