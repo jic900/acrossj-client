@@ -110,14 +110,29 @@
       "BACK_SIGNIN": "Back to Sign In"
     }
   },
-  "PROFILE": {
-    "CHANGE_PASSWORD": {
-      "LABEL": "Change Password",
-      "OLD_PASSWORD": "Current Password",
-      "PASSWORD": "New Password",
-      "CONFIRM_PASSWORD": "Confirm New Password",
-      "SHOW_PASSWORD": "Show Password",
-      "BTN_LABEL": "Change Password"
+  "USER": {
+    "DASHBOARD": {
+      "LABEL": "Dashboard"
+    },
+    "PROFILE": {
+      "LABEL": "PROFILE",
+      "CHANGE_PASSWORD": {
+        "LABEL": "Change Password",
+        "OLD_PASSWORD": "Current Password",
+        "PASSWORD": "New Password",
+        "CONFIRM_PASSWORD": "Confirm New Password",
+        "SHOW_PASSWORD": "Show Password",
+        "BTN_LABEL": "Change Password"
+      }
+    },
+    "EVENTS": {
+      "LABEL": "My Events"
+    },
+    "MESSAGES": {
+      "LABEL": "Messages"
+    },
+    "UPLOADS": {
+      "LABEL": "My Uploads"
     }
   },
   "MESSAGES": {
@@ -157,14 +172,16 @@
         "INVALID_TOKEN": "Reset password failed due to invalid or expired email link. Please resend reset password email."
       }
     },
-    "PROFILE": {
-      "PERSONAL_INFO": {
-      },
-      "CHANGE_PASSWORD": {
-        "SUCCESS": "Your password has been successfully changed.",
-        "INVALID_USERNAME": "The username does not exist.",
-        "INVALID_PASSWORD": "The current password entered is incorrect.",
-        "SAME_PASSWORD": "Your new password cannot be the same as the current password."
+    "USER": {
+      "PROFILE": {
+        "PERSONAL_INFO": {
+        },
+        "CHANGE_PASSWORD": {
+          "SUCCESS": "Your password has been successfully changed.",
+          "INVALID_USERNAME": "The username does not exist.",
+          "INVALID_PASSWORD": "The current password entered is incorrect.",
+          "SAME_PASSWORD": "Your new password cannot be the same as the current password."
+        }
       }
     }
   },

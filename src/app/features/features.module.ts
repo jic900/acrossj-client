@@ -6,11 +6,15 @@ import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileService } from './profile/services/profile.service';
 import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileMenuComponent } from './profile/profilemenu/profilemenu.component';
 import { PersonalInfoComponent } from './profile/personalinfo/personalinfo.component';
 import { ChangePasswordComponent } from './profile/changepassword/changepassword.component';
+import { MessageComponent } from './message/message.component';
+import { EventComponent } from './event/event.component';
+import { UploadComponent } from './upload/upload.component';
 
 @NgModule({
   imports: [
@@ -22,11 +26,15 @@ import { ChangePasswordComponent } from './profile/changepassword/changepassword
   ],
   declarations: [
     HomeComponent,
+    UserComponent,
     DashboardComponent,
     ProfileComponent,
     ProfileMenuComponent,
     PersonalInfoComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    MessageComponent,
+    EventComponent,
+    UploadComponent
   ],
   exports: [
     HomeComponent

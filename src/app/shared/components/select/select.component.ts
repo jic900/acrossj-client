@@ -32,10 +32,9 @@ export class SelectComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.required) {
-      this.formControl = new FormControl('', [Validators.required]);
-      this.bindControl.emit({'name': this.inputData.name, 'control': this.formControl});
-    }
+    const validators = this.required ? [Validators.required] : [];
+    this.formControl = new FormControl('', validators);
+    this.bindControl.emit({'name': this.inputData.name, 'control': this.formControl});
   }
 
   onChange(event): void {
