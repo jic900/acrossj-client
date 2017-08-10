@@ -8,6 +8,8 @@ import { IInputElement } from 'app/config/interfaces/input-element.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
 import { IMessageElement } from 'app/config/interfaces/message-element';
 import { Util } from 'app/shared/util/util';
+import { AppConstant } from 'app/config/app.config';
+import { slideInDownAnimation } from 'app/config/animation.config';
 
 interface IChangePassword {
   oldPassword: IInputElement;
@@ -26,7 +28,8 @@ interface IChangePasswordMessage {
 @Component({
   selector: 'aj-changepassword',
   templateUrl: './changepassword.component.html',
-  styleUrls: ['../profile.component.css']
+  styleUrls: ['../profile.component.css'],
+  animations: [ slideInDownAnimation ]
 })
 
 export class ChangePasswordComponent {
@@ -60,6 +63,14 @@ export class ChangePasswordComponent {
 
   onClicked(event): void {
     this.message = null;
+  }
+
+  onBackClicked(event): void {
+    this.profileService.setMenuOpened(true);
+  }
+
+  isDeviceWidth(): boolean {
+    return window.innerWidth < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT;
   }
 
   passwordMatch(formGroup: FormGroup): {} {

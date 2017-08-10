@@ -3,3 +3,7 @@
 /*:host >>> md-card-header[hidden] {*/
 /*display: none;*/
 /*}*/
+
+.app-toolbar-filler {
+  flex: 1 1 auto;
+}

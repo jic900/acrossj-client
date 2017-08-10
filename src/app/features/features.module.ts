@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MdCheckboxModule } from '@angular/material';
+import { MdCheckboxModule, MdButtonModule, MdToolbarModule } from '@angular/material';
+
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileService } from './profile/services/profile.service';
@@ -12,17 +14,25 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileMenuComponent } from './profile/profilemenu/profilemenu.component';
 import { PersonalInfoComponent } from './profile/personalinfo/personalinfo.component';
 import { ChangePasswordComponent } from './profile/changepassword/changepassword.component';
-import { MessageComponent } from './message/message.component';
-import { EventComponent } from './event/event.component';
-import { UploadComponent } from './upload/upload.component';
+import { EventSummaryComponent } from './event/eventsummary.component';
+import { EventListComponent } from './event/eventlist/eventlist.component';
+import { EventDetailComponent } from './event/eventdetail/eventdetail.component';
+import { EventComponent } from './event/event/event.component';
+import { MessageSummaryComponent } from './message/messagesummary.component';
+import { MessageDetailComponent } from './message/messagedetail/messagedetail.component';
+import { UploadSummaryComponent } from './upload/uploadsummary.component';
+import { UploadDetailComponent } from './upload/uploaddetail/uploaddetail.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     CoreModule,
     SharedModule,
-    MdCheckboxModule
+    MdCheckboxModule,
+    MdButtonModule,
+    MdToolbarModule
   ],
   declarations: [
     HomeComponent,
@@ -32,9 +42,15 @@ import { UploadComponent } from './upload/upload.component';
     ProfileMenuComponent,
     PersonalInfoComponent,
     ChangePasswordComponent,
-    MessageComponent,
+    EventSummaryComponent,
+    EventListComponent,
+    EventDetailComponent,
     EventComponent,
-    UploadComponent
+    MessageSummaryComponent,
+    MessageDetailComponent,
+    UploadSummaryComponent,
+    UploadDetailComponent
+
   ],
   exports: [
     HomeComponent

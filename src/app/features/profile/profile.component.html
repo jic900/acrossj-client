@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="columns">
+  <md-card [hidden]="isDeviceWidth() && !showMenu" >
+    <router-outlet name="l"></router-outlet>
+  </md-card>
+  <md-card [hidden]="isDeviceWidth() && showMenu">
+    <router-outlet name="r"></router-outlet>
+  </md-card>
+</div>

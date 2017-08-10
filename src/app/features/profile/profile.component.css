@@ -1,3 +1,15 @@
+.columns {
+  display: flex;
+  flex-direction: row;
+}
+:host >>> md-card {
+  flex: 1 1 50%;
+  width: 50%;
+}
+:host >>> md-card[hidden] {
+  display: none;
+}
+
 .profile-form {
   padding: 20px 0 25px;
 }

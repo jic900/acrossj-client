@@ -4,11 +4,11 @@
 
 import {
   Component,
-  AfterViewInit,
-  OnDestroy
+  OnDestroy,
 } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { AppConstant } from 'app/config/app.config';
+import { ProfileService } from './services/profile.service';
 
 @Component({
   selector: 'aj-profile',
@@ -16,22 +16,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 
-export class ProfileComponent implements AfterViewInit, OnDestroy {
+export class ProfileComponent implements OnDestroy {
 
   subscription: any;
   profileState: string;
+  showMenu: boolean;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private profileService: ProfileService) {
+    this.showMenu = true;
+    this.subscription = this.profileService.menuOpened$.subscribe(isMenuOpened => this.showMenu = isMenuOpened);
+  }
 
-  ngAfterViewInit(): void {
-    this.subscription = this.route.params.subscribe(params => {
-      this.profileState = params['id'];
-      switch (this.profileState) {
-        case 'changepassword': {
-          break;
-        }
-      }
-    });
+  isDeviceWidth(): boolean {
+    return window.innerWidth < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT;
   }
 
   ngOnDestroy() {

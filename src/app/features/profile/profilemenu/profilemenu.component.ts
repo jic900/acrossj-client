@@ -2,7 +2,10 @@
  * Created by LAE86643 on 8/6/2017.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'aj-profilemenu',
@@ -10,11 +13,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['../profile.component.css']
 })
 
-export class ProfileMenuComponent implements OnInit {
+export class ProfileMenuComponent {
 
-  constructor() { }
+  constructor(private profileService: ProfileService, private router: Router) { }
 
-  ngOnInit() {
+  onPersonalInfoClicked(event): void {
+    this.profileService.setMenuOpened(false);
+    this.router.navigate(['/user/profile', {outlets: {'l': ['menu'], 'r': ['personalinfo']}}]);
   }
 
+  onChangePasswordClicked(event): void {
+    this.profileService.setMenuOpened(false);
+    this.router.navigate(['/user/profile', {outlets: {'l': ['menu'], 'r': ['changepassword']}}]);
+  }
 }

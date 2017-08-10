@@ -46,7 +46,7 @@ export class SearchfieldComponent {
 
   @HostListener('window:resize', ['$event'])
   onWindowResize(event): void {
-    console.log(event.target.innerWidth);
+    // console.log(event.target.innerWidth);
     if (event.target.innerWidth >= AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT) {
       if (this.showSearch) {
         this.setFieldWidth(event.target.innerWidth);

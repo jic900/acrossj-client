@@ -2,8 +2,7 @@ import {
   OnDestroy,
   Injectable
 } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Subscription } from 'rxjs/Subscription';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 import { HttpService } from 'app/core/services/http.service';
 import { LocalStorageService } from 'app/core/services/localstorage.service';
@@ -36,17 +35,6 @@ export class AuthService implements OnDestroy {
     this.authenticated = isAuthenticated;
     this.authenticated$.next(isAuthenticated);
   }
-
-  // refreshToken(): Observable<{}> {
-  //   const reqBody = {'username': localStorage.getItem('username')};
-  //   return this.httpService.post(EndPoint.getUrl('auth.refreshToken'), reqBody)
-  //     .map(response => response.json())
-  //     .map(data => {
-  //       this.setToken(data.token);
-  //       return data;
-  //     })
-  //     .catch(err => Observable.throw(err));
-  // }
 
   signup(signupData: {}): Observable<{}> {
     return this.httpService.post(EndPoint.getUrl('auth.signup'), signupData)

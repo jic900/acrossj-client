@@ -54,6 +54,7 @@ export function httpServiceFactory(
       isolate: false
     }),
     RouterModule.forRoot(AppRoutes),
+    // RouterModule.forRoot(AppRoutes, {useHash: true, preloadingStrategy: PreloadAllModules}),
     SharedModule,
     CoreModule,
     FeaturesModule

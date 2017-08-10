@@ -13,7 +13,7 @@ export class ChangePasswordConfig implements IForm {
     {
       name: 'oldPassword',
       type: 'input',
-      placeHolder: 'PROFILE.CHANGE_PASSWORD.OLD_PASSWORD',
+      placeHolder: 'USER.PROFILE.CHANGE_PASSWORD.OLD_PASSWORD',
       validators: [
         {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.OLD_PASSWORD.REQUIRED'},
         {name: 'minlength', type: 'builtin', value: 4, error: 'ERRORS.VALIDATION.USER.OLD_PASSWORD.MINLENGTH'}
@@ -22,7 +22,7 @@ export class ChangePasswordConfig implements IForm {
     {
       name: 'password',
       type: 'input',
-      placeHolder: 'PROFILE.CHANGE_PASSWORD.PASSWORD',
+      placeHolder: 'USER.PROFILE.CHANGE_PASSWORD.PASSWORD',
       validators: [
         {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.PASSWORD.REQUIRED'},
         {name: 'minlength', type: 'builtin', value: 4, error: 'ERRORS.VALIDATION.USER.PASSWORD.MINLENGTH'}
@@ -31,7 +31,7 @@ export class ChangePasswordConfig implements IForm {
     {
       name: 'confirmPassword',
       type: 'input',
-      placeHolder: 'PROFILE.CHANGE_PASSWORD.CONFIRM_PASSWORD',
+      placeHolder: 'USER.PROFILE.CHANGE_PASSWORD.CONFIRM_PASSWORD',
       validators: [
         {name: 'required', type: 'builtin', error: 'ERRORS.VALIDATION.USER.CONFIRM_PASSWORD.REQUIRED'},
         {name: 'minlength', type: 'builtin', value: 4, error: 'ERRORS.VALIDATION.USER.CONFIRM_PASSWORD.MINLENGTH'}
@@ -40,12 +40,12 @@ export class ChangePasswordConfig implements IForm {
     {
       name: 'showPassword',
       type: 'checkbox',
-      display: 'PROFILE.CHANGE_PASSWORD.SHOW_PASSWORD'
+      display: 'USER.PROFILE.CHANGE_PASSWORD.SHOW_PASSWORD'
     },
     {
       name: 'submitButton',
       type: 'button',
-      display: 'PROFILE.CHANGE_PASSWORD.BTN_LABEL'
+      display: 'USER.PROFILE.CHANGE_PASSWORD.BTN_LABEL'
     }
   ];
   validator: IValidator = {
@@ -56,15 +56,15 @@ export class ChangePasswordConfig implements IForm {
   messages: IMessageElement[] = [
     {
       name: 'success',
-      message: {display: 'MESSAGES.PROFILE.CHANGE_PASSWORD.SUCCESS', type: 'success', iconClass: 'fa-check-circle'}
+      message: {display: 'MESSAGES.USER.PROFILE.CHANGE_PASSWORD.SUCCESS', type: 'success', iconClass: 'fa-check-circle'}
     },
     {
       name: 'invalidPassword',
-      message: {display: 'MESSAGES.PROFILE.PERSONAL_INFO.CHANGE_PASSWORD.INVALID_PASSWORD', type: 'error', iconClass: 'fa-times-circle'}
+      message: {display: 'MESSAGES.USER.PROFILE.PERSONAL_INFO.CHANGE_PASSWORD.INVALID_PASSWORD', type: 'error', iconClass: 'fa-times-circle'}
     },
     {
       name: 'samePassword',
-      message: {display: 'MESSAGES.PROFILE.PERSONAL_INFO.CHANGE_PASSWORD.SAME_PASSWORD', type: 'error', iconClass: 'fa-times-circle'}
+      message: {display: 'MESSAGES.USER.PROFILE.PERSONAL_INFO.CHANGE_PASSWORD.SAME_PASSWORD', type: 'error', iconClass: 'fa-times-circle'}
     }
   ];
 };

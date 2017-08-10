@@ -2,7 +2,9 @@
  * Created by LAE86643 on 8/6/2017.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ProfileService } from '../services/profile.service';
+import { AppConstant } from 'app/config/app.config';
 
 @Component({
   selector: 'aj-personalinfo',
@@ -10,11 +12,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['../profile.component.css']
 })
 
-export class PersonalInfoComponent implements OnInit {
+export class PersonalInfoComponent {
 
-  constructor() { }
+  constructor(private profileService: ProfileService) { }
 
-  ngOnInit() {
+  onBackClicked(event): void {
+    this.profileService.setMenuOpened(true);
   }
 
+  isDeviceWidth(): boolean {
+    return window.innerWidth < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT;
+  }
 }
