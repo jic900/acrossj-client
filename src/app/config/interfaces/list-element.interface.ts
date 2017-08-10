@@ -6,5 +6,6 @@ import { ILinkElement } from './link-element.interface';
 import { IElement } from './element.interface';
 
 export interface IListElement extends IElement {
+  placeHolder?: string;
   list: ILinkElement[] | IElement[];
 }
