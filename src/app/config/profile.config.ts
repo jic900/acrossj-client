@@ -60,11 +60,42 @@ export class ChangePasswordConfig implements IForm {
     },
     {
       name: 'invalidPassword',
-      message: {display: 'MESSAGES.USER.PROFILE.PERSONAL_INFO.CHANGE_PASSWORD.INVALID_PASSWORD', type: 'error', iconClass: 'fa-times-circle'}
+      message: {display: 'MESSAGES.USER.PROFILE.CHANGE_PASSWORD.INVALID_PASSWORD', type: 'error', iconClass: 'fa-times-circle'}
     },
     {
       name: 'samePassword',
-      message: {display: 'MESSAGES.USER.PROFILE.PERSONAL_INFO.CHANGE_PASSWORD.SAME_PASSWORD', type: 'error', iconClass: 'fa-times-circle'}
+      message: {display: 'MESSAGES.USER.PROFILE.CHANGE_PASSWORD.SAME_PASSWORD', type: 'error', iconClass: 'fa-times-circle'}
     }
   ];
 };
+
+export class PersonalInfoConfig implements IForm {
+  elements: [IInputElement, IInputElement,IElement] = [
+    {
+      name: 'fullname',
+      type: 'input',
+      placeHolder: 'USER.PROFILE.PERSONAL_INFO.FULLNAME'
+    },
+    {
+      name: 'username',
+      type: 'input',
+      placeHolder: 'USER.PROFILE.PERSONAL_INFO.USERNAME'
+    },
+    // {
+    //   name: 'gender',
+    //   type: 'select',
+    //   display: 'PROFILE.PERSONAL_INFO.SAVEBTN_LABEL'
+    // },
+    // {
+    //   name: 'birthday',
+    //   type: 'date',
+    //   display: 'PROFILE.PERSONAL_INFO.SAVEBTN_LABEL'
+    // },
+    {
+      name: 'saveButton',
+      type: 'button',
+      display: 'USER.PROFILE.PERSONAL_INFO.SAVEBTN_LABEL'
+    }
+
+  ];
+}
