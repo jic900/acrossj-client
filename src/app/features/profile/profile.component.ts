@@ -25,12 +25,14 @@ export class ProfileComponent implements AfterViewInit, OnDestroy {
 
   subscription: Subscription;
   showMenu: boolean;
+  deviceMode: boolean;
 
   constructor(private userService: UserService,
               private location: Location,
               private router: Router
   ) {
     this.showMenu = true;
+    this.deviceMode = this.isDeviceWidth();
     this.subscription = this.userService.menuOpened$.subscribe(isMenuOpened => this.showMenu = isMenuOpened);
   }
 
@@ -43,12 +45,15 @@ export class ProfileComponent implements AfterViewInit, OnDestroy {
   @HostListener('window:resize', ['$event'])
   onWindowResize(event): void {
     const width = event.target.innerWidth;
-    const activeRoute = this.location.path();
-    if (width >= AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT && activeRoute.indexOf('personalinfo') === -1) {
+    const activeRouteParts = this.location.path().split('/');
+    const curRoute = activeRouteParts[activeRouteParts.length-1];
+    if (width >= AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT && curRoute === 'profile') {
       this.router.navigate(['/user/profile/personalinfo']);
-    } else if (width < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT && activeRoute.indexOf('personalinfo') !== -1) {
+    } else if (width < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT && !this.deviceMode) {
+      this.userService.setMenuOpened(true);
       this.router.navigate(['/user/profile']);
     }
+    this.deviceMode = width < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT;
   }
 
   isDeviceWidth(): boolean {
