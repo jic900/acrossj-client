@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { FormGroup } from "@angular/forms";
 import * as _ from 'lodash';
 
-import { ProfileService } from '../services/profile.service';
+import { UserService } from 'app/features/services/user.service';
 import { AppConstant } from 'app/config/app.config';
 import { PersonalInfoConfig } from 'app/config/profile.config';
 import { IForm } from 'app/config/interfaces/form.interface';
@@ -41,7 +41,7 @@ export class PersonalInfoComponent {
   message: IPersonalInfoMessage;
   processing: boolean;
 
-  constructor(private profileService: ProfileService, private router: Router) {
+  constructor(private userService: UserService, private router: Router) {
     this.formData = new PersonalInfoConfig();
     this.formElements = _.mapKeys(this.formData.elements, 'name');
     this.formGroup = new FormGroup({});
@@ -61,7 +61,7 @@ export class PersonalInfoComponent {
   }
 
   onBackClicked(event): void {
-    this.profileService.setMenuOpened(true);
+    this.userService.setMenuOpened(true);
     this.router.navigate(['/user/profile']);
   }
 

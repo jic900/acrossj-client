@@ -9,7 +9,7 @@ import { HttpService } from 'app/core/services/http.service';
 import { EndPoint } from 'app/config/endpoint.config';
 
 @Injectable()
-export class ProfileService {
+export class UserService {
 
   menuOpened$: Subject<boolean>;
 

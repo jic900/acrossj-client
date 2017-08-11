@@ -6,11 +6,14 @@ import {
   Component,
   AfterViewInit,
   OnDestroy,
+  HostListener
 } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { AppConstant } from 'app/config/app.config';
-import { ProfileService } from './services/profile.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'aj-profile',
@@ -20,18 +23,31 @@ import { ProfileService } from './services/profile.service';
 
 export class ProfileComponent implements AfterViewInit, OnDestroy {
 
-  subscription: any;
-  profileState: string;
+  subscription: Subscription;
   showMenu: boolean;
 
-  constructor(private profileService: ProfileService, private router: Router) {
+  constructor(private userService: UserService,
+              private location: Location,
+              private router: Router
+  ) {
     this.showMenu = true;
-    this.subscription = this.profileService.menuOpened$.subscribe(isMenuOpened => this.showMenu = isMenuOpened);
+    this.subscription = this.userService.menuOpened$.subscribe(isMenuOpened => this.showMenu = isMenuOpened);
   }
 
   ngAfterViewInit(): void {
     if (! this.isDeviceWidth()) {
       this.router.navigate(['/user/profile/personalinfo']);
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(event): void {
+    const width = event.target.innerWidth;
+    const activeRoute = this.location.path();
+    if (width >= AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT && activeRoute.indexOf('personalinfo') === -1) {
+      this.router.navigate(['/user/profile/personalinfo']);
+    } else if (width < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT && activeRoute.indexOf('personalinfo') !== -1) {
+      this.router.navigate(['/user/profile']);
     }
   }
 

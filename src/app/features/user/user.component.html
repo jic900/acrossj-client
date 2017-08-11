@@ -14,28 +14,24 @@
   <md-toolbar color="primary">
     <!--<span class="app-toolbar-filler"></span>-->
     <!--<button routerLink="home" md-button>Home</button>-->
-    <button md-button
+    <button md-button (click)="onClicked('dashboard')"
             [routerLink]="['/user/dashboard']">
       Dashboard
     </button>
-    <button md-button
-            [routerLink]="['/user/profile']">
+    <button md-button (click)="onClicked('profile')">
       Profile
     </button>
     <!--<button md-button-->
     <!--[routerLink]="['/user/profile', {outlets: {'aux': ['personalinfo']}}]">-->
     <!--Profile-->
     <!--</button>-->
-    <button md-button
-            [routerLink]="['/user/events']">
+    <button md-button (click)="onClicked('events')" [routerLink]="['/user/events']">
       My Events
     </button>
-    <button md-button
-            [routerLink]="['/user/messages']">
+    <button md-button (click)="onClicked('messages')" [routerLink]="['/user/messages']">
       Messages
     </button>
-    <button md-button
-            [routerLink]="['/user/uploads']">
+    <button md-button (click)="onClicked('uploads')" [routerLink]="['/user/uploads']">
       My Uploads
     </button>
   </md-toolbar>

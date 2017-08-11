@@ -6,7 +6,7 @@ import { MdCheckboxModule, MdButtonModule, MdToolbarModule } from '@angular/mate
 
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
-import { ProfileService } from './profile/services/profile.service';
+import { UserService } from './services/user.service';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -55,7 +55,7 @@ import { UploadDetailComponent } from './upload/uploaddetail/uploaddetail.compon
   exports: [
     HomeComponent
   ],
-  providers: [ProfileService]
+  providers: [UserService]
 })
 
 export class FeaturesModule {

@@ -56,6 +56,7 @@ export class AuthComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.subscription = this.route.params.subscribe(params => {
       this.authState = params['id'];
+      console.log(this.route);
       switch (this.authState) {
         case 'signin': {
           this.selectedIndex = 0;
