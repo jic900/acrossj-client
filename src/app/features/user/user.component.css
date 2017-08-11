@@ -12,10 +12,11 @@
 .user-container {
   /*background-color: #EEEEEE;*/
   min-height: calc(100vh - 60px);
+  padding-top: 150px;
 }
 
-@media (min-width: 769px) {
-  .user-container {
-    padding-top: 100px;
-  }
-}
+/*@media (min-width: 769px) {*/
+  /*.user-container {*/
+    /*padding-top: 100px;*/
+  /*}*/
+/*}*/
