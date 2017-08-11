@@ -13,13 +13,16 @@ import { PersonalInfoConfig } from 'app/config/profile.config';
 import { IForm } from 'app/config/interfaces/form.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
-
+import { IListElement } from 'app/config/interfaces/list-element.interface';
 
 interface IPersonalInfo {
   fullname: IInputElement;
   username: IInputElement;
-  // gender: IElement;
-  // birthday: IElement;
+  gender: IListElement;
+  birthday: IInputElement;
+  adress: IInputElement;
+  postcode: IInputElement;
+  phonenumber: IInputElement;
   saveButton: IElement;
 }
 

@@ -4,7 +4,7 @@
   [(ngModel)]="selectedValue"
   (change)="onChange($event)">
   <md-option *ngFor="let item of inputData.list" [value]="item.name">
-    {{item.display}}
+    {{item.display | translate}}
   </md-option>
 </md-select>
 

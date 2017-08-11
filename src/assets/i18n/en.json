@@ -123,6 +123,19 @@
         "CONFIRM_PASSWORD": "Confirm New Password",
         "SHOW_PASSWORD": "Show Password",
         "BTN_LABEL": "Change Password"
+      },
+      "PERSONAL_INFO": {
+        "LABEL": "Personal Information",
+        "FULLNAME": "Full Name",
+        "USERNAME": "User Name",
+        "GENDER_LABEL": "Gender",
+        "GENDER_MALE": "Male",
+        "GENDER_FEMALE": "Female",
+        "BIRTHDAY_LABEL": "Birth Date",
+        "ADDRESS": "Address",
+        "POSTCODE": "Post Code",
+        "PHONENUMBER": "Phone Number",
+        "SAVEBTN_LABEL": "Save"
       }
     },
     "EVENTS": {

@@ -7,6 +7,7 @@ import { IElement } from './interfaces/element.interface';
 import { IInputElement } from './interfaces/input-element.interface';
 import { IValidator } from './interfaces/validator.interface';
 import { IMessageElement } from './interfaces/message-element';
+import { IListElement } from './interfaces/list-element.interface';
 
 export class ChangePasswordConfig implements IForm {
   elements: [IInputElement, IInputElement, IInputElement, IElement, IElement] = [
@@ -70,7 +71,7 @@ export class ChangePasswordConfig implements IForm {
 };
 
 export class PersonalInfoConfig implements IForm {
-  elements: [IInputElement, IInputElement,IElement] = [
+  elements: [IInputElement, IInputElement,IListElement, IInputElement, IInputElement,IInputElement,IInputElement,IElement] = [
     {
       name: 'fullname',
       type: 'input',
@@ -81,21 +82,36 @@ export class PersonalInfoConfig implements IForm {
       type: 'input',
       placeHolder: 'USER.PROFILE.PERSONAL_INFO.USERNAME'
     },
-    // {
-    //   name: 'gender',
-    //   type: 'select',
-    //   display: 'PROFILE.PERSONAL_INFO.SAVEBTN_LABEL'
-    // },
-    // {
-    //   name: 'birthday',
-    //   type: 'date',
-    //   display: 'PROFILE.PERSONAL_INFO.SAVEBTN_LABEL'
-    // },
+    {
+      name: 'gender',
+      type: 'select',
+      placeHolder: 'USER.PROFILE.PERSONAL_INFO.GENDER_LABEL',
+      list: [{name: 'male', display: 'USER.PROFILE.PERSONAL_INFO.GENDER_MALE' },{name:'female', display: 'USER.PROFILE.PERSONAL_INFO.GENDER_FEMALE'}]
+    },
+    {
+      name: 'birthday',
+      type: 'input',
+      placeHolder: 'USER.PROFILE.PERSONAL_INFO.BIRTHDAY_LABEL'
+    },
+    {
+      name: 'address',
+      type: 'input',
+      placeHolder: 'USER.PROFILE.PERSONAL_INFO.ADDRESS'
+    },
+    {
+      name: 'postcode',
+      type: 'input',
+      placeHolder: 'USER.PROFILE.PERSONAL_INFO.POSTCODE'
+    },
+    {
+      name: 'phonenumber',
+      type: 'input',
+      placeHolder: 'USER.PROFILE.PERSONAL_INFO.PHONENUMBER'
+    },
     {
       name: 'saveButton',
       type: 'button',
       display: 'USER.PROFILE.PERSONAL_INFO.SAVEBTN_LABEL'
     }
-
   ];
 }
