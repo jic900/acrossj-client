@@ -9,14 +9,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AuthConfig } from 'angular2-jwt';
 
 import { SharedModule } from './shared/shared.module';
-import { CoreModule } from './core/core.module';
-import { FeaturesModule } from './features/features.module';
+import { CoreModule } from './features/core/core.module';
 import { AppComponent } from './app.component';
-import { AppRoutes } from './config/routes.config';
-import { AuthService } from './core/auth/services/auth.service';
-import { LoaderService } from './core/loader/loader.service';
-import { LocalStorageService } from './core/services/localstorage.service';
-import { HttpService } from './core/services/http.service';
+import { PageNotFoundComponent } from './page-not-found.component';
+import { AuthService } from './features/auth/services/auth.service';
+import { LoaderService } from './features/core/loader/loader.service';
+import { LocalStorageService } from './shared/services/localstorage.service';
+import { HttpService } from './shared/services/http.service';
+import { AppRoutingModule } from './app-routing.module';
 
 export function translateLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http, 'src/assets/i18n/', '.json');
@@ -39,12 +39,15 @@ export function httpServiceFactory(
 @NgModule({
   declarations: [
     AppComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
+    CoreModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -52,12 +55,7 @@ export function httpServiceFactory(
         deps: [Http],
       },
       isolate: false
-    }),
-    RouterModule.forRoot(AppRoutes),
-    // RouterModule.forRoot(AppRoutes, {useHash: true, preloadingStrategy: PreloadAllModules}),
-    SharedModule,
-    CoreModule,
-    FeaturesModule
+    })
   ],
   providers: [
     AuthService,

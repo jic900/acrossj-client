@@ -10,10 +10,9 @@ import {
 } from '@angular/core';
 
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
-import { MenuState } from 'app/config/app.config';
+import { MenuState } from 'app/config/common/menustate.config';
 import { Util } from 'app/shared/util/util';
 import { ILinkElement } from 'app/config/interfaces/link-element.interface';
-
 
 @Component({
   selector: 'aj-dropdown',

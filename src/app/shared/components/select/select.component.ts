@@ -5,8 +5,8 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-
 import { FormControl, Validators } from '@angular/forms';
+
 import { IElement } from 'app/config/interfaces/element.interface';
 import { IListElement } from 'app/config/interfaces/list-element.interface';
 
