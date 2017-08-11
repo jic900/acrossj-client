@@ -19,11 +19,11 @@ export class ProfileMenuComponent {
 
   onPersonalInfoClicked(event): void {
     this.profileService.setMenuOpened(false);
-    this.router.navigate(['/user/profile', {outlets: {'l': ['menu'], 'r': ['personalinfo']}}]);
+    this.router.navigate(['/user/profile/personalinfo']);
   }
 
   onChangePasswordClicked(event): void {
     this.profileService.setMenuOpened(false);
-    this.router.navigate(['/user/profile', {outlets: {'l': ['menu'], 'r': ['changepassword']}}]);
+    this.router.navigate(['/user/profile/changepassword']);
   }
 }

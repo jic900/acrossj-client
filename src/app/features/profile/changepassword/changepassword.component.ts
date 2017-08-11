@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
+
 import { ProfileService } from '../services/profile.service';
 import { ChangePasswordConfig } from 'app/config/profile.config';
 import { IForm } from 'app/config/interfaces/form.interface';
@@ -44,7 +46,7 @@ export class ChangePasswordComponent {
   processing: boolean;
   message: IMessageElement;
 
-  constructor(private profileService: ProfileService) {
+  constructor(private profileService: ProfileService, private router: Router) {
     this.formData = new ChangePasswordConfig();
     this.formElements = _.mapKeys(this.formData.elements, 'name');
     this.inputElements = this.formData.elements.filter(element => {
@@ -67,6 +69,7 @@ export class ChangePasswordComponent {
 
   onBackClicked(event): void {
     this.profileService.setMenuOpened(true);
+    this.router.navigate(['/user/profile']);
   }
 
   isDeviceWidth(): boolean {

@@ -1,8 +1,9 @@
 <div class="columns">
   <md-card [hidden]="isDeviceWidth() && !showMenu" >
-    <router-outlet name="l"></router-outlet>
+    <!--<router-outlet></router-outlet>-->
+    <aj-profilemenu></aj-profilemenu>
   </md-card>
   <md-card [hidden]="isDeviceWidth() && showMenu">
-    <router-outlet name="r"></router-outlet>
+    <router-outlet></router-outlet>
   </md-card>
 </div>

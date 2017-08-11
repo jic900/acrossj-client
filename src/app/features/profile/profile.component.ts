@@ -4,8 +4,10 @@
 
 import {
   Component,
+  AfterViewInit,
   OnDestroy,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AppConstant } from 'app/config/app.config';
 import { ProfileService } from './services/profile.service';
@@ -16,15 +18,21 @@ import { ProfileService } from './services/profile.service';
   styleUrls: ['./profile.component.css']
 })
 
-export class ProfileComponent implements OnDestroy {
+export class ProfileComponent implements AfterViewInit, OnDestroy {
 
   subscription: any;
   profileState: string;
   showMenu: boolean;
 
-  constructor(private profileService: ProfileService) {
+  constructor(private profileService: ProfileService, private router: Router) {
     this.showMenu = true;
     this.subscription = this.profileService.menuOpened$.subscribe(isMenuOpened => this.showMenu = isMenuOpened);
+  }
+
+  ngAfterViewInit(): void {
+    if (! this.isDeviceWidth()) {
+      this.router.navigate(['/user/profile/personalinfo']);
+    }
   }
 
   isDeviceWidth(): boolean {

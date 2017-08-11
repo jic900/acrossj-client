@@ -3,14 +3,17 @@
  */
 
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormGroup } from "@angular/forms";
+import * as _ from 'lodash';
+
 import { ProfileService } from '../services/profile.service';
 import { AppConstant } from 'app/config/app.config';
-import * as _ from 'lodash';
 import { PersonalInfoConfig } from 'app/config/profile.config';
 import { IForm } from 'app/config/interfaces/form.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
-import { FormGroup } from "@angular/forms";
+
 
 interface IPersonalInfo {
   fullname: IInputElement;
@@ -38,7 +41,7 @@ export class PersonalInfoComponent {
   message: IPersonalInfoMessage;
   processing: boolean;
 
-  constructor(private profileService: ProfileService) {
+  constructor(private profileService: ProfileService, private router: Router) {
     this.formData = new PersonalInfoConfig();
     this.formElements = _.mapKeys(this.formData.elements, 'name');
     this.formGroup = new FormGroup({});
@@ -59,6 +62,7 @@ export class PersonalInfoComponent {
 
   onBackClicked(event): void {
     this.profileService.setMenuOpened(true);
+    this.router.navigate(['/user/profile']);
   }
 
   isDeviceWidth(): boolean {

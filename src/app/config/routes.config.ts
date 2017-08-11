@@ -3,7 +3,6 @@ import { HomeComponent } from '../features/home/home.component';
 import { AuthComponent } from '../core/auth/auth.component';
 import { UserComponent } from '../features/user/user.component';
 import { ProfileComponent } from '../features/profile/profile.component';
-import { ProfileMenuComponent } from '../features/profile/profilemenu/profilemenu.component';
 import { PersonalInfoComponent } from '../features/profile/personalinfo/personalinfo.component';
 import { ChangePasswordComponent } from '../features/profile/changepassword/changepassword.component';
 import { DashboardComponent } from '../features/dashboard/dashboard.component';
@@ -26,10 +25,8 @@ export const AppRoutes: Routes = [
       {path: '', redirectTo: '/user/dashboard', pathMatch: 'full'},
       {path: 'dashboard', component: DashboardComponent},
       {path: 'profile', component: ProfileComponent, children: [
-        // {path: '', redirectTo: '/user/profile/menu', pathMatch: 'full'},
-        {path: 'menu', component: ProfileMenuComponent, outlet: 'l'},
-        {path: 'personalinfo', component: PersonalInfoComponent, outlet: 'r'},
-        {path: 'changepassword', component: ChangePasswordComponent, outlet: 'r'},
+        {path: 'personalinfo', component: PersonalInfoComponent},
+        {path: 'changepassword', component: ChangePasswordComponent},
       ]},
       {path: 'events', component: EventSummaryComponent},
       {path: 'messages', component: MessageSummaryComponent},
