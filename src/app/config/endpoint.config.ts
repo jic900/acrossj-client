@@ -2,8 +2,8 @@
  * Created by LAE84266 on 05/07/2017.
  */
 
-// const ENDPOINT_BASE = 'http://127.0.0.1:10007/api/';
-const ENDPOINT_BASE = 'http://68.149.121.215:8080/api/';
+const ENDPOINT_BASE = 'http://127.0.0.1:10007/api/';
+// const ENDPOINT_BASE = 'http://68.149.121.215:8080/api/';
 
 const EndPointConfig = {
   auth: {
