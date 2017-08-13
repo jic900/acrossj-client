@@ -1,5 +1,5 @@
 .auth-container {
-  background-color: #EEEEEE;
+  background-color: rgba(0, 0, 0, 0.05);;
   min-height: calc(100vh - 60px);
 }
 

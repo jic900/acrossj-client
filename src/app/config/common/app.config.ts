@@ -5,6 +5,7 @@
 export const AppConfig = {
   HOME_LOGO: '/assets/images/home_logo.png',
   HOME_BACKGROUND: '/assets/images/home_bg.png',
+  USER_BACKGROUND: '/assets/images/user_bg.png',
   // MENU_HOVER_MODE: true,
   PLACE_SEARCH_RESULT_LIMIT: 5,
   HTTP_TIMEOUT: 10000,           // in millisecond

@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PageNotFoundComponent } from './page-not-found.component';
+import { AuthGuard } from 'app/features/auth/services/authguard.service';
 import { CanDeactivateGuard } from './can-deactivate-guard.service';
 import { CustomPreloadingStrategy } from './custom-preloading-strategy';
 
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
     RouterModule
   ],
   providers: [
+    AuthGuard,
     CanDeactivateGuard,
     CustomPreloadingStrategy
   ]

@@ -8,6 +8,7 @@ import { IInputElement } from 'app/config/interfaces/input-element.interface';
 import { IListElement } from 'app/config/interfaces/list-element.interface';
 
 export class PersonalInfoConfig implements IForm {
+  title: string = 'USER.PROFILE.PERSONAL_INFO.LABEL';
   elements: [IInputElement, IInputElement, IListElement, IInputElement, IInputElement, IInputElement, IInputElement, IElement] = [
     {
       name: 'fullname',

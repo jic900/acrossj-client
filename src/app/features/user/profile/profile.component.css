@@ -1,11 +1,62 @@
-.columns {
-  display: flex;
-  flex-direction: row;
+@media (min-width: 769px) {
+  .columns {
+    display: flex;
+    flex-direction: row;
+  }
+  /*:host >>> md-card {*/
+  /*flex: 1 1 50%;*/
+  /*width: 50%;*/
+  /*}*/
 }
-:host >>> md-card {
-  flex: 1 1 50%;
-  width: 50%;
+
+.menu-container {
+  /*background-color: #EEEEEE;*/
+  width: 100%;
+  min-height: calc(100vh - 60px);
 }
+
+:host >>> md-card-header {
+  padding-top: 20px;
+  border-bottom: 1px solid rgba(0,0,0,.25);
+}
+:host >>> .mat-card-title {
+  font-size: 20px !important;
+  font-weight: bold;
+  /*line-height: 16px;*/
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 769px) {
+  .menu-card {
+    width: 100%;
+    min-height: inherit;
+    /*padding-top: 50px;*/
+    background-color: white;
+  }
+  :host >>> .menu-container > md-card {
+    box-shadow: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-card {
+    width: 100%;
+    min-height: inherit;
+    /*padding-top: 50px;*/
+    /*background-color: white;*/
+  }
+  :host >>> md-card {
+    box-shadow: none !important;
+  }
+  :host >>> .mat-card {
+    padding: 0 24px;
+  }
+  :host >>> md-list-item .mat-list-item-content {
+    height: 60px !important;
+  }
+}
+
 :host >>> md-card[hidden] {
   display: none;
 }
@@ -18,7 +69,7 @@
   width: 100%;
   margin-top: 10px;
   padding: 20px 20px 15px;
-  border: solid 1px rgba(0, 0, 0, .12);
+  /*border: solid 1px rgba(0, 0, 0, .12);*/
 }
 
 .profile-showpassword {

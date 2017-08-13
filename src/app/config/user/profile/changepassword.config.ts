@@ -9,6 +9,7 @@ import { IValidator } from 'app/config/interfaces/validator.interface';
 import { IMessageElement } from 'app/config/interfaces/message-element';
 
 export class ChangePasswordConfig implements IForm {
+  title: string = 'USER.PROFILE.CHANGE_PASSWORD.LABEL';
   elements: [IInputElement, IInputElement, IInputElement, IElement, IElement] = [
     {
       name: 'oldPassword',

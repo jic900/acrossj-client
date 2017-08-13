@@ -1,9 +1,31 @@
-<div class="columns">
-  <md-card [hidden]="isDeviceWidth() && !showMenu" >
+<!--<div class="columns">-->
+  <!--&lt;!&ndash;<md-card [hidden]="isDeviceWidth() && !showMenu" class="md-elevation-z2">&ndash;&gt;-->
+  <!--<md-card [hidden]="isDeviceWidth() && !showMenu">-->
+    <!--<aj-profilemenu></aj-profilemenu>-->
+  <!--</md-card>-->
+  <!--<md-card [hidden]="isDeviceWidth() && showMenu">-->
     <!--<router-outlet></router-outlet>-->
-    <aj-profilemenu></aj-profilemenu>
-  </md-card>
-  <md-card [hidden]="isDeviceWidth() && showMenu">
+  <!--</md-card>-->
+<!--</div>-->
+
+<div class="columns">
+  <aj-profilemenu [hidden]="isDeviceWidth() && !showMenu"></aj-profilemenu>
+  <div [hidden]="isDeviceWidth() && showMenu">
     <router-outlet></router-outlet>
-  </md-card>
+  </div>
+
+  <!--<md-card [hidden]="isDeviceWidth() && showMenu">-->
+    <!--<router-outlet></router-outlet>-->
+  <!--</md-card>-->
 </div>
+
+<!--<div class="columns">-->
+<!--<aj-profilemenu *ngIf="!isDeviceWidth() || showMenu"></aj-profilemenu>-->
+<!--&lt;!&ndash;&ndash;&gt;-->
+<!--&lt;!&ndash;<md-card [hidden]="isDeviceWidth() && !showMenu">&ndash;&gt;-->
+<!--&lt;!&ndash;<aj-profilemenu></aj-profilemenu>&ndash;&gt;-->
+<!--&lt;!&ndash;</md-card>&ndash;&gt;-->
+<!--<md-card *ngIf="!isDeviceWidth() || !showMenu">-->
+<!--<router-outlet></router-outlet>-->
+<!--</md-card>-->
+<!--</div>-->

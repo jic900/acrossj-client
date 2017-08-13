@@ -6,10 +6,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
+  MdTabsModule,
   MdCardModule,
   MdCheckboxModule,
   MdToolbarModule,
-  MdButtonModule
+  MdButtonModule,
+  MdListModule,
+  MdIconModule
 } from '@angular/material';
 
 import { UserRoutingModule } from 'app/features/user/user-routing.module';
@@ -34,10 +37,13 @@ import { UploadDetailComponent } from './upload/uploaddetail/uploaddetail.compon
     UserRoutingModule,
     SharedModule,
     EventModule,
+    MdTabsModule,
     MdCardModule,
     MdCheckboxModule,
     MdToolbarModule,
-    MdButtonModule
+    MdButtonModule,
+    MdListModule,
+    MdIconModule
   ],
   declarations: [
     UserComponent,

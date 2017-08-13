@@ -3,9 +3,19 @@
  */
 
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import * as _ from 'lodash';
 
+import { AppConstant } from 'app/config/common/app-constant.config';
 import { UserService } from 'app/features/user/services/user.service';
+import { ProfileMenuConfig } from 'app/config/user/profile/profilemenu.config';
+import { IComponent } from 'app/config/interfaces/component.interface';
+import { IListElement } from 'app/config/interfaces/list-element.interface';
+import { IElement } from 'app/config/interfaces/element.interface';
+
+interface IProfileMenu {
+  menuTitle: IElement;
+  menuList: IListElement;
+}
 
 @Component({
   selector: 'aj-profilemenu',
@@ -15,15 +25,19 @@ import { UserService } from 'app/features/user/services/user.service';
 
 export class ProfileMenuComponent {
 
-  constructor(private userService: UserService, private router: Router) { }
+  menuData: IComponent;
+  menuElements: IProfileMenu;
 
-  onPersonalInfoClicked(event): void {
-    this.userService.setMenuOpened(false);
-    this.router.navigate(['/user/profile/personalinfo']);
+  constructor(private userService: UserService) {
+    this.menuData = new ProfileMenuConfig();
+    this.menuElements = _.mapKeys(this.menuData.elements, 'name');
   }
 
-  onChangePasswordClicked(event): void {
+  onClicked(event): void {
     this.userService.setMenuOpened(false);
-    this.router.navigate(['/user/profile/changepassword']);
+  }
+
+  isDeviceWidth(): boolean {
+    return window.innerWidth < AppConstant.PROFILE_TOGGLE_BREAKPOINT;
   }
 }

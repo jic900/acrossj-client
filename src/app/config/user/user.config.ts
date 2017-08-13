@@ -9,28 +9,33 @@ export class UserConfig implements IComponent {
   elements: ILinkElement[] = [
     {
       name: 'dashboard',
+      type: 'link',
       display: 'USER.DASHBOARD.LABEL',
-      link: {path: '/user', param: 'dashboard'}
+      link: {path: '/user/dashboard'}
     },
     {
       name: 'profile',
+      type: 'link',
       display: 'USER.PROFILE.LABEL',
-      link: {path: '/user', param: 'profile'}
+      link: {path: '/user/profile'}
     },
     {
       name: 'events',
+      type: 'link',
       display: 'USER.EVENTS.LABEL',
-      link: {path: '/user', param: 'events'}
+      link: {path: '/user/events'}
     },
     {
       name: 'messages',
+      type: 'link',
       display: 'USER.MESSAGES.LABEL',
-      link: {path: '/user', param: 'messages'}
+      link: {path: '/user/messages'}
     },
     {
       name: 'uploads',
+      type: 'link',
       display: 'USER.UPLOADS.LABEL',
-      link: {path: '/user', param: 'uploads'}
+      link: {path: '/user/uploads'}
     }
   ];
 }

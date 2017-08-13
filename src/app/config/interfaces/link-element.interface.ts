@@ -7,4 +7,5 @@ import { ILink } from './link.interface';
 
 export interface ILinkElement extends IElement {
   link: ILink;
+  navIconClass?: string;
 }

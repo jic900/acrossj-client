@@ -1,17 +1,17 @@
-<!--<button md-button-->
-        <!--[routerLink]="['/user/profile', {outlets: {'menu': ['menu'], 'aux': ['personalinfo']}}]">-->
-  <!--Personal Info-->
-<!--</button>-->
+<div class="menu-container">
+  <md-card class="menu-card">
+    <md-card-header *ngIf="isDeviceWidth()">
+      <md-card-title>{{menuElements.menuTitle.display | translate}}</md-card-title>
+    </md-card-header>
+    <md-card-content>
+      <aj-list
+        [listData]="menuElements.menuList"
+        [showLine]="isDeviceWidth()"
+        [showNavIcon]="isDeviceWidth()"
+        (clicked)="onClicked($event)">
+      </aj-list>
+    </md-card-content>
+  </md-card>
+</div>
 
-<!--<button md-button-->
-        <!--[routerLink]="['/user/profile', {outlets: {'menu': ['menu'], 'aux': ['changepassword']}}]">-->
-  <!--Change Password-->
-<!--</button>-->
 
-<button md-button (click)="onPersonalInfoClicked($event)">
-  Personal Info
-</button>
-
-<button md-button (click)="onChangePasswordClicked($event)">
-  Change Password
-</button>

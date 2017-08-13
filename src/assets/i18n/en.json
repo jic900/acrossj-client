@@ -115,7 +115,7 @@
       "LABEL": "Dashboard"
     },
     "PROFILE": {
-      "LABEL": "PROFILE",
+      "LABEL": "Profile",
       "CHANGE_PASSWORD": {
         "LABEL": "Change Password",
         "OLD_PASSWORD": "Current Password",

@@ -47,17 +47,17 @@ export class ProfileComponent implements AfterViewInit, OnDestroy {
     const width = event.target.innerWidth;
     const activeRouteParts = this.location.path().split('/');
     const curRoute = activeRouteParts[activeRouteParts.length-1];
-    if (width >= AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT && curRoute === 'profile') {
+    if (width >= AppConstant.PROFILE_TOGGLE_BREAKPOINT && curRoute === 'profile') {
       this.router.navigate(['/user/profile/personalinfo']);
-    } else if (width < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT && !this.deviceMode) {
+    } else if (width < AppConstant.PROFILE_TOGGLE_BREAKPOINT && !this.deviceMode) {
       this.userService.setMenuOpened(true);
       this.router.navigate(['/user/profile']);
     }
-    this.deviceMode = width < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT;
+    this.deviceMode = width < AppConstant.PROFILE_TOGGLE_BREAKPOINT;
   }
 
   isDeviceWidth(): boolean {
-    return window.innerWidth < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT;
+    return window.innerWidth < AppConstant.PROFILE_TOGGLE_BREAKPOINT;
   }
 
   ngOnDestroy() {

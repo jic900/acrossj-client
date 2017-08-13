@@ -1,0 +1,59 @@
+<md-list>
+  <md-list-item *ngFor="let item of list" [ngClass]="{'item-line': showLine}">
+    <button
+      md-button
+      class="item-button-container"
+      [routerLink]="item.link ? item.link.param ? [item.link.path, item.link.param] : [item.link.path] : []"
+      (click)="onClicked($event)">
+      <div class="item-button-content">
+        <md-icon
+          *ngIf="item.iconClass"
+          md-list-icon
+          fontSet="fa"
+          fontIcon="{{item.iconClass}}">
+        </md-icon>
+        <span class="item-label">{{item.display | translate}}</span>
+        <md-icon
+          *ngIf="item.navIconClass && showNavIcon"
+          md-list-icon
+          class="item-icon"
+          fontSet="fa"
+          fontIcon="{{item.navIconClass}}">
+        </md-icon>
+      </div>
+    </button>
+  </md-list-item>
+</md-list>
+
+<!--<md-list>-->
+  <!--<md-list-item style="border-bottom: solid 1px black">-->
+    <!--<button style="width: 100%; text-align: left; padding: 0 5px; font-size: 16px" md-button>-->
+      <!--<div style="display: flex; flex-direction: row; align-items: center; position: relative">-->
+        <!--<md-icon md-list-icon fontSet="fa" fontIcon="fa-trophy"></md-icon>-->
+        <!--<span style="width: 100%; margin: 0 15px">Personal Info</span>-->
+        <!--<md-icon md-list-icon fontSet="fa" fontIcon="fa-trophy"></md-icon>-->
+      <!--</div>-->
+    <!--</button>-->
+  <!--</md-list-item>-->
+<!--</md-list>-->
+
+<!--<md-list-item>-->
+<!--<button style="display: table; padding: 10px 5px 0; text-align: left; font-size: 16px" md-button>-->
+<!--<md-icon style="display: table-cell; vertical-align: middle" md-list-icon fontSet="fa" fontIcon="fa-trophy"></md-icon>-->
+<!--<span style="display: table-cell; width: 100%; padding: 0 15px">Personal Info</span>-->
+<!--<md-icon style="display: table-cell" md-list-icon fontSet="fa" fontIcon="fa-trophy"></md-icon>-->
+<!--</button>-->
+<!--</md-list-item>-->
+
+<!--working but icon outside of link-->
+<!--<md-list-item>-->
+  <!--<div>-->
+    <!--<md-icon md-list-icon fontSet="fa" fontIcon="fa-trophy"></md-icon>-->
+  <!--</div>-->
+  <!--<button style="width: 100%; text-align: left" md-button (click)="onPersonalInfoClicked($event)">-->
+    <!--Personal Info-->
+  <!--</button>-->
+  <!--<div>-->
+    <!--<md-icon md-list-icon fontSet="fa" fontIcon="fa-trophy"></md-icon>-->
+  <!--</div>-->
+<!--</md-list-item>-->

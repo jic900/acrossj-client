@@ -4,6 +4,7 @@
 
 export const AppConstant = {
   BOOTSTRAP_TOGGLE_BREAKPOINT: 1025,
+  PROFILE_TOGGLE_BREAKPOINT: 769,
   IPHONE6_WIDTH: 375
 }
 // export class AppConstant {

@@ -26,6 +26,7 @@ export class AuthService implements OnDestroy {
     }
     this.subscription = this.localStorageService.tokenDeleted$
       .subscribe(() => this.setAuthenticated(false));
+    this.redirectUrl = null;
   }
 
   ngOnDestroy(): void {

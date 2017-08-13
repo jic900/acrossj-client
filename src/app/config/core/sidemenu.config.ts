@@ -79,22 +79,22 @@ export class SideMenuConfig implements IComponent {
             {
               name: 'profile',
               display: 'NAVBAR.SIDE.ACCOUNT.MENU.PROFILE',
-              link: {path: '', param: ''}
+              link: {path: '/user/profile'}
             },
             {
               name: 'events',
               display: 'NAVBAR.SIDE.ACCOUNT.MENU.EVENTS',
-              link: {path: '', param: ''}
+              link: {path: '/user/events'}
             },
             {
               name: 'messages',
               display: 'NAVBAR.SIDE.ACCOUNT.MENU.MESSAGES',
-              link: {path: '', param: ''}
+              link: {path: '/user/messages'}
             },
             {
               name: 'uploads',
               display: 'NAVBAR.SIDE.ACCOUNT.MENU.UPLOADS',
-              link: {path: '', param: ''}
+              link: {path: '/user/uploads'}
             }
           ]
         },

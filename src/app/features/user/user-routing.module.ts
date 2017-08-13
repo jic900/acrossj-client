@@ -14,19 +14,20 @@ import { EventSummaryComponent } from '../event/eventsummary.component';
 import { MessageSummaryComponent } from './message/messagesummary.component';
 import { UploadSummaryComponent } from './upload/uploadsummary.component';
 import { CanDeactivateGuard } from 'app/can-deactivate-guard.service';
+import { AuthGuard } from '../auth/services/authguard.service';
 
 const userRoutes: Routes = [
   {path: '', component: UserComponent,
     children: [
       {path: '', redirectTo: '/user/dashboard', pathMatch: 'full'},
       {path: 'dashboard', component: DashboardComponent},
-      {path: 'profile', component: ProfileComponent, children: [
+      {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], children: [
         {path: 'personalinfo', component: PersonalInfoComponent, canDeactivate: [CanDeactivateGuard]},
         {path: 'changepassword', component: ChangePasswordComponent},
       ]},
       {path: 'events', component: EventSummaryComponent},
       {path: 'messages', component: MessageSummaryComponent},
-      {path: 'uploads', component: UploadSummaryComponent},
+      {path: 'uploads', component: UploadSummaryComponent}
     ]}
 ]
 

@@ -8,7 +8,6 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AuthConfig } from 'angular2-jwt';
 
-import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './features/core/core.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
@@ -17,6 +16,7 @@ import { LoaderService } from './features/core/loader/loader.service';
 import { LocalStorageService } from './shared/services/localstorage.service';
 import { HttpService } from './shared/services/http.service';
 import { AppRoutingModule } from './app-routing.module';
+import { MdIconRegistry } from '@angular/material';
 
 export function translateLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http, 'src/assets/i18n/', '.json');
@@ -65,18 +65,21 @@ export function httpServiceFactory(
       provide: HttpService,
       useFactory: httpServiceFactory,
       deps: [Http, RequestOptions, LoaderService, LocalStorageService]
-    }
+    },
+    MdIconRegistry
   ],
   bootstrap: [AppComponent]
 })
 
 export class AppModule {
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, mdIconRegistry: MdIconRegistry) {
     translate.addLangs(['en', 'ja', 'zh']);
     translate.setDefaultLang('en');
     let browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/en|ja|zh/) ? browserLang : 'en');
     // translate.use('zh');
+
+    mdIconRegistry.registerFontClassAlias('fontawesome', 'fa');
   }
 }

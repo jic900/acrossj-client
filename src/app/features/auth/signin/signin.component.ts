@@ -86,7 +86,12 @@ export class SignInComponent {
           this.processing = false;
           this.reset();
           // TODO: navigate to previous page if exisits.
-          this.router.navigateByUrl('/');
+          const redirectUrl = this.authService.redirectUrl;
+          if (redirectUrl) {
+            this.router.navigateByUrl(redirectUrl);
+          } else {
+            this.router.navigateByUrl('/');
+          }
         },
         err => {
           if (err.name === 'UserNotFound') {

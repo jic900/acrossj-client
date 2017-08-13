@@ -73,7 +73,7 @@ export class ChangePasswordComponent {
   }
 
   isDeviceWidth(): boolean {
-    return window.innerWidth < AppConstant.BOOTSTRAP_TOGGLE_BREAKPOINT;
+    return window.innerWidth < AppConstant.PROFILE_TOGGLE_BREAKPOINT;
   }
 
   passwordMatch(formGroup: FormGroup): {} {

@@ -1,67 +1,21 @@
-<!--<div *ngIf="size>==1024">link list</div>-->
+<div class="user-top-image" [ngStyle]="{ 'background-image': 'url(' + backgroundImage + ')'}">
 
-<!--<div *ngIf="size<==1024">{{title}}</div>-->
-
-<!--<div *ngIf="state===1">-->
-<!--<aj-profile></aj-profile>-->
-<!--</div>-->
-
-<!--<div>-->
-<!--<aj-messages></aj-messages>-->
-<!--</div>-->
-
+</div>
 <div class="user-container">
-  <md-toolbar color="primary">
-    <!--<span class="app-toolbar-filler"></span>-->
-    <!--<button routerLink="home" md-button>Home</button>-->
-    <button md-button (click)="onClicked('dashboard')"
-            [routerLink]="['/user/dashboard']">
-      Dashboard
-    </button>
-    <button md-button (click)="onClicked('profile')">
-      Profile
-    </button>
-    <!--<button md-button-->
-    <!--[routerLink]="['/user/profile', {outlets: {'aux': ['personalinfo']}}]">-->
-    <!--Profile-->
-    <!--</button>-->
-    <button md-button (click)="onClicked('events')" [routerLink]="['/user/events']">
-      My Events
-    </button>
-    <button md-button (click)="onClicked('messages')" [routerLink]="['/user/messages']">
-      Messages
-    </button>
-    <button md-button (click)="onClicked('uploads')" [routerLink]="['/user/uploads']">
-      My Uploads
-    </button>
-  </md-toolbar>
+  <nav *ngIf="!isDeviceWidth()" md-tab-nav-bar>
+    <div class="tab-navbar-content">
+      <a md-tab-link
+         *ngFor="let tabLink of tabLinks"
+         [routerLink]="tabLink.name !== userElements.profile.name ? [tabLink.link.path] : []"
+         routerLinkActive #rla="routerLinkActive"
+         [active]="rla.isActive"
+         (click)="onClicked(tabLink.name)">
+        {{tabLink.display | translate}}
+      </a>
+    </div>
+  </nav>
 
-  <div class="app-content">
+  <div class="user-content">
     <router-outlet></router-outlet>
   </div>
 </div>
-
-
-<!--<app-header></app-header>-->
-<!--<router-outlet></router-outlet> &lt;!&ndash;AppHeader.html&ndash;&gt;-->
-<!--<ul class="nav navbar-nav">-->
-  <!--<li class=""><a href="/main/overview">OVERVIEW</a></li>-->
-  <!--<li class=""><a href="/main/insights">INSIGHTS</a></li>-->
-<!--</ul>-->
-
-<!--const appRoutes: Routes = [-->
-<!--{ path: 'main', component: MainComponent,-->
-<!--children: [-->
-<!--{ path: '', component: MainComponent },-->
-<!--{ path: 'overview', component:  OverviewComponent },-->
-<!--{ path: 'insights', component: InsightsComponent },-->
-<!--]-->
-
-<!--},-->
-<!--{ path: 'login', component: LoginComponent },-->
-<!--{ path: '',-->
-<!--redirectTo: '/login',-->
-<!--pathMatch: 'full'-->
-<!--},-->
-<!--{ path: '**', component: PageNotFoundComponent }-->
-<!--];-->
