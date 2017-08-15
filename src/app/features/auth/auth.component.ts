@@ -77,7 +77,7 @@ export class AuthComponent implements AfterViewInit, OnDestroy {
           if (!token || this.authService.authenticated) {
             this.router.navigateByUrl('/');
           } else {
-            this.router.navigateByUrl(this.route.snapshot.url.join('/'));
+            this.router.navigateByUrl(`/auth/${this.route.snapshot.url.join('/')}`);
             this.verifyEmailComponent.verifyEmail(this.route.snapshot.queryParams['token']);
           }
           break;

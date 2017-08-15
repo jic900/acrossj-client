@@ -16,11 +16,33 @@
   padding: 0 20px;
 }
 
-:host >>> .profile-input-group {
-  width: 100%;
-  /*margin-top: 10px;*/
-  padding: 40px 20px 15px;
-  /*border: solid 1px rgba(0, 0, 0, .12);*/
+@media (min-width: 769px) {
+  :host >>> .profile-input-group {
+    width: 100%;
+    /*margin-top: 10px;*/
+    padding: 30px 30px 15px;
+    /*border: solid 1px rgba(0, 0, 0, .12);*/
+  }
+  :host >>> .profile-btn-container {
+    width: 100%;
+    padding: 0 20px 40px;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+  }
+}
+@media (max-width: 768px) {
+  :host >>> .profile-input-group {
+    width: 100%;
+    /*margin-top: 10px;*/
+    padding: 30px 10px 15px;
+    /*border: solid 1px rgba(0, 0, 0, .12);*/
+  }
+  :host >>> .profile-btn-container {
+    width: 100%;
+    padding: 0 0 40px;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+  }
 }
 
 :host >>> .mat-checkbox-inner-container {
@@ -33,13 +55,6 @@
   font-size: 13px !important;
   font-weight: normal;
   /*line-height: 14px;*/
-}
-
-:host >>> .profile-btn-container {
-  width: 100%;
-  padding: 0 20px 40px;
-  /*margin-left: auto;*/
-  /*margin-right: auto;*/
 }
 
 :host >>> .profile-btn {

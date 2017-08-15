@@ -1,6 +1,6 @@
 @media (min-width: 769px) {
   .detail-container {
-    padding: 24px;
+    padding: 24px 24px 24px 60px;
   }
   /*:host >>> .detail-container > md-card {*/
     /*padding: 16px;*/
@@ -38,7 +38,7 @@
     font-size: 200%;
   }
   :host >>> .detail-card md-card-header {
-    padding-top: 20px;
+    padding: 20px 10px 0;
     border-bottom: 1px solid rgba(0,0,0,.15);
   }
   :host >>> .detail-card .mat-card-header-text {
