@@ -15,6 +15,7 @@ import { IInputElement } from 'app/config/interfaces/input-element.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
 import { IListElement } from 'app/config/interfaces/list-element.interface';
 import { IMessageElement } from 'app/config/interfaces/message-element';
+import { ILinkElement } from 'app/config/interfaces/link-element.interface';
 
 interface IPersonalInfo {
   fullname: IInputElement;
@@ -25,6 +26,7 @@ interface IPersonalInfo {
   postcode: IInputElement;
   phonenumber: IInputElement;
   saveButton: IElement;
+  backLink: ILinkElement;
 }
 
 interface IPersonalInfoMessage {
@@ -33,7 +35,7 @@ interface IPersonalInfoMessage {
 @Component({
   selector: 'aj-personalinfo',
   templateUrl: './personalinfo.component.html',
-  styleUrls: ['../profile.component.css']
+  styleUrls: ['./personalinfo.component.css']
 })
 
 export class PersonalInfoComponent {

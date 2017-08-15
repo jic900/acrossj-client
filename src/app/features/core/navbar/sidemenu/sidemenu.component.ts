@@ -120,6 +120,10 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     });
   }
 
+  onSubMenuClicked(event): void {
+    this.setSideMenuState(MenuState.collapsed);
+  }
+
   onSignOut() {
     this.setSideMenuState(MenuState.collapsed);
   }

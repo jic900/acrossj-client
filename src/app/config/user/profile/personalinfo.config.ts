@@ -6,10 +6,11 @@ import { IForm } from 'app/config/interfaces/form.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
 import { IListElement } from 'app/config/interfaces/list-element.interface';
+import { ILinkElement } from 'app/config/interfaces/link-element.interface';
 
 export class PersonalInfoConfig implements IForm {
   title: string = 'USER.PROFILE.PERSONAL_INFO.LABEL';
-  elements: [IInputElement, IInputElement, IListElement, IInputElement, IInputElement, IInputElement, IInputElement, IElement] = [
+  elements: [IInputElement, IInputElement, IListElement, IInputElement, IInputElement, IInputElement, IInputElement, IElement, ILinkElement] = [
     {
       name: 'fullname',
       type: 'input',
@@ -53,6 +54,12 @@ export class PersonalInfoConfig implements IForm {
       name: 'saveButton',
       type: 'button',
       display: 'USER.PROFILE.PERSONAL_INFO.SAVEBTN_LABEL'
-    }
+    },
+    {
+      name: 'backLink',
+      display: '',
+      iconClass: 'fa-angle-left',
+      link: {path: '/user/profile'}
+    },
   ];
 }

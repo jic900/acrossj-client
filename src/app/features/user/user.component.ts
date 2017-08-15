@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
 
+import { UserService } from 'app/features/user/services/user.service';
 import { AppConfig } from 'app/config/common/app.config';
 import { AppConstant } from 'app/config/common/app-constant.config';
 import { UserConfig } from 'app/config/user/user.config';
@@ -27,27 +28,24 @@ export class UserComponent {
   userData: IComponent;
   userElements: IUser;
   tabLinks: ILinkElement[];
-  lastClicked: string;
-  backgroundImage = AppConfig.USER_BACKGROUND;
+  backgroundImage: string;
 
-  constructor(private router: Router) {
+  constructor(private userService: UserService, private router: Router) {
     this.userData = new UserConfig();
     this.userElements = _.mapKeys(this.userData.elements, 'name');
     this.tabLinks = this.userData.elements.filter((element) => {
       return element.type === 'link';
     })
+    this.backgroundImage = AppConfig.USER_BACKGROUND;
   }
 
-  onClicked(element): void {
+  getProfileLink(): string {
     if (this.isDeviceWidth()) {
-      if (element === this.userElements.profile.name) {
-        this.router.navigate(['/user/profile']);
-      }
+      return '/user/profile';
+    } else if (this.userService.profileMenuSelected) {
+      return this.userService.profileMenuSelected.link.path;
     } else {
-      if (this.lastClicked !== 'profile' && element === 'profile') {
-        this.router.navigate(['/user/profile/personalinfo']);
-      }
-      this.lastClicked = element;
+      return '/user/profile/personalinfo';
     }
   }
 

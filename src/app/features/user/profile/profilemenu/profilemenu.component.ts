@@ -11,6 +11,7 @@ import { ProfileMenuConfig } from 'app/config/user/profile/profilemenu.config';
 import { IComponent } from 'app/config/interfaces/component.interface';
 import { IListElement } from 'app/config/interfaces/list-element.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
+import { ILinkElement } from 'app/config/interfaces/link-element.interface';
 
 interface IProfileMenu {
   menuTitle: IElement;
@@ -20,7 +21,7 @@ interface IProfileMenu {
 @Component({
   selector: 'aj-profilemenu',
   templateUrl: './profilemenu.component.html',
-  styleUrls: ['../profile.component.css']
+  styleUrls: ['./profilemenu.component.css']
 })
 
 export class ProfileMenuComponent {
@@ -31,10 +32,12 @@ export class ProfileMenuComponent {
   constructor(private userService: UserService) {
     this.menuData = new ProfileMenuConfig();
     this.menuElements = _.mapKeys(this.menuData.elements, 'name');
+    this.userService.setProfileMenuSelected(<ILinkElement>this.menuElements.menuList.list[0]);
   }
 
-  onClicked(event): void {
+  onSelected(selectedItem: ILinkElement): void {
     this.userService.setMenuOpened(false);
+    this.userService.setProfileMenuSelected(selectedItem);
   }
 
   isDeviceWidth(): boolean {

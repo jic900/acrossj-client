@@ -7,18 +7,25 @@ import { Subject, Observable } from 'rxjs';
 
 import { HttpService } from 'app/shared/services/http.service';
 import { EndPoint } from 'app/config/common/endpoint.config';
+import { ILinkElement } from 'app/config/interfaces/link-element.interface';
+import { IElement } from 'app/config/interfaces/element.interface';
 
 @Injectable()
 export class UserService {
 
-  menuOpened$: Subject<boolean>;
+  showProfileMenu$: Subject<boolean>;
+  profileMenuSelected: ILinkElement;
 
   constructor(private httpService: HttpService) {
-    this.menuOpened$ = new Subject<boolean>();
+    this.showProfileMenu$ = new Subject<boolean>();
   }
 
-  setMenuOpened(isOpen: boolean): void {
-    this.menuOpened$.next(isOpen);
+  setMenuOpened(isShow: boolean): void {
+    this.showProfileMenu$.next(isShow);
+  }
+
+  setProfileMenuSelected(selected: ILinkElement): void {
+    this.profileMenuSelected = selected;
   }
 
   changePassword(changePasswordData: {}): Observable<{}> {

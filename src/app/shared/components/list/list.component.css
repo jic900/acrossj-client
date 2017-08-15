@@ -1,5 +1,5 @@
 :host >>> md-list-item .mat-list-item-content {
-  padding: 0;
+  padding: 0 !important;
 }
 
 .item-button-container {
@@ -22,9 +22,16 @@
 }
 
 .item-line {
-  border-bottom: 1px solid rgba(0,0,0,.25);
+  border-bottom: 1px solid rgba(0,0,0,.15);
 }
 
 .item-icon {
   color: rgba(0,0,0,.5);
 }
+
+@media (min-width: 769px) {
+  .item-selected {
+    background-color: rgba(0,0,0,.15);
+  }
+}
+

@@ -1,20 +1,17 @@
 <div class="user-top-image" [ngStyle]="{ 'background-image': 'url(' + backgroundImage + ')'}">
-
 </div>
 <div class="user-container">
   <nav *ngIf="!isDeviceWidth()" md-tab-nav-bar>
     <div class="tab-navbar-content">
       <a md-tab-link
          *ngFor="let tabLink of tabLinks"
-         [routerLink]="tabLink.name !== userElements.profile.name ? [tabLink.link.path] : []"
+         [routerLink]="tabLink.name !== userElements.profile.name ? [tabLink.link.path] : [getProfileLink()]"
          routerLinkActive #rla="routerLinkActive"
-         [active]="rla.isActive"
-         (click)="onClicked(tabLink.name)">
+         [active]="rla.isActive">
         {{tabLink.display | translate}}
       </a>
     </div>
   </nav>
-
   <div class="user-content">
     <router-outlet></router-outlet>
   </div>

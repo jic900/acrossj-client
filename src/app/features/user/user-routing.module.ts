@@ -24,6 +24,9 @@ const userRoutes: Routes = [
       {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], children: [
         {path: 'personalinfo', component: PersonalInfoComponent, canDeactivate: [CanDeactivateGuard]},
         {path: 'changepassword', component: ChangePasswordComponent},
+        // {path: 'sportinfo', redirectTo: '/user/sportinfo/general', pathMatch: 'full'},
+        // {path: 'sportinfo/general', component: ChangePasswordComponent},
+        // {path: 'sportinfo/skii', component: ChangePasswordComponent},
       ]},
       {path: 'events', component: EventSummaryComponent},
       {path: 'messages', component: MessageSummaryComponent},

@@ -24,12 +24,14 @@ export class SubMenuComponent {
 
   @Input() menuData: IListElement;
   @Output() subMenuToggled: EventEmitter<any>;
+  @Output() subMenuClicked: EventEmitter<void>;
   subMenuState: number;
   otherMenuExpanded: boolean;
 
   constructor(private elementRef: ElementRef, private translate: TranslateService) {
     this.subMenuState = MenuState.collapsed;
     this.subMenuToggled = new EventEmitter<{string, boolean}>();
+    this.subMenuClicked = new EventEmitter<void>();
     this.otherMenuExpanded = false;
   }
 
@@ -64,6 +66,7 @@ export class SubMenuComponent {
       }
     }
     this.subMenuState = MenuState.collapsed;
+    this.subMenuClicked.emit();
   }
 
   onMouseUp(event): void {

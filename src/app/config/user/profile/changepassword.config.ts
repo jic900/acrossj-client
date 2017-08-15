@@ -5,12 +5,13 @@
 import { IForm } from 'app/config/interfaces/form.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
+import { ILinkElement } from 'app/config/interfaces/link-element.interface';
 import { IValidator } from 'app/config/interfaces/validator.interface';
 import { IMessageElement } from 'app/config/interfaces/message-element';
 
 export class ChangePasswordConfig implements IForm {
   title: string = 'USER.PROFILE.CHANGE_PASSWORD.LABEL';
-  elements: [IInputElement, IInputElement, IInputElement, IElement, IElement] = [
+  elements: [IInputElement, IInputElement, IInputElement, IElement, IElement, ILinkElement] = [
     {
       name: 'oldPassword',
       type: 'input',
@@ -47,7 +48,13 @@ export class ChangePasswordConfig implements IForm {
       name: 'submitButton',
       type: 'button',
       display: 'USER.PROFILE.CHANGE_PASSWORD.BTN_LABEL'
-    }
+    },
+    {
+      name: 'backLink',
+      display: '',
+      iconClass: 'fa-angle-left',
+      link: {path: '/user/profile'}
+    },
   ];
   validator: IValidator = {
     name: 'passwordMatch',

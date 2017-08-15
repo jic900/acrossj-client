@@ -29,6 +29,7 @@ import { MessageSummaryComponent } from './message/messagesummary.component';
 import { MessageDetailComponent } from './message/messagedetail/messagedetail.component';
 import { UploadSummaryComponent } from './upload/uploadsummary.component';
 import { UploadDetailComponent } from './upload/uploaddetail/uploaddetail.component';
+import { ProfileDetailComponent } from './profile/profiledetail/profiledetail.component';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { UploadDetailComponent } from './upload/uploaddetail/uploaddetail.compon
     DashboardComponent,
     ProfileComponent,
     ProfileMenuComponent,
+    ProfileDetailComponent,
     PersonalInfoComponent,
     ChangePasswordComponent,
     MessageSummaryComponent,

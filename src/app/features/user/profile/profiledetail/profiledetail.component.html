@@ -1,0 +1,15 @@
+<div class="detail-container">
+  <md-card class="detail-card">
+    <md-card-header>
+      <div *ngIf="isDeviceWidth()" md-card-avatar class="detail-back-link">
+        <a [routerLink]="[backLink.link.path]" (click)="onBackLinkClicked($event)">
+          <i class="fa detail-back-link-icon" [ngClass]="backLink.iconClass" aria-hidden="true"></i>
+        </a>
+      </div>
+      <md-card-title>{{title | translate}}</md-card-title>
+    </md-card-header>
+    <md-card-content>
+      <ng-content></ng-content>
+    </md-card-content>
+  </md-card>
+</div>

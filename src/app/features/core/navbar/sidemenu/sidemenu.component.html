@@ -24,7 +24,10 @@
         </a>
       </li>
       <li>
-        <aj-submenu [menuData]="bottomMenuSubmenus.language" (subMenuToggled)="onSubMenuToggled($event)">
+        <aj-submenu
+          [menuData]="bottomMenuSubmenus.language"
+          (subMenuToggled)="onSubMenuToggled($event)"
+          (subMenuClicked)="onSubMenuClicked($event)">
         </aj-submenu>
       </li>
       <li *ngIf="!authenticated && isDeviceWidth()" style="margin-top: 15px">
@@ -32,11 +35,16 @@
            (click)="toggleSideMenuState()">{{bottomMenuLinks.signinSignup.display | translate}}</a>
       </li>
       <li *ngIf="!authenticated && !isDeviceWidth()">
-        <aj-submenu [menuData]="bottomMenuSubmenus.auth" (subMenuToggled)="onSubMenuToggled($event)">
+        <aj-submenu
+          [menuData]="bottomMenuSubmenus.auth"
+          (subMenuToggled)="onSubMenuToggled($event)">
         </aj-submenu>
       </li>
       <li *ngIf="authenticated">
-        <aj-submenu [menuData]="bottomMenuSubmenus.account" (subMenuToggled)="onSubMenuToggled($event)">
+        <aj-submenu
+          [menuData]="bottomMenuSubmenus.account"
+          (subMenuToggled)="onSubMenuToggled($event)"
+          (subMenuClicked)="onSubMenuClicked($event)">
         </aj-submenu>
       </li>
       <li *ngIf="authenticated && isDeviceWidth()" style="margin-top: 15px">

@@ -8,7 +8,6 @@ import {
   OnDestroy,
   HostListener
 } from '@angular/core';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -27,13 +26,10 @@ export class ProfileComponent implements AfterViewInit, OnDestroy {
   showMenu: boolean;
   deviceMode: boolean;
 
-  constructor(private userService: UserService,
-              private location: Location,
-              private router: Router
-  ) {
+  constructor(private userService: UserService, private router: Router) {
     this.showMenu = true;
     this.deviceMode = this.isDeviceWidth();
-    this.subscription = this.userService.menuOpened$.subscribe(isMenuOpened => this.showMenu = isMenuOpened);
+    this.subscription = this.userService.showProfileMenu$.subscribe(isShow => this.showMenu = isShow);
   }
 
   ngAfterViewInit(): void {
@@ -45,13 +41,11 @@ export class ProfileComponent implements AfterViewInit, OnDestroy {
   @HostListener('window:resize', ['$event'])
   onWindowResize(event): void {
     const width = event.target.innerWidth;
-    const activeRouteParts = this.location.path().split('/');
-    const curRoute = activeRouteParts[activeRouteParts.length-1];
-    if (width >= AppConstant.PROFILE_TOGGLE_BREAKPOINT && curRoute === 'profile') {
-      this.router.navigate(['/user/profile/personalinfo']);
-    } else if (width < AppConstant.PROFILE_TOGGLE_BREAKPOINT && !this.deviceMode) {
+    if (width < AppConstant.PROFILE_TOGGLE_BREAKPOINT && !this.deviceMode) {
       this.userService.setMenuOpened(true);
       this.router.navigate(['/user/profile']);
+    } else if (width >= AppConstant.PROFILE_TOGGLE_BREAKPOINT && this.deviceMode) {
+      this.router.navigate([this.userService.profileMenuSelected.link.path]);
     }
     this.deviceMode = width < AppConstant.PROFILE_TOGGLE_BREAKPOINT;
   }

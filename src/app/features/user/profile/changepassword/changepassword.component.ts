@@ -12,6 +12,7 @@ import { IForm } from 'app/config/interfaces/form.interface';
 import { IInputElement } from 'app/config/interfaces/input-element.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
 import { IMessageElement } from 'app/config/interfaces/message-element';
+import { ILinkElement } from 'app/config/interfaces/link-element.interface';
 
 interface IChangePassword {
   oldPassword: IInputElement;
@@ -19,6 +20,7 @@ interface IChangePassword {
   confirmPassword: IInputElement;
   showPassword: IElement;
   submitButton: IElement;
+  backLink: ILinkElement;
 }
 
 interface IChangePasswordMessage {
@@ -30,7 +32,7 @@ interface IChangePasswordMessage {
 @Component({
   selector: 'aj-changepassword',
   templateUrl: './changepassword.component.html',
-  styleUrls: ['../profile.component.css'],
+  styleUrls: ['./changepassword.component.css'],
   animations: [ slideInDownAnimation ]
 })
 
@@ -67,9 +69,9 @@ export class ChangePasswordComponent {
     this.message = null;
   }
 
-  onBackClicked(event): void {
+  onBackLinkClicked(event): void {
     this.userService.setMenuOpened(true);
-    this.router.navigate(['/user/profile']);
+    // this.router.navigate(['/user/profile']);
   }
 
   isDeviceWidth(): boolean {

@@ -1,67 +1,55 @@
-<div>
-  <button *ngIf="isDeviceWidth()" md-button (click)="onBackClicked($event)" style="margin-top: 20px">
-    Back
-  </button>
-</div>
+<aj-profiledetail [title]="formData.title">
+  <form class="profile-form" novalidate [formGroup]="formGroup">
+    <aj-message *ngIf="message" [data]="message"></aj-message>
+    <div class="profile-input-group">
+      <aj-input
+        [inputData]="formElements.username"
+        [type]="'text'"
+        (clicked)="onClicked($event)"
+        (bindControl)="onBindControl($event)">
+      </aj-input>
+      <aj-input
+        [inputData]="formElements.fullname"
+        [type]="'text'"
+        (bindControl)="onBindControl($event)">
+      </aj-input>
 
-<md-card class="menu-card">
-  <md-card-header>
-    <md-card-title>{{formData.title | translate}}</md-card-title>
-  </md-card-header>
-  <md-card-content>
-    <form class="profile-form" novalidate [formGroup]="formGroup">
-      <aj-message *ngIf="message" [data]="message"></aj-message>
-      <div class="profile-input-group">
-        <aj-input
-          [inputData]="formElements.username"
-          [type]="'text'"
-          (clicked)="onClicked($event)"
-          (bindControl)="onBindControl($event)">
-        </aj-input>
-        <aj-input
-          [inputData]="formElements.fullname"
-          [type]="'text'"
-          (bindControl)="onBindControl($event)">
-        </aj-input>
+      <aj-select
+        [inputData]="formElements.gender"
+        [required]="true"
+        (bindControl)="onBindControl($event)"
+        (selected)="onSelected($event)">
+      </aj-select>
 
-        <aj-select
-          [inputData]="formElements.gender"
-          [required]="true"
-          (bindControl)="onBindControl($event)"
-          (selected)="onSelected($event)">
-        </aj-select>
-
-        <aj-input
-          [inputData]="formElements.birthday"
-          [type]="'text'"
-          (bindControl)="onBindControl($event)">
-        </aj-input>
-        <aj-input
-          [inputData]="formElements.address"
-          [type]="'text'"
-          (bindControl)="onBindControl($event)">
-        </aj-input>
-        <aj-input
-          [inputData]="formElements.postcode"
-          [type]="'text'"
-          (bindControl)="onBindControl($event)">
-        </aj-input>
-        <aj-input
-          [inputData]="formElements.phonenumber"
-          [type]="'text'"
-          (bindControl)="onBindControl($event)">
-        </aj-input>
-      </div>
-      <div>
-        <button
-          class="profile-btn"
-          type="submit"
-          [disabled]="!isValid()"
-          [ngClass]="{'disabled': !isValid()}">
-          {{ formElements.saveButton.display | translate }}
-        </button>
-      </div>
-    </form>
-  </md-card-content>
-</md-card>
-
+      <aj-input
+        [inputData]="formElements.birthday"
+        [type]="'text'"
+        (bindControl)="onBindControl($event)">
+      </aj-input>
+      <aj-input
+        [inputData]="formElements.address"
+        [type]="'text'"
+        (bindControl)="onBindControl($event)">
+      </aj-input>
+      <aj-input
+        [inputData]="formElements.postcode"
+        [type]="'text'"
+        (bindControl)="onBindControl($event)">
+      </aj-input>
+      <aj-input
+        [inputData]="formElements.phonenumber"
+        [type]="'text'"
+        (bindControl)="onBindControl($event)">
+      </aj-input>
+    </div>
+    <div class="profile-btn-container">
+      <button
+        class="profile-btn"
+        type="submit"
+        [disabled]="!isValid()"
+        [ngClass]="{'disabled': !isValid()}">
+        {{ formElements.saveButton.display | translate }}
+      </button>
+    </div>
+  </form>
+</aj-profiledetail>
