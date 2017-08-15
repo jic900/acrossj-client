@@ -7,15 +7,15 @@
   </a>
   <ul class="submenu" [ngClass]="{'expanded': isSubMenuExpanded()}">
     <li *ngFor="let item of menuData.list">
-      <a [routerLink]="item.link ? item.link.param ? [item.link.path, item.link.param] : [item.link.path] : []"
+      <a [routerLink]="item.item.link ? item.item.link.param ? [item.item.link.path, item.item.link.param] : [item.item.link.path] : []"
          (click)="onSubMenuClick(item.name)">
         <span>
-          <i *ngIf="item.iconClass"
+          <i *ngIf="item.item.iconClass"
              class='fa fa-fw'
-             [ngClass]="item.iconClass"
+             [ngClass]="item.item.iconClass"
              aria-hidden="true">
           </i>
-        </span>{{ item.display | translate }}
+        </span>{{ item.item.display | translate }}
       </a>
     </li>
     <li *ngIf="menuData.name === 'account' && ! this.isDeviceWidth()">

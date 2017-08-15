@@ -5,12 +5,12 @@
   <div class="navbar-nav-container" [ngStyle]="{'max-height': getMaxHeight(), 'overflow-y': getOverflowY()}">
     <ul class="nav navbar-nav">
       <li *ngFor="let listItem of sideMenuData.topList.list">
-        <a [routerLink]="listItem.link.param ? [listItem.link.path, listItem.link.param] : [listItem.link.path]">
+        <a [routerLink]="listItem.item.link.param ? [listItem.item.link.path, listItem.item.link.param] : [listItem.item.link.path]">
           <i *ngIf="isDeviceWidth()"
              class='fa fa-fw'
-             [ngClass]="listItem.iconClass ? listItem.iconClass : ''"
+             [ngClass]="listItem.item.iconClass ? listItem.item.iconClass : ''"
              aria-hidden="true">
-          </i>{{listItem.display | translate}}
+          </i>{{listItem.item.display | translate}}
         </a>
       </li>
     </ul>

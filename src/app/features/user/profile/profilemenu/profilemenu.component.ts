@@ -12,6 +12,7 @@ import { IComponent } from 'app/config/interfaces/component.interface';
 import { IListElement } from 'app/config/interfaces/list-element.interface';
 import { IElement } from 'app/config/interfaces/element.interface';
 import { ILinkElement } from 'app/config/interfaces/link-element.interface';
+import { IListItem } from 'app/config/interfaces/list-item';
 
 interface IProfileMenu {
   menuTitle: IElement;
@@ -32,12 +33,12 @@ export class ProfileMenuComponent {
   constructor(private userService: UserService) {
     this.menuData = new ProfileMenuConfig();
     this.menuElements = _.mapKeys(this.menuData.elements, 'name');
-    this.userService.setProfileMenuSelected(<ILinkElement>this.menuElements.menuList.list[0]);
+    this.userService.setProfileMenuSelected(<ILinkElement>this.menuElements.menuList.list[0].item);
   }
 
-  onSelected(selectedItem: ILinkElement): void {
+  onSelected(selectedItem: IListItem): void {
     this.userService.setMenuOpened(false);
-    this.userService.setProfileMenuSelected(selectedItem);
+    this.userService.setProfileMenuSelected(<ILinkElement>selectedItem.item);
   }
 
   isDeviceWidth(): boolean {

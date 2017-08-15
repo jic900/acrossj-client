@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
-import { IElement } from 'app/config/interfaces/element.interface';
 import { IListElement } from 'app/config/interfaces/list-element.interface';
+import { IListItem } from 'app/config/interfaces/list-item';
 
 @Component({
   selector: 'aj-select',
@@ -21,14 +21,14 @@ export class SelectComponent implements OnInit {
   @Input() inputData: IListElement;
   @Input() required: boolean;
   @Output() bindControl: EventEmitter<{}>;
-  @Output() selected: EventEmitter<IElement>;
+  @Output() selected: EventEmitter<IListItem>;
   selectedValue: string;
   formControl: FormControl;
 
   constructor() {
     this.required = false;
     this.bindControl = new EventEmitter<{}>();
-    this.selected = new EventEmitter<IElement>();
+    this.selected = new EventEmitter<IListItem>();
   }
 
   ngOnInit() {
@@ -38,8 +38,8 @@ export class SelectComponent implements OnInit {
   }
 
   onChange(event): void {
-    const selectedElement: IElement = (<IElement[]>this.inputData.list).filter(element => {
-      return element.name === this.selectedValue;
+    const selectedElement: IListItem = (<IListItem[]>this.inputData.list).filter(element => {
+      return element.item.name === this.selectedValue;
     })[0];
     this.selected.emit(selectedElement);
   }
