@@ -2,12 +2,16 @@
   .detail-container {
     padding: 24px;
   }
+  /*:host >>> .detail-container > md-card {*/
+    /*padding: 16px;*/
+  /*}*/
   :host >>> .detail-container > md-card {
-    padding: 16px;
+    padding: 0;
   }
   :host >>> .detail-card md-card-header {
-    padding: 16px;
-    border-bottom: 1px solid rgba(0,0,0,.15);
+    background-color: rgba(0,0,0,.15);
+    padding: 30px 30px 10px;
+    /*border-bottom: 1px solid rgba(0,0,0,.15);*/
   }
   :host >>> .detail-card .mat-card-title {
     font-size: 18px !important;
