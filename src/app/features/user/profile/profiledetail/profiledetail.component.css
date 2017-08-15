@@ -9,14 +9,15 @@
     padding: 0;
   }
   :host >>> .detail-card md-card-header {
-    background-color: rgba(0,0,0,.15);
+    background-color: rgba(0,0,0,.5);
+    color: white;
     padding: 30px 30px 10px;
     /*border-bottom: 1px solid rgba(0,0,0,.15);*/
   }
   :host >>> .detail-card .mat-card-title {
     font-size: 18px !important;
     font-weight: bold;
-    opacity: 0.6;
+    /*opacity: 0.6;*/
     margin-bottom: 0;
   }
 }
