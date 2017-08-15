@@ -4,13 +4,13 @@
      [ngClass]="{'sideMenuExpanded': isSideMenuExpanded()}">
   <div class="navbar-nav-container" [ngStyle]="{'max-height': getMaxHeight(), 'overflow-y': getOverflowY()}">
     <ul class="nav navbar-nav">
-      <li *ngFor="let listItem of sideMenuData.topList.list">
-        <a [routerLink]="listItem.item.link.param ? [listItem.item.link.path, listItem.item.link.param] : [listItem.item.link.path]">
+      <li *ngFor="let listItem of topListLinks">
+        <a [routerLink]="listItem.link.param ? [listItem.link.path, listItem.link.param] : [listItem.link.path]">
           <i *ngIf="isDeviceWidth()"
              class='fa fa-fw'
-             [ngClass]="listItem.item.iconClass ? listItem.item.iconClass : ''"
+             [ngClass]="listItem.iconClass ? listItem.iconClass : ''"
              aria-hidden="true">
-          </i>{{listItem.item.display | translate}}
+          </i>{{listItem.display | translate}}
         </a>
       </li>
     </ul>

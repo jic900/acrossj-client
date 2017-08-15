@@ -4,22 +4,22 @@
       md-button
       class="item-button-container"
       [ngClass]="{'item-selected': selectedIndex===i}"
-      [routerLink]="item.item.link ? item.item.link.param ? [item.item.link.path, item.item.link.param] : [item.item.link.path] : []"
+      [routerLink]="item.link ? item.link.param ? [item.link.path, item.link.param] : [item.link.path] : []"
       (click)="onClicked(i, item)">
       <div class="item-button-content">
         <md-icon
-          *ngIf="item.item.iconClass"
+          *ngIf="item.iconClass"
           md-list-icon
           fontSet="fa"
-          fontIcon="{{item.item.iconClass}}">
+          fontIcon="{{item.iconClass}}">
         </md-icon>
-        <span class="item-label">{{item.item.display | translate}}</span>
+        <span class="item-label">{{item.display | translate}}</span>
         <md-icon
-          *ngIf="item.item.navIconClass && showNavIcon"
+          *ngIf="item.navIconClass && showNavIcon"
           md-list-icon
           class="item-icon"
           fontSet="fa"
-          fontIcon="{{item.item.navIconClass}}">
+          fontIcon="{{item.navIconClass}}">
         </md-icon>
       </div>
     </button>

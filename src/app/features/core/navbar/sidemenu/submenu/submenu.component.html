@@ -6,16 +6,16 @@
     <span *ngIf="isDeviceWidth()" class="caret" [ngClass]="{'expanded': isSubMenuExpanded()}"></span>
   </a>
   <ul class="submenu" [ngClass]="{'expanded': isSubMenuExpanded()}">
-    <li *ngFor="let item of menuData.list">
-      <a [routerLink]="item.item.link ? item.item.link.param ? [item.item.link.path, item.item.link.param] : [item.item.link.path] : []"
+    <li *ngFor="let item of menuLinks">
+      <a [routerLink]="item.link ? item.link.param ? [item.link.path, item.link.param] : [item.link.path] : []"
          (click)="onSubMenuClick(item.name)">
         <span>
-          <i *ngIf="item.item.iconClass"
+          <i *ngIf="item.iconClass"
              class='fa fa-fw'
-             [ngClass]="item.item.iconClass"
+             [ngClass]="item.iconClass"
              aria-hidden="true">
           </i>
-        </span>{{ item.item.display | translate }}
+        </span>{{ item.display | translate }}
       </a>
     </li>
     <li *ngIf="menuData.name === 'account' && ! this.isDeviceWidth()">

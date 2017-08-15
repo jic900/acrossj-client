@@ -46,6 +46,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   @ViewChildren(SubMenuComponent) submenus: QueryList<SubMenuComponent>;
   @ViewChild(SearchfieldComponent) searchfield: SearchfieldComponent;
   sideMenuData: ISideMenu;
+  topListLinks: ILinkElement[];
   bottomMenuLinks: IBottomMenuLinks;
   bottomMenuSubmenus: IBottomMenuSubmenus;
   sideMenuState: number;
@@ -54,6 +55,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService) {
     this.sideMenuData = _.mapKeys(new SideMenuConfig().elements, 'name');
+    this.topListLinks = <ILinkElement[]> this.sideMenuData.topList.list;
     this.bottomMenuLinks = _.mapKeys(this.sideMenuData.bottomMenu.links, 'name');
     this.bottomMenuSubmenus = _.mapKeys(this.sideMenuData.bottomMenu.submenus, 'name');
     this.sideMenuState = MenuState.collapsed;

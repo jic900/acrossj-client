@@ -1,5 +1,6 @@
 import {
   Component,
+  OnInit,
   Input,
   Output,
   EventEmitter,
@@ -10,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AppConstant } from 'app/config/common/app-constant.config';
 import { MenuState } from 'app/config/common/menustate.config';
 import { IListElement } from 'app/config/interfaces/list-element.interface';
+import { ILinkElement } from 'app/config/interfaces/link-element.interface';
 
 @Component({
   selector: 'aj-submenu',
@@ -20,11 +22,12 @@ import { IListElement } from 'app/config/interfaces/list-element.interface';
   }
 })
 
-export class SubMenuComponent {
+export class SubMenuComponent implements OnInit {
 
   @Input() menuData: IListElement;
   @Output() subMenuToggled: EventEmitter<any>;
   @Output() subMenuClicked: EventEmitter<void>;
+  menuLinks: ILinkElement[];
   subMenuState: number;
   otherMenuExpanded: boolean;
 
@@ -33,6 +36,10 @@ export class SubMenuComponent {
     this.subMenuToggled = new EventEmitter<{string, boolean}>();
     this.subMenuClicked = new EventEmitter<void>();
     this.otherMenuExpanded = false;
+  }
+
+  ngOnInit(): void {
+    this.menuLinks = <ILinkElement[]>this.menuData.list;
   }
 
   isSubMenuExpanded(): boolean {

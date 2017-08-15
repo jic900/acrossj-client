@@ -39,7 +39,7 @@ export class SelectComponent implements OnInit {
 
   onChange(event): void {
     const selectedElement: IListItem = (<IListItem[]>this.inputData.list).filter(element => {
-      return element.item.name === this.selectedValue;
+      return element.name === this.selectedValue;
     })[0];
     this.selected.emit(selectedElement);
   }

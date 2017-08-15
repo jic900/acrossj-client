@@ -26,8 +26,8 @@ export class PersonalInfoConfig implements IForm {
       type: 'select',
       placeHolder: 'USER.PROFILE.PERSONAL_INFO.GENDER_LABEL',
       list: [
-        {item: {name: 'male', display: 'USER.PROFILE.PERSONAL_INFO.GENDER_MALE'}},
-        {item: {name:'female', display: 'USER.PROFILE.PERSONAL_INFO.GENDER_FEMALE'}}
+        {name: 'male', display: 'USER.PROFILE.PERSONAL_INFO.GENDER_MALE'},
+        {name:'female', display: 'USER.PROFILE.PERSONAL_INFO.GENDER_FEMALE'}
       ]
     },
     {

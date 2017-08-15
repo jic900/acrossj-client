@@ -13,28 +13,22 @@ export class SideMenuConfig implements IComponent {
       type: 'list',
       list: [
         {
-          item: {
-            name: 'aboutUs',
-            display: 'NAVBAR.SIDE.ABOUT_US',
-            iconClass: 'fa-info-circle',
-            link: {path: ''}
-          }
+          name: 'aboutUs',
+          display: 'NAVBAR.SIDE.ABOUT_US',
+          iconClass: 'fa-info-circle',
+          link: {path: ''}
         },
         {
-          item: {
-            name: 'createEvent',
-            display: 'NAVBAR.SIDE.CREATE_EVENT',
-            iconClass: 'fa-calendar-plus-o',
-            link: {path: ''}
-          }
+          name: 'createEvent',
+          display: 'NAVBAR.SIDE.CREATE_EVENT',
+          iconClass: 'fa-calendar-plus-o',
+          link: {path: ''}
         },
         {
-          item: {
-            name: 'help',
-            display: 'NAVBAR.SIDE.HELP',
-            iconClass: 'fa-question-circle-o',
-            link: {path: ''}
-          }
+          name: 'help',
+          display: 'NAVBAR.SIDE.HELP',
+          iconClass: 'fa-question-circle-o',
+          link: {path: ''}
         },
       ]
     },
@@ -65,18 +59,14 @@ export class SideMenuConfig implements IComponent {
           iconClass: 'fa-user',
           list: [
             {
-              item: {
-                name: 'signin',
-                display: 'NAVBAR.SIDE.AUTH.MENU.SIGNIN',
-                link: {path: '/auth', param: 'signin'}
-              }
+              name: 'signin',
+              display: 'NAVBAR.SIDE.AUTH.MENU.SIGNIN',
+              link: {path: '/auth', param: 'signin'}
             },
             {
-              item: {
-                name: 'signup',
-                display: 'NAVBAR.SIDE.AUTH.MENU.SIGNUP',
-                link: {path: '/auth', param: 'signup'}
-              }
+              name: 'signup',
+              display: 'NAVBAR.SIDE.AUTH.MENU.SIGNUP',
+              link: {path: '/auth', param: 'signup'}
             }
           ]
         },
@@ -87,32 +77,24 @@ export class SideMenuConfig implements IComponent {
           iconClass: 'fa-user',
           list: [
             {
-              item: {
-                name: 'profile',
-                display: 'NAVBAR.SIDE.ACCOUNT.MENU.PROFILE',
-                link: {path: '/user/profile'}
-              }
+              name: 'profile',
+              display: 'NAVBAR.SIDE.ACCOUNT.MENU.PROFILE',
+              link: {path: '/user/profile'}
             },
             {
-              item: {
-                name: 'events',
-                display: 'NAVBAR.SIDE.ACCOUNT.MENU.EVENTS',
-                link: {path: '/user/events'}
-              }
+              name: 'events',
+              display: 'NAVBAR.SIDE.ACCOUNT.MENU.EVENTS',
+              link: {path: '/user/events'}
             },
             {
-              item: {
-                name: 'messages',
-                display: 'NAVBAR.SIDE.ACCOUNT.MENU.MESSAGES',
-                link: {path: '/user/messages'}
-              }
+              name: 'messages',
+              display: 'NAVBAR.SIDE.ACCOUNT.MENU.MESSAGES',
+              link: {path: '/user/messages'}
             },
             {
-              item: {
-                name: 'uploads',
-                display: 'NAVBAR.SIDE.ACCOUNT.MENU.UPLOADS',
-                link: {path: '/user/uploads'}
-              }
+              name: 'uploads',
+              display: 'NAVBAR.SIDE.ACCOUNT.MENU.UPLOADS',
+              link: {path: '/user/uploads'}
             }
           ]
         },
@@ -123,28 +105,22 @@ export class SideMenuConfig implements IComponent {
           iconClass: 'fontello-globe',
           list: [
             {
-              item: {
-                name: 'en',
-                iconClass: 'flag-icon flag-icon-us',
-                display: 'NAVBAR.SIDE.LANGUAGE.MENU.ENGLISH',
-                link: null
-              }
+              name: 'en',
+              iconClass: 'flag-icon flag-icon-us',
+              display: 'NAVBAR.SIDE.LANGUAGE.MENU.ENGLISH',
+              link: null
             },
             {
-              item: {
-                name: 'ja',
-                iconClass: 'flag-icon flag-icon-jp',
-                display: 'NAVBAR.SIDE.LANGUAGE.MENU.JAPANESE',
-                link: null
-              }
+              name: 'ja',
+              iconClass: 'flag-icon flag-icon-jp',
+              display: 'NAVBAR.SIDE.LANGUAGE.MENU.JAPANESE',
+              link: null
             },
             {
-              item: {
-                name: 'zh',
-                iconClass: 'flag-icon flag-icon-cn',
-                display: 'NAVBAR.SIDE.LANGUAGE.MENU.CHINESE',
-                link: null
-              }
+              name: 'zh',
+              iconClass: 'flag-icon flag-icon-cn',
+              display: 'NAVBAR.SIDE.LANGUAGE.MENU.CHINESE',
+              link: null
             }
           ]
         }

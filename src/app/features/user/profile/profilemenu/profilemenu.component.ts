@@ -33,12 +33,12 @@ export class ProfileMenuComponent {
   constructor(private userService: UserService) {
     this.menuData = new ProfileMenuConfig();
     this.menuElements = _.mapKeys(this.menuData.elements, 'name');
-    this.userService.setProfileMenuSelected(<ILinkElement>this.menuElements.menuList.list[0].item);
+    this.userService.setProfileMenuSelected(<ILinkElement>this.menuElements.menuList.list[0]);
   }
 
   onSelected(selectedItem: IListItem): void {
     this.userService.setMenuOpened(false);
-    this.userService.setProfileMenuSelected(<ILinkElement>selectedItem.item);
+    this.userService.setProfileMenuSelected(<ILinkElement>selectedItem);
   }
 
   isDeviceWidth(): boolean {

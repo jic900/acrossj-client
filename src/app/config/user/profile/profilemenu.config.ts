@@ -18,22 +18,18 @@ export class ProfileMenuConfig implements IComponent {
       type: 'list',
       list: [
         {
-          item: {
-            name: 'personalInfo',
-            display: 'USER.PROFILE.PERSONAL_INFO.LABEL',
-            iconClass: 'fa-user',
-            link: {path: '/user/profile/personalinfo'},
-            navIconClass: 'fa-angle-right'
-          }
+          name: 'personalInfo',
+          display: 'USER.PROFILE.PERSONAL_INFO.LABEL',
+          iconClass: 'fa-user',
+          link: {path: '/user/profile/personalinfo'},
+          navIconClass: 'fa-angle-right'
         },
         {
-          item: {
-            name: 'changePassword',
-            display: 'USER.PROFILE.CHANGE_PASSWORD.LABEL',
-            iconClass: 'fa-info-circle',
-            link: {path: '/user/profile/changepassword'},
-            navIconClass: 'fa-angle-right'
-          }
+          name: 'changePassword',
+          display: 'USER.PROFILE.CHANGE_PASSWORD.LABEL',
+          iconClass: 'fa-info-circle',
+          link: {path: '/user/profile/changepassword'},
+          navIconClass: 'fa-angle-right'
         }
       ]
     }
