@@ -9,6 +9,8 @@ import {
 
 import { IListElement } from 'app/config/interfaces/list-element.interface';
 import { IListItem } from 'app/config/interfaces/list-item';
+import { ILinkElement } from 'app/config/interfaces/link-element.interface';
+import { IElement } from 'app/config/interfaces/element.interface';
 
 @Component({
   selector: 'aj-list',
@@ -26,11 +28,21 @@ export class ListComponent implements OnInit, AfterViewInit {
   selectedIndex: number;
 
   constructor() {
+    this.showLine = false;
     this.selected = new EventEmitter<IListItem>();
   }
 
   ngOnInit() {
-    this.list = this.listData.list;
+    // this.list = this.listData.list;
+    this.list = [];
+    this.listData.list.forEach((listElement) => {
+      this.list.push(listElement);
+      if ('list' in listElement) {
+        (<IListElement>listElement).list.forEach(sublistElement => {
+          this.list.push(sublistElement);
+        })
+      }
+    });
   }
 
   ngAfterViewInit(): void {

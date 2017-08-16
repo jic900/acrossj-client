@@ -1,5 +1,14 @@
-:host >>> md-list-item .mat-list-item-content {
+/*:host >>> md-list-item .mat-list-item-content {*/
+  /*padding: 0 !important;*/
+  /*height: 50px !important;*/
+/*}*/
+
+md-list-item {
   padding: 0 !important;
+  /*height: 50px !important;*/
+}
+md-list-item.sublink {
+  height: 36px !important;
 }
 
 .item-button-container {
@@ -7,6 +16,15 @@
   text-align: left;
   padding: 0 5px;
   font-size: 16px;
+}
+.item-button-container.sublink {
+  padding-left: 40px;
+  font-size: 15px;
+}
+
+.icon-sublink {
+  /*font-size: 20px !important;*/
+  /*line-height: 1.2;*/
 }
 
 .item-button-content {
@@ -32,6 +50,12 @@
 @media (min-width: 769px) {
   .item-selected {
     background-color: rgba(0,0,0,.15);
+  }
+}
+
+@media (max-width: 768px) {
+  :host >>> .mat-list-icon {
+    text-align: center;
   }
 }
 

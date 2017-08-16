@@ -30,6 +30,15 @@ import { MessageDetailComponent } from './message/messagedetail/messagedetail.co
 import { UploadSummaryComponent } from './upload/uploadsummary.component';
 import { UploadDetailComponent } from './upload/uploaddetail/uploaddetail.component';
 import { ProfileDetailComponent } from './profile/profiledetail/profiledetail.component';
+import { EventRelatedInfoComponent } from './profile/eventrelatedinfo/eventrelatedinfo.component';
+import { GroupInfoComponent } from './profile/groupinfo/groupinfo.component';
+import { GeneralInfoComponent } from './profile/eventrelatedinfo/generalinfo/generalinfo.component';
+import { SkiiInfoComponent } from './profile/eventrelatedinfo/skiiinfo/skiiinfo.component';
+import { RunningInfoComponent } from './profile/eventrelatedinfo/runninginfo/runninginfo.component';
+import { HikingInfoComponent } from './profile/eventrelatedinfo/hikinginfo/hikinginfo.component';
+import { CampingInfoComponent } from './profile/eventrelatedinfo/campinginfo/campinginfo.component';
+import { BicyclingInfoComponent } from './profile/eventrelatedinfo/bicyclinginfo/bicyclinginfo.component';
+import { OthersInfoComponent } from './profile/eventrelatedinfo/othersinfo/othersinfo.component';
 
 @NgModule({
   imports: [
@@ -57,7 +66,16 @@ import { ProfileDetailComponent } from './profile/profiledetail/profiledetail.co
     MessageSummaryComponent,
     MessageDetailComponent,
     UploadSummaryComponent,
-    UploadDetailComponent
+    UploadDetailComponent,
+    EventRelatedInfoComponent,
+    GroupInfoComponent,
+    GeneralInfoComponent,
+    SkiiInfoComponent,
+    RunningInfoComponent,
+    HikingInfoComponent,
+    CampingInfoComponent,
+    BicyclingInfoComponent,
+    OthersInfoComponent
   ],
   providers: [UserService]
 })

@@ -116,14 +116,6 @@
     },
     "PROFILE": {
       "LABEL": "Profile",
-      "CHANGE_PASSWORD": {
-        "LABEL": "Change Password",
-        "OLD_PASSWORD": "Current Password",
-        "PASSWORD": "New Password",
-        "CONFIRM_PASSWORD": "Confirm New Password",
-        "SHOW_PASSWORD": "Show Password",
-        "BTN_LABEL": "Change Password"
-      },
       "PERSONAL_INFO": {
         "LABEL": "Personal Information",
         "FULLNAME": "Full Name",
@@ -136,6 +128,38 @@
         "POSTCODE": "Post Code",
         "PHONENUMBER": "Phone Number",
         "SAVEBTN_LABEL": "Save"
+      },
+      "CHANGE_PASSWORD": {
+        "LABEL": "Change Password",
+        "OLD_PASSWORD": "Current Password",
+        "PASSWORD": "New Password",
+        "CONFIRM_PASSWORD": "Confirm New Password",
+        "SHOW_PASSWORD": "Show Password",
+        "BTN_LABEL": "Change Password"
+      },
+      "EVENT_RELATED": {
+        "LABEL": "Event Related",
+        "RUNNING": {
+          "LABEL": "Running"
+        },
+        "SKII": {
+          "LABEL": "Skii"
+        },
+        "HIKING": {
+          "LABEL": "Hiking"
+        },
+        "CAMPING": {
+          "LABEL": "Camping"
+        },
+        "BICYCLING": {
+          "LABEL": "Bicycling"
+        },
+        "OTHERS": {
+          "LABEL": "Other"
+        }
+      },
+      "GROUP_INFO": {
+        "LABEL": "Group Information"
       }
     },
     "EVENTS": {

@@ -25,17 +25,19 @@ export class LocalStorageService {
     return localStorage.getItem(itemName);
   }
 
+  set(itemName: string, itemValue: string): void {
+    localStorage.setItem(itemName, itemValue);
+  }
+
   saveToken(token: string): void {
     localStorage.setItem('token', token);
     const decodedToken = this.jwtHelper.decodeToken(token);
-    localStorage.setItem('username', decodedToken.username);
-    localStorage.setItem('role', decodedToken.role);
+    localStorage.setItem('user', JSON.stringify(decodedToken));
   }
 
   deleteToken() {
     localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    localStorage.removeItem('role');
+    localStorage.removeItem('user');
     this.tokenDeleted$.next();
   }
 }

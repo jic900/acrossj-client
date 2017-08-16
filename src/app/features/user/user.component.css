@@ -11,11 +11,13 @@
 }
 
 .user-container {
-  min-height: calc(100vh - 260px);
+  /*min-height: calc(100vh - 260px);*/
+  min-height: calc(100vh - 310px);
   background-color: rgba(0,0,0,.04);
 }
 
 nav {
+  /*height: 50px;*/
   background-color: white;
 }
 

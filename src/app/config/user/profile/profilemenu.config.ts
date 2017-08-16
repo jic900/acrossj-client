@@ -19,6 +19,7 @@ export class ProfileMenuConfig implements IComponent {
       list: [
         {
           name: 'personalInfo',
+          type: 'link',
           display: 'USER.PROFILE.PERSONAL_INFO.LABEL',
           iconClass: 'fa-user',
           link: {path: '/user/profile/personalinfo'},
@@ -26,9 +27,75 @@ export class ProfileMenuConfig implements IComponent {
         },
         {
           name: 'changePassword',
+          type: 'link',
           display: 'USER.PROFILE.CHANGE_PASSWORD.LABEL',
           iconClass: 'fa-info-circle',
           link: {path: '/user/profile/changepassword'},
+          navIconClass: 'fa-angle-right'
+        },
+        {
+          name: 'eventRelated',
+          type: 'list',
+          display: 'USER.PROFILE.EVENT_RELATED.LABEL',
+          iconClass: 'fa-info-circle',
+          list: [
+            {
+              name: 'running',
+              type: 'sublink',
+              display: 'USER.PROFILE.EVENT_RELATED.RUNNING.LABEL',
+              iconClass: 'fa-info-circle',
+              link: {path: '/user/profile/eventinfo/running'},
+              navIconClass: 'fa-angle-right'
+            },
+            {
+              name: 'skii',
+              type: 'sublink',
+              display: 'USER.PROFILE.EVENT_RELATED.SKII.LABEL',
+              iconClass: 'fa-info-circle',
+              link: {path: '/user/profile/eventinfo/skii'},
+              navIconClass: 'fa-angle-right'
+            },
+            {
+              name: 'hiking',
+              type: 'sublink',
+              display: 'USER.PROFILE.EVENT_RELATED.HIKING.LABEL',
+              iconClass: 'fa-info-circle',
+              link: {path: '/user/profile/eventinfo/hiking'},
+              navIconClass: 'fa-angle-right'
+            },
+            {
+              name: 'camping',
+              type: 'sublink',
+              display: 'USER.PROFILE.EVENT_RELATED.CAMPING.LABEL',
+              iconClass: 'fa-info-circle',
+              link: {path: '/user/profile/eventinfo/camping'},
+              navIconClass: 'fa-angle-right'
+            },
+            {
+              name: 'bicycling',
+              type: 'sublink',
+              display: 'USER.PROFILE.EVENT_RELATED.BICYCLING.LABEL',
+              iconClass: 'fa-info-circle',
+              link: {path: '/user/profile/eventinfo/bicycling'},
+              navIconClass: 'fa-angle-right'
+            },
+            {
+              name: 'others',
+              type: 'sublink',
+              display: 'USER.PROFILE.EVENT_RELATED.OTHERS.LABEL',
+              iconClass: 'fa-info-circle',
+              link: {path: '/user/profile/eventinfo/others'},
+              navIconClass: 'fa-angle-right'
+            }
+          ],
+          navIconClass: 'fa-angle-down'
+        },
+        {
+          name: 'groupInfo',
+          type: 'link',
+          display: 'USER.PROFILE.GROUP_INFO.LABEL',
+          iconClass: 'fa-info-circle',
+          link: {path: '/user/profile/groupinfo'},
           navIconClass: 'fa-angle-right'
         }
       ]
